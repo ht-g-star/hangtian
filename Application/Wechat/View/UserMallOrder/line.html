@@ -1,0 +1,179 @@
+<extend name="Base/mobile_base"/>
+<block name="style">
+	<style>
+
+	</style>
+</block>
+<block name="body">
+	<!-- List -->
+	<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+		<div class="am-list-news-bd order">
+			<ul class="am-list">
+				<!--缩略图在标题左边-->
+				<volist name="list" id="po">
+					<div class="am-padding-xs">
+						<span class="c9">订单号：</span><span class="c0">{$po.orderid}</span>
+					</div>
+					<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+						<volist name="po['id']" id="vo">
+							<div class="cos">
+								    <span class="am-padding-left-sm">
+								    	<neq name="vo.stype" value='1'>
+							     			<eq name='vo.stype' value='2'>
+										     	<a href="{:U('hotel/detail?id='.$vo['sid'])}">
+									     		<img src="{$vo.spic}" width="70" height="70"/> 
+										     	</a>
+							     			</eq>
+							     			<eq name='vo.stype' value='3'>
+										     	<a href="{:U('line/lineDetail?xl_id='.$vo['sid'])}">
+									     		<img src="{$vo.spic}" width="70" height="70"/> 
+										     	</a>
+							     			</eq>
+								     		<else/>
+								     		<a href="{:U('Article/detail?id='.$vo['goodid'])}">
+								     		<img src="{$vo.goodid|get_cover_id|get_cover='path'}" width="70" height="70"/> 
+								     		</a>
+								     	</neq>
+								     	<neq name="vo.stype" value='1'>
+								     		<eq name='vo.stype' value='2'>
+										  		<span class="am-inline-block am-text-sm"><a href="{:U('hotel/detail?id='.$vo['sid'])}">{$vo.sname}</a></span>
+									    	</eq>
+									    	<eq name='vo.stype' value='3'>
+										  		<span class="am-inline-block am-text-sm"><a href="{:U('line/lineDetail?xl_id='.$vo['sid'])}">{$vo.sname}</a></span>
+									    	</eq>
+									    	<else/>
+									    	<span class="am-inline-block am-text-sm"><a href="{:U('Article/detail?id='.$vo['goodid'])}">{$vo.goodid|get_good_name|mb_substr=0,10,'utf-8'}</a></span>
+									    </neq>
+								        <span class="dd">{$vo.parameters}</span>
+							        </span>
+								<span class="c2 am-text-warning">￥{$vo.price}</span>
+								<span class="c2">*{$vo.num}</span>
+
+
+			    <span class="c2">  <php>
+				    if($vo['status']==1||$vo['status']==2){echo ""
+				    ;};
+
+				    if($vo['status']==4){echo "<a href='#'>退货审核中</a>&nbsp;";};
+				    if($vo['status']==5){echo "<a href='#'>同意退货</a>&nbsp;";};
+				    if($vo['status']==6){echo "<a href='#'>退货中</a>&nbsp;";};
+				    if($vo['status']==7){echo "<a href='#'>退货被拒绝</a>&nbsp;";};
+				    if($vo['status']==8){echo "<a href='#'>退货完成</a>&nbsp;";};
+
+				    if($vo['status']==-4){echo "<a href='#'>换货审核中</a>
+				    &nbsp;";};
+				    if($vo['status']==-5){echo "<a href='#'>同意换货</a>
+				    &nbsp;";};
+				    if($vo['status']==-6){echo "<a href='#'>换货中</a>
+				    &nbsp;";};
+				    if($vo['status']==-7){echo "<a href='#'>换货被拒绝</a>
+				    &nbsp;";};
+				    if($vo['status']==-8){echo "<a href='#'>换货完成</a>
+				    &nbsp;";};
+			    </php></span>
+							</div>
+						</volist>
+						<div class="am-text-right"><p class="am-text-warning am-margin-bottom-0">￥{$po.total_money}</p>
+							<p class="am-margin-0 am-padding-0 am-text-xs">(运费￥{$po.ship_price})</p>
+						</div>
+						<div class="am-u-sm-12 am-list-main">
+							<div class="order-button am-padding-top-sm">
+								<php>
+									$status=$po['status'];
+									if($status==-1){ echo "待支付";};
+									if($status==1){ echo "已提交订单";};
+									if($status==2){ echo "已支付";};
+									if($status==3){ echo "交易成功";};
+									if($status==4){ echo "申请取消订单";};
+									if($status==5){ echo "取消订单被拒绝";};
+									if($status==6){ echo "订单已取消";};
+
+									$status=$po['status'];
+									
+
+									$pay=$po['ispay'];
+								</php>
+								<if condition="$pay eq 1 AND $po['status'] eq -1">
+									<a class='btn confirm' href='wechat.php?s=/cancel/index/id/{$po["orderid"]}/type/{$po["ordertype"]}'>取消订单</a>
+									<a class='btn' href="/Wechat/Pay/index/orderid/{$po.orderid}.html">前去支付</a>
+									<!-- <a class='btn yebtn' data-oid='{$po.orderid}' data-price='{$po.total_money}'>余额支付</a> -->
+								</if>
+								<if condition="$po['status'] eq 1">
+									<a class='btn confirm' href='wechat.php?s=/cancel/index/id/{$po["orderid"]}/type/{$po["ordertype"]}'>取消订单</a>
+								</if>
+								<a class="btn" href='wechat.php?s=/UserMallOrder/detail/id/{$po["orderid"]}'>订单详情</a>
+								<!--<a class='btn' href='index.php?s=/Home/cancel/index/id/".$po['orderid']."'>取消订单</a>-->
+							</div>
+						</div>
+					</li>
+					<div class="space"></div>
+				</volist>
+			</ul>
+			{$page}
+		</div>
+	</div>
+	<div class="am-modal " tabindex="-1" id="balance_pay">
+		<!-- Modal 对话框内容 -->
+		<div class="am-modal-dialog">
+				<input type="hidden" id="orderid" />
+				<input type="hidden" id="orderprice" />
+			<div class="am-modal-hd">
+				<h3>余额支付</h3>
+			</div>
+			<hr class="am-margin-0">
+			<div class="am-modal-bd">
+				您的余额为: <span id="balance_value" class="am-text-warning am-text-xl">{$custommoney|round}</span><br><br>
+				输入密码: <input name="password" id="password" type="password" value="" class="am-padding-xs"/><br>
+				<button id="balance_pay_btn" class="am-btn am-btn-primary am-padding-left-xl am-padding-right-xl am-margin-top-xl" type="button">支付</button>
+
+				<button type="button" id="closemodel" class="am-btn am-btn-default" data-am-modal-cancel style="margin-top: 36px;">取消</button>
+			</div>
+			<div class="am-modal-footer">
+			</div>
+		</div>
+		<!-- Modal 对话框内容 -->
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>
+<block name="script">
+	<script>
+	$('#closemodel').on('click',function(){
+		$("#balance_pay").modal('close');
+	})
+		
+		$('.yebtn').on('click',function(){
+			var oid = $(this).data('oid');
+			var oprice = $(this).data('price');
+			$("#orderid").val(oid);
+			$("#orderprice").val(oprice);
+			$("#balance_pay").modal({
+				relatedTarget: this,
+				closeViaDimmer: 0
+			});
+		})
+		
+		$("#balance_pay_btn").click(function () {
+			var balance = parseFloat($.trim($("#balance_value").text()));
+			var cost = parseFloat($("#money").val());
+			if (!balance || balance < cost) {
+				topAlert("余额不足!");
+				return;
+			}
+			var price = $('#orderprice').val();
+			if (confirm('即将扣除您此次订单的金额'+price+'元,是否确认?')) {
+				$.post("{:U('Pay/balance')}", {
+					"orderid": $("#orderid").val(),
+					'password':$("#password").val()
+				}, function (data) {
+					if (data) {
+						alert(data.info);
+						location.href = data.url;
+					} else {
+						alert("连接出错,请刷新重试,或联系管理员!");
+						return;
+					}
+				}, 'json')
+			}
+		});
+	</script>
+</block>

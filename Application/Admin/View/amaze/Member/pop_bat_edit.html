@@ -1,0 +1,51 @@
+<!--popup 批量编辑-->
+<div class="am-popup" id="pop_bat_edit">
+	<div class="am-popup-inner">
+		<div class="am-popup-hd">
+			<h4 class="am-popup-title">批量编辑</h4>
+			<span data-am-modal-close class="am-close">&times;</span>
+		</div>
+		<div class="am-popup-bd">
+			<!--begin-->
+			<form action="{:U('Member/index',array('type'=>'bat_edit'))}" method="post" class="am-form am-form-horizontal form-horizontal">
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">您选择了:</label>
+
+					<div class="am-u-sm-9 selected_person am-padding-top-xs">
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">请选择操作字段:</label>
+
+					<div class="am-u-sm-9">
+						<select id="bat_edit_type">
+							<option value="company">单位</option>
+							<option value="dept">部门</option>
+							<option value="position">职位</option>
+							<option value="is_onsite">是否一线</option>
+							<option value="rank">等级</option>
+							<option value="level">类型</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">请键入操作后的值:</label>
+
+					<div class="am-u-sm-9 bat_value_div">
+						<input type="text" id="bat_value" required placeholder="请输入值">
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<div class="am-u-sm-9 am-u-sm-push-3">
+						<button type="submit" class="am-btn am-btn-primary">确认</button>
+					</div>
+				</div>
+			</form>
+			<!--over-->
+		</div>
+	</div>
+</div>

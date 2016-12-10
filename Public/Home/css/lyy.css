@@ -1,0 +1,57 @@
+/*商品列表*/
+.g_shopslists .g_topsearch{width: 75%;}
+a.shopslistsbtn{display: block;line-height:2.6em;height: 2.6em;color: #575c67;;}
+a.shopslistsbtn i{font-size: 1.2em;}
+.g_shopslists_choice ul li{float: left;padding: 0 3.5%;border-left: 1px solid #dedede;}
+.g_shopslists_choice ul li:first-child{border: none;}
+.g_shopslists_choice{background: #fff;padding:2% 4%;}
+.g_shopslists_choice ul li a{color: #3b3b3b;display: block;}
+.g_shopslists_choice a.selected{color: #4bae00;}
+.g_shops_lists ul li{background: #fff;width: 48%;float: left;margin: 0 1% 2%;padding: 2%;}
+.g_shops_lists{overflow: hidden;padding: 2% 0;}
+.g_shops_lists1{color:#3c3c3c;font-size: 0.7em;}
+.g_shops_listsrmb1{color: #e02200;font-size: 1.2em;font-weight: bold;}
+.g_shops_listsrmbspan{font-size: 0.6em;font-weight: bold;}
+.g_shops_listsrmb2{font-size: 0.8em;color: #a8a8a8;}
+.g_shops_listsrmb1,.g_shops_listsrmb2{line-height: 1.1;}
+.g_shops_listsbtn{display: block;width: 2em;height: 2em;line-height: 2em;border: 1px solid #f1f1f1;border-radius: 50%;text-align: center;}
+.g_shops_listsbtn i{color: #9b9b9b;font-size: 1.2em;}
+.g_shops_pp a{color: #3c3c3c;display: block;float: left;background: #f0f0f0;width: 30%;text-align: center;margin: 2% 1.5%;font-size: 0.8em;border-radius: 5px;padding: 3% 0;border: 1px solid #f0f0f0;}
+.g_shops_pplists{padding: 0 0.75rem 3%;margin-top: 5%;}
+.g_shops_ppbottom a{display: inline-block;width: 49%;color: #4cab35;text-align: center;height: 2.5rem;line-height: 2.5rem;}
+.g_shops_ppbottom{background: #c6e7be;position: fixed;bottom: 0;width: 100%;}
+.g_shops_ppbottom a.selected1{color: #fff;background: #4cab35;}
+.g_shops_pplists p{font-size: 0.8em;color: #5f5f5f;}
+header.bar.g_fenlei{background: #f9f9f9;}
+.g_fenlei.bar .icon{width: 15%;}
+.g_fenlei .g_location i{color: #575c67;font-size: 1.2em;}
+.g_location i{color: #fff;position: relative; top: 0.05em;font-size: 1em;}
+.g_fenlei .g_topsearch{background: #eeeeee;}
+.g_topsearch i{color: #b3b3b3;font-size: 1.2em;}
+.g_fenlei .g_topsearch input{background: #EEEEEE;}
+.g_topsearch input{border: none;outline: none;font-size: 0.8em;width:80%;}
+.g_topsearch{background: #fff;line-height: 2em;height: 2em;margin-top: 0.25rem;border-radius: 15px;padding-left: 1em;width: 65%}
+a.shopslistsbtn{display: block;line-height:2.6em;height: 2.6em;color: #575c67;;}
+a.shopslistsbtn i{font-size: 0.9em;color: #828287;}
+a.shopslistsbtn span{font-size: 0.8em;color: #828287;}
+.g_shops_pplistsname{text-align: center;}
+.g_jdlistspic{width: 28%;float: left;}
+a.g_jdlists{display: block;padding: 3%;border-bottom: 1px solid #e4e4e4;overflow: hidden;}
+.g_jdlistscont{width: 70%;float: left;margin-left: 2%;}
+.g_jdlistscontp1{color: #3c3c3c;font-size: 0.75em;font-weight: bold;margin: 0;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp:2}
+.g_jdlistscontp2{color: #787878;font-size: 0.6em;margin: 0;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp:1}
+.g_jdlistscontp3{color: #ff2e3d;margin: 0;font-size: 0.6em;text-align: right;}
+.g_jdlistscontp3 span{font-weight: bold;font-size: 1.4em;}
+.g_jdlists p{line-height: 1.2;}
+.g_returntop{max-width: 720px;position: fixed;bottom: 1rem;right: 1rem;width: 50px;height: 50px;line-height: 50px;text-align:center;background: rgba(0,0,0,0.6);border-radius: 50%;}
+.g_returntop a i{font-size: 1.6em;color: #fff;}
+.g_shops_pp a.active{background: #cceaff;border: 1px solid #3fa7f0;color: #3fa7f0;}
+
+/*旅游列表*/
+.g_lylistspic{position: relative;background: #fff;padding-bottom: 4%;}
+.g_lybq{background: url(../images/lypic2.png) no-repeat;position: absolute;top: 0;left: 0;width: 100%;background-size:30% ;}
+.g_lybq p{color: #fff;font-size: 0.6em;}
+.g_lyname{padding-left: 4%;padding-right: 4%;}
+.g_lypadding{padding-top:2% ;padding-bottom: 2%;}
+.g_lydate a.active1{background: #cceaff;border: 1px solid #3fa7f0;color: #3fa7f0;}
+.g_lydate a{color: #3c3c3c;display: block;float: left;background: #f0f0f0;width: 30%;text-align: center;margin: 2% 1.5%;font-size: 0.8em;border-radius: 5px;padding: 3% 0;border: 1px solid #f0f0f0;}

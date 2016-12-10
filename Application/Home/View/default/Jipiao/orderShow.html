@@ -1,0 +1,179 @@
+<extend name="Base/common"/>
+<block name="body">
+    <div class="am-g am-container am-margin-top-lg">
+        <div class="breadcrumb-box">
+            <ol class="am-breadcrumb am-breadcrumb-slash">
+                <li><a href="{:U('Home/Index/index')}">首页</a></li>
+                <li class="am-active">个人中心</li>
+            </ol>
+        </div>
+        <div class="userCenter am-cf">
+            <div class="am-u-sm-3">
+                <!-- 左侧菜单 -->
+                <include file="Public/leftmenu"/>
+                <!-- 左侧菜单 -->
+            </div>
+            <div class="center_right userCenter-r am-u-sm-9 am-padding">
+
+                <span class="red" style="display: block;padding:15px;font-size:17px;">订单详情查看</span>
+
+                <empty name='po'>
+                    <div class="am-text-center am-padding-xl">
+                        <p>没有该订单，<a href='{:U("Jipiao/index")}' class="am-text-warning">查询错误</a></p>
+
+                        <div class="cb"></div>
+                    </div>
+                    <else/>
+
+                    <table id="table" class="detailtable" width="100%">
+
+                            <tbody>
+                            <tr width="100%">
+                                <th width="60%" class="am-text-sm">订单号：<span class="num-text">{$po.orderid}(
+                                    <php>
+                                        switch($po['orderstatus']){
+                                        case 'WAIT_PAY':
+                                        echo '待支付';
+                                        break;
+                                        case 'PAYING':
+                                        echo '支付中';
+                                        break;
+                                        case 'WAIT_AUDIT':
+                                        echo '待审核';
+                                        break;
+                                        case 'AUDIT_FALSE':
+                                        echo '审核失败';
+                                        break;
+                                        case 'CANCELED':
+                                        echo '已取消';
+                                        break;
+                                        case 'WAIT_ISSUE':
+                                        echo '待出票';
+                                        break;
+                                        case 'PAY_FALSE':
+                                        echo '支付失败';
+                                        break;
+                                        case 'ISSUE_FALSE':
+                                        echo '出票失败';
+                                        break;
+                                        case 'ISSUED':
+                                        echo '已出票';
+                                        break;
+                                        case 'ISSUED_SUSPEND':
+                                        echo '已出票（挂起）';
+                                        break;
+                                        case 'ENDORSE_WAIT_AUDIT':
+                                        echo '改签待审核';
+                                        break;
+                                        case 'ENDORSE_AUDIT_SUCCESS':
+                                        echo '改签审核成功';
+                                        break;
+                                        case 'ENDORSE_AUDIT_FALSE':
+                                        echo '改签审核失败';
+                                        break;
+                                        case 'WAIT_REFUND':
+                                        echo '待退票';
+                                        break;
+                                        case 'REFUND_FALSE':
+                                        echo '退票失败';
+                                        break;
+                                        case 'CANCEL_REFUND':
+                                        echo '取消退票';
+                                        break;
+                                        case 'REFUND_FINISH':
+                                        echo '退票成功';
+                                        break;
+                                        case 'REFUND_WAIT_AUDIT':
+                                        echo '退票待审核';
+                                        break;
+                                        case 'REFUND_AUDIT_FALSE':
+                                        echo '退票审核失败';
+                                        break;
+                                        case 'CANCEL_ENDORSE':
+                                        echo '取消改签';
+                                        break;
+                                        case 'WAIT_ENDORSE':
+                                        echo '待改签';
+                                        break;
+                                        case 'ENDORSE_FALSE':
+                                        echo '改签失败';
+                                        break;
+                                        case 'ENDORSE_FINISH':
+                                        echo '改签成功';
+                                        break;
+                                        case 'ENDORSE_REVIEW_PASS':
+                                        echo '改签后付款';
+                                        break;
+                                        }
+                                    </php>
+                                    )</span></th>
+                                <th width="40%"  class="am-text-sm">
+                                  下单时间：<span class="num-text">{$po.addtime|date='Y-m-d H:i',###}</span>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><b>行程:</b>
+                                  <br />航班号:{$po["flightno"]}
+                                  <br />
+                                  <b>[{$po["departuredate"]}]</b>{$po.fromcitycn}[{:setAirport($po["fromairport"])}]({$po["departuretime"]}) 
+                                  飞往
+                                  {$po.tocitycn}[{:setAirport($po["toairport"])}]({$po["arrivaltime"]}) 
+                                </td>
+                            </tr>
+                            <if condition="$po['iswf'] eq 1">
+                            <tr>
+                              <td  colspan="2"><b>返程:</b>
+                                <br />航班号:{$po["flightno1"]}
+                                <br />
+                                <b>[{$po["departuredate1"]}]</b>{$po.tocitycn}[{:setAirport($po["toairport"])}]({$po["departuretime1"]}) 
+                                  飞往
+                                  {$po.fromcitycn}[{:setAirport($po["fromairport1"])}]({$po["arrivaltime1"]}) 
+                              </td>
+                            </tr>
+                            </if>
+                            <if condition="$po['orderstatus'] == ISSUED">
+                            <tr>
+                                <td colspan="2">票号：{$po["ticketno"]}
+                                </td>
+                            </tr>
+                            </if>
+                            <tr>
+                              <td colspan="2">
+                                乘机人：{$po.passengername}
+                              </td>
+                            </tr>
+                            <tr>
+                                <td>证件号码：{$po.credentialcode} </td>
+                                <td>手机： {$po.lxr_phone}</td>
+                            </tr>
+                            <tr>
+                              <td colspan="2" class="am-text-right">
+                                <php>
+                                      if($po['orderstatus'] == 'WAIT_PAY'){
+                                          echo '<a class="am-btn am-btn-primary" href="'.U('Pay/index', array('orderid'=>$po['orderid'])).'">前去支付</a>';
+                                      }
+                                  </php>
+                              </td>
+                            </tr>
+                            <php>
+                              $ck = explode("|", $po["passengername"]);
+                              $ck = count($ck);
+                            </php>
+                            <tr>
+                                <td colspan="2" align="right" style="background:#ebf8ff">金额：
+                                <span class="am-text-warning">{$po['totalorderprice'] + 20 * $ck}</span>元<br/>
+                                        包含保险费
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </empty>
+                <!--<span class="red" style="display: block;padding:15px;font-size:17px;">快递详情</span>-->
+
+                <!--<div id="retData" style="margin-left:20px">{$kuaidata|default="暂无"}</div>-->
+            </div>
+
+            <!-- 个人中心 初始状态 end -->
+        </div>
+    </div>
+</block>

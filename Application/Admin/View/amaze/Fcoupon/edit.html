@@ -1,0 +1,249 @@
+<extend name="Public/base"/>
+
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<!-- 标题栏 -->
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">营销管理</strong> /
+			<small>{$meta_title}</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+	<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+	<div class="am-g">
+		<div class="am-u-sm-12">
+			<div class="tab-wrap">
+				<div class="tab-content">
+					<form action="{:U()}" method="post" class="am-form  am-form-horizontal form-horizontal">
+						<!-- 基础 -->
+
+						<div id="tab1" class="tab-pane in tab1">
+							<div class="form-item">
+								<label class="item-label">
+									券名称<span class="check-tips">（名称不能为空）</span>
+								</label>
+
+								<div class="controls">
+									<input type="text" name="title" class="text input-large" value="{$info.title|default=''}">
+								</div>
+							</div>
+
+
+							<div class="form-item">
+								<label class="item-label">
+									类型<span class="check-tips">（打折券/优惠券）</span>
+								</label>
+
+								<div class="controls">
+									<select name="type" id="type">
+										<option value="0"
+										<eq name="info.type" value="0">selected</eq>
+										>优惠券</option>
+										<option value="1"
+										<eq name="info.type" value="1">selected</eq>
+										>打折券</option>
+									</select>
+								</div>
+							</div>
+
+
+							<div class="form-item" id="price">
+								<label class="item-label">优惠券金额(元)</label>
+
+								<div class="controls">
+									<input type="number" name="price" class="text input-large" value="{$info.price|default=''}">
+
+								</div>
+							</div>
+
+							<div class="form-item " id="discount">
+								<label class="item-label">折扣<span class="check-tips">（请填写小数.实际金额=总价*折扣;0.1为1折）</span></label>
+
+								<div class="controls">
+									<input type="number" name="discount" class="text input-large" value="{$info.price|default='1'}">
+								</div>
+							</div>
+
+
+							<div class="form-item">
+								<label class="item-label">最低消费限制</label>
+
+								<div class="controls">
+									<input type="number" name="lowpayment" class="text input-large" value="{$info.lowpayment|default=''}">
+								</div>
+							</div>
+
+							<div class="form-item">
+								<label class="item-label">使用起止时间</label>
+
+								<div class="controls">
+									<input type="text" name="start_time" class="text input-large " data-am-datepicker value="{$info.start_time|time_format}">
+									~
+									<input type="text" name="end_time" class="text input-large" data-am-datepicker value="{$info.end_time|time_format}">
+								</div>
+							</div>
+
+							<div class="form-item">
+								<label class="item-label">发放用户等级</label>
+
+								<div class="controls">
+									<select name="user_rank" id="user_rank">
+										<option value="-1"
+										<eq name="info.user_rank" value="-1">selected</eq>
+										>所有会员</option>
+										<option value="0"
+										<eq name="info.user_rank" value="0">selected</eq>
+										>普通会员</option>
+										<option value="1"
+										<eq name="info.user_rank" value="1">selected</eq>
+										>内部会员</option>
+										<option value="2"
+										<eq name="info.user_rank" value="2">selected</eq>
+										>VIP会员</option>
+									</select>
+								</div>
+							</div>
+
+
+							<div class="controls">
+								<label class="item-label">图片</label>
+								<input type="file" id="upload_picture">
+								<input type="hidden" name="icon" id="icon" value="{$info['icon']|default=''}"/>
+
+								<div class="upload-img-box">
+									<notempty name="info['icon']">
+										<div class="upload-pre-item"><img src="{$info.icon|get_cover='path'}"/></div>
+									</notempty>
+								</div>
+							</div>
+
+							<div class="form-item am-hide">
+								<label class="item-label">编码<span class="check-tips">（优惠券代码，支持自动生成）</span></label>
+
+								<div class="controls">
+									<input type="text" id="code" name="code" class="text input-large " value="{$info.code|default=''}"><a class="btn btn-sm btn-info am-btn an-btn-sm am-btn-primary " href="javascript:void(0);" onclick="getcode();">获取</a>
+								</div>
+							</div>
+
+							<div class="form-item">
+								<label class="item-label">状态<span class="check-tips">（1-可用，2-禁用）</span></label>
+
+								<div class="controls">
+									<label class="textarea input-large">
+										<input type="text" name="status" class="text input-large" value="{$info.status|default='1'}">
+									</label>
+								</div>
+							</div>
+
+							<div class="form-item">
+								<label class="item-label">描述<span class="check-tips">（使用规则等描述）</span></label>
+
+								<div class="controls">
+									<textarea name="description" class="am-text" id="description" cols="30" rows="10">{$info.description|default=''}</textarea>
+									{:hook('adminArticleEdit',
+									array('name'=>description,'value'=>$info['description']))}
+								</div>
+							</div>
+
+							<script type="text/javascript">
+								//上传图片
+								/* 初始化上传插件 */
+								$("#upload_picture").uploadify({
+									"height": 30,
+									"swf": "__STATIC__/uploadify/uploadify.swf",
+									"fileObjName": "download",
+									"buttonText": "上传图片",
+									"uploader": "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+									"width": 120,
+									'removeTimeout': 1,
+									'fileTypeExts': '*.jpg; *.png; *.gif;*.jpeg',
+									"onUploadSuccess": uploadPicture,
+									'onFallback': function () {
+										alert('未检测到兼容版本的Flash.');
+									}
+								});
+								function uploadPicture(file, data) {
+									var data = $.parseJSON(data);
+									var src = '';
+									if (data.status) {
+										$("#icon").val(data.id);
+										src = data.url || '__ROOT__' + data.path;
+										$("#icon").parent().find('.upload-img-box').html(
+												'<div class="upload-pre-item"><img src="' + src + '"/></div>'
+										);
+									} else {
+										updateAlert(data.info);
+										setTimeout(function () {
+											$('#top-alert').find('button').click();
+											$(that).removeClass('disabled').prop('disabled', false);
+										}, 1500);
+									}
+								}
+							</script>
+						</div>
+
+
+						<div class="form-item">
+							<input type="hidden" name="id" value="{$info.id|default=''}">
+							<button type="submit" id="submit" class="am-btn am-btn-primary submit-btn ajax-post" target-form="form-horizontal">
+								确
+								定
+							</button>
+							<button class="btn btn-return am-btn am-btn-secondary" onclick="javascript:history.back(-1);return false;">
+								返 回
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</block>
+
+<block name="script">
+	<script type="text/javascript">
+		function getcode() {
+			$.ajax({
+				type: 'post',
+				url: '{:U("Fcoupon/makecode")}', //发送数据的地址//
+				data: {id: ""},
+				dataType: "json",
+				success: function (data) {
+					if (data.status == "1") {
+						$("input#code").val(data.code);
+					}
+					else {
+						alert(data.info);
+
+					}
+				}
+			});//ajax结束
+		}
+
+		$(function () {
+			showTab();
+			var type = $("select#type").val();
+			if (type == 1) {
+				$("div#discount").show();
+				$("div#price").hide();
+			} else {
+				$("div#discount").hide();
+				$("div#price").show();
+			}
+
+			$("select#type").change(function () {
+				type = $("select#type").val();
+				if (type == 1) {
+					$("div#discount").show();
+					$("div#price").hide();
+				} else {
+					$("div#discount").hide();
+					$("div#price").show();
+				}
+			});
+
+		});
+	</script>
+</block>

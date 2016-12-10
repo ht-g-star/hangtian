@@ -1,0 +1,68 @@
+<extend name="Base/mobile_base"/>
+<block name="style">
+	<style>
+
+	</style>
+</block>
+<block name="body">
+	<div class="am-g ">
+		<div class=" am-u-sm-12">
+			<p>套餐:{$data.title}</p>
+
+			<p>预约信息时间:{$period.period},还剩余{$period['total_num']-$period['use_num']}</p>
+
+			<table class="am-table">
+				<volist name="info" id="i">
+					<tr>
+						<th>预约套餐</th>
+						<td>{$data.title}</td>
+					</tr>
+					<tr>
+						<th>预约时间</th>
+						<td>{$period.period}{$time}</td>
+					</tr>
+					<tr>
+						<th>身份证号</th>
+						<td>{$i.id_num}</td>
+					</tr>
+					<tr>
+						<th>姓名</th>
+						<td>{$i.realname}</td>
+					</tr>
+					<tr>
+						<th>性别</th>
+						<td>{$i.sex|get_sex}</td>
+					</tr>
+					<tr>
+						<th>联系电话</th>
+						<td>{$i.tel}</td>
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+			<hr>
+			<div class="am-u-sm-12 ">
+				<assign name="order" value="$Think.session.order"/>
+				<p class="am-text-right"> 订单总额:{$order.cost}</p>
+			</div>
+			<div class="am-u-sm-8 am-u-sm-centered ">
+				<button type="button" id="order_confirm" class="am-btn am-btn-primary am-btn-block">确认</button>
+			</div>
+		</div>
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>
+<block name="script">
+	<script>
+		$("#order_confirm").click(function () {
+			$.get("{:U('Suite/order_confirm')}", function (data) {
+				if (data) {
+					alert(data.info, data.status);
+					location.href = data.url;
+				} else {
+					topAlert("网络错误!");
+				}
+			}, 'json');
+		});
+	</script>
+</block>

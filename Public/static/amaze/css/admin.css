@@ -1,0 +1,619 @@
+/**
+ * admin.css
+ */
+
+ul {
+  margin-top: 0;
+  list-style: none;
+}
+
+.admin-icon-yellow {
+  color: #ffbe40;
+}
+
+.admin-header {
+  font-size: 1.4rem;
+  margin-bottom: 0;
+}
+
+.admin-header-list a:hover :after {
+  content: none;
+}
+
+.admin-main {
+  background: #f3f3f3;
+}
+
+.admin-menu {
+  position: fixed;
+  z-index: 10;
+  bottom: 30px;
+  right: 20px;
+}
+
+.admin-sidebar {
+  width: 260px;
+  min-height: 100%;
+  float: left;
+  border-right: 1px solid #cecece;
+}
+
+.admin-sidebar-list {
+  margin-bottom: 0;
+}
+
+.admin-sidebar-list li a {
+  color: #5c5c5c;
+  padding-left: 24px;
+}
+
+.admin-sidebar-list li:first-child {
+  border-top: none;
+}
+
+.admin-sidebar-list li:hover {
+  background:#f5f5f5;
+}
+.admin-sidebar-list .admin-sidebar-sub li:hover {
+  background:#ffffff;
+}
+
+.admin-sidebar-sub {
+  margin-top: 0;
+  margin-bottom: 0;
+  /*box-shadow: 0 16px 8px -15px #e2e2e2 inset;*/
+  background: #23b7e5;/*changbao*/
+  padding-left: 24px;
+}
+.admin-sidebar-sub li{
+	background: #f5f5f5;
+}
+.admin-sidebar-sub li:first-child {
+  border-top: 1px solid #dedede;
+}
+
+.admin-sidebar-panel {
+  margin: 10px;
+}
+
+.admin-content {
+  width: auto;
+  overflow: hidden;
+  height: 100%;
+  background: #fff;
+}
+
+.admin-content-list {
+  border: 1px solid #e9ecf1;
+  margin-top: 0;
+}
+
+.admin-content-list li {
+  border: 1px solid #e9ecf1;
+  border-width: 0 1px;
+  margin-left: -1px;
+}
+
+.admin-content-list li:first-child {
+  border-left: none;
+}
+
+.admin-content-list li:last-child {
+  border-right: none;
+}
+
+.admin-content-table a {
+  color: #535353;
+}
+.admin-content-file {
+  margin-bottom: 0;
+  color: #666;
+}
+
+.admin-content-file p {
+  margin: 0 0 5px 0;
+  font-size: 1.4rem;
+}
+
+.admin-content-file li {
+  padding: 10px 0;
+}
+
+.admin-content-file li:first-child {
+  border-top: none;
+}
+
+.admin-content-file li:last-child {
+  border-bottom: none;
+}
+
+.admin-content-file li .am-progress {
+  margin-bottom: 4px;
+}
+
+.admin-content-file li .am-progress-bar {
+  line-height: 14px;
+}
+
+.admin-content-task {
+  margin-bottom: 0;
+}
+
+.admin-content-task li {
+  padding: 5px 0;
+  border-color: #eee;
+}
+
+.admin-content-task li:first-child {
+  border-top: none;
+}
+
+.admin-content-task li:last-child {
+  border-bottom: none;
+}
+
+.admin-task-meta {
+  font-size: 1.2rem;
+  color: #999;
+}
+
+.admin-task-bd {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+.admin-content-comment {
+  margin-bottom: 0;
+}
+
+.admin-content-comment .am-comment-bd {
+  font-size: 1.4rem;
+}
+
+.admin-content-pagination {
+  margin-bottom: 0;
+}
+.admin-content-pagination li a {
+  padding: 4px 8px;
+}
+
+@media only screen and (min-width: 641px) {
+  .admin-sidebar {
+    display: block;
+    position: static;
+    background: none;
+  }
+
+  .admin-offcanvas-bar {
+    position: static;
+    width: auto;
+    background: none;
+    -webkit-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  .admin-offcanvas-bar:after {
+    content: none;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .admin-sidebar {
+    width: inherit;
+  }
+
+  .admin-offcanvas-bar {
+    background: #f3f3f3;
+  }
+
+  .admin-offcanvas-bar:after {
+    background: #BABABA;
+  }
+
+  .admin-sidebar-list a:hover, .admin-sidebar-list a:active{
+    -webkit-transition: background-color .3s ease;
+    -moz-transition: background-color .3s ease;
+    -ms-transition: background-color .3s ease;
+    -o-transition: background-color .3s ease;
+    transition: background-color .3s ease;
+    background: #E4E4E4;
+  }
+
+  .admin-content-list li {
+    padding: 10px;
+    border-width: 1px 0;
+    margin-top: -1px;
+  }
+
+  .admin-content-list li:first-child {
+    border-top: none;
+  }
+
+  .admin-content-list li:last-child {
+    border-bottom: none;
+  }
+
+  .admin-form-text {
+    text-align: left !important;
+  }
+
+}
+
+/*
+* user.html css
+*/
+.user-info {
+  margin-bottom: 15px;
+}
+
+.user-info .am-progress {
+  margin-bottom: 4px;
+}
+
+.user-info p {
+  margin: 5px;
+}
+
+.user-info-order {
+  font-size: 1.4rem;
+}
+
+/*
+* errorLog.html css
+*/
+
+.error-log .am-pre-scrollable {
+  max-height: 40rem;
+}
+
+/*
+* table.html css
+*/
+
+.table-main {
+  font-size: 1.4rem;
+  padding: .5rem;
+}
+
+.table-main button {
+  background: #fff;
+}
+
+.table-check {
+  width: 30px;
+}
+
+.table-id {
+  width: 50px;
+}
+
+@media only screen and (max-width: 640px) {
+  .table-select {
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+}
+
+/*
+gallery.html css
+*/
+
+.gallery-list li {
+  padding: 10px;
+}
+
+.gallery-list a {
+  color: #666;
+}
+
+.gallery-list a:hover {
+  color: #3bb4f2;
+}
+
+.gallery-title {
+  margin-top: 6px;
+  font-size: 1.4rem;
+}
+
+.gallery-desc {
+  font-size: 1.2rem;
+  margin-top: 4px;
+}
+
+/*
+ 404.html css
+*/
+
+.page-404 {
+  background: #fff;
+  border: none;
+  width: 200px;
+  margin: 0 auto;
+}
+
+
+/*
+ fixed-layout 固定头部和边栏布局
+*/
+
+.fixed-layout,
+.fixed-layout body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.fixed-layout .admin-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1500;
+}
+
+.fixed-layout .admin-main {
+  position: relative;
+  height: 100%;
+  padding-top: 51px;
+}
+
+.fixed-layout .admin-content,
+.fixed-layout .admin-sidebar {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.fixed-layout .admin-sidebar.am-active {
+  z-index: 1600;
+}
+/*修复表格头部输入框换行*/
+.admin-content .am-form select,.admin-content .am-form input{width:auto!important;display:inline-block;}
+.admin-content .am-popup-bd{background:#ffffff;}
+/*admin login*/
+.h100{height:100%:}
+.admin-container{background-image:url(../i/bg_admin.jpg); background-size:cover;width:100%;height:100%;background-color:#23b7e5;}
+.admin-login-logo{margin: 0 auto;margin-top:56px; text-align: center;}
+.login-form{position:relative;background: #fff;width:420px;padding:40px 30px; margin: 0 auto; margin-top:30px;}
+.login-form h3{font-weight:100;font-size:30px;color:#333;margin:0;}
+.login-form h4{font-weight:100;font-size:14px;color:#999;margin:0;}
+.admin-login-footer{font-size:0.75rem;color:#fff;text-align: center;margin-top:5rem;}
+.login-wx{position:absolute;top:-12px;right:-16px;animation:wx 3s ease both infinite;-webkit-animation:wx 3s ease both infinite;}
+.login-rocket{position:absolute;bottom:-23px;left:-15px;animation:rocket 6s ease both infinite;-webkit-animation:rocket 6s ease both infinite;}
+
+@keyframes 'wx'{
+ 	from{opacity: 0;transform:translateX(0);}
+ 	to{opacity: 1;transform:translateX(20px);}
+ }
+ @-webkit-keyframes 'wx'{
+ 	from{opacity: 0;-webkit-transform:translateX(0)}
+ 	to{opacity: 1;-webkit-transform:translateX(20px)}
+ }
+ @keyframes 'rocket'{
+ 	from{opacity: 0;transform:translateY(0)}
+ 	to{opacity: 1;transform:translateY(-40px)}
+ }
+ @-webkit-keyframes 'rocket'{
+ 	from{opacity: 0;-webkit-transform:translateY(0)}
+ 	to{opacity: 1;-webkit-transform:translateY(-40px)}
+ }
+
+.admin-content .am-popup .am-u-sm-9 label{padding-top:0.6em;font-weight:normal;}
+.admin-content .am-popup .am-u-sm-6 label:last-child{font-weight:normal;}
+.admin-content .am-popup .am-u-sm-6 .am-form-label{width:30%;text-align: right;}
+.admin-content .am-popup .am-u-sm-12 button{ margin-left:44%; }
+.admin-content .am-popup .am-form-group h4{ margin:0; }
+.admin-content .am-table-striped > tbody > tr.row_selected td,.row_selected{background-color:#c3eaf6!important ;}
+
+/* = 标签导航
+------------------------------------------ */
+.tab-wrap {
+  margin-top: 0;
+}
+.tab-nav {
+  padding:0;
+  margin:0;
+  margin-bottom:10px;
+  padding-left: 1px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.tab-nav li {
+  margin-bottom:-4px;
+  margin-left: -1px;
+  float: left;
+  padding: 10px 0;
+}
+.tab-nav li a,
+.tab-nav li a:hover {
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 16px;
+  border: 1px solid transparent;
+  border-top-width: 2px;
+  border-bottom:none;
+}
+.tab-nav .current a,
+.tab-nav .current a:hover {
+  border-color: #34b4e0 #e0e0e0 #f6f6f6;
+}
+.tab-content .tab-pane {
+  display: none;
+}
+.tab-content .in {
+  display: block;
+}
+/* 普通表单 */
+.form-horizontal .form-item {
+  margin-bottom: 5px;
+}
+.form-horizontal .item-label {
+  display: block;
+  margin-right: 5px;
+  height: 30px;
+  line-height: 30px;
+  font-weight: bold;
+}
+.form-horizontal .item-label .check-tips {
+  margin-left: 8px;
+  color: #aaa;
+  font-weight: normal;
+}
+.form-horizontal .controls {
+  overflow: hidden;
+  padding: 5px 5px 5px 0;
+}
+.form-horizontal .controls label + label {
+  margin-left: 15px;
+}
+.form-horizontal .controls .check-tips {
+  margin-left: 20px;
+  color: #999;
+}
+label.textarea ~ .check-tips {
+  margin-left: 0;
+}
+.form-horizontal .controls .block.check-tips,
+.form-horizontal .controls .block.textarea {
+  display: block;
+  margin-left: 0;
+  margin-bottom: 10px;
+}
+/* 表单宽度预设 */
+.input-large {
+  width: 390px;
+}
+.text {
+  padding: 4px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  transition: all .3s linear;
+  vertical-align: middle;
+  font-size:1.4rem;
+}
+.ke-container {
+  display: block;
+  border: 1px solid #CCCCCC;
+  background-color: #FFF;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+/* = uploadify上传插件样式
+------------------------------------------ */
+.uploadify-button {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  background-color: #27ae60;
+}
+.uploadify-queue-item {
+  position: absolute;
+  margin-top: 4px;
+  padding: 15px;
+  width: 470px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+.uploadify-queue-item .cancel {
+  float: right;
+}
+.uploadify-queue-item .cancel a,
+.uploadify-queue-item .cancel a:hover {
+  font-family: Consolas;
+  color: #404040;
+  text-decoration: none;
+  border-bottom: 0 none;
+}
+.uploadify-queue-item .fileName {
+  color: #2D7200;
+}
+.uploadify-error {
+  background-color: #FDE5DD !important;
+}
+.uploadify-queue-item.completed {
+  background-color: #E5E5E5;
+}
+.uploadify-progress {
+  background-color: #E5E5E5;
+  margin-top: 10px;
+  width: 100%;
+}
+.uploadify-progress-bar {
+  background-color: #0099FF;
+  height: 3px;
+  width: 1px;
+}
+.upload-img-box {
+  margin-top: 4px;
+}
+.upload-img-box .upload-pre-item {
+  padding: 1px;
+  width: 120px;
+  max-height: 120px;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  transition: all .3s linear;
+}
+.upload-img-box .upload-pre-item img {
+  vertical-align: top;
+}
+.upload-img-box .upload-pre-file {
+  padding: 0 10px;
+  width: 380px;
+  height: 35px;
+  line-height: 35px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 1px dashed #ccc;
+  background-color: #fff;
+}
+/* 上传图片点击弹出层 */
+.upload-img-popup {
+  position: fixed;
+  z-index: 9999;
+  padding: 3px;
+  border: 1px solid #c3c3c3;
+  background-color: #fff;
+  box-shadow: 0 0 4px rgba(0,0,0,.5);
+}
+.upload-img-popup .close-pop {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 17px;
+  height: 17px;
+  background: url(../images/bg_icon.png) no-repeat -25px 0;
+}
+.upload-img-popup .close-pop:hover {
+  text-decoration: none;
+  border-bottom: 0 none;
+}
+.upload-img-popup img {
+  display: block;
+}
+.upload_icon_all {
+  width: 15px;
+  height: 15px;
+  background: url(../images/attachment_1.png);
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px
+}
+.main-title h2,.main-title h4{font-size:1.8rem;}
+.sch-btn{position:absolute;margin-left:-2rem;margin-top:0.45rem;}
+.disabled{background:#ccc;color:#eee;}
+.admin-sidebar-sub li span{margin-right:2px;}
+
+.top-alert{
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  margin: 0 !important;
+}
+/*弹出框标题*/
+.am-popup-hd{z-index: 999;}

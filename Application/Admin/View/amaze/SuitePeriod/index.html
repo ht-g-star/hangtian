@@ -1,0 +1,135 @@
+<extend name="Public/base"/>
+<block name="style">
+	<link rel="stylesheet" href="__CSS__/admin_index.css">
+	<style>
+		div#period_list input.am-form-field {
+			width: 60px !important;
+		}
+		div#period_lists input.am-form-field {
+			width: 60px !important;
+		}
+
+	</style>
+</block>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">体检</strong> /
+			<small>{$meta_title}</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+
+	<div class="am-g ">
+		<div class="am-u-sm-12 ">
+			<form action="" class="am-form">
+				<div class="am-form-group">
+					<label for="suite_id">请选择需要设置的套餐:</label>
+					<select id="suite_id">
+						<option value="0">请选择...</option>
+						<volist name="suites" id="s">
+							<php>$_ids[]=$s['id'];</php>
+							<option value="{$s.id}"
+							<eq name="Think.get.s_id" value="$s['id']">selected</eq>
+							>{$s.title}</option>
+						</volist>
+						<php>$_ids_str=implode(',',$_ids);</php>
+						<option value="{$_ids_str}" <eq name="Think.get.s_id" value="$_ids_str">selected</eq> >所有套餐</option>
+						<php>
+							if($_GET['s_id']==$_ids_str){
+								$all=true;
+							}else{
+								$all=false;
+							};
+						</php>
+					</select>
+				</div>
+			</form>
+			<div class="am-u-sm-12">
+				请选择需要设置的时间:
+			</div>
+			<div class="am-u-sm-12">
+				<for start="0" end="4" name="month">
+					<div class="am-u-sm-3">
+						<table class="am-table am-table-bordered am-table-compact am-table-radius calendar">
+							<php>
+								$year=$date['year'];
+								$mon=$month+$date['mon'];
+								if($mon>12){
+								$year+=1;
+								$mon-=12;
+								}
+								$fday=getdate(strtotime($year."-".$mon."-1"));
+								$fday=$fday['wday'];
+							</php>
+							<caption>{$year}-{$mon}</caption>
+							<tr>
+								<th class="am-primary am-text-center">日</th>
+								<th class="am-primary am-text-center">一</th>
+								<th class="am-primary am-text-center">二</th>
+								<th class="am-primary am-text-center">三</th>
+								<th class="am-primary am-text-center">四</th>
+								<th class="am-primary am-text-center">五</th>
+								<th class="am-primary am-text-center">六</th>
+							</tr>
+							<tr>
+								{:hook('Calendar', array('year'=>$year,'mon'=>$mon,'fday'=>$fday,'period'=>$period))}
+							</tr>
+						</table>
+					</div>
+				</for>
+			</div>
+			<div class="am-u-sm-6" id="period_lists">
+			<if condition="$all">
+				将会覆盖所有套餐，请谨慎操作！
+				<else/>
+				已设库存:
+				<notempty name="Think.get.s_id">
+					<form action="" method="post" class="am-form form-horizontal">
+						<input type="hidden" name="action" value="edit"/>
+
+						<div class="am-u-sm-12">
+							<volist name="period" id="p" empty="暂无数据">
+								<div class="am-u-sm-3 am-u-end ">
+									<label>{$p.period}</label>
+									<label>库存:<input type="number" class="am-form-field" value="{$p.total_num}" name="total[{$p.period}]"/></label>
+									<label>已用:{$p.use_num}</label>
+								</div>
+							</volist>
+						</div>
+						<div class="am-u-sm-3 am-u-sm-centered">
+							<button class="am-btn  am-btn-primary" type="submit">提交</button>
+						</div>
+					</form>
+				</notempty>
+				</if>
+			</div>
+
+
+			<div class="am-u-sm-6">
+				新增库存设置:
+				<notempty name="Think.get.s_id">
+					<form action="" method="post" class="am-form form-horizontal">
+						<input type="hidden" name="action" value="add"/>
+
+						<div class="am-u-sm-12" id="period_list">
+
+						</div>
+						<div class="am-u-sm-3 am-u-sm-centered">
+							<button class="am-btn am-hide am-btn-primary" type="submit">提交</button>
+						</div>
+					</form>
+				</notempty>
+			</div>
+
+		</div>
+	</div>
+
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript" src="__JS__/SuitePeriod.js"></script>
+</block>

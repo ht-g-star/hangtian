@@ -1,0 +1,107 @@
+<extend name="Public/base"/>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">会员消费统计</strong> /
+			<small>统计列表</small>
+		</div>
+	</div>
+</block>
+<block name="body">
+	<div class="am-g am-padding am-padding-top-0">
+		<div class="sleft  am-input-group  am-fl">
+			<form action="" method="post">
+				<label>统计区间:</label>
+				<php>
+					$begin_time=I('begin_time')?I('begin_time'):date("Y")."-01-01";
+					$end_time=I('end_time')?I('end_time'):date("Y")."-12-31";
+				</php>
+				<input type="date" name="begin_time" class="search-input am-padding-xs am-date" id="time-start" value="{$begin_time}" placeholder="开始">~
+				<input type="date" name="end_time" class="search-input am-padding-xs" id="time-end" value="{$end_time}" placeholder="截至">
+
+				<button type="submit" id="search" class="am-btn am-btn-primary am-icon-search">
+					确认
+				</button>
+			</form>
+		</div>
+
+		<div class="data-table table-striped">
+			<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+			<script type="text/javascript">
+				var data = $.parseJSON('{$data}');
+				$(function () {
+					$('#container').highcharts({
+						chart: {
+							plotBackgroundColor: null,
+							plotBorderWidth: 1,//null,
+							plotShadow: false
+						},
+						title: {
+							text: '{$title}'
+						},
+						tooltip: {
+							pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+						},
+						plotOptions: {
+							pie: {
+								allowPointSelect: true,
+								cursor: 'pointer',
+								dataLabels: {
+									enabled: true,
+									format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+									style: {
+										color: 'deeppink',
+										fontSize: '14px',
+										padding: '4px'
+									}
+								}
+							}
+						},
+						series: [{
+							type: 'pie',
+							name: '占比',
+							data: data
+						}]
+					});
+				});
+
+
+			</script>
+			<p style="height:30px;margin:10px;color:deeppink;font-size:16px">
+			<table id="datatable" class="am-table am-table-striped am-table-hover am-table-compact am-table-bordered am-text-nowrap dataTable no-footer">
+				<thead>
+				<tr>
+					<th>分类</th>
+					<th style="text-align: right">金额￥</th>
+					<th style="text-align: right">占比</th>
+				</tr>
+				</thead>
+				<tbody>
+				<volist name="data2" id="row">
+					<tr>
+						<td>{$row.type}</td>
+						<td align="right">{$row.sum|number_format=2,'.',','}</td>
+						<td align="right">{:round($row['sum']/$sum,4)*100}%</td>
+					</tr>
+				</volist>
+				</tbody>
+				<tfoot>
+				<td colspan="3">
+					PS:共有 "{$types|implode=','}" {$types|count}种分类,没有数据的不予显示.
+					<span style="font-size: .8em">上方饼图可点击右上角图标导出或者打印,上方表格可直接复制粘贴到Excel中</span>
+				</td>
+				</tfoot>
+			</table>
+
+		</div>
+	</div>
+</block>
+
+<block name="script">
+	<script type="text/javascript" src="/Public/static/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="/Public/Admin/js/jquery.mousewheel.js"></script>
+	<script type="text/javascript" src="/Public/Admin/js/highcharts.js"></script>
+	<script type="text/javascript" src="/Public/Admin/js/exporting.js"></script>
+	<script type="text/javascript" src="/Public/Admin/js/data.js"></script>
+	<script type="text/javascript">
+	</script>
+</block>

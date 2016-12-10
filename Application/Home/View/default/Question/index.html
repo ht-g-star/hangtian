@@ -1,0 +1,127 @@
+<extend name="Base/common"/>
+<block name="style">
+	<style>
+		body{background: url("__STATIC__/amaze/i/bg-003.jpg") bottom;background-size:cover;width:100%;height:100%;}
+		.am-popup-hd{width:630px;}/*fix ie*/
+	</style>
+</block>
+<block name="body">
+	<!--content begin-->
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">健康咨询</li>
+			</ol>
+		</div>
+		<div class="health-banner">
+			<a class="am-btn am-btn-success am-round am-padding-left-xl am-padding-right-xl" data-am-modal="{target: '#health-popup'}">立即咨询</a>
+		</div>
+		<div class="am-popup" id="health-popup">
+			<div class="am-popup-inner bg-fff">
+				<div class="am-popup-hd">
+					<h4 class="am-popup-title">我要咨询</h4>
+					<span data-am-modal-close class="am-close">&times;</span>
+				</div>
+
+				<div class="am-popup-bd bg-fff">
+					<form class="am-form  am-padding" method="post">
+						<div class="am-form-group">
+							<input type="text" name="title" class="" id="doc-ipt-title-1" placeholder="咨询标题">
+						</div>
+
+						<div class="am-form-group">
+							<select id="doc-select-1" name="c_id">
+								<volist name="category" id="c">
+									<option value="{$c.id}">{$c.title}</option>
+								</volist>
+							</select>
+							<span class="am-form-caret"></span>
+						</div>
+
+						<div class="am-form-group">
+							<textarea class="" rows="5" id="doc-ta-1" name="content" placeholder="咨询内容"></textarea>
+						</div>
+						<div class="am-form-group">
+							<img src="{:U('Home/Home/verify')}" alt="" onclick="this.src='{:U('Home/Home/verify')}&t=new Date().getMilliseconds()'">
+							<input type="text" id="v_code" name="v_code" minlength="3" required placeholder="请填写图中验证码" class="am-form-field am-inline-block"/>
+						</div>
+						<hr>
+						<div class="am-text-center am-margin-bottom-lg">
+							<button id="question_btn" type="button" class="am-btn am-btn-success am-round am-padding-left-xl am-padding-right-xl">
+								提交咨询
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="con-box am-padding am-margin-top-xl am-margin-bottom-xl">
+			<div class="con-tabs">
+				<ul>
+					<li class="active">全部</li>
+					<volist name="category" id="c">
+						<li data-id="{$c.id}">{$c.title}</li>
+					</volist>
+					<li><a href="{:U('Question/lists')}">更多&gt;&gt;</a></li>
+				</ul>
+			</div>
+			<div class="con-tabs-content am-padding-top">
+				<ul>
+					<volist name="data" id="q" mod="2">
+						<li class='<eq name="mod" value="1" >even<else/>odd</eq> am-padding-xs' data-cid="{$q.c_id}">
+							<a href="{:U('Question/detail',array('id'=>$q['id']))}">
+								<dd class="am-fl am-padding-xs am-padding-left">
+									<img src="__STATIC__/amaze/i/icon_new_post.png">
+									{$q.title}
+									<span class="post-time am-padding-left-xl">{$q.ctime|time_format}</span></dd>
+								<dt class="am-fr am-padding-xs am-padding-right">
+									<!--<img src="__STATIC__/amaze/i/icon_user.png">-->
+									<empty name="q.vtime">未<else/>已</empty>回复</dt>
+								<div class="am-cf"></div>
+							</a>
+						</li>
+					</volist>
+				</ul>
+			</div>
+			<!--<div class="am-u-sm-12 am-u-sm-centered am-text-center">-->
+				<!--{$page}-->
+			<!--</div>-->
+		</div>
+	</div>
+	<!--content end-->
+	<!-- /主体 -->
+
+</block>
+<block name="script">
+	<script>
+		$(function () {
+			//健康咨询
+			$(".con-tabs li").first().addClass("active").siblings().removeClass("active");
+			$(".con-tabs li").click(function () {
+				var index = $(".con-tabs li").index(this);
+				$(this).addClass("active").siblings().removeClass("active");
+				var cid = $(this).data('id');
+				if(!cid){
+					$(".con-tabs-content li").show();
+				}else{
+					$(".con-tabs-content li").hide();
+					$(".con-tabs-content li[data-cid=" + cid + "]").show();
+				}
+
+			});
+
+			$("#question_btn").click(function () {
+				$.post("{:U('index')}", $("form.am-form").serialize(), function (data) {
+					if (data && data.status) {
+						topAlert(data.info, data.status);
+						location.href = data.url;
+					} else {
+						topAlert(data.info, data.status);
+					}
+				}, 'json');
+
+			})
+		});
+	</script>
+</block>

@@ -1,0 +1,1004 @@
+[ 2016-12-08T08:10:43+08:00 ] 127.0.0.1 /admin.php?s=/Public/login.html
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T08:10:57+08:00 ] 127.0.0.1 /admin.php?s=/Public/login.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\CronRunBehavior [ RunTime:0.002001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003001s ]
+NOTIC: [8] Undefined index: lite D:\xampp\htdocs\hangtian\ThinkPHP\Library\Think\Db.class.php 第 37 行.
+SQL: SHOW COLUMNS FROM `ht_member` [ RunTime:0.0010s ]
+SQL: SELECT `uid`,`nickname`,`account`,`paykey`,`sex`,`birthday`,`qq`,`score`,`login`,`reg_ip`,`reg_time`,`last_login_ip`,`last_login_time`,`status` FROM `ht_member` WHERE `uid` = 26 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ht_action` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_action` WHERE `name` = 'user_login' LIMIT 1   [ RunTime:0.0120s ]
+SQL: SHOW COLUMNS FROM `ht_action_log` [ RunTime:0.0020s ]
+SQL: INSERT INTO `ht_action_log` (`action_id`,`user_id`,`action_ip`,`model`,`record_id`,`create_time`,`remark`) VALUES ('1','26','2130706433','member','26','1481155857','yx_jinbl在2016-12-08 08:10登录了后台') [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_action` WHERE `name` = 'user_login' LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [8] Undefined offset: 1 D:\xampp\htdocs\hangtian\Application\Common\Common\function.php 第 1172 行.
+NOTIC: [2] array_key_exists() expects parameter 2 to be array, null given D:\xampp\htdocs\hangtian\Application\Common\Common\function.php 第 1172 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `ht_action_log` WHERE `action_id` = 1 AND `user_id` = 26 AND `create_time` > 1481069457 LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `ht_member` SET `login`=`login`+1,`last_login_time`='1481155857',`last_login_ip`='2130706433' WHERE `uid` = 26 [ RunTime:0.0000s ]
+
+[ 2016-12-08T08:10:58+08:00 ] 127.0.0.1 /admin.php?s=/Index/index.html
+SQL: SHOW COLUMNS FROM `ht_auth_group_access` [ RunTime:0.0010s ]
+SQL: SELECT `rules` FROM ht_auth_group_access a INNER JOIN ht_auth_group g on a.group_id=g.id  WHERE ( a.uid='26' and g.status='1' )  [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `ht_auth_rule` [ RunTime:0.0010s ]
+SQL: SELECT `condition`,`name` FROM `ht_auth_rule` WHERE `id` IN ('1','2','3','5','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','64','65','71','72','73','74','79','88','94','95','107','108','109','110','211','215','216','217','219','224','226','227','230','232','237','245','246','247','248','249','250','252','253','254','255','256','257','258','259','260','261','262','263','265','266','267','268','269','270','271','274','275','276','277','278','279','280','281','284','285','286','287','288','289','290','291','292','293','294','295','296','297','298','299','300','301','302','303','304','305','306','307','308','309','310','311','313','314','315','316','317','318','319','320','321','322','323','324','325','326','327','328','329','330','331','332','333','334','335','336','337','338','339','340','341','342','343','344','345','346','347','348','349','350','351','352','353','354','355','356','357','358','359','360','361','362','363','364','365','366','367','368','369','370','371','372') AND `type` IN ('1','2') AND `status` = 1  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_menu` [ RunTime:0.0020s ]
+SQL: SELECT `id`,`title`,`url` FROM `ht_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `ht_auth_rule` [ RunTime:0.0020s ]
+SQL: SELECT `condition`,`name` FROM `ht_auth_rule` WHERE `id` IN ('1','2','3','5','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','64','65','71','72','73','74','79','88','94','95','107','108','109','110','211','215','216','217','219','224','226','227','230','232','237','245','246','247','248','249','250','252','253','254','255','256','257','258','259','260','261','262','263','265','266','267','268','269','270','271','274','275','276','277','278','279','280','281','284','285','286','287','288','289','290','291','292','293','294','295','296','297','298','299','300','301','302','303','304','305','306','307','308','309','310','311','313','314','315','316','317','318','319','320','321','322','323','324','325','326','327','328','329','330','331','332','333','334','335','336','337','338','339','340','341','342','343','344','345','346','347','348','349','350','351','352','353','354','355','356','357','358','359','360','361','362','363','364','365','366','367','368','369','370','371','372') AND `type` = 2 AND `status` = 1  [ RunTime:0.0000s ]
+SQL: SELECT `pid` FROM `ht_menu` WHERE ( pid !=0 AND url like '%Index/index%' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_config` [ RunTime:0.0010s ]
+SQL: UPDATE `ht_config` SET `value`='http://www.hangtian.app' WHERE ( name='DOMAIN' ) [ RunTime:0.0080s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.045003s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.045003s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T08:11:08+08:00 ] 127.0.0.1 /admin.php?s=/OrderInfo/index.html
+SQL: SHOW COLUMNS FROM `ht_menu` [ RunTime:0.0020s ]
+SQL: SELECT `id`,`title`,`url` FROM `ht_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0000s ]
+SQL: SELECT `pid` FROM `ht_menu` WHERE ( pid !=0 AND url like '%OrderInfo/index%' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_menu` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT DISTINCT  `group` FROM `ht_menu` WHERE `group` <> '' AND `pid` = 209  [ RunTime:0.0000s ]
+SQL: SELECT `id`,`url` FROM `ht_menu` WHERE `pid` = 209 AND `hide` = 0  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ht_auth_group_access` [ RunTime:0.0010s ]
+SQL: SELECT `rules` FROM ht_auth_group_access a INNER JOIN ht_auth_group g on a.group_id=g.id  WHERE ( a.uid='26' and g.status='1' )  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_auth_rule` [ RunTime:0.0010s ]
+SQL: SELECT `condition`,`name` FROM `ht_auth_rule` WHERE `id` IN ('1','2','3','5','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','64','65','71','72','73','74','79','88','94','95','107','108','109','110','211','215','216','217','219','224','226','227','230','232','237','245','246','247','248','249','250','252','253','254','255','256','257','258','259','260','261','262','263','265','266','267','268','269','270','271','274','275','276','277','278','279','280','281','284','285','286','287','288','289','290','291','292','293','294','295','296','297','298','299','300','301','302','303','304','305','306','307','308','309','310','311','313','314','315','316','317','318','319','320','321','322','323','324','325','326','327','328','329','330','331','332','333','334','335','336','337','338','339','340','341','342','343','344','345','346','347','348','349','350','351','352','353','354','355','356','357','358','359','360','361','362','363','364','365','366','367','368','369','370','371','372') AND `type` = 1 AND `status` = 1  [ RunTime:0.0010s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ht_menu` WHERE `group` = '套餐设置' AND `url` IN ('Suite/index','SuitePeriod/index','SuiteOrder/index','OrderInfo/index','SuiteComment/index','SuiteOrder/import','SuiteOrder/manual') AND `pid` = 209 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0000s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ht_menu` WHERE `group` = '预约管理' AND `url` IN ('Suite/index','SuitePeriod/index','SuiteOrder/index','OrderInfo/index','SuiteComment/index','SuiteOrder/import','SuiteOrder/manual') AND `pid` = 209 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_suite_order_info` [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: starttime D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c0e75f0f3840dd22c8ac5212194a8e00.php 第 156 行.
+NOTIC: [8] Undefined index: endtime D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c0e75f0f3840dd22c8ac5212194a8e00.php 第 157 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.024002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-08T08:11:09+08:00 ] 127.0.0.1 /admin.php?s=OrderInfo/index/type/ajax.html&_=1481155868269
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Common\Behavior\CronRunBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `ht_suite_order_info` [ RunTime:0.0030s ]
+SQL: SELECT `id`,`realname`,`tel`,`id_num`,`source`,`status`,`sex`,`status`,`ctime`,`order_time`,`s_id` FROM `ht_suite_order_info` WHERE `status` = 10 ORDER BY id desc LIMIT 2000   [ RunTime:0.0410s ]
+SQL: SHOW COLUMNS FROM `ht_suite` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `ht_customer` [ RunTime:0.0020s ]
+SQL: SELECT `card_num` FROM `ht_customer` WHERE ( id_num='320501198604229030' ) LIMIT 1   [ RunTime:0.0100s ]
+SQL: SELECT `card_num` FROM `ht_customer` WHERE ( id_num='330501197009148218' ) LIMIT 1   [ RunTime:0.0040s ]
+SQL: SELECT `card_num` FROM `ht_customer` WHERE ( id_num='330501197807030410' ) LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT `card_num` FROM `ht_customer` WHERE ( id_num='310104198401052419' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `card_num` FROM `ht_customer` WHERE ( id_num='210411198207211000' ) LIMIT 1   [ RunTime:0.0050s ]
+SQL: SELECT `card_num` FROM `ht_customer` WHERE ( id_num='320621198701066000' ) LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T08:11:14+08:00 ] 127.0.0.1 /admin.php?s=/Suite/index.html
+SQL: SHOW COLUMNS FROM `ht_menu` [ RunTime:0.0010s ]
+SQL: SELECT `id`,`title`,`url` FROM `ht_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0000s ]
+SQL: SELECT `pid` FROM `ht_menu` WHERE ( pid !=0 AND url like '%Suite/index%' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_menu` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT DISTINCT  `group` FROM `ht_menu` WHERE `group` <> '' AND `pid` = 209  [ RunTime:0.0000s ]
+SQL: SELECT `id`,`url` FROM `ht_menu` WHERE `pid` = 209 AND `hide` = 0  [ RunTime:0.0000s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ht_menu` WHERE `group` = '套餐设置' AND `url` IN ('Suite/index','SuitePeriod/index','SuiteOrder/index','OrderInfo/index','SuiteComment/index','SuiteOrder/import','SuiteOrder/manual') AND `pid` = 209 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0000s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ht_menu` WHERE `group` = '预约管理' AND `url` IN ('Suite/index','SuitePeriod/index','SuiteOrder/index','OrderInfo/index','SuiteComment/index','SuiteOrder/import','SuiteOrder/manual') AND `pid` = 209 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ht_suite` [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-08T08:11:14+08:00 ] 127.0.0.1 /admin.php?s=Suite/index/type/ajax.html&_=1481155874310
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Common\Behavior\CronRunBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `ht_suite` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_suite` WHERE ( status > -1 ) ORDER BY sort  [ RunTime:0.0090s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-08T08:12:04+08:00 ] 127.0.0.1 /admin.php?s=/Suite/index.html
+SQL: SHOW COLUMNS FROM `ht_suite` [ RunTime:0.0020s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-08T08:12:04+08:00 ] 127.0.0.1 /admin.php?s=Suite/index/type/ajax.html&_=1481155924619
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\CronRunBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `ht_suite` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_suite` WHERE ( status > -1 ) ORDER BY sort  [ RunTime:0.0020s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-08T08:12:37+08:00 ] 127.0.0.1 /admin.php?s=/SuitePeriod/index.html
+SQL: SHOW COLUMNS FROM `ht_menu` [ RunTime:0.0020s ]
+SQL: SELECT `id`,`title`,`url` FROM `ht_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0000s ]
+SQL: SELECT `pid` FROM `ht_menu` WHERE ( pid !=0 AND url like '%SuitePeriod/index%' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_menu` WHERE `id` = 209 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT DISTINCT  `group` FROM `ht_menu` WHERE `group` <> '' AND `pid` = 209  [ RunTime:0.0010s ]
+SQL: SELECT `id`,`url` FROM `ht_menu` WHERE `pid` = 209 AND `hide` = 0  [ RunTime:0.0000s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ht_menu` WHERE `group` = '套餐设置' AND `url` IN ('Suite/index','SuitePeriod/index','SuiteOrder/index','OrderInfo/index','SuiteComment/index','SuiteOrder/import','SuiteOrder/manual') AND `pid` = 209 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0000s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ht_menu` WHERE `group` = '预约管理' AND `url` IN ('Suite/index','SuitePeriod/index','SuiteOrder/index','OrderInfo/index','SuiteComment/index','SuiteOrder/import','SuiteOrder/manual') AND `pid` = 209 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ht_suite_period` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `ht_suite` [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 138 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 141 行.
+NOTIC: [8] Undefined index: s_id D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 142 行.
+NOTIC: [8] Undefined variable: period D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 164 行.
+INFO: [ Calendar ] --START--
+NOTIC: [2] Invalid argument supplied for foreach() D:\xampp\htdocs\hangtian\Addons\Calendar\CalendarAddon.class.php 第 48 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.007000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Addons\Calendar\CalendarAddon [ RunTime:0.005000s ]
+INFO: [ Calendar ] --END-- [ RunTime:0.005000s ]
+NOTIC: [8] Undefined variable: period D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 164 行.
+INFO: [ Calendar ] --START--
+NOTIC: [2] Invalid argument supplied for foreach() D:\xampp\htdocs\hangtian\Addons\Calendar\CalendarAddon.class.php 第 48 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.008000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.001000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Addons\Calendar\CalendarAddon [ RunTime:0.000000s ]
+INFO: [ Calendar ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: period D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 164 行.
+INFO: [ Calendar ] --START--
+NOTIC: [2] Invalid argument supplied for foreach() D:\xampp\htdocs\hangtian\Addons\Calendar\CalendarAddon.class.php 第 48 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.009000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.002000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.001000s ]
+INFO: Run Addons\Calendar\CalendarAddon [ RunTime:0.000000s ]
+INFO: [ Calendar ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: period D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c52890ad10d3cae843f87565803000ea.php 第 164 行.
+INFO: [ Calendar ] --START--
+NOTIC: [2] Invalid argument supplied for foreach() D:\xampp\htdocs\hangtian\Addons\Calendar\CalendarAddon.class.php 第 48 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.010000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.003000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.002000s ]
+INFO: Run Addons\Calendar\CalendarAddon [ RunTime:0.001000s ]
+INFO: [ Calendar ] --END-- [ RunTime:-0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.003000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T08:12:42+08:00 ] 127.0.0.1 /admin.php?s=/SuitePeriod/index/s_id/65.html
+SQL: SHOW COLUMNS FROM `ht_suite_period` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_suite` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_suite_period` WHERE ( s_id=65 and period >= '2016-12-08' ) ORDER BY period  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ Calendar ] --START--
+NOTIC: [2] Invalid argument supplied for foreach() D:\xampp\htdocs\hangtian\Addons\Calendar\CalendarAddon.class.php 第 48 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.004000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Addons\Calendar\CalendarAddon [ RunTime:0.001000s ]
+INFO: [ Calendar ] --END-- [ RunTime:0.001000s ]
+INFO: [ Calendar ] --START--
+NOTIC: [2] Invalid argument supplied for foreach() D:\xampp\htdocs\hangtian\Addons\Calendar\CalendarAddon.class.php 第 48 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.005000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.001000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.001000s ]
+INFO: Run Addons\Calendar\CalendarAddon [ RunTime:0.001000s ]
+INFO: [ Calendar ] --END-- [ RunTime:0.000000s ]
+INFO: [ Calendar ] --START--
+NOTIC: [2] Invalid argument supplied for foreach() D:\xampp\htdocs\hangtian\Addons\Calendar\CalendarAddon.class.php 第 48 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.006000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.001000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.002000s ]
+INFO: Run Addons\Calendar\CalendarAddon [ RunTime:0.001000s ]
+INFO: [ Calendar ] --END-- [ RunTime:-0.001000s ]
+INFO: [ Calendar ] --START--
+NOTIC: [2] Invalid argument supplied for foreach() D:\xampp\htdocs\hangtian\Addons\Calendar\CalendarAddon.class.php 第 48 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.006000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.002000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.003000s ]
+INFO: Run Addons\Calendar\CalendarAddon [ RunTime:0.001000s ]
+INFO: [ Calendar ] --END-- [ RunTime:-0.002000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.002000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.003000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-08T08:13:19+08:00 ] 127.0.0.1 /admin.php?s=/SuitePeriod/index/s_id/65.html
+SQL: SHOW COLUMNS FROM `ht_suite_period` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `ht_suite` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_suite_period` WHERE ( s_id=65 and period >= '2016-12-08' ) ORDER BY period  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_suite_period` WHERE ( s_id = 65 and period = '2016-12-8' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_suite_period` WHERE ( s_id = 65 and period = '2016-12-9' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: INSERT INTO `ht_suite_period` (`period`,`s_id`,`total_num`,`ctime`) VALUES ('2016-12-8','65','5','1481155999'),('2016-12-9','65','5','1481155999') [ RunTime:0.0470s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.029002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.029002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T08:13:20+08:00 ] 127.0.0.1 /admin.php?s=/SuitePeriod/index/s_id/65.html
+SQL: SHOW COLUMNS FROM `ht_suite_period` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_suite` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_suite_period` WHERE ( s_id=65 and period >= '2016-12-08' ) ORDER BY period  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ Calendar ] --START--
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.004000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Addons\Calendar\CalendarAddon [ RunTime:0.002000s ]
+INFO: [ Calendar ] --END-- [ RunTime:0.002000s ]
+INFO: [ Calendar ] --START--
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.005000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.001000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Addons\Calendar\CalendarAddon [ RunTime:0.000000s ]
+INFO: [ Calendar ] --END-- [ RunTime:0.000000s ]
+INFO: [ Calendar ] --START--
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.006000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.002000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.001000s ]
+INFO: Run Addons\Calendar\CalendarAddon [ RunTime:0.001000s ]
+INFO: [ Calendar ] --END-- [ RunTime:0.000000s ]
+INFO: [ Calendar ] --START--
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.006000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001001s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.002000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.002001s ]
+INFO: Run Addons\Calendar\CalendarAddon [ RunTime:0.001001s ]
+INFO: [ Calendar ] --END-- [ RunTime:-0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001001s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.002000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.002001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-08T08:31:35+08:00 ] 127.0.0.1 /admin.php?s=/Goods/index.html
+SQL: SHOW COLUMNS FROM `ht_auth_group_access` [ RunTime:0.0020s ]
+SQL: SELECT `extend_id` FROM ht_auth_group_access g INNER JOIN ht_auth_extend c on g.group_id=c.group_id  WHERE ( g.uid='26' and c.type='1' and !isnull(extend_id) )  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_menu` [ RunTime:0.0010s ]
+SQL: SELECT `id`,`title`,`url` FROM `ht_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0000s ]
+SQL: SELECT `pid` FROM `ht_menu` WHERE ( pid !=0 AND url like '%Goods/index%' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_auth_group_access` [ RunTime:0.0020s ]
+SQL: SELECT `extend_id` FROM ht_auth_group_access g INNER JOIN ht_auth_extend c on g.group_id=c.group_id  WHERE ( g.uid='26' and c.type='1' and !isnull(extend_id) )  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ht_category` [ RunTime:0.0010s ]
+SQL: SELECT `id`,`title`,`pid`,`allow_publish` FROM `ht_category` WHERE `status` = 1 AND `ismenu` <= 1 ORDER BY pid,sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ht_model` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_model` WHERE `name` = 'document' LIMIT 1   [ RunTime:0.0140s ]
+SQL: SHOW COLUMNS FROM `ht_document` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM ht_document DOCUMENT WHERE `status` IN ('0','1','2') AND `pid` = 0 AND `model_id` > 2 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT `id`,`title`,`type`,`update_time`,`status`,`view`,`category_id`,`model_id`,`pid` FROM ht_document DOCUMENT WHERE `status` IN ('0','1','2') AND `pid` = 0 AND `model_id` > 2 ORDER BY level DESC,DOCUMENT.id DESC,view asc LIMIT 0,20   [ RunTime:0.0040s ]
+SQL: SELECT `extend` FROM `ht_model` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ht_attribute` [ RunTime:0.0020s ]
+SQL: SELECT `id`,`name`,`type`,`extra` FROM `ht_attribute` WHERE `model_id` = 1  [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `ht_category` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ht_category` WHERE ( pid=0 and ismenu<2  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: groups D:\xampp\htdocs\hangtian\Application\Admin\Controller\GoodsController.class.php 第 239 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-08T08:31:36+08:00 ] 127.0.0.1 /admin.php?s=/Order/index.html
+SQL: SHOW COLUMNS FROM `ht_menu` [ RunTime:0.0030s ]
+SQL: SELECT `id`,`title`,`url` FROM `ht_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0000s ]
+SQL: SELECT `pid` FROM `ht_menu` WHERE ( pid !=0 AND url like '%Order/index%' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_menu` WHERE `id` = 131 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT DISTINCT  `group` FROM `ht_menu` WHERE `group` <> '' AND `pid` = 131  [ RunTime:0.0010s ]
+SQL: SELECT `id`,`url` FROM `ht_menu` WHERE `pid` = 131 AND `hide` = 0  [ RunTime:0.0000s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ht_menu` WHERE `group` = '优惠券管理' AND `url` IN ('Fcoupon/index','Order/index','Exchange/index','Cancel/index','Back/index','Order/xlindex','Order/jdindex','Jipiao/orderlist','Jipiao/orderdetail') AND `pid` = 131 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0000s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ht_menu` WHERE `group` = '订单管理' AND `url` IN ('Fcoupon/index','Order/index','Exchange/index','Cancel/index','Back/index','Order/xlindex','Order/jdindex','Jipiao/orderlist','Jipiao/orderdetail') AND `pid` = 131 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0010s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ht_menu` WHERE `group` = '财务管理' AND `url` IN ('Fcoupon/index','Order/index','Exchange/index','Cancel/index','Back/index','Order/xlindex','Order/jdindex','Jipiao/orderlist','Jipiao/orderdetail') AND `pid` = 131 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0000s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ht_menu` WHERE `group` = '旅游订单' AND `url` IN ('Fcoupon/index','Order/index','Exchange/index','Cancel/index','Back/index','Order/xlindex','Order/jdindex','Jipiao/orderlist','Jipiao/orderdetail') AND `pid` = 131 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0000s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `ht_menu` WHERE `group` = '导出酒店' AND `url` IN ('Fcoupon/index','Order/index','Exchange/index','Cancel/index','Back/index','Order/xlindex','Order/jdindex','Jipiao/orderlist','Jipiao/orderdetail') AND `pid` = 131 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: status D:\xampp\htdocs\hangtian\Application\Admin\Controller\OrderController.class.php 第 26 行.
+SQL: SHOW COLUMNS FROM `ht_order` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ht_order` WHERE `status` > 0 AND `ordertype` = 1 AND `ispay` = 1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_order` WHERE `status` > 0 AND `ordertype` = 1 AND `ispay` = 1 ORDER BY id desc LIMIT 0,20   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_shoplist` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_customer` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 28001 LIMIT 1   [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `ht_address` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 741 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_pay` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201612148108399928001' or out_trade_no='201612148108400928001') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1582' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 28001 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 741 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201612148100071928001' or out_trade_no='201612148100076728001') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1577' )  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 28001 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 741 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201612148099346728001' or out_trade_no='201612148099352128001') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1576' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 13062 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 740 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147977631213062' or out_trade_no='201611147977631813062') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1575' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 13062 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 508 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147971534513062' or out_trade_no='201611147971534713062') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1574' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 13062 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 508 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147942763913062' or out_trade_no='201611147942764413062') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1573' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 13062 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 508 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147934748613062' or out_trade_no='201611147934748813062') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1572' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 13062 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 508 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147934621813062' or out_trade_no='201611147934622013062') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1571' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 20168 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 679 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147918111220168' or out_trade_no='201611147918121120168') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1569' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 20181 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 719 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147917889220181' or out_trade_no='201611147917891020181') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1568' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 13062 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 508 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147917866013062' or out_trade_no='201611147917866513062') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1567' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 834 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 739 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '2016111479169625834' or out_trade_no='2016111479169686834') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1566' )  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 20183 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 671 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147912224420183' or out_trade_no='201611147912225320183') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1565' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 191 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 738 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '2016111479112939191' or out_trade_no='2016111479112965191') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1563' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 308 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 728 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '2016111479107131308' or out_trade_no='2016111479107155308') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1562' )  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 297 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 712 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '2016111479089118297' or out_trade_no='2016111479089139297') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1560' )  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 22961 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 737 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147908567322961' or out_trade_no='201611147908571422961') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1559' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 308 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 728 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '2016111479084881308' or out_trade_no='2016111479084885308') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1558' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 308 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 728 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '2016111479084610308' or out_trade_no='2016111479084620308') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1557' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 20495 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 611 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147905178620495' or out_trade_no='201611147905182420495') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1553' )  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [2] date() expects parameter 2 to be long, string given D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 214 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SHOW COLUMNS FROM `ht_document` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1153 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ht_picture` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 842 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1153 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1153 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [2] date() expects parameter 2 to be long, string given D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 214 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 215 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 272 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 215 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 215 LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1033 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 709 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1033 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1033 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1154 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1154 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1154 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1154 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1154 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1154 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 976 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 667 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 976 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 976 LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 879 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 615 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 879 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 879 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 879 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 615 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 879 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 879 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 877 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 619 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 877 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 877 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 177 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 763 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 177 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 177 LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 907 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 622 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 907 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 907 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 908 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 623 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 908 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 908 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 976 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 667 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 976 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 976 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 906 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 621 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 906 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 906 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 884 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 510 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 884 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 884 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1006 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 682 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1006 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1006 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 995 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 635 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 995 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 995 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 909 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 624 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 909 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 909 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1042 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 717 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1042 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1042 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1045 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 720 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1045 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1045 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 864 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 605 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 864 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 864 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 909 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 624 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 909 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 909 LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 969 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 666 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 969 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 969 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 969 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 666 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 969 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 969 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 988 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 542 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 988 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 988 LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.049003s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.049003s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T08:32:06+08:00 ] 127.0.0.1 /admin.php?s=/OrderInfo/index.html
+SQL: SHOW COLUMNS FROM `ht_suite_order_info` [ RunTime:0.0020s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: starttime D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c0e75f0f3840dd22c8ac5212194a8e00.php 第 156 行.
+NOTIC: [8] Undefined index: endtime D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\c0e75f0f3840dd22c8ac5212194a8e00.php 第 157 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-08T08:32:07+08:00 ] 127.0.0.1 /admin.php?s=OrderInfo/index/type/ajax.html&_=1481157127304
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\CronRunBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `ht_suite_order_info` [ RunTime:0.0020s ]
+SQL: SELECT `id`,`realname`,`tel`,`id_num`,`source`,`status`,`sex`,`status`,`ctime`,`order_time`,`s_id` FROM `ht_suite_order_info` WHERE `status` = 10 ORDER BY id desc LIMIT 2000   [ RunTime:0.0270s ]
+SQL: SHOW COLUMNS FROM `ht_suite` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_customer` [ RunTime:0.0010s ]
+SQL: SELECT `card_num` FROM `ht_customer` WHERE ( id_num='320501198604229030' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `card_num` FROM `ht_customer` WHERE ( id_num='330501197009148218' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `card_num` FROM `ht_customer` WHERE ( id_num='330501197807030410' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `card_num` FROM `ht_customer` WHERE ( id_num='310104198401052419' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `card_num` FROM `ht_customer` WHERE ( id_num='210411198207211000' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `card_num` FROM `ht_customer` WHERE ( id_num='320621198701066000' ) LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T08:32:17+08:00 ] 127.0.0.1 /admin.php?s=/Order/index.html
+NOTIC: [8] Undefined index: status D:\xampp\htdocs\hangtian\Application\Admin\Controller\OrderController.class.php 第 26 行.
+SQL: SHOW COLUMNS FROM `ht_order` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ht_order` WHERE `status` > 0 AND `ordertype` = 1 AND `ispay` = 1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_order` WHERE `status` > 0 AND `ordertype` = 1 AND `ispay` = 1 ORDER BY id desc LIMIT 0,20   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_shoplist` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_customer` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 28001 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ht_address` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 741 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_pay` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201612148108399928001' or out_trade_no='201612148108400928001') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1582' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 28001 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 741 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201612148100071928001' or out_trade_no='201612148100076728001') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1577' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 28001 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 741 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201612148099346728001' or out_trade_no='201612148099352128001') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1576' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 13062 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 740 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147977631213062' or out_trade_no='201611147977631813062') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1575' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 13062 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 508 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147971534513062' or out_trade_no='201611147971534713062') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1574' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 13062 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 508 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147942763913062' or out_trade_no='201611147942764413062') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1573' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 13062 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 508 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147934748613062' or out_trade_no='201611147934748813062') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1572' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 13062 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 508 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147934621813062' or out_trade_no='201611147934622013062') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1571' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 20168 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 679 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147918111220168' or out_trade_no='201611147918121120168') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1569' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 20181 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 719 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147917889220181' or out_trade_no='201611147917891020181') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1568' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 13062 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 508 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147917866013062' or out_trade_no='201611147917866513062') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1567' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 834 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 739 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '2016111479169625834' or out_trade_no='2016111479169686834') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1566' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 20183 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 671 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147912224420183' or out_trade_no='201611147912225320183') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1565' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 191 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 738 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '2016111479112939191' or out_trade_no='2016111479112965191') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1563' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 308 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 728 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '2016111479107131308' or out_trade_no='2016111479107155308') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1562' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 297 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 712 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '2016111479089118297' or out_trade_no='2016111479089139297') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1560' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 22961 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 737 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147908567322961' or out_trade_no='201611147908571422961') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1559' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 308 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 728 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '2016111479084881308' or out_trade_no='2016111479084885308') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1558' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 308 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 728 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '2016111479084610308' or out_trade_no='2016111479084620308') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1557' )  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_customer` WHERE `id` = 20495 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_address` WHERE `id` = 611 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_pay` WHERE ( (out_trade_no = '201611147905178620495' or out_trade_no='201611147905182420495') and out_trade_no!=''  ) LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_shoplist` WHERE ( orderid='1553' )  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [2] date() expects parameter 2 to be long, string given D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 214 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SHOW COLUMNS FROM `ht_document` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1153 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ht_picture` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 842 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1153 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1153 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [2] date() expects parameter 2 to be long, string given D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 214 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 215 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 272 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 215 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 215 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1033 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 709 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1033 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1033 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1154 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1154 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1154 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1154 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1154 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1154 LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 976 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 667 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 976 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 976 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 879 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 615 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 879 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 879 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 879 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 615 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 879 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 879 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 877 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 619 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 877 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 877 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 177 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 763 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 177 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 177 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 907 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 622 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 907 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 907 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 908 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 623 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 908 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 908 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 976 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 667 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 976 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 976 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 906 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 621 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 906 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 906 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 884 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 510 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 884 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 884 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1006 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 682 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1006 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1006 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 995 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 635 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 995 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 995 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 909 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 624 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 909 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 909 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1042 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 717 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1042 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1042 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1045 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 720 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1045 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 1045 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 864 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 605 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 864 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 864 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 909 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 624 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 909 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 909 LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 969 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 666 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 969 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 969 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 969 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 666 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 969 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 969 LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: pid D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 196 行.
+NOTIC: [8] Undefined index: is_auto_finish D:\xampp\htdocs\hangtian\Runtime\Cache\Admin\0d7a0612d107814e2393bb2590ce4701.php 第 218 行.
+SQL: SELECT * FROM `ht_document` WHERE `id` = 988 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_picture` WHERE `status` = 1 AND `id` = 542 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 988 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `id` = 988 LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.050003s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.050003s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+

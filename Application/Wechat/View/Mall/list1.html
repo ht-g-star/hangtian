@@ -1,0 +1,62 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<!--商城分类-->
+	<div class="shop-con">
+		<div class="am-g am-g-collapse cream-color" style="background:#ad5fd9;">
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				 <h4><a href="{:U('Jipiao/index')}">旅途票务</a></h4>
+				<!-- <h4><a href="{:U('Mall/jp')}">旅途票务</a></h4> 
+ -->
+				<a href="{:U('Jipiao/index')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-right.png"></a>
+			</div>
+			<div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('Jipiao/index')}"><img src="__STATIC__/3333.jpg"></a>
+			</div>
+		</div>
+		<div class="am-g am-g-collapse cream-color" style="background:#fdbf1e;">
+			<div class="am-u-sm-7 shop-con-list">
+				<a href="/Wechat/article/index/pid/170.html"><img src="__STATIC__/4444.jpg"></a>
+			</div>
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<!-- <h4><a href="/Wechat/article/index/pid/170.html">疗养院</a></h4> -->
+				<h4><a href="{:U('Mall/lyy')}">疗养院</a></h4>
+
+				<!-- <a href="/Wechat/article/index/pid/170.html" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a> -->
+				<a href="{:U('Mall/lyy')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a>
+			</div>
+		</div>
+		<div class="am-g am-g-collapse cream-color" style="background:#00b9ef">
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('Hotel/index')}">度假村/住宿</a></h4>
+
+				<a href="{:U('Hotel/index')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-right.png"></a>
+			</div>
+			<div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('Hotel/index')}"><img src="__STATIC__/1111.jpg"></a>
+			</div>
+		</div>
+		<div class="am-g am-g-collapse cream-color">
+			<div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('Line/index')}"><img src="__STATIC__/2222.jpg"></a>
+			</div>
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('Line/index')}">疗养线路</a></h4>
+
+				<a href="{:U('Line/index')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a>
+			</div>
+		</div>
+		<div class="am-g am-g-collapse green-color">
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('article/index',array('pid'=>180))}">景点门票</a></h4>
+				<!-- <volist name="tree[2]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist> -->
+				<a href="{:U('article/index',array('pid'=>180))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-right.png"></a>
+			</div>
+			<div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('article/index',array('pid'=>180))}"><img src="__STATIC__/amaze/i/app/app-img-shop4.jpg"></a>
+			</div>
+		</div>
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>

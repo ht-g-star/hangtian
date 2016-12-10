@@ -1,0 +1,39 @@
+<extend name="Base/mobile_base"/>
+<block name="style">
+</block>
+<block name="body">
+	<div class="am-g">
+		<section class="am-panel am-panel-default">
+			<div class="am-panel-bd">
+				<form action='{:U()}' method="post" name="actform" class="am-form">
+					<input type="hidden" name="id" value="{$id}">
+
+					<div class="am-form-group">
+						<label class="item-label">说明<span class="check-tips">(取消的说明,如果未发货可不填写.)</span>
+						</label>
+
+						<div class="controls">
+							<input type="text" class="text input-large" id="lt_center_input" placeholder="已发货的不添加原因不予取消订单" name="title">
+						</div>
+					</div>
+					<div class="am-form-group">
+						<label class="item-label">原因<span class="check-tips">(取消的原因,如果未发货可不填写.)</span>
+						</label>
+
+						<div class="controls">
+							<textarea rows="9" style="height: auto" cols="60" name="reason"></textarea>
+						</div>
+					</div>
+					<div class="am-form-group">
+						<input type="submit" class="am-btn am-btn-primary am-btn-block" value="提交"/>
+					</div>
+				</form>
+			</div>
+		</section>
+
+
+	</div>
+	<include file="Base/bottom_nav"/>
+	<script type="text/javascript">_init_area();</script>
+</block>
+

@@ -1,0 +1,39 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<div class="user-center-detail am-cf">
+		<div class="am-g">
+			<section class="am-panel am-panel-default">
+				<div class="am-panel-bd">
+					<form action='{:U()}' method="post" name="actform" class="am-form">
+						<div class="am-form-group">
+							<label class="item-label">请输入充值金额:</span>
+							</label>
+
+							<div class="controls">
+								<input type="text" value="" name="money" id="money">
+							</div>
+						</div>
+						<div class="am-form-group">
+							<input type="submit" class="am-btn am-btn-primary am-btn-block" value="充值"/>
+						</div>
+					</form>
+				</div>
+			</section>
+
+
+		</div>
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>
+<block name="script">
+	<script>
+		$("form.am-form").submit(function () {
+			var money = $("#money").val();
+			console.log(money);
+			if (isNaN(money) || money <= 0) {
+				alert("金额必须是正整数!");
+				return false;
+			}
+		})
+	</script>
+</block>

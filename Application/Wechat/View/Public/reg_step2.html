@@ -1,0 +1,48 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<div class="am-u-sm-12 am-u-sm-centered  am-padding-bottom-lg">
+		<form action="{:U('Public/register',array('step'=>3))}" method="post">
+			<fieldset>
+				<div class="am-form-group">
+					<input type="text" name="realname" placeholder="真实姓名" id="realname" class="am-form-field" required/>
+				</div>
+				<div class="am-form-group">
+					<input type="password" name="password" placeholder="密码" id="password" class="am-form-field" required/>
+				</div>
+				<div class="am-form-group">
+					<input type="password" name="repassword" placeholder="确认密码" id="repassword" class="am-form-field" required/>
+				</div>
+
+				<div class="am-form-group">
+					性别 &nbsp;
+					<label class="am-radio-inline am-padding-bottom-xs">
+						<input type="radio" name="sex" value="1"> 男
+					</label>
+					<label class="am-radio-inline am-padding-bottom-xs">
+						<input type="radio" name="sex" value="0"> 女
+					</label>
+				</div>
+
+				<div class="am-form-group">
+					<input type="text" name="id_num" placeholder="身份证号" id="id_num" class="am-form-field" required/>
+				</div>
+
+				<div class="am-form-group">
+					<input type="text" name="company" placeholder="单位名称" id="company" class="am-form-field" /><span class="require">（选填）</span>
+				</div>
+
+				<div class="am-form-group am-cf">
+					<div class="am-u-sm-12 am-padding-0">
+						<input type="text" name="dept" placeholder="部门" id="dept" class="am-form-field am-inline-block"/>
+					</div>
+					<div class="am-u-sm-12 am-margin-0 am-padding-0">
+						<input type="text" name="position" placeholder="职位" id="position" class="am-form-field am-inline-block"/><span class="require">（选填）</span>
+					</div>
+				</div>
+				<input class="am-btn am-btn-secondary am-btn-lg am-btn-block" type="submit" value="确认"/>
+			</fieldset>
+		</form>
+
+	</div>
+</block>
+

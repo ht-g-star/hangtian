@@ -1,0 +1,145 @@
+<extend name="Base/common" />
+<block name="body">
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">个人中心</li>
+			</ol>
+		</div>
+		<div class="userCenter am-cf">
+			<div class="am-u-sm-3">
+				<!-- 左侧菜单 -->
+				<include file="Public/leftmenu" />
+				<!-- 左侧菜单 -->
+			</div>
+			<div class="center_right" style="display: none;">
+				<div class="center_right_loading"></div>
+			</div>
+			<div id="memberCenter" class="userCenter-r am-u-sm-9 am-padding-xl">
+				<!-- 个人中心 初始状态 start -->
+				<div class="center_right" id="MemberCenterCtrl" style="display: block;">
+
+					<div class="am-g">
+						<div class="am-u-sm-6">
+							<h2 class="am-fl">收货地址管理<small class="am-link-muted">（选中表示为默认）</small></h2></div>
+					</div>
+
+					<form method="post" class="person-add" name="form" action="{:U('')}">
+						<div class="am-form-group am-text-sm am-margin-bottom-sm am-cf">
+							<label class="am-u-sm-2 am-form-label am-link-muted ">选择地区</label>
+							<div class="am-u-sm-10 am-padding-0">
+								<select name="province" id="idprovince" class="new-select">
+								<volist name="list" id="vo">
+									<option value="{$vo.area}" data-id='{$vo.id}'>{$vo.area}</option>
+								</volist>
+								</select> <select name="city" id="idcity" class="new-select">
+								<option value=''>选择城市</option>
+								</select> <select class="new-select" name="area" id="idarea">
+								<option value=''>选择县城</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="am-form-group am-text-sm am-margin-bottom-sm am-cf">
+							<label class="am-u-sm-2 am-form-label am-link-muted ">详细地址</label>
+							<div class="am-u-sm-10 am-padding-0">
+								<input type="text" id="address" name="address" class="am-input-lg" value="{$info.address}">
+							</div>
+						</div>
+
+						<div class="am-form-group am-text-sm am-margin-bottom-sm am-cf">
+							<label class="am-u-sm-2 am-form-label am-link-muted ">联系人</label>
+							<div class="am-u-sm-10 am-padding-0">
+								<input type="text" name='realname' id="realname" class="am-input-lg" value="{$info.realname}">
+							</div>
+						</div>
+
+						<div class="am-form-group am-text-sm am-margin-bottom-lg am-cf">
+							<label class="am-u-sm-2 am-form-label am-link-muted ">手机号</label>
+							<div class="am-u-sm-10 am-padding-0">
+								<input type="text" id="phone" name='cellphone' class="am-input-lg" value="{$info.cellphone}">
+							</div>
+						</div>
+
+						<div class="am-form-group am-text-sm am-cf">
+							<label class="am-u-sm-2 am-form-label">&nbsp;</label>
+							<div class="am-u-sm-10 am-padding-0">
+								<input type="submit" class="am-btn am-btn-warning am-radius am-padding-left-xl am-padding-right-xl" id="btn-save" value="保存" />
+							</div>
+						</div>
+
+					</form>
+					<script>
+						$('#idprovince').change(function() {
+							var id=$(this).find('option[selected]').data('id');
+							if (id== '') {
+								return;
+							}
+							$.ajax({
+								type:"post",
+								url:'{:U("change")}',
+								async:false,
+								data:{pid:id},
+								success:function(data, textStatus) {
+									if (data) {
+										//$('#lthree').hide();
+										$('#idcity').empty(); //清空原有的数据
+										//$("<option value='-1'>选择县城</option>").appendTo("#lthree");
+										$.each(data, function(i, n) {
+											$("<option value='" + n.area + "' data-id='"+n.id+"'>" + n.area + "</option>").appendTo("#idcity");
+
+										});
+										$('#idcity').change();
+									} else {
+										alert('没有子级了!');
+									}
+								}
+							});
+						});
+						$('#idcity').change(function() {
+							var id=$(this).find('option[selected]').data('id');
+							if (id == undefined) {
+								return;
+							}
+							$.ajax({
+								type:"post",
+								url:'{:U("change")}',
+								async:false,
+								data:{pid:id},
+								success:function(data, textStatus) {
+									if (data) {
+										//$('#lthree').hide();
+										$('#idarea').empty(); //清空原有的数据
+
+										$.each(data, function(i, n) {
+											$("<option value='" + n.area + "' data-id='"+n.id+"'>" + n.area + "</option>").appendTo("#idarea");
+											//$("#ltwo").append('<option value="'+n.region_id+'">'+n.region_name+'</option>');
+										});
+
+									} else {
+										alert('没有子级了!');
+									}
+								}
+							});
+							
+						});
+						$('#idarea').change(function() {
+							var id=$(this).find('option[selected]').data('id');
+							if (id == '') {
+								return;
+							}
+						});
+						$('#idprovince option[value={$info.province}]').attr('selected','selected');
+						$('#idprovince').change();
+						$('#idcity option[value={$info.city}]').attr('selected','selected');
+						$('#idcity').change();
+						$('#idarea option[value={$info.area}]').attr('selected','selected');
+					</script>
+
+					<!-- 个人中心 初始状态 end -->
+				</div>
+			</div>
+		</div>
+	</div>
+</block>

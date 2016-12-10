@@ -1,0 +1,51 @@
+<extend name="Base/common"/>
+<block name="style">
+	<style>
+		body{background: url("__STATIC__/amaze/i/bg-001.jpg") bottom;background-size:cover;width:100%;height:100%;}
+	</style>
+</block>
+<block name="body">
+	<!--content begin-->
+	<div class="am-g am-container am-margin-top-lg am-margin-bottom">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">健康讲坛</li>
+			</ol>
+		</div>
+		<div class="health-bbs am-g bg-fff">
+			<ul >
+				<volist name="_list" id="row">
+					<li class="am-padding am-margin-sm am-u-sm-6">
+						<dd class="am-fl">
+							<a href="{:U('Lesson/detail',array('id'=>$row['id']))}">
+								<notempty name="row.pic">
+									<img height="160px" width="230px" src="{$row.pic}">
+									<else/>
+									<img src="__STATIC__/amaze/i/img-bbs1.jpg">
+								</notempty>
+							</a>
+						</dd>
+						<dt class="am-fr am-padding-left-sm">
+						<h4><a href="{:U('Lesson/detail',array('id'=>$row['id']))}">{$row.title}</a></h4>
+
+						<p>{$row.content|strip_tags|mb_substr=0,80,'utf-8'}...</p>
+						<a href="{:U('Lesson/detail',array('id'=>$row['id']))}">详情</a>
+						</dt>
+						<div class="am-cf"></div>
+					</li>
+				</volist>
+				<div class="am-cf"></div>
+			</ul>
+		</div>
+		<div class="am-g am-margin-top am-margin-bottom">
+			{$_page}
+		</div>
+	</div>
+	</div>
+	<!--content end-->
+
+</block>
+<block name="script">
+
+</block>

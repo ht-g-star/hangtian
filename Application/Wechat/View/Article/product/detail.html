@@ -1,0 +1,512 @@
+<extend name="Base/mobile_base"/>
+<block name="style">
+</block>
+<block name="body">
+	<!-- Slider -->
+	<div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{"directionNav":false}'>
+		<ul class="am-slides">
+			<li><img src="{$info.cover_id|get_cover='path'}" alt=""></li>
+			<!--<li>-->
+			<!--<img src="__STATIC__/amaze/i/app/app-shop-list1-big.jpg">-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<img src="__STATIC__/amaze/i/app/app-shop-list1-big.jpg">-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<img src="__STATIC__/amaze/i/app/app-shop-list1-big.jpg">-->
+			<!--</li>-->
+		</ul>
+	</div>
+	<!--商品详情-->
+	<div class=" am-g">
+		<div class="am-u-sm-12 ">
+			<h3 class="am-list-item-hd am-padding-top">
+				{$info.title}
+			</h3>
+
+			<div class="am-u-sm-6">
+				<div class="am-list-item-text">{$info.description|default='&nbsp;'}</div>
+			</div>
+			<div class="am-u-sm-6">
+				<div class="am-list-item-text am-text-right">已售：{$info.sale}</div>
+			</div>
+		</div>
+		<div class="price am-u-sm-12 " id="price">
+			￥<em class="price">
+				<php>
+					if(!empty($info['groupprice'])){ $price= explode('、',$info['groupprice']);}else{
+
+					$price="";}
+				</php>
+				<notempty name="price">
+					<volist name="price" id="v" key="k" offset="0" length="1">
+						{$v}
+					</volist>
+				</notempty>
+				<empty name="price">
+					{$info['price']}
+				</empty>
+			</em>
+		</div>
+
+		<div class="am-g am-u-sm-12  ">
+			<div class=" am-padding-top am-padding-bottom-xs">
+				<div class="am-u-sm-3 ">品牌：</div>
+				<div class="am-u-sm-9 am-u-end am-padding-left-0">
+					{$info.brand}
+				</div>
+			</div>
+			<form action="{:U('MallOrder/add')}" name="orderform" id="orform" method="post" onsubmit="return trySubmit()">
+
+				<input type="hidden" name="id[]" value="{$info.id}"/>
+				<input type="hidden" name="price[]" id="inputprice" value="{$info.price}"/>
+				<input type="hidden" name="sort[]" id="inputsort" value="{$info.id}"/>
+				<input type="hidden" name="parameters[]" id="inputparameters"/>
+
+				<div class=" am-padding-top am-padding-bottom-xs">
+					<div class="am-u-sm-3 quantity">数量：</div>
+					<div class="am-u-sm-9 am-u-end am-padding-left-0">
+						<div class="am-input-group">
+		                                    <span class="am-input-group-btn">
+		                                        <button class="am-btn am-btn-default" id="minus_btn" onclick="reduce()" type="button">
+			                                        -
+		                                        </button>
+		                                    </span>
+							<input type="number" id="num" name="num[]" class="am-form-field am-text-center goodnum am-input-xs" value="1">
+		                                    <span class="am-input-group-btn">
+		                                        <button class="am-btn am-btn-default" id="plus_btn" type="button" onclick="add()">
+			                                        +
+		                                        </button>
+		                                    </span>
+						</div>
+					</div>
+				</div>
+				<hr>
+			</form>
+			<notempty name="info['parameters']">
+				<li class="weight pp_prop_wrap am-g  am-padding-bottom">
+					<div class="am-u-sm-3">{$info.parameters}：</div>
+					<div class="am-u-sm-9 am-u-end am-padding-left-0 selecter">
+						<php>
+							if(!empty($info['parameters_value'])){ $datalist=
+							explode('、',$info['parameters_value']);}else{
+
+							$datalist="";}
+						</php>
+						<notempty name="datalist">
+							<volist name="datalist" id="v" key="k">
+								<a href="javascript:void(0)" class="am-margin-right-xs am-padding-xs <if condition='$k eq 1'>cur<else/></if> " title="{$v}" onclick='setprice({$k});return false;'>{$v}</a>
+							</volist>
+						</notempty>
+					</div>
+				</li>
+			</notempty>
+
+			<script>
+
+				function setprice(num) {
+					price = null;
+					var str = '{$info.groupprice}';
+					var value = str.split("、");
+					var i = num - 1;
+					$("#resetprice").text(value[i]);
+					$("#inputprice").val(value[i])
+					$(".weight a").eq(i).addClass("cur").siblings().removeClass("cur");
+					;
+					var para = $(".weight a").eq(i).text();
+					$("#inputparameters").val(para);
+				}
+			</script>
+
+		</div>
+		<div class="addcart_box am-u-sm-12 am-padding-top">
+			<a rel="nofollow" href="javascript:void(0)" onclick='order({$info.id});return false;' class="am-btn am-btn-secondary am-padding-sm am-radius  am-u-sm-6 ">立刻购买</a>
+			<a rel="nofollow" href="javascript:void(0)" onclick='buy({$info.id});return false;' class="am-btn am-btn-warning am-padding-sm am-radius am-u-sm-6  "><span class="am-icon-shopping-cart"></span>
+				加入购物车</a>
+
+			<!-- 购物车计算浮动层 begin -->
+			<div id="showIncludeCart" class="am-modal am-modal-no-btn" tabindex="-1">
+				<div class="am-modal-dialog">
+					<div class="am-modal-hd">
+						<h4 class="am-popup-title">购物车</h4>
+						<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+					</div>
+					<div class="am-modal-bd">
+						<div class="buy_icon"></div>
+						<div class="buy_pop_top">
+							<div class="title">此商品已成功放入购物车</div>
+							<div class="font">购物车共 <font id="totalnum" class="red"></font> 件宝贝<span>合计 <font
+									class="red" id="fee"></font></span></div>
+							<div class="btn_continue">
+								<div class="pop_btn_r"><a
+										onclick="$('#showIncludeCart').modal('close');return false;"
+										href="javascript:vod(0);">继续购物</a></div>
+								<div class="btn_cart"><a href="{:U('shopcart/index')}">去购物车结算</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 购物车计算浮动层 over -->
+		</div>
+		<!-- buy-->
+	</div>
+
+	<!-- 商品参数-->
+	<div class="am-g dl_goods_detail am-container">
+		<!-- 商品描述-->
+		<div class="am-g">
+		<div data-am-widget="tabs" class="am-tabs am-tabs-default shop-content">
+			<ul class="am-tabs-nav am-cf" data-am-scrollspy-nav="{offsetTop: 100}" data-am-sticky>
+				<li class="am-active"><a href="#detail">商品详情</a></li>
+				<li><a href="#record">成交记录</a></li>
+				<li><a href="#eva">评价</a></li>
+				<li><a href="#comments">咨询</a></li>
+			</ul>
+				<div class="am-text-lg am-padding">
+								<font style="size:20px;color:red;"><strong>关于发货:</strong></font>&nbsp;您的订单完成支付后，我们会在2个工作日内安排发货。无需派送的商品除外。</h3>
+							</div>
+		</div>
+	</div>
+	<div class="tab-line"></div>
+	<div id="goods_content">
+		<div id="detail" class="choose">{$info.content}</div>
+		<div id="record" data-tab-panel-1 class="am-padding-top-lg am-margin-bottom-0 am-padding-bottom-0">
+			<div class="am-g am-padding">
+				<div class="am-titlebar am-titlebar-multi am-margin-0 am-padding-0">
+					<h2 class="am-titlebar-title">成交记录
+						<span class="am-text-sm am-link-muted am-padding-left">共<span class="am-text-warning num-text">{$records_count}</span>条</span>
+					</h2>
+				</div>
+				<table class="am-table">
+					<thead>
+					<tr>
+						<th>姓名</th>
+						<th>创建时间</th>
+						<th>规格</th>
+						<th>数量</th>
+					</tr>
+					</thead>
+					<tbody>
+					<volist name="records" id="r">
+						<tr>
+							<td>{$r.realname|cover_name}</td>
+							<td class="num-text">{$r.create_time|time_format}</td>
+							<td class="num-text am-text-warning">{$r.parameters}</td>
+							<td class="num-text am-text-warning">{$r.num}</td>
+						</tr>
+					</volist>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="eva" data-tab-panel-2 class="choose am-padding-top">
+			<div class="am-g am-padding">
+				<div class="am-titlebar am-titlebar-multi am-margin-0 am-padding-0">
+					<h2 class="am-titlebar-title">评价
+						<span class="am-text-sm am-link-muted am-padding-left">共<span class="num-text am-text-warning">{$count}</span>条评论,<span class="num-text am-text-warning">{$rate|default='98.2'}%</span>好评率</span>
+					</h2>
+				</div>
+				<br>
+				<table class="am-table">
+					<thead>
+					<tr>
+						<th width="10%">姓名</th>
+						<th width="60%">内容</th>
+						<th width="10%">评分</th>
+						<th width="20%">评价时间</th>
+					</tr>
+					</thead>
+					<tbody>
+					<volist name="list" id="r">
+						<tr>
+							<td>{$r.uid|get_regname|cover_name}</td>
+							<td class="num-text">{$r.content}
+							</td>
+							<td class="num-text am-text-danger">{$r.goodscore}</td>
+							<td class="num-text am-text-warning">{$r.create_time|time_format}</td>
+						</tr>
+						<!--<tr>-->
+						<!--<td colspan="4">-->
+						<!--<div class="replay-box am-text-sm am-padding-xs">-->
+						<!--<span class="am-text-primary">航疗：</span>亲，我们会用最好的服务提供给您！-->
+						<!--</div>-->
+						<!--</td>-->
+						<!--</tr>-->
+					</volist>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+		<div id="comments" data-tab-panel-3 class="choose am-padding-top">
+			<div class="am-g am-padding">
+				<div class="am-titlebar am-titlebar-multi am-margin-0 am-padding-0">
+					<h2 class="am-titlebar-title">商品咨询 </h2>
+				</div>
+				<br>
+				<table class="am-table">
+					<thead>
+					<tr>
+						<th width="10">姓名</th>
+						<th width="50">内容</th>
+						<th width="10">咨询时间</th>
+					</tr>
+					</thead>
+					<tbody>
+					<volist name="comments" id="r">
+						<tr>
+							<td>{$r.c_id|get_regname|cover_name}</td>
+							<td class="num-text">{$r.content}
+							</td>
+							<td class="num-text am-text-warning">{$r.ctime|time_format}</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<div class="replay-box am-text-sm am-padding-xs">
+									<span class="am-text-primary">{:C('WEB_SITE_TITLE')}：</span>{$r.reply|default='亲，我们会用最好的服务提供给您！'}
+								</div>
+							</td>
+						</tr>
+					</volist>
+					</tbody>
+				</table>
+			</div>
+			<form id="comment_form" method="post" class="am-form am-form-horizontal">
+				<div class="am-g am-padding-bottom-lg">
+					<div class="am-u-lg-10 am-u-sm-12">
+						<textarea name="comments" placeholder="可以再次写下咨询内容"></textarea>
+					</div>
+					<div class="am-u-lg-2 am-u-sm-12">
+						<button class="am-btn am-btn-primary am-btn-block">提交</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+
+
+	</div>
+
+	</div>
+	<!-- 商品描述结束-->
+
+
+</block>
+<block name="script">
+	<SCRIPT src="__STATIC__/js/base.js" type=text/javascript></SCRIPT>
+	<SCRIPT src="__STATIC__/js/jqueryzoom-jcarousel.js" type="text/javascript"></SCRIPT>
+
+	<!--[if lte IE 6]>
+	<script type="text/javascript">
+		// 浮动对话框
+		$(document).ready(function () {
+			var domThis = $('#dialog')[0];
+			var wh = $(window).height() / 2;
+			$("body").css({
+				"background-image": "url(about:blank)",
+				"background-attachment": "fixed"
+			});
+			domThis.style.setExpression('top', 'eval((document.documentElement).scrollTop + ' + wh + ') + "px"');
+		});
+	</script>
+	<![endif]-->
+
+
+	<script type="text/javascript">
+		function trySubmit() {
+			if (this.submitFlag == 1) {
+				alert('数据已经提交，请勿再次提交。');
+				return false;
+			}
+			else {
+				this.submitFlag = 1;
+				return true;
+			}
+		}
+
+	</script>
+	<script type="text/javascript">
+		//立即购买
+		function order(gid) {
+			var uexist = "{:is_login()}";
+			if (uexist > 0) {
+				var gprice = $("em.price").eq(0).text();//价格
+				var parameters = $("a.cur").text();//参数
+				var _string;
+				if ($(".weight").length > 0) {
+					var s = $(".weight .cur").index() + 1;
+					_string = (gid) + (s) + "";
+				} else {
+					_string = (gid) + "";
+				}
+				$("#inputprice").val(gprice);
+				$("#inputsort").val(_string);
+				$("#inputparameters").val(parameters);
+				document.orderform.submit();
+			} else {
+				alert("请先登录!");
+				location.href="{:U('Public/login')}"
+			}
+		}
+		//收藏
+		function favor() {
+			var uexist = "{:get_username()}";
+			if (uexist) {
+				var favorid = '{$info.id}';
+				$.ajax({
+					type: 'post', //传送的方式,get/post
+					url: '{:U("Collect/add")}', //发送数据的地址
+					data: {id: favorid},
+					dataType: "json",
+					success: function (data) {
+						alert(data.msg)
+					}
+					,
+					error: function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+						alert(XMLHttpRequest + thrownError);
+					}
+				})
+			}
+
+			else {
+				showBg();
+			}
+
+		}
+
+		//加入购物车
+		function buy(i) {
+			var uexist = "{:is_login()}";
+			if (uexist <= 0) {
+				alert("请先登录!");
+				location.href="{:U('Public/login')}"
+				return;
+			}
+			var gid = i;
+			var url = '{:U("Shopcart/addItem")}';//地址
+			var gnum = $(".goodnum").val();//数量
+			var gprice = $("em.price").eq(0).text();//价格
+			var src = $(".img img").attr("src");//图片
+			var image = '<img src="' + src + '"width="40" height="40">';
+			var href = "<a  href='{:U('Article/detail ? id = '.$info['id'])}'>";
+			var title = $("#tit").text();//名称
+			var parameters = $(".weight .cur").text();//参数
+			if ($(".weight").length > 0) {
+				var s = $(".weight .cur").index() + 1;
+				var string = String(gid) + String(s);
+			}
+			else {
+				var string = String(gid);
+			}
+
+			$.ajax({
+				type: 'post', //传送的方式,get/post
+				url: '{:U("Shopcart/addItem")}', //发送数据的地址
+				data: {
+					id: gid, num: gnum, price: gprice, i: parameters, sort: string
+				},
+				dataType: "json",
+				success: function (data) {
+					var html = '<li><dl><dt class="mini-img">' + href + image + '</a><dd><span class="mini_title">' + href + title + '</a></span><span class="mini-cart-count red"> ￥'
+							+ gprice + '<em class="' + string + '">*' + gnum + '</em></span>' + '</dd><dd><span class="mini-cart-info">' + parameters + '</span><span class="mini-cart-del"><a name="' + string + '" rel="del"  onclick="delcommon(event);return false;">删除</a></span></dd>' + '</dl></li>';//创建节点〉
+					if (data.exsit == "1") {
+						$("em." + string).text("*" + data.num);
+						//后台返回数据，判断购物车中是否已存在，存在，不追加节点
+					} else {
+//后台返回数据，判断购物车中是否已存在，不存在，追加节点
+						$("p.sc_goods_none").remove();//移除节点
+						$("ul.sc_goods_ul").append(html);//追加节点
+
+					}
+					if (data.num == "0") { //判断数量是否为0，为0则隐藏底部查看工具
+						$("div.sc_goods_foot").hide();
+					}
+					else {
+						$("div.sc_goods_foot").show();
+					}
+					$('#totalnum').text(data.sum);
+					$('#fee').text(data.fee);
+					$('#showIncludeCart').modal();
+				},
+				error: function (XMLHttpRequest, ajaxOptions, thrownError) {
+					alert(XMLHttpRequest + thrownError);
+				}
+			})
+		}
+		//增加数量
+		function add() {
+			var num = $(".goodnum").val();
+			num++;
+			$(".goodnum").val(num);
+		}
+		//减少数量
+		function reduce() {
+
+			var num = $(".goodnum").val();
+
+			if (num > 1) {
+				num--;
+				$(".goodnum").val(num);
+			}
+			else {
+				$("#oneA").addClass("important");
+				alert("数量最少为1")
+			}
+
+		}
+		//登录后刷新页面，载入数据
+		$("#login_btn").click(function () {
+
+			var yourname = $('#inputusername').val();
+			var yourword = $('#inputpassword').val();
+
+			$.ajax({
+				type: 'post', //传送的方式,get/post
+				url: '{:U("User/loginfromdialog")}', //发送数据的地址
+				data: {username: yourname, password: yourword},
+				dataType: "json",
+				success: function (data) {
+					if (data.status == "1") {
+						$(".tips").html(data.info);
+						document.orderform.submit();
+					}
+					else {
+						$(".tips").html(data.info);
+
+					}
+
+				},
+				error: function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+					alert(XMLHttpRequest + thrownError);
+				}
+			});
+		});
+
+
+		$(function(){
+			$("form#comment_form").submit(function () {
+				var text = $("form#comment_form textarea").val();
+				if (text.length <= 5) {
+					topAlert("请尽量完整描述您的问题");
+					return false;
+				}
+
+				$.post("./index.php?s=/Home/GoodsComments/add.html", {
+					"goods_id": "{$info.id}",
+					'content': text,
+				}, function (data) {
+					topAlert(data.info, data.status);
+					if (data.url) {
+						setTimeout(function () {
+							window.location.href = data.url;
+						}, 3000);
+					}
+				}, 'json');
+				return false;
+			});
+		});
+	</script>
+
+</block>

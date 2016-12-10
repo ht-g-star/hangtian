@@ -1,0 +1,30 @@
+[ 2016-12-07T14:43:21+08:00 ] 127.0.0.1 /index.php?s=/wechat/index/index
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-07T15:00:41+08:00 ] 127.0.0.1 /index.php?s=/wechat/index/index
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-07T15:07:19+08:00 ] 127.0.0.1 /index.php?s=/wechat/index/index&signature=2c763d726a8c2f6afda9be7e0e56a2caa6bb5e6b
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-07T15:07:30+08:00 ] 127.0.0.1 /index.php?s=/wechat/index/index&signature=2c763d726a8c2f6afda9be7e0e56a2caa6bb5e6b
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-07T15:07:52+08:00 ] 127.0.0.1 /index.php?s=/wechat/index/index&signature=2c763d726a8c2f6afda9be7e0e56a2caa6bb5e6b
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-07T15:08:12+08:00 ] 127.0.0.1 /index.php?s=/wechat/index/index&signature=2c763d726a8c2f6afda9be7e0e56a2caa6bb5e6b
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+

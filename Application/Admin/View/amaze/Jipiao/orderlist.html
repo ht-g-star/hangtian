@@ -1,0 +1,388 @@
+<extend name="Public/base"/>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">机票订单</strong> /
+			<small>列表</small>
+		</div>
+	</div>
+</block>
+<block name="body">
+	<div class="am-g am-padding am-padding-top-0">
+		<div class="main-title">
+			<h2>{$meta_title}[ <strong>全部数量</strong>({$total})]</h2>
+		</div>
+
+		<!-- 按钮工具栏 -->
+		<div class="am-cf">
+			<!--<div class="am-fl">
+				<a class="btn am-btn am-btn-default" href="{:U('add?status='.$status)}">新 增</a>
+			 <button class="btn am-btn am-btn-default ajax-post confirm" url="{:U('del')}" target-form="ids">删 除</button>
+
+
+			</div>-->
+
+			<!-- 高级搜索 -->
+			<div class="am-g">
+				<div class="am-u-sm-12">
+					<div class="am-search-form am-cf am-margin-bottom">
+						<form action="" class="search-form am-form">
+							<div class="sleft  am-input-group  am-fl">
+								<label>下单时间:</label>
+								<input type="date" name="begin_time" class="search-input am-padding-xs" id="time-start" value="{:I('begin_time')}" placeholder="开始">~
+								<input type="date" name="end_time" class="search-input am-padding-xs" id="time-end" value="{:I('end_time')}" placeholder="截至">
+								<br/>
+								<select name='orderstatus' class="search-input am-padding-xs" data-value="{:I('orderstatus')}">
+									<option value="">请选择订单状态</option>
+									<option value='WAIT_PAY'>待支付</option>
+									<option value='PAYING'>支付中</option>
+									<option value='WAIT_AUDIT'>待审核</option>
+									<option value='AUDIT_FALSE'>审核失败</option>
+									<option value='CANCELED'>已取消</option>
+									<option value='WAIT_ISSUE'>待出票</option>
+									<option value='PAY_FALSE'>支付失败</option>
+									<option value='ISSUE_FALSE'>出票失败</option>
+									<option value='ISSUED'>已出票</option>
+									<option value='ISSUED_SUSPEND'>已出票（挂起）</option>
+									<option value='ENDORSE_WAIT_AUDIT'>改签待审核</option>
+									<option value='ENDORSE_AUDIT_SUCCESS'>改签审核成功</option>
+									<option value='ENDORSE_AUDIT_FALSE'>改签审核失败</option>
+									<option value='WAIT_REFUND'>待退票</option>
+									<option value='REFUND_FALSE'>退票失败</option>
+									<option value='CANCEL_REFUND'>取消退票</option>
+									<option value='REFUND_FINISH'>退票成功</option>
+									<option value='REFUND_WAIT_AUDIT'>退票待审核</option>
+									<option value='REFUND_AUDIT_FALSE'>退票审核失败</option>
+									<option value='CANCEL_ENDORSE'>取消改签</option>
+									<option value='WAIT_ENDORSE'>待改签</option>
+									<option value='ENDORSE_FALSE'>改签失败</option>
+									<option value='ENDORSE_FINISH'>改签成功</option>
+									<option value='ENDORSE_REVIEW_PASS'>改签后付款</option>
+								</select>
+								<input type="text" name="customercardnum" class="search-input am-padding-xs" value="{:I('customercardnum')}" placeholder="请输入会员卡号">
+								<input type="text" name="customerphone" class="search-input am-padding-xs" value="{:I('customerphone')}" placeholder="请输入会员电话">
+								<input type="text" name="lxrphone" class="search-input am-padding-xs" value="{:I('lxrphone')}" placeholder="请输入联系人电话">
+								<input type="text" name="lxr_name" class="search-input am-padding-xs" value="{:I('lxr_name')}" placeholder="请输入联系人姓名">
+								<!-- <a class="sch-btn" href="javascript:;" id="search" url="{:U('Jipiao/orderlist')}">
+									<span class="am-icon-search"></span></a> -->
+								<button type="button" class="am-btn am-btn-primary" id="search" url="{:U('Jipiao/orderlist')}">
+									<span class="am-icon-search"></span> 搜索
+								</button>
+								<button type="button" class="am-btn am-btn-primary" id="out" url="{:U('Jipiao/out')}">
+									<span class="am-icon-download"></span> 导出
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="data-table table-striped" style="overflow-x:auto">
+				<table class="am-table am-table-striped am-table-hover am-table-compact am-text-nowrap dataTable no-footer">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th>会员ID</th>
+						<th>会员姓名</th>
+						<th>会员手机</th>
+						<th>订单号</th>
+						<th>航班号</th>
+						<th>出发时间</th>
+						<th>达到时间</th>
+						<th>出发机场</th>
+						<th>到达机场</th>
+						<th>联系人</th>
+						<th>联系人手机号</th>
+						<th>乘机人</th>
+						<th>票面价格</th>
+						<th>机建价格</th>
+						<th>燃油费</th>
+						<th>服务费</th>
+						<th>保险</th>
+						<th>订单总价</th>
+						<th>改签费用</th>
+						<th>退票费用</th>
+						<th>订单状态</th>
+						<th>下单时间</th>
+						<th>详情</th>
+					</tr>
+					</thead>
+					<tbody>
+					<notempty name="list">
+						<volist name="list" id="vo">
+							<tr>
+								<!-- <td><input class="ids row-selected" type="checkbox" name="id[]" value="{$vo.id}"></td> -->
+								<td>{$vo.id}</td>
+								<td>{$vo.customercardnum}</td>
+								<td>{$vo.customername}</td>
+								<td>{$vo.customermobile}</td>
+								<td>{$vo.orderid}</td>
+								<td>{$vo.flightno}</td>
+								<td>{$vo.departuredate} {$vo.departuretime}</td>
+								<td>{$vo.arrivaldate} {$vo.arrivaltime}</td>
+								<td>{:setAirport($vo['fromairport'])}</td>
+								<td>{:setAirport($vo['toairport'])}</td>
+								<td>{$vo.lxr_name}</td>
+								<td>{$vo.lxr_phone}</td>
+								<td>{$vo.passengername}</td>
+								<td>{$vo.faceprice}</td>
+								<td>{$vo.airportfee}</td>
+								<td>{$vo.fueltax}</td>
+								<td>
+									<php>
+										echo ($vo['fueltax']+$vo['faceprice']+$vo['airportfee'])*0.03;
+									</php>
+								</td>
+								<php>
+									$ck = explode("|", $vo["passengername"]);
+									$ck = count($ck);
+								</php>
+								<td>{$ck * 20}</td>
+								<td>{$vo["totalorderprice"]+20 * $ck }</td>
+								<td>{:abs($vo['payamount'])}</td>
+								<td>{:abs($vo["refundamount"])}</td>
+								<td>
+									<php>
+										switch($vo['orderstatus']){
+										case 'WAIT_PAY':
+										echo '待支付';
+										break;
+										case 'PAYING':
+										echo '支付中';
+										break;
+										case 'WAIT_AUDIT':
+										echo '待审核';
+										break;
+										case 'AUDIT_FALSE':
+										echo '审核失败';
+										break;
+										case 'CANCELED':
+										echo '已取消';
+										break;
+										case 'WAIT_ISSUE':
+										echo '待出票';
+										break;
+										case 'PAY_FALSE':
+										echo '支付失败';
+										break;
+										case 'ISSUE_FALSE':
+										echo '出票失败';
+										break;
+										case 'ISSUED':
+										echo '已出票';
+										break;
+										case 'ISSUED_SUSPEND':
+										echo '已出票（挂起）';
+										break;
+										case 'ENDORSE_WAIT_AUDIT':
+										echo '改签待审核';
+										break;
+										case 'ENDORSE_AUDIT_SUCCESS':
+										echo '改签审核成功';
+										break;
+										case 'ENDORSE_AUDIT_FALSE':
+										echo '改签审核失败';
+										break;
+										case 'WAIT_REFUND':
+										echo '待退票';
+										break;
+										case 'REFUND_FALSE':
+										echo '退票失败';
+										break;
+										case 'CANCEL_REFUND':
+										echo '取消退票';
+										break;
+										case 'REFUND_FINISH':
+										echo '退票成功';
+										break;
+										case 'REFUND_WAIT_AUDIT':
+										echo '退票待审核';
+										break;
+										case 'REFUND_AUDIT_FALSE':
+										echo '退票审核失败';
+										break;
+										case 'CANCEL_ENDORSE':
+										echo '取消改签';
+										break;
+										case 'WAIT_ENDORSE':
+										echo '待改签';
+										break;
+										case 'ENDORSE_FALSE':
+										echo '改签失败';
+										break;
+										case 'ENDORSE_FINISH':
+										echo '改签成功';
+										break;
+										case 'ENDORSE_REVIEW_PASS':
+										echo '改签后付款';
+										break;
+										}
+									</php>
+								</td>
+								<td>{:date('Y-m-d H:i', $vo['addtime'])}</td>
+								<th>
+									<a href="{:U('Admin/Jipiao/orderdetail',array('id'=>$vo['id']))}">详情</a>
+									<if condition="$vo['orderstatus'] eq 'CANCELED'">
+										<a href="javascript:void(0)" onclick="deleteOrder('{$vo.orderid}');">删除</a>
+									</if>
+								</th>
+
+							</tr>
+						</volist>
+						<else/>
+						<td colspan="6" class="text-center"> aOh! 暂时还没有内容!</td>
+					</notempty>
+					</tbody>
+				</table>
+
+				<!-- 分页 -->
+				<div class="page">
+					{$_page}
+				</div>
+			</div>
+		</div>
+</block>
+
+<block name="script">
+	<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" status="text/css">
+	<php>if(C('COLOR_STYLE')=='blue_color') echo '
+		<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" status="text/css">
+		';
+	</php>
+	<link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" status="text/css">
+	<script status="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	<script status="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+	<script status="text/javascript">
+		$(function () {
+
+			var orderstatus = $("[name='orderstatus']").data("value");
+			$("[name='orderstatus']").find("[value='" + orderstatus + "']").prop("selected", true);
+
+			var $form = $("#export-form"), $export = $("#export"), tables
+			$optimize = $("#optimize"),
+					$optimize.click(function () {
+						$.post(this.href, $form.serialize(), function (data) {
+							if (data.status) {
+								updateAlert(data.info, 'alert-success');
+							} else {
+								updateAlert(data.info, 'alert-error');
+							}
+							setTimeout(function () {
+								$('#top-alert').find('button').click();
+								$(that).removeClass('disabled').prop('disabled', false);
+							}, 1500);
+						}, "json");
+						return false;
+					});
+			//搜索功能
+			$("#search").click(function () {
+				var url = $(this).attr('url');
+
+				var query = $('.search-form').find('input, select').serialize();
+				query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g, '');
+				query = query.replace(/^&/g, '');
+				if (status != '') {
+					query = 'status=' + status + "&" + query;
+				}
+				if (url.indexOf('?') > 0) {
+					url += '&' + query;
+				} else {
+					url += '?' + query;
+				}
+				window.location.href = url;
+			});
+
+			$("#out").click(function () {
+				var url = $(this).attr('url');
+
+				var query = $('.search-form').find('input, select').serialize();
+				query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g, '');
+				query = query.replace(/^&/g, '');
+				if (status != '') {
+					query = 'status=' + status + "&" + query;
+				}
+				if (url.indexOf('?') > 0) {
+					url += '&' + query;
+				} else {
+					url += '?' + query;
+				}
+				window.location.href = url;
+			});
+
+
+			/* 状态搜索子菜单 */
+			$(".search-form").find(".drop-down").hover(function () {
+				$("#sub-sch-menu").removeClass("hidden");
+			}, function () {
+				$("#sub-sch-menu").addClass("hidden");
+			});
+			$("#sub-sch-menu li").find("a").each(function () {
+				$(this).click(function () {
+					var text = $(this).text();
+					$("#sch-sort-txt").text(text).attr("data", $(this).attr("value"));
+					$("#sub-sch-menu").addClass("hidden");
+				})
+			});
+
+			//只有一个模型时，点击新增
+			$('.document_add').click(function () {
+				var url = $(this).attr('url');
+				if (url != undefined && url != '') {
+					window.location.href = url;
+				}
+			});
+
+			//点击排序
+			$('.list_sort').click(function () {
+				var url = $(this).attr('url');
+				var ids = $('.ids:checked');
+				var param = '';
+				if (ids.length > 0) {
+					var str = new Array();
+					ids.each(function () {
+						str.push($(this).val());
+					});
+					param = str.join(',');
+				}
+
+				if (url != undefined && url != '') {
+					window.location.href = url + '/ids/' + param;
+				}
+			});
+
+			//回车自动提交
+			$('.search-form').find('input').keyup(function (event) {
+				if (event.keyCode === 13) {
+					$("#search").click();
+				}
+			});
+
+			$('#time-start').datetimepicker({
+				format: 'yyyy-mm-dd',
+				language: "zh-CN",
+				minView: 2,
+				autoclose: true
+			});
+
+			$('#time-end').datetimepicker({
+				format: 'yyyy-mm-dd',
+				language: "zh-CN",
+				minView: 2,
+				autoclose: true
+			});
+		})
+
+		function deleteOrder(orderid) {
+			if (confirm("确认要删除该订单吗？")) {
+				$.getJSON("/admin/jipiao/delOrder?orderid=" + orderid).success(function (json) {
+					if (json.code == -1) {
+						alert(json.msg);
+					} else {
+						alert(json.msg);
+						// location.reload();
+					}
+				})
+			}
+		}
+
+	</script>
+</block>

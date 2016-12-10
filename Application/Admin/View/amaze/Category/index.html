@@ -1,0 +1,257 @@
+<extend name="Public/base"/>
+<block name="style">
+	<style>
+		/* = 分类管理树形菜单（目前只支持3级）
+		------------------------------------------ */
+		.category {
+			margin: 10px 0;
+			border-bottom-width: 0;
+			background-color: #fff;
+		}
+
+		.category .hd {
+			font-weight: bold;
+			border-bottom: 1px solid #d4d4d4;
+			color: #fff;
+			background-color: #353535;
+		}
+
+		.category .cate-item dt {
+			border-bottom: 1px solid #E7E7E7;
+		}
+
+		.category dl,
+		.category dd,
+		.category input {
+			margin: 0;
+		}
+
+		.category .check,
+		.category .fold,
+		.category .order,
+		.category .name {
+			float: left;
+			height: 35px;
+			line-height: 35px;
+		}
+
+		.category .opt {
+			float: right;
+			width: 120px;
+			height: 35px;
+			line-height: 35px;
+			text-align: center;
+		}
+
+		.opt-btn {
+			float: right;
+			margin: 5px 10px 0 0;
+		}
+
+		.category .check {
+			width: 40px;
+			text-align: center;
+		}
+
+		.category .fold {
+			width: 50px;
+			text-align: center;
+		}
+
+		.category .fold i {
+			display: inline-block;
+			vertical-align: middle;
+			width: 17px;
+			height: 17px;
+			line-height: 17px;
+			background-repeat: no-repeat;
+		}
+
+		.category .order,
+		.category .order input {
+			text-align: center;
+		}
+
+		.category .order {
+			width: 90px;
+		}
+
+		.category .order input {
+			margin-bottom: 2px;
+			width: 40px;
+			height: 20px;
+		}
+
+		.category .name input {
+			margin-bottom: 2px;
+			height: 30px;
+		}
+
+		.category .add-sub-cate {
+			margin-left: 10px;
+		}
+
+		.category .add-sub-cate:hover {
+			text-decoration: none;
+			border-bottom: 0 none;
+		}
+
+		.category .btn-mod {
+			margin-left: 15px;
+		}
+
+		.category .root {
+			font-weight: bold;
+		}
+
+		.category .tab-sign {
+			display: inline-block;
+			margin-left: 15px;
+			height: 21px;
+			vertical-align: middle;
+			background-image: url(../images/tab_sign.png);
+			background-repeat: no-repeat;
+		}
+
+		.category .name .msg {
+			vertical-align: top;
+			font-weight: normal;
+		}
+
+		.category .name .error {
+			color: #B94A48;
+		}
+
+		.category .name .success {
+			color: #468847;
+		}
+
+		/* 顶级分类 */
+		.category > dl > dt .tab-sign {
+			display: none;
+		}
+
+		/* 二级分类 */
+		.category > dl > dd > dl > dt .tab-sign {
+			width: 55px;
+			background-position: 0 0;
+		}
+
+		.category > dl > dd > dl:last-child > dt .tab-sign {
+			background-position: -55px 0;
+		}
+
+		/* 三级分类 */
+		.category > dl > dd > dl > dd > dl > dt .tab-sign {
+			width: 110px;
+			background-position: 0 -30px;
+		}
+
+		.category > dl > dd > dl > dd > dl:last-child > dt .tab-sign {
+			background-position: 0 -60px;
+		}
+
+		.category > dl > dd > dl:last-child > dd > dl > dt .tab-sign {
+			background-position: 0 -90px;
+		}
+
+		.category > dl > dd > dl:last-child > dd > dl:last-child > dt .tab-sign {
+			background-position: 0 -120px;
+		}
+
+		.category > dl > dd > dl:last-child > dd > dl:last-child > dt .add-sub-cate {
+			display: none;
+		}
+
+		.category input {
+			height: 16px;
+		}
+	</style>
+</block>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品分类管理</strong> /
+			<small>{$meta_title}</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+	<div class="am-g">
+		<div class="am-u-sm-12">
+			<!-- 表格列表 -->
+			<div class="tb-unit posr">
+				<div class="tb-unit-bar">
+					<a class="am-btn am-btn-primary" href="{:U('add')}">新 增</a>
+				</div>
+				<div class="category am-u-sm-12">
+					<div class="hd am-cf">
+						<div class="fold ">折叠</div>
+						<div class="order ">排序</div>
+						<div class="order ">发布</div>
+						<div class="name ">名称</div>
+					</div>
+					{:R('Category/tree', array($tree))}
+				</div>
+			</div>
+			<!-- /表格列表 -->
+		</div>
+	</div>
+
+</block>
+
+<block name="script">
+	<script type="text/javascript">
+		(function ($) {
+			/* 分类展开收起 */
+			$(".category dd").prev().find(".fold i").addClass("am-icon-minus-square")
+					.click(function () {
+						var self = $(this);
+						if (self.hasClass("am-icon-minus-square")) {
+							self.closest("dt").next().slideUp("fast", function () {
+								self.removeClass("am-icon-minus-square").addClass("am-icon-plus-square");
+							});
+						} else {
+							self.closest("dt").next().slideDown("fast", function () {
+								self.removeClass("am-icon-plus-square").addClass("am-icon-minus-square");
+							});
+						}
+					});
+
+			/* 三级分类删除新增按钮 */
+			$(".category dd dd .add-sub").remove();
+
+			/* 实时更新分类信息 */
+			$(".category")
+					.on("submit", "form", function () {
+						var self = $(this);
+						$.post(
+								self.attr("action"),
+								self.serialize(),
+								function (data) {
+									/* 提示信息 */
+									var name = data.status ? "success" : "error", msg;
+									msg = self.find(".msg").addClass(name).text(data.info)
+											.css("display", "inline-block");
+									setTimeout(function () {
+										msg.fadeOut(function () {
+											msg.text("").removeClass(name);
+										});
+									}, 1000);
+								},
+								"json"
+						);
+						return false;
+					})
+					.on("focus", "input", function () {
+						$(this).data('param', $(this).closest("form").serialize());
+
+					})
+					.on("blur", "input", function () {
+						if ($(this).data('param') != $(this).closest("form").serialize()) {
+							$(this).closest("form").submit();
+						}
+					});
+		})(jQuery);
+	</script>
+</block>

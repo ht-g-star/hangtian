@@ -1,0 +1,88 @@
+<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+	<div id="subnav" class="subnav admin-sidebar am-offcanvas">
+		<div class="am-offcanvas-bar admin-offcanvas-bar">
+			<ul class="am-list admin-sidebar-list">
+				<volist name="nodes" id="sub_menu">
+					<!-- 子导航 -->
+					<li>
+						<notempty name="sub_menu">
+							<gt name="sub_menu['allow_publish']" value="0">
+								<a class="item am-cf" href="#"><span class="{:get_am_icon_by_title($sub_menu['title'])}"></span>
+									{$sub_menu.title}</a>
+								<else/>
+								{$sub_menu.title}
+							</gt>
+							<ul class="side-sub-menu am-list am-collapse admin-sidebar-sub am-in ">
+								<volist name="sub_menu['_child']" id="menu">
+									<li>
+										<gt name="menu['allow_publish']" value="0">
+											<a class="item am-cf" href="{$menu.url|U}">{$menu.title}</a>
+											<else/>
+											<a class="item am-cf" href="javascript:void(0);">{$menu.title}</a>
+										</gt>
+
+										<!-- 一级子菜单 -->
+										<present name="menu['_child']">
+											<ul class="subitem am-list am-collapse admin-sidebar-sub am-in">
+												<foreach name="menu['_child']" item="three_menu">
+													<li>
+														<gt name="three_menu['allow_publish']" value="0">
+															<a class="item" href="{$three_menu.url|U}">{$three_menu.title}</a>
+															<else/>
+															<a class="item" href="javascript:void(0);">{$three_menu.title}</a>
+														</gt>
+														<!-- 二级子菜单 -->
+														<present name="three_menu['_child']">
+															<ul class="subitem side-sub-menu am-list admin-sidebar-list ">
+																<foreach name="three_menu['_child']" item="four_menu">
+																	<li>
+																		<gt name="four_menu['allow_publish']" value="0">
+																			<a class="item" href="{:U('index','cate_id='.$four_menu['id'])}">{$four_menu.title}</a>
+																			<else/>
+																			<a class="item" href="javascript:void(0);">{$four_menu.title}</a>
+																		</gt>
+																		<!-- 三级子菜单 -->
+																		<present name="four_menu['_child']">
+																			<ul class="subitem">
+																				<volist name="four_menu['_child']" id="five_menu">
+																					<li>
+																						<gt name="five_menu['allow_publish']" value="0">
+																							<a class="item" href="{:U('index','cate_id='.$five_menu['id'])}">{$five_menu.title}</a>
+																							<else/>
+																							<a class="item" href="javascript:void(0);">{$five_menu.title}</a>
+																						</gt>
+																					</li>
+																				</volist>
+																			</ul>
+																		</present>
+																		<!-- end 三级子菜单 -->
+																	</li>
+																</foreach>
+															</ul>
+														</present>
+														<!-- end 二级子菜单 -->
+													</li>
+												</foreach>
+											</ul>
+										</present>
+										<!-- end 一级子菜单 -->
+									</li>
+								</volist>
+							</ul>
+						</notempty>
+					</li>
+					<!-- /子导航 -->
+				</volist>
+			</ul>
+		</div>
+	</div>
+</div>
+<script>
+	$(function () {
+		$(".side-sub-menu li").hover(function () {
+			$(this).addClass("hover");
+		}, function () {
+			$(this).removeClass("hover");
+		});
+	})
+</script>

@@ -1,0 +1,130 @@
+<extend name="Base/mobile_base"/>
+<block name="style">
+
+</block>
+<block name="body">
+	<form class="am-form am-margin-top am-form-horizontal" method="post">
+		<eq name="ACTION_NAME" value="edit_address">
+			<input name="id" value="{$data.id}" type="hidden"/>
+		</eq>
+		<fieldset>
+			<div class="am-form-group">
+				<label for="realname" class="am-u-sm-3 am-form-label">姓名:</label>
+
+				<div class="am-u-sm-9">
+					<input type="text" required class="am-form-field" name="realname" id="realname" value="{$data.realname}" placeholder="收货人姓名">
+				</div>
+			</div>
+			<div class="am-form-group ">
+				<label for="cellphone" class="am-u-sm-3 am-form-label">手机:</label>
+
+				<div class="am-u-sm-9">
+					<input type="tel" required maxlength="11" name="cellphone" id="cellphone" value="{$data.cellphone}" class="am-form-field" placeholder="手机号码">
+				</div>
+			</div>
+			<div class="am-form-group ">
+				<label for="cellphone" class="am-u-sm-3 am-form-label">地区:</label>
+
+				<div class="am-u-sm-9">
+					选择地区:
+					<select name="province" id="idprovince" class="new-select">
+						<volist name="province" id="p">
+							<option value="{$p.id}">{$p.area}</option>
+						</volist>
+					</select>
+					<select name="city" id="idcity" class="new-select">
+						<option value=''>选择城市</option>
+					</select>
+					<select class="new-select" name="area" id="idarea">
+						<option value=''>选择县城</option>
+					</select>
+				</div>
+			</div>
+			<div class="am-form-group ">
+				<label for="cellphone" class="am-u-sm-3 am-form-label">地址:</label>
+
+				<div class="am-u-sm-9">
+					<input type="text" required name="address" value="{$data.address}" class="am-form-field" placeholder="详细地址">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<div class="am-u-sm-offset-3 am-u-sm-8">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="default"
+							<eq name="data.id" value="$_user.address_id">checked</eq>
+							> 是否默认
+						</label>
+					</div>
+				</div>
+			</div>
+			<p>
+				<button type="submit" class="am-btn am-btn-secondary am-btn-block">确定</button>
+			</p>
+		</fieldset>
+	</form>
+	<include file="Base/bottom_nav"/>
+</block>
+<block name="script">
+	<script src="" type="text/javascript"></script>
+	<script>
+		///index.php?s=/Home/Address/change.html
+		$('#idprovince').change(function () {
+			if (this.value == '') {
+				//$('#ltwo').hide();
+				//$('#lthree').hide();
+				return;
+			}
+			//alert($('#lone'.value);
+			$.post('/index.php?s=/Home/Address/change.html', {pid: this.value},
+					function (data, textStatus) {
+						if (data) {
+							//$('#lthree').hide();
+							$('#idcity').empty();//清空原有的数据
+							//$("<option value='-1'>选择县城</option>").appendTo("#lthree");
+							$.each(data, function (i, n) {
+								$("<option value='" + n.id + "'>" + n.area + "</option>").appendTo("#idcity");
+
+							});
+							$('#idcity').change();
+						} else {
+							alert('没有子级了!');
+						}
+					}, 'json');
+		});
+		$('#idcity').change(function () {
+			if (this.value == '') {
+				//$('#ltwo').hide();
+				//$('#lthree').hide();
+				return;
+			}
+			//alert($('#lone'.value);
+			$.post('/index.php?s=/Home/Address/change.html', {pid: this.value},
+					function (data, textStatus) {
+						if (data) {
+							//$('#lthree').hide();
+							$('#idarea').empty();//清空原有的数据
+
+							$.each(data, function (i, n) {
+								$("<option value='" + n.id + "'>" + n.area + "</option>").appendTo("#idarea");
+								//$("#ltwo").append('<option value="'+n.region_id+'">'+n.region_name+'</option>');
+							});
+
+						} else {
+							alert('没有子级了!');
+						}
+					}, 'json');
+		});
+		$('#idarea').change(function () {
+			if (this.value == '') {
+				//$('#ltwo').hide();
+				//$('#lthree').hide();
+				return;
+			}
+			//alert($('#lone'.value);
+
+		});
+
+		$('#idprovince').change();
+	</script>
+</block>

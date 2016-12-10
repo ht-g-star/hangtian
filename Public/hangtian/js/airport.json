@@ -1,0 +1,1117 @@
+{
+    "chinese_port": [
+        {
+            "port_id": "AKU",
+            "port_spell": "AKeSu",
+            "port_name": "阿克苏机场",
+            "show_name": "阿克苏",
+            "is_hot": false
+        },
+        {
+            "port_id": "BPL",
+            "port_spell": "ALaShanKou",
+            "port_name": "阿拉山口机场",
+            "show_name": "阿拉山口",
+            "is_hot": false
+        },
+        {
+            "port_id": "AAT",
+            "port_spell": "ALeTai",
+            "port_name": "阿勒泰机场",
+            "show_name": "阿勒泰",
+            "is_hot": false
+        },
+        {
+            "port_id": "NGQ",
+            "port_spell": "ALiKunSha",
+            "port_name": "阿里昆莎机场",
+            "show_name": "阿里昆莎",
+            "is_hot": false
+        },
+        {
+            "port_id": "AQG",
+            "port_spell": "AnQingTianZhuShan",
+            "port_name": "安庆天柱山机场",
+            "show_name": "安庆",
+            "is_hot": false
+        },
+        {
+            "port_id": "MFM",
+            "port_spell": "AoMenGuoJi",
+            "port_name": "澳门国际机场",
+            "show_name": "澳门",
+            "is_hot": false
+        },
+        {
+            "port_id": "BSD",
+            "port_spell": "BaoShan",
+            "port_name": "保山机场",
+            "show_name": "保山",
+            "is_hot": false
+        },
+        {
+            "port_id": "BAV",
+            "port_spell": "BaoTou",
+            "port_name": "包头机场",
+            "show_name": "包头",
+            "is_hot": false
+        },
+        {
+            "port_id": "BHY",
+            "port_spell": "BeiHaiFuCheng",
+            "port_name": "北海福成机场",
+            "show_name": "北海",
+            "is_hot": false
+        },
+        {
+            "port_id": "NAY",
+            "port_spell": "BeiJingNanYuan",
+            "port_name": "北京南苑机场",
+            "show_name": "北京南苑",
+            "is_hot": false
+        },
+        {
+            "port_id": "PEK",
+            "port_spell": "BeiJingShouDuGuoJi",
+            "port_name": "北京首都国际机场",
+            "show_name": "北京首都",
+            "is_hot": true
+        },
+        {
+            "port_id": "NBS",
+            "port_spell": "ChangBaiShan",
+            "port_name": "长白山机场",
+            "show_name": "长白山",
+            "is_hot": false
+        },
+        {
+            "port_id": "CGQ",
+            "port_spell": "ChangChunLongJiaGuoJi",
+            "port_name": "长春龙嘉国际机场",
+            "show_name": "长春",
+            "is_hot": false
+        },
+        {
+            "port_id": "CGD",
+            "port_spell": "ChangDeTaoHuaYuan",
+            "port_name": "常德桃花源机场",
+            "show_name": "常德",
+            "is_hot": false
+        },
+        {
+            "port_id": "BPX",
+            "port_spell": "ChangDuBangDa",
+            "port_name": "昌都邦达机场",
+            "show_name": "昌都",
+            "is_hot": false
+        },
+        {
+            "port_id": "CSX",
+            "port_spell": "ChangShaHuangHuaGuoJi",
+            "port_name": "长沙黄花国际机场",
+            "show_name": "长沙",
+            "is_hot": false
+        },
+        {
+            "port_id": "CIH",
+            "port_spell": "ChangZhiWangCun",
+            "port_name": "长治王村机场",
+            "show_name": "长治",
+            "is_hot": false
+        },
+        {
+            "port_id": "CZX",
+            "port_spell": "ChangZhouBenNiu",
+            "port_name": "常州奔牛机场",
+            "show_name": "常州",
+            "is_hot": false
+        },
+        {
+            "port_id": "CTU",
+            "port_spell": "ChengDuShuangLiuGuoJi",
+            "port_name": "成都双流国际机场",
+            "show_name": "成都",
+            "is_hot": false
+        },
+        {
+            "port_id": "CIF",
+            "port_spell": "ChiFeng",
+            "port_name": "赤峰机场",
+            "show_name": "赤峰",
+            "is_hot": false
+        },
+        {
+            "port_id": "DLU",
+            "port_spell": "DaLi",
+            "port_name": "大理机场",
+            "show_name": "大理",
+            "is_hot": false
+        },
+        {
+            "port_id": "DLC",
+            "port_spell": "DaLianZhouShuiZiGuoJi",
+            "port_name": "大连周水子国际机场",
+            "show_name": "大连",
+            "is_hot": false
+        },
+        {
+            "port_id": "DQA",
+            "port_spell": "DaQingSaErTu",
+            "port_name": "大庆萨尔图机场",
+            "show_name": "大庆",
+            "is_hot": false
+        },
+        {
+            "port_id": "DAT",
+            "port_spell": "DaTongDongWangZhuang",
+            "port_name": "大同东王庄机场",
+            "show_name": "大同",
+            "is_hot": false
+        },
+        {
+            "port_id": "DAX",
+            "port_spell": "DaZhouHeShi",
+            "port_name": "达州河市机场",
+            "show_name": "达州",
+            "is_hot": false
+        },
+        {
+            "port_id": "DDG",
+            "port_spell": "DanDongLangTou",
+            "port_name": "丹东浪头机场",
+            "show_name": "丹东",
+            "is_hot": false
+        },
+        {
+            "port_id": "LUM",
+            "port_spell": "DeHongMangShi",
+            "port_name": "德宏芒市机场",
+            "show_name": "德宏",
+            "is_hot": false
+        },
+        {
+            "port_id": "DIG",
+            "port_spell": "DiQingXiangGeLiLa",
+            "port_name": "迪庆香格里拉机场",
+            "show_name": "迪庆",
+            "is_hot": false
+        },
+        {
+            "port_id": "DOY",
+            "port_spell": "DongYing",
+            "port_name": "东营机场",
+            "show_name": "东营",
+            "is_hot": false
+        },
+        {
+            "port_id": "DNH",
+            "port_spell": "DunHuang",
+            "port_name": "敦煌机场",
+            "show_name": "敦煌",
+            "is_hot": false
+        },
+        {
+            "port_id": "DSN",
+            "port_spell": "EErDuoSi",
+            "port_name": "鄂尔多斯机场",
+            "show_name": "鄂尔多",
+            "is_hot": false
+        },
+        {
+            "port_id": "ENH",
+            "port_spell": "EnShiXuJiaPing",
+            "port_name": "恩施许家坪机场",
+            "show_name": "恩施",
+            "is_hot": false
+        },
+        {
+            "port_id": "ERL",
+            "port_spell": "ErLianHaoTeSaiWuSuGuoJi",
+            "port_name": "二连浩特赛乌苏国际机场",
+            "show_name": "二连浩特",
+            "is_hot": false
+        },
+        {
+            "port_id": "FUG",
+            "port_spell": "FuYangXiGuan",
+            "port_name": "阜阳西关机场",
+            "show_name": "阜阳",
+            "is_hot": false
+        },
+        {
+            "port_id": "FOC",
+            "port_spell": "FuZhouChangLeGuoJi",
+            "port_name": "福州长乐国际机场",
+            "show_name": "福州",
+            "is_hot": false
+        },
+        {
+            "port_id": "KOW",
+            "port_spell": "GanZhouHuangJin",
+            "port_name": "赣州黄金机场",
+            "show_name": "赣州",
+            "is_hot": false
+        },
+        {
+            "port_id": "GOQ",
+            "port_spell": "GeErMu",
+            "port_name": "格尔木机场",
+            "show_name": "格尔木",
+            "is_hot": false
+        },
+        {
+            "port_id": "GYU",
+            "port_spell": "GuYuanLiuPanShan",
+            "port_name": "固原六盘山机场",
+            "show_name": "固原",
+            "is_hot": false
+        },
+        {
+            "port_id": "GYS",
+            "port_spell": "GuangYuanPanLong",
+            "port_name": "广元盘龙机场",
+            "show_name": "广元",
+            "is_hot": false
+        },
+        {
+            "port_id": "CAN",
+            "port_spell": "GuangZhouBaiYunGuoJi",
+            "port_name": "广州白云国际机场",
+            "show_name": "广州",
+            "is_hot": true
+        },
+        {
+            "port_id": "KWL",
+            "port_spell": "GuiLinLiangJiangGuoJi",
+            "port_name": "桂林两江国际机场",
+            "show_name": "桂林",
+            "is_hot": true
+        },
+        {
+            "port_id": "KWE",
+            "port_spell": "GuiYangLongDongBaoGuoJi",
+            "port_name": "贵阳龙洞堡国际机场",
+            "show_name": "贵阳",
+            "is_hot": false
+        },
+        {
+            "port_id": "HRB",
+            "port_spell": "HaErBinTaiPingGuoJi",
+            "port_name": "哈尔滨太平国际机场",
+            "show_name": "哈尔滨",
+            "is_hot": false
+        },
+        {
+            "port_id": "HMI",
+            "port_spell": "HaMi",
+            "port_name": "哈密机场",
+            "show_name": "哈密",
+            "is_hot": false
+        },
+        {
+            "port_id": "HAK",
+            "port_spell": "HaiKouMeiLanGuoJi",
+            "port_name": "海口美兰国际机场",
+            "show_name": "海口",
+            "is_hot": false
+        },
+        {
+            "port_id": "HLD",
+            "port_spell": "HaiLaErDongShanGuoJi",
+            "port_name": "海拉尔东山国际机场",
+            "show_name": "海拉尔",
+            "is_hot": false
+        },
+        {
+            "port_id": "HDG",
+            "port_spell": "HanDan",
+            "port_name": "邯郸机场",
+            "show_name": "邯郸",
+            "is_hot": false
+        },
+        {
+            "port_id": "HZG",
+            "port_spell": "HanZhong",
+            "port_name": "汉中机场",
+            "show_name": "汉中",
+            "is_hot": false
+        },
+        {
+            "port_id": "HGH",
+            "port_spell": "HangZhouXiaoShanGuoJi",
+            "port_name": "杭州萧山国际机场",
+            "show_name": "杭州",
+            "is_hot": true
+        },
+        {
+            "port_id": "HFE",
+            "port_spell": "HeFeiLuoGangGuoJi",
+            "port_name": "合肥骆岗国际机场",
+            "show_name": "合肥",
+            "is_hot": false
+        },
+        {
+            "port_id": "HTN",
+            "port_spell": "HeTian",
+            "port_name": "和田机场",
+            "show_name": "和田",
+            "is_hot": false
+        },
+        {
+            "port_id": "HEK",
+            "port_spell": "HeiHe",
+            "port_name": "黑河机场",
+            "show_name": "黑河",
+            "is_hot": false
+        },
+        {
+            "port_id": "HET",
+            "port_spell": "HuHeHaoTeBaiTaGuoJi",
+            "port_name": "呼和浩特白塔国际机场",
+            "show_name": "呼和浩特",
+            "is_hot": false
+        },
+        {
+            "port_id": "HIA",
+            "port_spell": "HuaiAnLianShui",
+            "port_name": "淮安涟水机场",
+            "show_name": "淮安",
+            "is_hot": false
+        },
+        {
+            "port_id": "TXN",
+            "port_spell": "HuangShanTunXiGuoJi",
+            "port_name": "黄山屯溪国际机场",
+            "show_name": "黄山",
+            "is_hot": false
+        },
+        {
+            "port_id": "TNA",
+            "port_spell": "JiNanYaoQiangGuoJi",
+            "port_name": "济南遥墙国际机场",
+            "show_name": "济南",
+            "is_hot": false
+        },
+        {
+            "port_id": "JNG",
+            "port_spell": "JiNingQuFu",
+            "port_name": "济宁曲阜机场",
+            "show_name": "济宁",
+            "is_hot": false
+        },
+        {
+            "port_id": "JXA",
+            "port_spell": "JiXiXingKaiHu",
+            "port_name": "鸡西兴凯湖机场",
+            "show_name": "鸡西",
+            "is_hot": false
+        },
+        {
+            "port_id": "JMU",
+            "port_spell": "JiaMuSiDongJiao",
+            "port_name": "佳木斯东郊机场",
+            "show_name": "佳木斯",
+            "is_hot": false
+        },
+        {
+            "port_id": "JGN",
+            "port_spell": "JiaYuGuan",
+            "port_name": "嘉峪关机场",
+            "show_name": "嘉峪关",
+            "is_hot": false
+        },
+        {
+            "port_id": "JNZ",
+            "port_spell": "JinZhouXiaoLingZi",
+            "port_name": "锦州小岭子机场",
+            "show_name": "锦州",
+            "is_hot": false
+        },
+        {
+            "port_id": "JDZ",
+            "port_spell": "JingDeZhen",
+            "port_name": "景德镇机场",
+            "show_name": "景德镇",
+            "is_hot": false
+        },
+        {
+            "port_id": "JGS",
+            "port_spell": "JingGangShan",
+            "port_name": "井冈山机场",
+            "show_name": "井冈山",
+            "is_hot": false
+        },
+        {
+            "port_id": "JIU",
+            "port_spell": "JiuJiangLuShan",
+            "port_name": "九江庐山机场",
+            "show_name": "九江",
+            "is_hot": false
+        },
+        {
+            "port_id": "JZH",
+            "port_spell": "JiuZhaiHuangLong",
+            "port_name": "九寨黄龙机场",
+            "show_name": "九寨",
+            "is_hot": false
+        },
+        {
+            "port_id": "KHG",
+            "port_spell": "KaShi",
+            "port_name": "喀什机场",
+            "show_name": "喀什",
+            "is_hot": false
+        },
+        {
+            "port_id": "KRY",
+            "port_spell": "KeLaMaYi",
+            "port_name": "克拉玛依机场",
+            "show_name": "克拉玛",
+            "is_hot": false
+        },
+        {
+            "port_id": "KCA",
+            "port_spell": "KuCheGuiZi",
+            "port_name": "库车龟兹机场",
+            "show_name": "库车",
+            "is_hot": false
+        },
+        {
+            "port_id": "KRL",
+            "port_spell": "KuErLe",
+            "port_name": "库尔勒机场",
+            "show_name": "库尔勒",
+            "is_hot": false
+        },
+        {
+            "port_id": "KMG",
+            "port_spell": "KunMingWuJiaBaGuoJi",
+            "port_name": "昆明巫家坝国际机场",
+            "show_name": "昆明",
+            "is_hot": true
+        },
+        {
+            "port_id": "LXA",
+            "port_spell": "LaSaGongGa",
+            "port_name": "拉萨贡嘎机场",
+            "show_name": "拉萨",
+            "is_hot": true
+        },
+        {
+            "port_id": "LHW",
+            "port_spell": "LanZhouZhongChuan",
+            "port_name": "兰州中川机场",
+            "show_name": "兰州",
+            "is_hot": false
+        },
+        {
+            "port_id": "LJG",
+            "port_spell": "LiJiangSanYi",
+            "port_name": "丽江三义机场",
+            "show_name": "丽江",
+            "is_hot": false
+        },
+        {
+            "port_id": "HZH",
+            "port_spell": "LiPing",
+            "port_name": "黎平机场",
+            "show_name": "黎平",
+            "is_hot": false
+        },
+        {
+            "port_id": "LYG",
+            "port_spell": "LianYunGangBaiTaBu",
+            "port_name": "连云港白塔埠机场",
+            "show_name": "连云港",
+            "is_hot": false
+        },
+        {
+            "port_id": "LNJ",
+            "port_spell": "LinCang",
+            "port_name": "临沧机场",
+            "show_name": "临沧",
+            "is_hot": false
+        },
+        {
+            "port_id": "LYI",
+            "port_spell": "LinYi",
+            "port_name": "临沂机场",
+            "show_name": "临沂",
+            "is_hot": false
+        },
+        {
+            "port_id": "LZY",
+            "port_spell": "LinZhiMiLin",
+            "port_name": "林芝米林机场",
+            "show_name": "林芝",
+            "is_hot": false
+        },
+        {
+            "port_id": "LZH",
+            "port_spell": "LiuZhouBaiLian",
+            "port_name": "柳州白莲机场",
+            "show_name": "柳州",
+            "is_hot": false
+        },
+        {
+            "port_id": "LCX",
+            "port_spell": "LongYanGuanZhiShan",
+            "port_name": "龙岩冠豸山机场",
+            "show_name": "龙岩",
+            "is_hot": false
+        },
+        {
+            "port_id": "LZO",
+            "port_spell": "LuZhouLanTian",
+            "port_name": "泸州蓝田机场",
+            "show_name": "泸州",
+            "is_hot": false
+        },
+        {
+            "port_id": "LYA",
+            "port_spell": "LuoYangBeiJiao",
+            "port_name": "洛阳北郊机场",
+            "show_name": "洛阳",
+            "is_hot": false
+        },
+        {
+            "port_id": "NZH",
+            "port_spell": "ManZhouLiXiJiao",
+            "port_name": "满洲里西郊机场",
+            "show_name": "满洲里",
+            "is_hot": false
+        },
+        {
+            "port_id": "MIG",
+            "port_spell": "MianYangNanJiao",
+            "port_name": "绵阳南郊机场",
+            "show_name": "绵阳",
+            "is_hot": false
+        },
+        {
+            "port_id": "OHE",
+            "port_spell": "MoHeGuLian",
+            "port_name": "漠河古莲机场",
+            "show_name": "漠河",
+            "is_hot": false
+        },
+        {
+            "port_id": "MDG",
+            "port_spell": "MuDanJiangHaiLang",
+            "port_name": "牡丹江海浪机场",
+            "show_name": "牡丹江",
+            "is_hot": false
+        },
+        {
+            "port_id": "KHN",
+            "port_spell": "NanChangChangBeiGuoJi",
+            "port_name": "南昌昌北国际机场",
+            "show_name": "南昌",
+            "is_hot": false
+        },
+        {
+            "port_id": "NAO",
+            "port_spell": "NanChongGaoPing",
+            "port_name": "南充高坪机场",
+            "show_name": "南充",
+            "is_hot": false
+        },
+        {
+            "port_id": "NKG",
+            "port_spell": "NanJingLuKouGuoJi",
+            "port_name": "南京禄口国际机场",
+            "show_name": "南京",
+            "is_hot": true
+        },
+        {
+            "port_id": "NNG",
+            "port_spell": "NanNingWuXu",
+            "port_name": "南宁吴圩机场",
+            "show_name": "南宁",
+            "is_hot": false
+        },
+        {
+            "port_id": "NTG",
+            "port_spell": "NanTongXingDong",
+            "port_name": "南通兴东机场",
+            "show_name": "南通",
+            "is_hot": false
+        },
+        {
+            "port_id": "NNY",
+            "port_spell": "NanYangJiangYing",
+            "port_name": "南阳姜营机场",
+            "show_name": "南阳",
+            "is_hot": false
+        },
+        {
+            "port_id": "NGB",
+            "port_spell": "NingBoLiSheGuoJi",
+            "port_name": "宁波栎社国际机场",
+            "show_name": "宁波",
+            "is_hot": false
+        },
+        {
+            "port_id": "SYM",
+            "port_spell": "PuErSiMao",
+            "port_name": "普洱思茅机场",
+            "show_name": "普洱",
+            "is_hot": false
+        },
+        {
+            "port_id": "NDG",
+            "port_spell": "QiQiHaErSanJiaZi",
+            "port_name": "齐齐哈尔三家子机场",
+            "show_name": "齐齐哈尔",
+            "is_hot": false
+        },
+        {
+            "port_id": "SHP",
+            "port_spell": "QinHuangDaoShanHaiGuan",
+            "port_name": "秦皇岛山海关机场",
+            "show_name": "秦皇岛",
+            "is_hot": false
+        },
+        {
+            "port_id": "TAO",
+            "port_spell": "QingDaoLiuTingGuoJi",
+            "port_name": "青岛流亭国际机场",
+            "show_name": "青岛",
+            "is_hot": false
+        },
+        {
+            "port_id": "JUZ",
+            "port_spell": "QuZhou",
+            "port_name": "衢州机场",
+            "show_name": "衢州",
+            "is_hot": false
+        },
+        {
+            "port_id": "JJN",
+            "port_spell": "QuanZhouJinJiang",
+            "port_name": "泉州晋江机场",
+            "show_name": "泉州",
+            "is_hot": false
+        },
+        {
+            "port_id": "RKZ",
+            "port_spell": "RiKaZeHePing",
+            "port_name": "日喀则和平机场",
+            "show_name": "日喀则",
+            "is_hot": false
+        },
+        {
+            "port_id": "SYX",
+            "port_spell": "SanYaFengHuangGuoJi",
+            "port_name": "三亚凤凰国际机场",
+            "show_name": "三亚",
+            "is_hot": true
+        },
+        {
+            "port_id": "SWA",
+            "port_spell": "ShanTouWaiSha",
+            "port_name": "汕头外砂机场",
+            "show_name": "汕头",
+            "is_hot": false
+        },
+        {
+            "port_id": "SHA",
+            "port_spell": "ShangHaiHongQiaoGuoJi",
+            "port_name": "上海虹桥国际机场",
+            "show_name": "上海虹桥",
+            "is_hot": true
+        },
+        {
+            "port_id": "PVG",
+            "port_spell": "ShangHaiPuDongGuoJi",
+            "port_name": "上海浦东国际机场",
+            "show_name": "上海浦东",
+            "is_hot": false
+        },
+        {
+            "port_id": "SZX",
+            "port_spell": "ShenChouBaoAnGuoJi",
+            "port_name": "深圳宝安国际机场",
+            "show_name": "深圳",
+            "is_hot": false
+        },
+        {
+            "port_id": "SHE",
+            "port_spell": "ShenYangTaoXianGuoJi",
+            "port_name": "沈阳桃仙国际机场",
+            "show_name": "沈阳",
+            "is_hot": false
+        },
+        {
+            "port_id": "SJW",
+            "port_spell": "ShiJiaZhuangZhengDingGuoJi",
+            "port_name": "石家庄正定国际机场",
+            "show_name": "石家庄",
+            "is_hot": false
+        },
+        {
+            "port_id": "WUX",
+            "port_spell": "SuNanShuoFangGuoJi",
+            "port_name": "苏南硕放国际机场",
+            "show_name": "硕放",
+            "is_hot": false
+        },
+        {
+            "port_id": "TCG",
+            "port_spell": "TaCheng",
+            "port_name": "塔城机场",
+            "show_name": "塔城",
+            "is_hot": false
+        },
+        {
+            "port_id": "TYN",
+            "port_spell": "TaiYuanWuSuGuoJi",
+            "port_name": "太原武宿国际机场",
+            "show_name": "太原",
+            "is_hot": false
+        },
+        {
+            "port_id": "HYN",
+            "port_spell": "TaiZhouLuQiao-HuangYanJiChang",
+            "port_name": "台州路桥机场 (黄岩机场)",
+            "show_name": "台州",
+            "is_hot": false
+        },
+        {
+            "port_id": "TVS",
+            "port_spell": "TangShanSanNvHe",
+            "port_name": "唐山三女河机场",
+            "show_name": "唐山",
+            "is_hot": false
+        },
+        {
+            "port_id": "TCZ",
+            "port_spell": "TengChongTuoFeng",
+            "port_name": "腾冲驼峰机场",
+            "show_name": "腾冲",
+            "is_hot": false
+        },
+        {
+            "port_id": "TSN",
+            "port_spell": "TianJinBinHaiGuoJi",
+            "port_name": "天津滨海国际机场",
+            "show_name": "天津",
+            "is_hot": false
+        },
+        {
+            "port_id": "TGO",
+            "port_spell": "TongLiao",
+            "port_name": "通辽机场",
+            "show_name": "通辽",
+            "is_hot": false
+        },
+        {
+            "port_id": "TEN",
+            "port_spell": "TongRenFengHuang",
+            "port_name": "铜仁凤凰机场",
+            "show_name": "铜仁",
+            "is_hot": false
+        },
+        {
+            "port_id": "WXN",
+            "port_spell": "WanZhouWuQiao",
+            "port_name": "万州五桥机场",
+            "show_name": "万州",
+            "is_hot": false
+        },
+        {
+            "port_id": "WEF",
+            "port_spell": "WeiFang",
+            "port_name": "潍坊机场",
+            "show_name": "潍坊",
+            "is_hot": false
+        },
+        {
+            "port_id": "WEH",
+            "port_spell": "WeiHaiDaShuiBo",
+            "port_name": "威海大水泊机场",
+            "show_name": "威海",
+            "is_hot": false
+        },
+        {
+            "port_id": "WNH",
+            "port_spell": "WenShanPuZheHei",
+            "port_name": "文山普者黑机场",
+            "show_name": "文山",
+            "is_hot": false
+        },
+        {
+            "port_id": "WNZ",
+            "port_spell": "WenZhouYongQiangGuoJi",
+            "port_name": "温州永强国际机场",
+            "show_name": "温州",
+            "is_hot": false
+        },
+        {
+            "port_id": "WUA",
+            "port_spell": "WuHai",
+            "port_name": "乌海机场",
+            "show_name": "乌海",
+            "is_hot": false
+        },
+        {
+            "port_id": "WUH",
+            "port_spell": "WuHanTianHeGuoJi",
+            "port_name": "武汉天河国际机场",
+            "show_name": "武汉",
+            "is_hot": false
+        },
+        {
+            "port_id": "HLH",
+            "port_spell": "WuLanHaoTe",
+            "port_name": "乌兰浩特机场",
+            "show_name": "乌兰",
+            "is_hot": false
+        },
+        {
+            "port_id": "URC",
+            "port_spell": "WuLuMuQiDiWoBaoGuoJi",
+            "port_name": "乌鲁木齐地窝堡国际机场",
+            "show_name": "乌鲁木齐",
+            "is_hot": false
+        },
+        {
+            "port_id": "WUS",
+            "port_spell": "WuYiShan",
+            "port_name": "武夷山机场",
+            "show_name": "武夷山",
+            "is_hot": false
+        },
+        {
+            "port_id": "WUZ",
+            "port_spell": "WuZhouChangZhouDao",
+            "port_name": "梧州长洲岛机场",
+            "show_name": "梧州",
+            "is_hot": false
+        },
+        {
+            "port_id": "XIY",
+            "port_spell": "XiAnXianYangGuoJi",
+            "port_name": "西安咸阳国际机场",
+            "show_name": "西安",
+            "is_hot": true
+        },
+        {
+            "port_id": "XIC",
+            "port_spell": "XiChangQingShan",
+            "port_name": "西昌青山机场",
+            "show_name": "西昌",
+            "is_hot": false
+        },
+        {
+            "port_id": "XIL",
+            "port_spell": "XiLinHaoTe",
+            "port_name": "锡林浩特机场",
+            "show_name": "锡林",
+            "is_hot": false
+        },
+        {
+            "port_id": "XNN",
+            "port_spell": "XiNingCaoJiaBao",
+            "port_name": "西宁曹家堡机场",
+            "show_name": "西宁",
+            "is_hot": false
+        },
+        {
+            "port_id": "JHG",
+            "port_spell": "XiShuangBanNaGaSa",
+            "port_name": "西双版纳嘎洒机场",
+            "show_name": "西双版纳",
+            "is_hot": false
+        },
+        {
+            "port_id": "XMN",
+            "port_spell": "XiaMenGaoQiGuoJi",
+            "port_name": "厦门高崎国际机场",
+            "show_name": "厦门",
+            "is_hot": true
+        },
+        {
+            "port_id": "HKG",
+            "port_spell": "XiangGangGuoJi",
+            "port_name": "香港国际机场",
+            "show_name": "香港",
+            "is_hot": true
+        },
+        {
+            "port_id": "XFN",
+            "port_spell": "XiangYangLiuJi",
+            "port_name": "襄阳刘集机场",
+            "show_name": "襄阳",
+            "is_hot": false
+        },
+        {
+            "port_id": "ACX",
+            "port_spell": "XingYi",
+            "port_name": "兴义机场",
+            "show_name": "兴义",
+            "is_hot": false
+        },
+        {
+            "port_id": "XUZ",
+            "port_spell": "XuZhouGuanYin",
+            "port_name": "徐州观音机场",
+            "show_name": "徐州",
+            "is_hot": false
+        },
+        {
+            "port_id": "ENY",
+            "port_spell": "YanAnErShiLiBao",
+            "port_name": "延安二十里堡机场",
+            "show_name": "延安",
+            "is_hot": false
+        },
+        {
+            "port_id": "YNZ",
+            "port_spell": "YanCheng",
+            "port_name": "盐城机场",
+            "show_name": "盐城",
+            "is_hot": false
+        },
+        {
+            "port_id": "YNJ",
+            "port_spell": "YanJiChaoYangChuan",
+            "port_name": "延吉朝阳川机场",
+            "show_name": "延吉",
+            "is_hot": false
+        },
+        {
+            "port_id": "YNT",
+            "port_spell": "YanTaiLaiShanGuoJi",
+            "port_name": "烟台莱山国际机场",
+            "show_name": "烟台",
+            "is_hot": false
+        },
+        {
+            "port_id": "YBP",
+            "port_spell": "YiBinCaiBa",
+            "port_name": "宜宾菜坝机场",
+            "show_name": "宜宾",
+            "is_hot": false
+        },
+        {
+            "port_id": "YIH",
+            "port_spell": "YiChangSanXia",
+            "port_name": "宜昌三峡机场",
+            "show_name": "宜昌",
+            "is_hot": false
+        },
+        {
+            "port_id": "LDS",
+            "port_spell": "YiChunLinDu",
+            "port_name": "伊春林都机场",
+            "show_name": "伊春",
+            "is_hot": false
+        },
+        {
+            "port_id": "YIN",
+            "port_spell": "YiNing",
+            "port_name": "伊宁机场",
+            "show_name": "伊宁",
+            "is_hot": false
+        },
+        {
+            "port_id": "YIW",
+            "port_spell": "YiWu",
+            "port_name": "义乌机场",
+            "show_name": "义乌",
+            "is_hot": false
+        },
+        {
+            "port_id": "INC",
+            "port_spell": "YinChuanHeDong",
+            "port_name": "银川河东机场",
+            "show_name": "银川",
+            "is_hot": false
+        },
+        {
+            "port_id": "LLF",
+            "port_spell": "YongZhouLingLing",
+            "port_name": "永州零陵机场",
+            "show_name": "永州",
+            "is_hot": false
+        },
+        {
+            "port_id": "UYN",
+            "port_spell": "YuLinYuYang",
+            "port_name": "榆林榆阳机场",
+            "show_name": "榆林",
+            "is_hot": false
+        },
+        {
+            "port_id": "YUS",
+            "port_spell": "YuShuBaTang",
+            "port_name": "玉树巴塘机场",
+            "show_name": "玉树",
+            "is_hot": false
+        },
+        {
+            "port_id": "YCU",
+            "port_spell": "YunChengZhangXiao",
+            "port_name": "运城张孝机场",
+            "show_name": "运城",
+            "is_hot": false
+        },
+        {
+            "port_id": "ZHA",
+            "port_spell": "ZhanJiang",
+            "port_name": "湛江机场",
+            "show_name": "湛江",
+            "is_hot": false
+        },
+        {
+            "port_id": "ZAT",
+            "port_spell": "ZhaoTong",
+            "port_name": "昭通机场",
+            "show_name": "昭通",
+            "is_hot": false
+        },
+        {
+            "port_id": "CGO",
+            "port_spell": "ZhengZhouXinZhengGuoJi",
+            "port_name": "郑州新郑国际机场",
+            "show_name": "郑州",
+            "is_hot": true
+        },
+        {
+            "port_id": "HJJ",
+            "port_spell": "ZhiJiang",
+            "port_name": "芷江机场",
+            "show_name": "芷江",
+            "is_hot": false
+        },
+        {
+            "port_id": "CKG",
+            "port_spell": "ZhongQingJiangBeiGuoJi",
+            "port_name": "重庆江北国际机场",
+            "show_name": "重庆",
+            "is_hot": true
+        },
+        {
+            "port_id": "ZHY",
+            "port_spell": "ZhongWeiXiangShan",
+            "port_name": "中卫香山机场",
+            "show_name": "中卫",
+            "is_hot": false
+        },
+        {
+            "port_id": "HSN",
+            "port_spell": "ZhouShanZhuJiaJian",
+            "port_name": "舟山朱家尖机场",
+            "show_name": "舟山",
+            "is_hot": false
+        },
+        {
+            "port_id": "ZUH",
+            "port_spell": "ZhuHaiSanZao",
+            "port_name": "珠海三灶机场",
+            "show_name": "珠海",
+            "is_hot": false
+        }
+    ]
+}

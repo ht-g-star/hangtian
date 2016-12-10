@@ -1,0 +1,41 @@
+<extend name="Base/common"/>
+<block name="style">
+
+</block>
+<block name="body">
+	<!--content begin-->
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">健康论坛</li>
+			</ol>
+		</div>
+		<div class="health-bbs-content am-padding-xl am-margin-bottom-lg">
+			<!-- 文章 -->
+			<article class="am-article am-text-center">
+				<div class="am-article-hd">
+					<h3 class="am-article-title ">{$data.title}</h3>
+					<hr>
+				</div>
+				<div class="am-text-center am-center am-padding">
+					<notempty name="data.pic">
+						<img height="100%" src="{$data.pic}">
+						<else/>
+						<img src="__STATIC__/amaze/i/app/app-article01.jpg">
+					</notempty>
+				</div>
+				<div class="am-article-bd am-padding-xl am-text-left" >
+					{$data.content}
+				</div>
+			</article>
+			<hr>
+			<div class="am-text-center am-center">
+				<a href="javascript:history.back()" class="am-btn am-btn-default am-round">返回</a></div>
+		</div>
+	</div>
+	<!--content end-->
+
+</block>
+<block name="script">
+</block>

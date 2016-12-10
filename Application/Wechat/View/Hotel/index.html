@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>酒店列表</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<link rel="shortcut icon" href="/favicon.ico">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__PUBLIC__/Home/css/sm.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/css/sm-extend.min.css">
+		<link rel="stylesheet" href="__PUBLIC__/Home/css/lyy.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/css/reset_app.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/iconfont/iconfont.css" />
+		<style>
+			.panel-overlay{background: rgba(0,0,0,.5);opacity: 0.5;}
+			.panel.theme-dark{background: #fff;}
+			.content-block{padding: 0;margin: 0;}
+			.content{background: #fff;margin-top: 5%;}
+		</style>
+	</head>
+	<body>
+		<script type='text/javascript' src='__PUBLIC__/Home/js/zepto.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='__PUBLIC__/Home/js/sm.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='__PUBLIC__/Home/js/sm-extend.min.js' charset='utf-8'></script>
+		<div class="page">
+			<!--top-->
+			<header class="bar bar-nav g_fenlei g_shopslists">
+				<input type="hidden" value="<notempty name='cityid'>{$cityid}</notempty>" id="city"/>
+				<div class="FL g_topsearch">
+					<input type="text" id="keyword" placeholder="请输入关键字" value="{:I('keyword')}"/>
+					<a href="#" id="searchkw"><i class="iconfont">&#xe600;</i></a>
+				</div>
+				<a class="FR shopslistsbtn open-panel  button-fill" data-panel='#panel-right-demo' href="#">
+					<span>目的地</span>
+					<i class="iconfont">&#xe601;</i>
+				</a>
+			</header>
+			<div class="content">
+				<!--酒店列表-->
+				<volist name='cache' id='vo'>
+					<a href="{:u('Hotel/detail',array('id'=>$vo['xl_id']))}" class="external g_jdlists" href="javascript:;">
+						<div class="g_jdlistspic">
+							<img src="{$vo.xl_list_img}" width="100%"/>
+						</div>
+						<div class="g_jdlistscont">
+							<p class="g_jdlistscontp1">{$vo.xl_name}</p>
+							<p class="g_jdlistscontp2">{$vo.xl_fb_detail}</p>
+							<p class="g_jdlistscontp3"><span>{$vo.xl_qijia}</span>{$vo.xl_qijia_dw}</p>
+						</div>
+						<div class="clr"></div>
+					</a>
+				</volist>
+			</div>
+		</div>
+		<div class="panel-overlay"></div>
+		<!-- Left Panel with Reveal effect -->
+		<div class="panel panel-right panel-cover theme-dark" id='panel-right-demo'>
+			<div class="content-block">
+				<div class="g_shops_pplists">
+					<p class="g_shops_pplistsname">目的地</p>
+					<div class="g_shops_pp">
+						<a href="{:u('Hotel/index',array('city_id'=>''))}" <if condition="I('city_id') eq ''">class="active"</if>>不限</a>
+						<volist name="city" id='vo'>
+							<a href="{:u('Hotel/index',array('city_id'=>$vo['city_id']))}" <if condition="I('city_id') eq $vo['city_id']">class="active"</if> data-sq="{$vo.sq_id}" data-city="{$vo.city_id}">{$vo.city_name}({$vo.city_num})</a>
+						</volist>
+						<div class="clr"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(function(){
+				$('.g_shops_pp a').addClass('external');
+				$('.g_shops_pp a').click(function(){
+					$('.g_shops_pp a').removeClass('active');
+						$(this).addClass('active');
+				});
+//				回顶
+				$('#aaa').click(function() {
+					$('body').animate({
+						scrollTop: 0
+					}, 500);
+				});
+				$.init();
+				var h = document.documentElement.clientHeight;
+				$('a.g_allday').height(h * 0.15);
+				$('.g_ads_bottom').height(h * 0.15);
+				$('a.g_miaosha').height(h * 0.3);
+				$('.g_shopslists_choice ul li a').on('click', function() {
+					$('.g_shopslists_choice ul li a').removeClass('selected');
+					$(this).addClass('selected');
+				});
+				
+				$('.g_shops_ppbottom  a').on('click', function() {
+					$('.g_shops_ppbottom  a').removeClass('selected1');
+					$(this).addClass('selected1');
+				});
+				$('#searchkw').on('click',function(){
+					var keyword=$('#keyword').val();
+					if(keyword){
+						var urll = "{:u(Hotel/Index)}?keyword="+keyword;
+						if($('#city').val()){
+							urll += "&city_id="+$('#city').val();
+						}
+						location.href = urll;
+					}else{
+						var urll = "{:u(Hotel/Index)}";
+						if($('#city').val()){
+							urll += "?city_id="+$('#city').val();
+						};
+						location.href = urll;
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

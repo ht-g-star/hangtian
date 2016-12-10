@@ -1,0 +1,208 @@
+<extend name="Base/mobile_base"/>
+<block name="style">
+	<style>
+
+		li.period_box {
+			padding: 5px 20px;
+			border: 1px solid #ccc;
+			border-radius: 2px;
+			cursor: pointer;
+		}
+
+		li.time_box {
+			padding: 5px 20px;
+			border: 1px solid #ccc;
+			border-radius: 2px;
+			cursor: pointer;
+		}
+
+		li.am-disabled {
+			color: #ccc;;
+			cursor: not-allowed;
+		}
+	</style>
+</block>
+<block name="body">
+	<!-- Slider -->
+	<div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{"directionNav":false}'>
+		<ul class="am-slides">
+			<notempty name="data.pic">
+				<li><img src="{$data.pic}" alt=""></li>
+			</notempty>
+			<!--<li>-->
+			<!--<img src="__STATIC__/amaze/i/app/app-shop-list1-big.jpg">-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<img src="__STATIC__/amaze/i/app/app-shop-list1-big.jpg">-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<img src="__STATIC__/amaze/i/app/app-shop-list1-big.jpg">-->
+			<!--</li>-->
+		</ul>
+	</div>
+	<!--商品详情-->
+	<div class="shop-detail">
+		<div class="am-g am-g-collapse am-padding-sm">
+			<h3 class="am-list-item-hd">
+				{$data.title}
+			</h3>
+			<input type="hidden" name="s_id" value="{$data.id}" id="s_id">
+
+			<div class="am-u-sm-6">
+				<div class="am-list-item-text">{$data.description}</div>
+			</div>
+			<div class="am-u-sm-6">
+				<div class="am-list-item-text am-text-right">已售：{$data.buy_count}</div>
+			</div>
+		</div>
+		<div class="price am-padding-left-sm am-padding-bottom-sm" data-price_sex_0="{$data.price_sex_0}" id="price" data-price_sex_1="{$data.price_sex_1}">
+			￥{$data.price_sex_0}-￥{$data.price_sex_1}
+		</div>
+
+		<!--<div class="shop-item am-g ">-->
+		<!--<div class="am-u-sm-12 am-padding-top-sm">-->
+		<!--<span class="am-u-sm-4">数量</span>-->
+
+		<!--<div class=" am-u-sm-8 am-input-group am-input-group-sm">-->
+		<!--<span class="am-input-group-btn ">-->
+		<!--<button class="am-btn  am-btn-default" id="minus_btn" type="button">-</button>-->
+		<!--</span>-->
+		<!--<input type="number" id="num" class="am-form-field am-text-center" value="1"/>-->
+		<!--<span class="am-input-group-btn ">-->
+		<!--<button class="am-btn am-btn-default " id="plus_btn" type="button">+</button>-->
+		<!--</span>-->
+		<!--</div>-->
+		<!--</div>-->
+		<!--</div>-->
+		<hr>
+		<div class="shop-order-date am-g am-g-collapse">
+			<div class="am-cf"></div>
+			<div class="am-g ">
+				<div class="am-link-muted order-title am-padding-left-sm ">性别</div>
+				<div class="am-u-sm-12 am-margin-sm ">
+					<ul class="sex_ul">
+						<li class="am-text-center sex_box " data-pid="1"> 男</li>
+						<li class="am-text-center sex_box " data-pid="0"> 女</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="shop-order-date am-g am-g-collapse">
+			<div class="am-link-muted order-title am-padding-left-sm">预约日期/剩余名额</div>
+			<div class="am-u-sm-12 am-margin-sm period">
+				<ul>
+					<volist name="period" id="p" empty="暂时不能预约">
+
+						<li class="  period_box <if condition='$p[total_num] elt $p[use_num]' > am-disabled </if>  " data-pid="{$p.id}">
+							<span>{$p.period}</span>
+							<span>剩余:{$p['total_num']-$p['use_num']}</span>
+						</li>
+					</volist>
+
+				</ul>
+			</div>
+			<div class="am-cf"></div>
+			<div class="am-g am-margin-top-sm">
+				<div class="am-link-muted order-title am-padding-left-sm ">预约时间</div>
+				<div class="am-u-sm-12 am-margin-sm time">
+					<ul class="time">
+						<li class="am-text-center time_box" data-pid="am"> 上午</li>
+						<li class="am-text-center time_box" data-pid="pm"> 下午</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="am-g ">
+			<div class="am-u-sm-6  am-u-sm-centered">
+				<button class="am-btn am-btn-primary am-btn-block" id="order_now">立即预订</button>
+			</div>
+		</div>
+	</div>
+
+	<!--商品详情tab-->
+	<div class="space"></div>
+	<div class="shop-detail-content">
+		<div data-am-widget="tabs" class="am-tabs am-tabs-d2">
+			<ul class="am-tabs-nav am-cf">
+				<li class="am-active"><a href="[data-tab-panel-0]">详情</a></li>
+				<li class=""><a href="[data-tab-panel-1]">参数</a></li>
+				<li class=""><a href="[data-tab-panel-2]">成交</a></li>
+				<li class=""><a href="[data-tab-panel-3]">评价</a></li>
+			</ul>
+			<div class="am-tabs-bd">
+				<div data-tab-panel-0 class="am-tab-panel am-active">
+					{$data.content|default="暂无"}
+				</div>
+				<div data-tab-panel-1 class="am-tab-panel ">
+					{$data.properties|default="暂无"}
+				</div>
+				<div data-tab-panel-2 class="am-tab-panel ">
+					暂无
+				</div>
+				<div data-tab-panel-2 class="am-tab-panel ">
+					暂无
+				</div>
+			</div>
+			<div class="btn-area am-g am-g-collapse am-padding-xs">
+				<a href="#" class="am-btn am-btn-secondary am-btn-block">预约</a>
+			</div>
+		</div>
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>
+<block name="script">
+	<script>
+		$("#minus_btn").click(function () {
+			var num = $("input#num").val();
+			if (num <= 1) {
+				$("input#num").val(1);
+			} else {
+				$("input#num").val(--num);
+			}
+		});
+
+		$("#plus_btn").click(function () {
+			var num = $("input#num").val();
+			$("input#num").val(++num);
+		});
+
+
+		$("li.period_box:not('.am-disabled')").click(function () {
+			$("li.period_box").removeClass("selected");
+			$(this).addClass("selected");
+		});
+
+		$("li.time_box").click(function () {
+			$("li.time_box").removeClass("selected");
+			$(this).addClass("selected");
+		});
+
+		$("li.sex_box").click(function () {
+			$("li.sex_box").removeClass("selected");
+			$(this).addClass("selected");
+			var id = $(this).data("pid");
+			$("#price").html("￥" + $("#price").data("price_sex_" + id));
+		});
+
+		$("#order_now").click(function () {
+//			var num = $("input#num").val();
+			var num = 1;
+			var s_id = $("input#s_id").val();
+			var pid = $(".period li.selected").data("pid");
+			var time = $(".time li.selected").data("pid");
+			var sex = $(".sex_ul li.selected").data("pid");
+			if (!pid||!time) {
+				alert("时间选择不完整!");
+				return;
+			}
+			if (sex === undefined) {
+				alert("请选择性别!");
+				return;
+			}
+			location.href = "{:U('Wechat/Suite/order')}" + "?pid=" + pid + "&num=" + num + "&s_id=" + s_id + "&time=" + time + "&sex=" + sex;
+		});
+
+	</script>
+</block>

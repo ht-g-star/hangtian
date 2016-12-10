@@ -1,0 +1,51 @@
+<!--顶部菜单 -->
+<header class="am-topbar am-topbar-fixed-top">
+	<div class="am-container">
+		<h1 class="am-topbar-brand  am-margin-top-sm">
+			<a href="{:U('Home/Index/index')}"><img src="__STATIC__/amaze/i/img_logo.png" title="{:C('WEB_SITE_TITLE')}"></a>
+		</h1>
+		<!---->
+		<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only"
+		        data-am-collapse="{target: '#collapse-head'}"><span class="am-sr-only">导航切换</span> <span
+				class="am-icon-bars"></span>
+		</button>
+		<div class="am-collapse am-topbar-collapse" id="collapse-head">
+			<ul class="am-nav am-nav-pills am-text-lg am-topbar-nav am-margin-left-lg">
+				<li class='<eq name="CONTROLLER_NAME" value="Index" >am-active</eq> '>
+					<a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class='<eq name="CONTROLLER_NAME" value="Suite" >am-active</eq> '>
+					<a href="{:U('Home/Suite/index')}">健康体检</a></li>
+				<li class='<eq name="CONTROLLER_NAME" value="Shop" >am-active</eq> <eq name="CONTROLLER_NAME" value="Article" >am-active</eq>'>
+					<a href="{:U('Home/Shop/index')}">健康商城</a>
+				</li>
+				<li class='<eq name="CONTROLLER_NAME" value="Question" >am-active</eq> '>
+					<a href="{:U('Home/Question/index')}">健康咨询</a></li>
+				<li class='<eq name="CONTROLLER_NAME" value="Lesson" >am-active</eq> '>
+					<a href="{:U('Home/Lesson/index')}">健康讲坛</a></li>
+				<li class='<eq name="CONTROLLER_NAME" value="Doctor" >am-active</eq> '>
+					<a href="{:U('Home/Doctor/index')}">名医堂</a></li>
+				<li class='<eq name="CONTROLLER_NAME" value="Env" >am-active</eq> '>
+					<a href="{:U('Home/Env/index')}">配套服务</a></li>
+			</ul>
+			<if condition="is_login()">
+				<div class="am-topbar-right am-margin-top-lg">
+					<a class="am-topbar-btn am-btn-sm" href="{:U('Home/shopcart/index')}"><span class="am-icon-shopping-cart"></span> 购物车</a>
+				</div>
+				<assign name="login_user" value="$Think.session.user_auth"/>
+				<div class="am-topbar-right am-margin-top-lg">
+					欢迎你,<a href="{:U('Home/Center/index')}"><span class="am-text-primary">{$login_user.realname}</span></a>|
+					<a href="{:U('Home/User/logout')}">退出</a>
+				</div>
+				<else/>
+				<div class="am-topbar-right am-margin-top-lg">
+					<a class="am-topbar-btn am-btn-sm" href="{:U('User/register')}">注册</a>
+				</div>
+				<div class="am-topbar-right am-margin-top-lg">
+					<a class="am-topbar-btn am-btn-sm" href="{:U('User/login')}">登录</a>
+				</div>
+			</if>
+
+
+		</div>
+	</div>
+</header>

@@ -1,0 +1,43 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<div class="am-g">
+		<section class="am-panel am-panel-default">
+			<div class="am-panel-bd">
+				<form action='{:U()}' method="post" name="actform" class="am-form">
+					<input type="hidden" name="id" value="{$id}">
+					{$msg}
+					<div class="am-form-group">
+						<label class="item-label">商品名称: <span class="am-text-primary">{$list.goodid|get_good_name}</span>
+						</label>
+						<div class="form-item">
+							<label class="item-label"><span class="check-tips"></span> </label>
+
+							<div class="controls">
+								退货件数:<input type="text" class="text num input-large" name="num"
+								            value="{$list.num}"> <span>(最多可退{$list.num}件)	</span>
+							</div>
+						</div>
+					</div>
+					<div class="am-form-group">
+						<div class="form-item">
+							<label class="item-label">原因:<span class="check-tips"></span> </label>
+
+							<div class="controls">
+								<textarea rows=5" cols="40" name="reason"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="am-form-group">
+						<input type="hidden" name="id" value="{$list.id}">
+						<input type="hidden" name="goodid" value="{$list.goodid}">
+						<input type="hidden" name="shopid" value="{$list.id}">
+						<input type="submit" class="am-btn am-btn-primary am-btn-block" value="提交"/>
+					</div>
+				</form>
+			</div>
+		</section>
+
+
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>

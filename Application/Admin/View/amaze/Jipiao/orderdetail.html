@@ -1,0 +1,291 @@
+<extend name="Public/base"/>
+<block name="nav">
+    <div class="am-cf am-padding ">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">数据</strong> /
+            <small>列表</small>
+        </div>
+    </div>
+</block>
+<block name="body">
+    <div class="am-g am-padding am-padding-top-0">
+        <script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+        <div class="main-title">
+            <h2>订单详情</h2>
+        </div>
+        <div class="tab-wrap">
+            <ul class="tab-nav nav am-cf">
+                <li data-tab="tab1" class="current"><a href="javascript:void(0);">订单号-{$detail.id}</a></li>
+            </ul>
+            <div class="tab-content">
+                <form action="{:U()}" method="post" class="form-horizontal">
+                    <!-- 基础 -->
+                    <div id="tab1" class="tab-pane in tab1">
+                        <div class="form-item">
+                            <label class="item-label">编号<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.id}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">订单编号<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.orderid}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">第三方订单号<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.externalorderid}" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-item">
+                            <label class="item-label">航班号<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.flightno}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">出发时间<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.departuredate} {$detail.departuretime}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">到达时间<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.arrivaldate} {$detail.arrivaltime}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">出发机场<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{:setAirport($detail['fromairport'])}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">到达机场<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{:setAirport($detail['toairport'])}" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-item">
+                            <label class="item-label">订单总价<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.totalorderprice}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">订单应付金额<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.ordersettleprice}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">乘客姓名<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.passengername}" readonly>
+                            </div>
+                        </div>
+                        <php>
+                            $ck = explode("|", $detail["passengername"]);
+                            $ck = count($ck);
+                        </php>
+                        <div class="form-item">
+                            <label class="item-label">证件号码<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.credentialcode}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">票面价<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.faceprice}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">机建<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.airportfee}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">燃油<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.fueltax}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">保险<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$ck * 20}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">服务费<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="<php>echo ($detail['faceprice']+$detail['airportfee']+$detail['fueltax'])*0.03;</php>" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">结算价<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.settleprice}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">订单总价<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail['totalorderprice']+20 * $ck}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">改签费用<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{:abs($detail['payamount'])}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">退票费用<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{:abs($detail['refundamount'])}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">联系人姓名<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.lxr_name}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">联系人手机号<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.lxr_phone}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">乘客出生日期<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{$detail.shengri}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">订单状态<span class="check-tips"></span></label>
+                            <div class="controls">
+                            <php>
+                                                                switch($detail['orderstatus']){
+                                                                case 'WAIT_PAY':
+                                                                echo '待支付';
+                                                                break;
+                                                                case 'PAYING':
+                                                                echo '支付中';
+                                                                break;
+                                                                case 'WAIT_AUDIT':
+                                                                echo '待审核';
+                                                                break;
+                                                                case 'AUDIT_FALSE':
+                                                                echo '审核失败';
+                                                                break;
+                                                                case 'CANCELED':
+                                                                echo '已取消';
+                                                                break;
+                                                                case 'WAIT_ISSUE':
+                                                                echo '待出票';
+                                                                break;
+                                                                case 'PAY_FALSE':
+                                                                echo '支付失败';
+                                                                break;
+                                                                case 'ISSUE_FALSE':
+                                                                echo '出票失败';
+                                                                break;
+                                                                case 'ISSUED':
+                                                                echo '已出票';
+                                                                break;
+                                                                case 'ISSUED_SUSPEND':
+                                                                echo '已出票（挂起）';
+                                                                break;
+                                                                case 'ENDORSE_WAIT_AUDIT':
+                                                                echo '改签待审核';
+                                                                break;
+                                                                case 'ENDORSE_AUDIT_SUCCESS':
+                                                                echo '改签审核成功';
+                                                                break;
+                                                                case 'ENDORSE_AUDIT_FALSE':
+                                                                echo '改签审核失败';
+                                                                break;
+                                                                case 'WAIT_REFUND':
+                                                                echo '待退票';
+                                                                break;
+                                                                case 'REFUND_FALSE':
+                                                                echo '退票失败';
+                                                                break;
+                                                                case 'CANCEL_REFUND':
+                                                                echo '取消退票';
+                                                                break;
+                                                                case 'REFUND_FINISH':
+                                                                echo '退票成功';
+                                                                break;
+                                                                case 'REFUND_WAIT_AUDIT':
+                                                                echo '退票待审核';
+                                                                break;
+                                                                case 'REFUND_AUDIT_FALSE':
+                                                                echo '退票审核失败';
+                                                                break;
+                                                                case 'CANCEL_ENDORSE':
+                                                                echo '取消改签';
+                                                                break;
+                                                                case 'WAIT_ENDORSE':
+                                                                echo '待改签';
+                                                                break;
+                                                                case 'ENDORSE_FALSE':
+                                                                echo '改签失败';
+                                                                break;
+                                                                case 'ENDORSE_FINISH':
+                                                                echo '改签成功';
+                                                                break;
+                                                                case 'ENDORSE_REVIEW_PASS':
+                                                                echo '改签后付款';
+                                                                break;
+                                                                }</php>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="item-label">添加时间<span class="check-tips"></span></label>
+                            <div class="controls">
+                                <input type="text" class="text input-large" value="{:date('Y-m-d H:i', $detail['addtime'])}" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-item">
+                        <button class="btn am-btn am-btn-default btn-return" onclick="javascript:history.back(-1);return false;">
+                            返 回
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        <present
+        name = "info.id" >
+                Think.setValue("remen", {$info.remen |
+        default
+        = 0
+        })
+        ;
+        </
+        present >
+        //导航高亮
+        highlight_subnav('{:U('
+        Jipiao / index
+        ')}'
+        )
+        ;
+    </script>
+</block>

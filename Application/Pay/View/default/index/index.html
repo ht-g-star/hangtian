@@ -1,0 +1,184 @@
+<extend name="Base/common"/>
+<block name="body">
+
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">购物车</li>
+			</ol>
+		</div>
+		<form action='{:U("Pay/index")}' method="post" name="myform" class="payform" target="_blank">
+			<div class="shop-cart bg-f5 am-padding am-margin-bottom am-cf">
+				<div class="am-u-sm-12 shop-cart-list am-padding-lg bg-fff">
+					<div class="am-u-sm-6 am-padding">
+						<img src="__STATIC__/amaze/i/app-checkOk.png">
+
+						<h2 class="am-inline-block am-padding-left">请您尽快支付付款完成订单！</h2>
+					</div>
+					<div class="am-u-sm-6 am-padding-top am-margin-top-xs am-text-right">应付总额：
+						<assign name="pay_info" value="$Think.session.pay_info"/>
+						<span class="am-text-warning am-text-lg"><strong>¥{$pay_info.money}元</strong></span>
+						<input type="hidden" name="money" id="money" class="form-control" value="{$pay_info.money}">
+
+						<p>支付订单号： {$codeid}<br/>
+							<if condition="$orderid1">
+								{$orderid1}
+							</if>
+
+							<input type="hidden" name="orderid" class="form-control" id="orderid" value="{$codeid}">
+							<input type="hidden" name="orderid1" class="form-control" id="orderid1" value="{$orderid1}">
+						</p>
+					</div>
+
+				</div>
+				<div class="am-u-sm-12 bg-fff">
+					<div class="am-u-sm-12 shop-cart-list am-padding">
+
+						<if condition="($ordertype eq 2) OR ($ordertype eq 3)">
+						<strong style="color:red;display:block;text-align:center;line-height:25px;">节假日期间的订单不予退订。非节假日的订单改期请至少提前4个工作日与我们联系。原则上，住宿、线路类订单只能改期，不能退订。</strong>
+						</if>
+
+						选择以下支付方式付款
+						<br><br>
+						支付平台
+						<small>大额支付推荐使用支付宝</small>
+						<hr>
+						<ul class="pay-select am-nav am-nav-pills bg-fff am-padding">
+							<li>
+								<label><input type="radio" name="paytype" value="alipay" checked=""/>
+									支付宝<img src="__STATIC__/amaze/i/img-alipay2.jpg"></label>
+							</li>
+							<li>
+								<label><input type="radio" name="paytype" value="balance" checked=""/>
+									余额支付<img src="__STATIC__/amaze/i/icon-yue.png"></label>
+							</li>
+							<!--<li>-->
+							<!--<label><input type="radio" name="paytype" value="tenpay"/>-->
+							<!--财付通<img src="__STATIC__/amaze/i/img-cft.jpg"></label>-->
+							<!--</li>-->
+							<!--<li>-->
+							<!--<label><input type="radio" name="paytype" value="unionpay"/>-->
+							<!--银联<img src="__IMG__/union.png"></label>-->
+							<!--</li>-->
+							<!--<li>-->
+							<!--<label><input type="radio" name="paytype" value="palpay"/>-->
+							<!--贝宝<img src="__IMG__/palpay.png"></label>-->
+							<!--</li>-->
+							<!--<li>-->
+							<!--<label><input type="radio" name="paytype" value="yeepay"/>-->
+							<!--易付宝<img src="__IMG__/yeepay.png"></label>-->
+							<!--</li>-->
+							<!--<li>-->
+							<!--<label><input type="radio" name="paytype" value="kuaiqian"/>-->
+							<!--快钱<img src="__IMG__/kuaiqian.png"></label>-->
+							<!--</li>-->
+						</ul>
+						<hr>
+						<div class="submit am-u-sm-4 am-u-sm-centered am-margin-top">
+							<a class="btn_submit am-btn am-btn-primary am-btn-lg am-btn-block" title="提交" href="javascript:void(0);"
+							   onclick="submitpay();return false"/>提交</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="am-modal am-modal-confirm" tabindex="-1" id="pay_dialog">
+		<!-- Modal 对话框内容 -->
+		<div class="am-modal-dialog">
+
+			<div class="am-modal-hd">
+				<h3>支付页面</h3>
+			</div>
+			<div class="am-modal-bd">
+				<div class="form_loading">
+					<img src="__IMG__/loading.gif">正在进行支付，请勿关闭！<span id="times"></span>
+				</div>
+			</div>
+			<div class="am-modal-footer">
+				<a class="am-modal-btn" href="{:U('Center/index')}" data-am-modal-confirm id="btn_pay_ok">支付成功</a>
+				<a class="am-modal-btn" href="{:U('Center/index')}" data-am-modal-cancel id="btn_pay_fail">支付失败</a>
+			</div>
+		</div>
+		<!-- Modal 对话框内容 -->
+	</div>
+
+	<div class="am-modal " tabindex="-1" id="balance_pay">
+		<!-- Modal 对话框内容 -->
+		<div class="am-modal-dialog">
+
+			<div class="am-modal-hd">
+				<h3>余额支付</h3>
+			</div>
+			<hr class="am-margin-0">
+			<div class="am-modal-bd">
+				您的余额为: <span id="balance_value" class="am-text-warning am-text-xl">{$balance|round}</span><br><br>
+				输入密码: <input name="password" id="password" type="password" value="" class="am-padding-xs"/><br>
+				<button id="balance_pay_btn" class="am-btn am-btn-primary am-padding-left-xl am-padding-right-xl am-margin-top-xl" type="button">支付</button>
+				<button class="am-btn am-btn-success am-margin-top-xl" data-am-modal-close>关闭</button>
+			</div>
+			<div class="am-modal-footer">
+			</div>
+		</div>
+		<!-- Modal 对话框内容 -->
+	</div>
+
+	<!-- 对话框 结束-->
+
+	<script type="text/javascript">
+		function submitpay() {
+
+			if ($("input[name='paytype']:checked").val() == 'balance') {
+				$("#balance_pay").modal({
+					relatedTarget: this,
+					closeViaDimmer: 0
+				});
+			} else {
+				$("#pay_dialog").modal({
+					relatedTarget: this,
+					closeViaDimmer: 0,
+					onConfirm: function () {
+						location.href = $("#btn_pay_ok").attr("href");
+					},
+					// closeOnConfirm: false,
+					onCancel: function () {
+						location.href = $("#btn_pay_fail").attr("href");
+
+					}
+				});
+				document.myform.submit();
+			}
+		}
+		$("#balance_pay_btn").click(function () {
+			$(this).attr("disabled","disabled");
+			var balance = parseFloat($.trim($("#balance_value").text()));
+			var cost = parseFloat($("#money").val());
+			if (!balance || balance < cost) {
+				topAlert("余额不足!");
+				$(this).attr("disabled",false);
+				return;
+			}
+			if (confirm('即将扣除您此次订单的金额{$pay_info.money}元,是否确认?')) {
+				$.post("{:U('Pay/balance')}", {
+					"orderid": $("#orderid").val(),
+					"orderid1": $("#orderid1").val(),
+					'password':$("#password").val()
+				}, function (data) {
+					if (data) {
+						topAlert(data.info, data.status);
+						setTimeout(function () {
+							location.href = data.url;
+						}, 2000);
+					} else {
+						topAlert("连接出错,请刷新重试,或联系管理员!");
+						$(this).attr("disabled",false);
+						return;
+					}
+				}, 'json')
+			}
+		});
+	</script>
+</block>

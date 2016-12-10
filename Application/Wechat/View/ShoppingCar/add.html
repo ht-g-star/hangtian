@@ -1,0 +1,314 @@
+<extend name="Base/mobile_base"/>
+
+<block name="style">
+	<link type="text/css" href="__CSS__/selectpick.css" rel="stylesheet"/>
+	<link type="text/css" href="__CSS__/city.css" rel="stylesheet"/>
+</block>
+<block name="body">
+	<div class="am-g am-container am-margin-top-xl">
+		<div id="check" class="am-panel am-panel-secondary">
+			<div class="am-panel-hd">
+				<h2 class="am-margin-0">填写并核对订单信息</h2>
+			</div>
+			<div class="orderplace am-panel-bd">
+				<div class="o_title ">
+					<h2>收货人信息
+					</h2>
+				</div>
+				<div class="place">
+					<empty name="address">
+						<div id="senderdetail"></div>
+						<div id="formsender" style="position:relative;">
+							<form id="formincart" name="form" class="am-form am-form-inline">
+								<div class="">
+									<div class="am-u-sm-2" style="line-height: 36px"><label>所在地区:</label></div>
+									<div class="am-u-sm-10">
+										<div class=" infolist ">
+											<div class="liststyle">
+				                                <span id="Province">
+				                                    <i>请选择省份</i>
+				                                    <ul>
+					                                    <li><a href="javascript:void(0)" alt="请选择省份">请选择省份</a></li>
+				                                    </ul>
+				                                    <input id="idprovince" type="hidden" name="cho_Province" value="请选择省份">
+				                                </span>
+				                                <span id="City">
+				                                    <i>请选择城市</i>
+				                                    <ul>
+					                                    <li><a href="javascript:void(0)" alt="请选择城市">请选择城市</a></li>
+				                                    </ul>
+				                                    <input type="hidden" id="idcity" name="cho_City" value="请选择城市">
+				                                </span>
+				                                <span id="Area">
+				                                    <i>请选择地区</i>
+				                                    <ul>
+					                                    <li><a href="javascript:void(0)" alt="请选择地区">请选择地区</a></li>
+				                                    </ul>
+				                                    <input type="hidden" id="idarea" name="cho_Area" value="请选择地区">
+				                                </span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="am-u-sm-2 am-margin-top-sm">
+									<label>详细地址：</label>
+								</div>
+								<div class="am-u-sm-10 am-margin-bottom-xs">
+									<input type="text" class="cart_long" id="address" maxlength="40" data-input="text" value="" name="area" placeholder="详细地址不能为空">
+								</div>
+								<div class="am-u-sm-2 am-margin-top-sm">
+									<label>收 货 人：</label>
+								</div>
+								<div class="am-u-sm-10 am-margin-bottom-xs">
+									<input type="text" class="cart_long"  style="width: 200px;" id="realname" maxlength="20" data-input="text" value=""><font class="ml10 cleb6100" style="display: none;">收货人不能为空</font>
+								</div>
+								<div class="am-u-sm-2 am-margin-top-sm">
+									<label>手&nbsp;&nbsp;&nbsp;&nbsp;机：</label>
+								</div>
+								<div class="am-u-sm-10 am-margin-bottom-xs">
+									<input type="text" class="cart_long" style="width: 200px;" id="phone" maxlength="11" data-msg="收货手机号码格式不正确" data-input="text" data-type="cellphone" value="">&nbsp;用于接收发货通知及送货前确认
+								</div>
+								<span class="am-margin-left"><input id="isdefault" checked="checked" name="default" type="checkbox" class="cart_n_box"> 设为默认地址
+								<a href="javascript:void(0)" class=" am-btn am-btn-warning ncart_btn_on" onclick="savemsg();">保存</a></span>
+							</form>
+						</div>
+						<else/>
+						<div id="senderdetail">
+							<p id="f_default">
+								<volist name="address" id="a" >
+									<label >
+										<input type="radio" <eq name="a.id" value="$default_id" >id="default"</eq> name="sender" checked="checked" value="{$a.id}"/>&nbsp;收件人：{$a.realname}&nbsp;&nbsp;联系电话:{$a.cellphone}&nbsp;&nbsp;收货地址：{$a.address}
+									</label><br/>
+
+								</volist>
+							</p>
+						</div>
+					</empty>
+
+				</div>
+			</div>
+		</div>
+			<!--收货信息 结束-->
+			<!--订单支付 开始-->
+			<form action='{:U("MallOrder/save")}' method="post" name="myform" id="myform">
+				<div class="orderplace am-panel am-panel-secondary">
+					<div class="am-panel-hd">
+						<h2 class="am-margin-0">支付</h2>
+					</div>
+					<div class="am-padding-lg">
+						<dl>
+							<dt><h2>支付方式：</h2></dt>
+							<dd><input type="hidden" name="tag" id="orderid" value="{$tag}">
+								<input type="hidden" name="sender" id="senderid">
+
+								<!--<input type="radio" name="PayType" id="yue" checked="checked" value="1"> 余额支付-->
+								<input type="radio" name="PayType" id="pay" checked="checked" value="2"> 在线支付(支持余额和微信支付)
+							</dd>
+						</dl>
+					</div>
+				</div>
+				<!--订单支付 结束-->
+
+
+				<!--商品信息 开始-->
+
+				<div class="orderplace am-panel am-panel-secondary">
+					<div class="am-panel-hd">
+						<h2 class="am-margin-0">商品信息</h2>
+					</div>
+					<div class="am-padding-lg">
+						<table border="0" cellspacing="0" cellpadding="0" class="gridtable cart-2" width="100%">
+							<tbody>
+							<tr class="bg-f5">
+								<th class="am-padding-sm">商品名称</th>
+								<th class="am-padding-sm">规格</th>
+								<th class="am-padding-sm">单价(元)</th>
+								<th class="am-padding-sm">数量</th>
+							</tr>
+							<volist name="shoplist" id="vo">
+								<tr>
+									<td class="am-padding-sm"><A href="{:U('Article/detail?id='.$vo['goodid'])}"> {$vo.goodid|get_good_name}</A>
+									</td>
+									<td class="am-padding-sm"><span class="weight">{$vo.parameters|default="无"}</span></td>
+									<td class="am-padding-sm am-text-warning">{$vo.price}</td>
+									<td class="am-padding-sm">{$vo.num}</td>
+
+								</tr>
+							</volist>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!--商品信息 结束-->
+
+				<!--优惠券开始-->
+				<div class="orderplace am-panel am-panel-secondary">
+					<div class="am-panel-hd">
+						<h2 class="am-margin-0">选择可用优惠券</h2>
+					</div>
+					<div  class="am-padding-lg am-panel-bd">
+						<select name="coupon_id" id="coupon_id" data-am-selected>
+							<option value="0" data-lowpayment="0" data-price="0" data-type="{$c.type}">不使用</option>
+							<volist name="coupons" id="c">
+								<eq name="c.type" value="1" >
+									<option value="{$c.id}"  data-lowpayment="{$c.lowpayment}" data-price="{$c.price}" data-type="{$c.type}">{$c.title}-{$c['price']*10}折</option>
+									<else/>
+									<option value="{$c.id}"  data-lowpayment="{$c.lowpayment}" data-price="{$c.price}" data-type="{$c.type}">{$c.title}-优惠¥{$c.price}</option>
+								</eq>
+							</volist>
+						</select>
+					</div>
+				</div>         <!--优惠券结束-->
+
+				<div class="orderplace am-panel am-panel-secondary">
+					<div class="am-panel-hd">
+						<h2 class="am-margin-0">订单备注</h2>
+					</div>
+					<div  class="am-padding-lg am-panel-bd">
+						<textarea class="am-input-sm" name="message" id="" cols="30" style="width: 100%" rows="3"></textarea>
+					</div>
+				</div>
+
+
+				<!--提交信息 开始-->
+				<div class="orderplace trans am-text-right am-margin-bottom-xl">
+					<p><b>{$num}</b>件商品</p>
+
+					<p>商品金额<b>{$total}</b>元 </p>
+
+					<p>运费<b>{$trans}</b>元</p>
+
+					<gt name="score" value="0">
+						<p>
+							<label><input type="checkbox" name="score" id="huo" value="{$score}"> <strong class="am-text-warning">积分{$score}，可兑换成{$ratio}元</strong></label>
+						</p></gt>
+
+					<p class="jiesuan">应付总额 <span id="TotalNeedPay" class=" am-text-xl num-text">￥{$all}</span>元<br/>
+						<br><span class="am-text-xs">可获得 <span id="get_score">{$all*C('RATIO2')}</span>积分</span>
+						<a class="btn_submit_pay am-btn am-btn-primary am-btn-lg am-padding-left-xl am-padding-right-xl" onclick="makeorder();return false">提交订单</a>
+					</p> <!--提交信息 结束-->
+
+				</div>
+			</form>
+
+
+
+</block>
+<block name="script">
+	<script type="text/javascript" src="__JS__/city.js"></script>
+	<script type="text/javascript">
+		var TotalNeedPay=parseFloat("{$all}");
+		var ratio2=parseFloat("{:C('RATIO2')}");
+		$(document).ready(function () {
+
+			$("#show").click(function () {
+				$("#formsender").toggle();
+
+			});
+			$("select#coupon_id").change(function(){
+				var type=$("select#coupon_id option:selected").data("type");
+				if(type==1){
+					var discount=$("select#coupon_id option:selected").data("price");
+					var res=parseFloat(TotalNeedPay)*parseFloat(discount);
+					if(res<=0){
+						res=0.01;
+					}
+					$("#TotalNeedPay").html("￥"+res);
+				}else{
+					var price=$("select#coupon_id option:selected").data("price");
+					var res=parseFloat(TotalNeedPay)-parseFloat(price);
+					if(res<=0){
+						res=0.01;
+					}
+					$("#TotalNeedPay").html("￥"+res);
+					$("#get_score").html(Math.floor(res*ratio2));
+				}
+			});
+
+
+		});
+
+		$("#huo").change(function(){
+			var radio="{$ratio}";
+			if(this.checked){
+				$("#TotalNeedPay").html("￥"+(parseFloat($("#TotalNeedPay").html().replace("￥",''))-parseFloat(radio)));
+				TotalNeedPay=TotalNeedPay-parseFloat(radio);
+			}else{
+				$("#TotalNeedPay").html("￥"+(parseFloat($("#TotalNeedPay").html().replace("￥",''))+parseFloat(radio)));
+				TotalNeedPay=TotalNeedPay+parseFloat(radio);
+			}
+			$("#get_score").html(Math.floor(TotalNeedPay*ratio2));
+		});
+
+
+		function savemsg() {
+//判断是否是默认地址
+			if (document.getElementById("isdefault").checked == true) {
+				var info = "yes";
+			}
+			else {
+				var info = "no";
+			}
+			var pca = $("#idprovince").val() + $("#idcity").val() + $("#idarea").val();
+			var address = $("#address").val();
+			var orderid = $("#orderid").val();
+			var username = $("#realname").val();
+			var phone = $("#phone").val();
+			var b = $("#youbian").val();
+
+			$.ajax({
+				type: 'post', //传送的方式,get/post
+				url: '{:U("Address/build")}', //发送数据的地址
+				data: {
+					province: $("#idprovince").val(),
+					city: $("#idcity").val(),
+					area: $("#idarea").val(),
+					posi: address,
+					pho: phone,
+					rel: username,
+					id: orderid,
+					msg: info
+				},
+				dataType: "json",
+				success: function (data) {
+					if (data.msg == "yes") {
+						$("#f_default").remove();
+						var str = '<p id="f_default"><input type="radio" name="sender" value="' + data.addressid + '" id="default" checked="checked"/>&nbsp;&nbsp;收件人：' + data.realname + '&nbsp;&nbsp;&nbsp;联系电话：' + data.cellphone + '&nbsp;' + '&nbsp;&nbsp;&nbsp;收货地址：' + data.province + data.city + data.area + data.address + '</p>';
+						$("#senderdetail").append(str);
+					}
+					else {
+						var str = '<p><input type="radio" id="new" name="sender" value="' + data.addressid + '" checked="checked"/>&nbsp;&nbsp;收件人：' + data.realname + '&nbsp;&nbsp;&nbsp;联系电话：' + data.province + data.city + data.area + data.cellphone + '&nbsp;' + '&nbsp;&nbsp;&nbsp;收货地址：' + data.address + '</p>';
+						$("#senderdetail").append(str);
+					}
+
+					$("#formsender").toggle();
+				},
+				error: function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+					alert("表单错误，" + XMLHttpRequest + thrownError);
+				}
+			})
+		}
+		function makeorder() {
+			//判断默认地址是否选中,获取地址id
+			if (document.getElementById("default").checked == true) {
+				document.getElementById("senderid").value = document.getElementById("default").value;
+				document.myform.submit();
+			}
+			var val = $('input:radio[name="sender"]:checked').val();
+			//判断新地址是否选中,获取地址id
+			if (val == null) {
+
+				alert("请选择一个地址!");
+				return false;
+			}
+			else {
+				document.getElementById("senderid").value = val;
+				document.myform.submit();
+			}
+		}
+	</script>
+
+	<script type="text/javascript">
+
+	</script>
+</block>

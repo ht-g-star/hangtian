@@ -1,0 +1,69 @@
+<extend name="Public/base"/>
+
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<!-- 标题栏 -->
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">健康讲坛</strong> /
+			<small>{$meta_title}</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+	<div class="am-g ">
+		<div class="am-u-sm-10 am-center">
+			<form action="" method="post" class="am-form form-horizontal am-form-horizontal" enctype="multipart/form-data">
+				<input type="hidden" name="id" value="{$Think.get.id}">
+
+				<div class="am-form-group">
+					<label class="item-label">标题<span class="check-tips"></span></label>
+
+					<div class="controls">
+						<input type="text" class="text " name="title" value="{$data.title}">
+					</div>
+				</div>
+				<div class="am-form-group ">
+					<label class="item-label">封面</label>
+
+					<div class="am-form-group am-form-file">
+						<i class="am-icon-cloud-upload"></i> 选择要上传的文件
+						<input type="file" name="pic">
+					</div>
+					<div id="file-list"></div>
+					<notempty name="data.pic">
+						<img src="{$data.pic}" height="100px" alt=""/>
+					</notempty>
+				</div>
+
+
+				<div class="am-form-group">
+					<label class="item-label">内容</label>
+
+					<div class="controls">
+						{:hook("documentEditFormContent",array('name'=>'content'))}
+						<textarea name="content">{$data.content}</textarea>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label class="item-label">排序:<span class="check-tips">(自然排序)</span></label>
+
+					<div class="controls">
+						<input type="text" class="text input-large" name="sort" value="{$data.sort|default=0}">
+					</div>
+				</div>
+				<div class="am-form-group">
+					<button class="am-btn am-btn-primary submit-btn " id="submit" type="submit">
+						确 定
+					</button>
+					<button class="am-btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</block>
+
+<block name="script">
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript">
+	</script>
+</block>

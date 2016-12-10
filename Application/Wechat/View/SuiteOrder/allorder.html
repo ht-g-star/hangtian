@@ -1,0 +1,59 @@
+<extend name="Base/mobile_base"/>
+<block name="style">
+	<style>
+
+	</style>
+</block>
+<block name="body">
+	<!-- List -->
+	<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+		<div class="am-list-news-bd order">
+			<ul class="am-list">
+				<!--缩略图在标题左边-->
+				<volist name="list" id="row">
+					<div class="am-padding-xs">
+						<span class="c9">订单号：</span><span class="c0">{$row.order_no}</span>
+						<span class="am-badge am-badge-primary am-fr">{$row.status|get_suite_order_status}</span>
+					</div>
+					<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+						<div class="am-u-sm-5 am-list-thumb">
+							<a href="{:U('Suite/detail',array('id'=>$row['s_id']))}">
+								<notempty name="row.pic">
+									<img src="{$row.pic}"/>
+									<else/>
+									<img src="__STATIC__/amaze/i/app/app-shop-list1.jpg"/>
+								</notempty>
+							</a>
+						</div>
+						<div class="am-u-sm-7 am-list-main">
+							<h3 class="am-list-item-hd">
+								<a href="{:U('Suite/detail',array('id'=>$row['s_id']))}">{$row.title}</a>
+							</h3>
+
+							<div class="price">￥{$row.cost} &nbsp; x {$row.count}</div>
+							<div class="order-button am-padding-top-sm">
+								<switch name="row.status">
+									<case value="1"><a href="/Wechat/Pay/index/orderid/{$row.order_no}" class="btn">去支付</a></case>
+									<case value="20">
+										<!--<a href="#" class="btn">评价晒单</a>-->
+										<!--<a href="#" class="btn">再次购买</a>-->
+									</case>
+									<default/>
+								</switch>
+								<a href="{:U('SuiteOrder/detail',array('oid'=>$row['id']))}" class="btn">查看详情</a>
+
+							</div>
+						</div>
+					</li>
+					<div class="space"></div>
+				</volist>
+			</ul>
+			{$page}
+		</div>
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>
+<block name="script">
+	<script>
+	</script>
+</block>

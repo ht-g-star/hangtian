@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* CSS Document */
+body, p, h1, h2, h3, h4, h5, h6, ul, dl, dt, dd, form, iframe, fieldset, legend, input, select, textarea, button, th, td, blockquote, address, pre{margin: 0;padding: 0;}
+body{font: 12px/1.5 'Microsoft Yahei',Arial;color: #666;}
+img{border: 0;}
+a{text-decoration: none;}
+
+.content{background-color: #e2f5f9;min-height: 600px;width: 100%;}
+.con_body{background: url(../img/bg.png) center 40px no-repeat;width: 930px;margin: 0 auto;height: 385px;padding-top: 120px;padding-left: 50px;}
+.con_txt{width: 620px;font-size: 14px;color: #525252;line-height: 26px;margin-top: 20px;}
+.footer-outer{background-color: #23ac79;height: 79px;position: relative;}
+.h_img{position: absolute;bottom: 0;}
+.back_h{color: #23ac79;position: absolute;bottom: 85px;margin-left: 40px;text-align: right;font-size: 14px;}
+.footer {overflow: hidden;margin: 0 auto;width: 980px;zoom: 1;}
+
+/*其他*/
+.u-btn{display: inline-block; min-width: 30px; height: 34px; line-height: 34px; padding-left: 30px; padding-right: 30px; border-radius: 4px; font-size: 14px; color: #fff; cursor: pointer; text-align: center; border-width:1px; border-style: solid; vertical-align: middle;text-decoration: none;}
+.u-btn:hover{text-decoration: none;}
+.u-btn-default{border-color:#ccc; background-color: #fcfcfc; color: #666; }/* 默认 */
+.u-btn-default:hover{background-color: #eee;}
+.t_center{text-align: center;}
+.mr10{margin-right: 10px;}
+.mt50{margin-top: 50px;}
+.t_indent{text-indent: 2em;}
+.font18{font-size: 18px;}
+.fontweight {font-weight: 700;}
+.a_color{color: #2089ff;}
+.h2_color{color: #f97243;}
+.red {color: #F00;}

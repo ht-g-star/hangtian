@@ -1,0 +1,91 @@
+<!--popup 充值-->
+<div class="am-popup" id="pop_froze_money">
+	<div class="am-popup-inner">
+		<div class="am-popup-hd">
+			<h4 class="am-popup-title">押金</h4>
+			<span data-am-modal-close class="am-close">&times;</span>
+		</div>
+		<div class="am-popup-bd">
+			<!--begin-->
+			<form action="{:U('Member/lockmoney')}" method="post" class="am-form am-form-horizontal form-horizontal">
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">刷卡</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" name="card_num" autocomplete="off" required placeholder="请先放入卡片,再双击此处">
+						<input type="hidden" name="card_sn" value="">
+					</div>
+
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">姓名</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" name="realname" readonly placeholder="刷卡后获取姓名">
+						<input type="hidden" name="id">
+					</div>
+
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">可用余额</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" name="balance" readonly placeholder="刷卡后获取余额">
+					</div>
+
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">已冻结部分</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" name="frozen_balance" readonly placeholder="刷卡后获取">
+					</div>
+
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">押金金额</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" name="money" required placeholder="请输入押金金额">
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">密码</label>
+
+					<div class="am-u-sm-9">
+						<input type="password" name="password" required placeholder="请输入密码">
+					</div>
+				</div>
+
+
+				<div class="am-form-group">
+					<div class="am-u-sm-9 am-u-sm-push-3">
+						<button type="submit" class="am-btn am-btn-primary">冻结</button>
+					</div>
+				</div>
+
+				<hr>
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">输入解冻金额</label>
+
+					<div class="am-u-sm-9">
+						<input type="number" name="release_money" placeholder="输入解冻金额">
+					</div>
+
+				</div>
+				<div class="am-form-group">
+					<div class="am-u-sm-9 am-u-sm-push-3">
+						<button type="button" id="release_btn" class="am-btn am-btn-primary">解冻</button>
+					</div>
+				</div>
+			</form>
+			<!--over-->
+		</div>
+	</div>
+</div>

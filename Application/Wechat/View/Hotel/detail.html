@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>{$cache.xl_name}</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<link rel="shortcut icon" href="/favicon.ico">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__PUBLIC__/Home/css/sm.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/css/sm-extend.min.css">
+		<link rel="stylesheet" href="__PUBLIC__/Home/css/reset_app.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/iconfont/iconfont.css" />
+		<style>
+	        .clearfix:after,
+	        .clearfix:before {
+	            display: table;
+	            content: " ";
+	        }
+	        
+	        .clearfix:after {
+	            clear: both;
+	        }
+	        
+	        .wpad10 {
+	            background-color: #fff;
+	            padding: .5rem;
+	        }
+	        
+	        .wmargin10 {
+	            margin: 0 .5rem;
+	            background-color: #fff;
+	        }
+	        
+	        .wpad10 .wtitle {
+	            font-size: .8rem;
+	            font-weight: 300;
+	        }
+	        
+	        .center {
+	            width: 100%;
+	            position: relative;
+	        }
+	        
+	        .center .location {
+	            width: 70%;
+	            font-size: .7rem;
+	            float: left;
+	            padding-left: .7rem;
+	            color: #898989;
+	        }
+	        
+	        .center .price {
+	            width: 30%;
+	            font-size: 1rem;
+	            float: right;
+	            text-align: right;
+	            color: #FF2E3D;
+	        }
+	        
+	        
+	        .wcontent {
+	            font-size: .6rem;
+	            background-color: #F0F0F0;
+	        }
+	        
+	        .wcomment {
+	            margin-top: .6rem;
+	            background-color: #fff;
+	            line-height: 2rem;
+	        }
+	        
+	        .wcomment .number {
+	            color: #FFA61F;
+	        }
+	        
+	        .wcomment .frnumber {
+	            float: right;
+	            font-size: .7rem;
+	            margin-right: .6rem;
+	            color: #999;
+	        }
+	        
+	        .wcomment .flnumber {
+	            float: left;
+	            font-size: .8rem;
+	        }
+	        
+	        .wcomment .border-r {
+	            display: inline-block;
+	            height: .7rem;
+	            width: .2rem;
+	            margin-top: .2rem;
+	            margin-right: .2rem;
+	            background-color: #41A4F0;
+	        }
+	        
+	        .tc-content {
+	            padding-top: .4rem;
+	        }
+	        
+	        .tc-content div {
+	            font-size: .7rem;
+	            line-height: 1.5;
+	        }
+	        
+	        .threelie div {
+	            font-size: .7rem;
+	            color: #666;
+	        }
+	        
+	        .wfixed {
+	            line-height: 2.5rem;
+	            padding-left: 1rem;
+	            position: fixed;
+	            background-color: #fff;
+	            bottom: 0;
+	            left: 0;
+	            right: 0;
+	        }
+	        
+	        .wfixed .rb-btn {
+	            float: right;
+	            border: none;
+	            padding: 0 .5rem;
+	            background-color: #F37B1D;
+	            color: #fff;
+	        }
+	        
+	        .ipt-date,
+	        .ipt-num {
+	            background-color: #fff;
+	            line-height: 1.5;
+	            padding: .6rem
+	        }
+	        
+	        .ipt-date label,
+	        .ipt-num label {
+	            font-size: .7rem;
+	        }
+	        
+	        .ipt-date input,
+	        .ipt-num input {
+	            width: 50%;
+	        }
+	        
+	        .wsmall {
+	            margin: 0;
+	            padding: 0 .6rem;
+	            font-size: .7rem;
+	            color: #666;
+	            line-height: 1.5;
+	        }
+	        #setList{display:none;}
+	        .setList{padding:0 10px;font-size:.6rem;}
+	        .setList ul{}
+	        .setList ul li{display:none;}
+	        .setList ul li label{display:block;}
+	    </style>
+	</head>
+	<body>
+		<script type='text/javascript' src='__PUBLIC__/Home/js/zepto.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='__PUBLIC__/Home/js/sm.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='__PUBLIC__/Home/js/sm-extend.min.js' charset='utf-8'></script>
+		<div class="page">
+	        <div class="content" style="width:100%">
+	        	<volist name='lineinfo' id='vo' key="k">
+					<input type="hidden" class="lineinfo" data-price='{$vo[5]}' data-end='{$vo[3]}' data-week='{$vo[4]}' data-pid='{$vo[1]}' value="{$vo[2]}"/>
+				</volist>
+	            <img src="{$cache.xl_list_img}" alt="" width="100%" height="206">
+	            <div class="wpad10">
+	                <h3 class="wtitle">{$cache.xl_name}</h3>
+	                <div class="center clearfix">
+	                    <p style="position:absolute;top:-0.2rem;"><i class="icon iconfont" style="color:#41A4F0;font-size:.7rem">&#xe603;</i></p>
+	                    <div class="location">{$cache.xl_cf_city}-{$cache.xl_jd_address}</div>
+	                    <div class="price"><span class="s_price">{$cache.xl_qijia}</span><span>{$cache.xl_qijia_dw}</span></div>
+	                </div>
+	                <div class="wpad10 wcontent">
+	                    <div>{$cache.xl_fb_detail}</div> {$cache.xl_jd_jianjie}
+	                </div>
+	            </div>
+	            <div class="wcomment clearfix">
+	                <div class="flnumber">
+	                    <span class="border-r"></span>&nbsp;套餐包含
+	                </div>
+	                <div style="clear:both"></div>
+	                <div class="wmargin10" style="border-top:1px solid #F0F0F0">
+	                    <div class="tc-content">
+	                    	<volist name=":explode(PHP_EOL, $cache['xl_bh'])" id='vo'>
+							<div>{$vo}</div>
+							</volist>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="wcomment clearfix">
+	                <div class="flnumber">
+	                    <span class="border-r"></span>&nbsp;服务设施
+	                </div>
+	                <div style="clear:both"></div>
+	                <div class="wmargin10" style="border-top:1px solid #F0F0F0"></div>
+	                <div style="margin:.5rem .7rem;background:#F4F4F4;font-size:.7rem;padding-left:.5rem">通用设施</div>
+	            </div>
+	            <div style="padding:0 4.5%;background:#fff" class="clearfix threelie">
+	            	<volist name=":explode(',', $cache['xl_tyss'])" id="vo">
+						<div style="width:31%;float：left;display:inline-block;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"><i class="icon iconfont" style="color:#41A4F0;font-size:.7rem;color:#666">&#xe606;</i>{$vo}</div>
+					</volist>
+	            </div>
+	            <div class="wcomment clearfix" style="margin-top:0;">
+	                <div style="margin:.5rem .7rem;background:#F4F4F4;font-size:.7rem;padding-left:.5rem">活动设施</div>
+	            </div>
+	            <div style="padding:0 4.5%;background:#fff" class="clearfix threelie">
+	            	<volist name=":explode(',', $cache['xl_hdss'])" id="vo">
+						<div style="width:31%;float：left;display:inline-block;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"><i class="icon iconfont" style="color:#41A4F0;font-size:.7rem;color:#666">&#xe606;</i>{$vo}</div>
+					</volist>
+	            </div>
+	            <div class="wcomment clearfix" style="margin-top:0;">
+	                <div style="margin:.5rem .7rem;background:#F4F4F4;font-size:.7rem;padding-left:.5rem">服务项目</div>
+	            </div>
+	            <div style="padding:0 4.5%;background:#fff" class="clearfix threelie">
+	            	<volist name=":explode(',', $cache['xl_fuxm'])" id="vo">
+						<div style="width:31%;float：left;display:inline-block;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"><i class="icon iconfont" style="color:#41A4F0;font-size:.7rem;color:#666">&#xe606;</i>{$vo}</div>
+					</volist>
+	            </div>
+	            <div class="wcomment clearfix" style="margin-top:0;">
+	                <div style="margin:.5rem .7rem;background:#F4F4F4;font-size:.7rem;padding-left:.5rem">客房设施</div>
+	            </div>
+	            <div style="padding:0 4.5%;background:#fff" class="clearfix threelie">
+	            	<volist name=":explode(',', $cache['xl_kfss'])" id="vo">
+						<div style="width:31%;float：left;display:inline-block;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"><i class="icon iconfont" style="color:#41A4F0;font-size:.7rem;color:#666">&#xe606;</i>{$vo}</div>
+					</volist>
+	            </div>
+	            <div class="wcomment clearfix">
+	                <div class="flnumber">
+	                    <span class="border-r"></span>&nbsp;预定须知
+	                </div>
+	                <div style="clear:both"></div>
+	                <div class="wmargin10" style="border-top:1px solid #F0F0F0">
+	                </div>
+	                <div class="allxz">
+	                    <div class="wmargin10">酒店产品预定须知</div>
+	                    <div class="wsmall">
+	                    	<p>
+								{:str_replace(PHP_EOL,'<br/>',$cache['xl_ydts'])}
+							</p>
+	                    </div>
+	                    <div class="wmargin10">酒店产品退改政策</div>
+	                    <div class="wsmall">
+	                    	<p>
+								{:str_replace(PHP_EOL,'<br/>',$cache['xl_tkzc'])}
+							</p>
+	                    </div>
+	                </div>
+	
+	            </div>
+
+	            <div class="wcomment clearfix">
+	                <div class="flnumber">
+	                    <span class="border-r"></span>&nbsp;填写信息
+	                </div>
+	                <div style="clear:both"></div>
+	                <div class="wmargin10" style="border-top:1px solid #F0F0F0">
+	                </div>
+	                <div class="ipt-date">
+	                    <label for="">选择日期：</label>
+	                    <input type="text" id="my-input" placeholder="请选择日期"/>
+	                </div>
+	                <div class="ipt-num">
+	                    <label for="">填写数量：</label>
+	                    <input type="tel" id="num"/>
+	                </div>
+	                <input type="hidden" id="priceid" />
+	            </div>
+
+				<div class="wcomment clearfix" id="setList">
+					<div class="flnumber">
+	                    <span class="border-r"></span>&nbsp;套餐选择
+	                </div>
+					<div style="clear:both"></div>
+					<div class="tc_box setList">
+						<ul>
+						<volist name='lineinfo' id='vo' key="k">
+							<li data-week="{$vo[4]}" data-startdate="{$vo[2]}" data-enddata="{$vo[3]}" data-pid="{$vo[1]}">
+								<label>
+									<input type="radio" name="pid" value="{$vo[1]}" data-price="{$vo[5]}" /> 
+									<span>{$vo[6]}</span>
+									<span>{$vo[5]} 元/人</span>
+								</label>
+							</li>
+						</volist>
+						</ul>
+					</div>
+				</div>
+
+	            <div style="height:4rem;"></div>
+	        </div>
+            <div class="wfixed">
+                <button class="rb-btn" id="ydbtn">立即预定</button>
+            </div>
+	
+	    </div>
+	    <script>
+		    $(function(){
+		    	var mydate = new Date();
+				var year=mydate.getFullYear();
+				var month=mydate.getMonth();
+				month+=1;
+				if(month < 10){
+					month = '0'+month;
+				}
+				var day=mydate.getDate();
+				if(day < 10){
+					day = '0'+day;
+				}
+
+				var minDate = year + "-" + month + "-" +day;
+				var maxDate = "";
+
+				var setList = $(".setList li")
+
+				setList.each(function(){
+					var temp = new Date($(this).data("enddata"));
+					if(maxDate == ""){
+						maxDate = $(this).data("enddata");
+					}else{
+						if(temp > new Date(maxDate)){
+							maxDate = $(this).data("enddata");
+						}
+					}
+				})
+
+				$("#my-input").calendar({
+					inputReadOnly: true,
+					minDate: minDate,
+					maxDate: maxDate,
+					value: [],
+					onChange: function(p, values, displayValues){
+						$("#setList").show();
+						setList.hide();
+						setList.find("input[type='radio']").prop("checked", false);
+						var count = 0;
+						setList.each(function(){
+							var s = new Date($(this).data("startdate"));
+							var e = new Date($(this).data("enddata"));
+							var w = $(this).data("week");
+							w = w.toString();
+
+							var chooseWeek = new Date(displayValues).getDay();
+							chooseWeek = chooseWeek.toString();
+							if(values >= s && values <= e && w.indexOf(chooseWeek) >= 0){
+								$(this).show().addClass("ct_show");
+								count++;
+							}
+						})
+						if(count == 1){
+							$(".ct_show").find("input").prop("checked", true);
+						}
+					}
+				});
+		    })
+
+			$('#ydbtn').on('click',function(){
+				if(!$('#my-input').val() || !$('#num').val()){
+					$('#num').focus();
+				}else{
+					if(!$('#my-input').val()){
+						alert('请选择规定的出行日期');
+						return false;
+					}else if($('#num').val()<=0){
+						alert('请填写人数');
+						return false;
+					}else if($("[name='pid']:checked").length == 0){
+						alert("请选择套餐");
+						return false;
+					}else{
+						var price = $("[name='pid']:checked").data("price");
+						var priceid = $("[name='pid']:checked").val();
+						var dateinput = $('#my-input').val();
+						location.href="{:u('hotel/order')}?id={:I('id')}&cfrq="+ dateinput +"&num="+$('#num').val()+"&price="+price+'&priceid=' + priceid;
+					}
+				}
+			})
+	    </script>
+	</body>
+</html>

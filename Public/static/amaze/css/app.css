@@ -1,0 +1,182 @@
+img{
+	max-width: 100%;
+}
+
+/* ����amazuei.flat.css */
+.am-header-default{background-color:#fff;}
+.am-header-default .am-header-title a{color:#000;}
+.am-menu-offcanvas1 .am-menu-toggle{color:#000;}
+/*�б�����ͼ*/
+.am-list-item-hd{margin-top:-5px!important;}
+.am-list-item-hd a{color:#000;}
+/*�ײ��˵�*/
+.am-navbar-default .am-navbar-nav{background-color:#ebebeb;}
+.am-navbar-default a{color:#777;}
+.current .am-icon-home{color:#ff560b;}
+.current .am-icon-clock-o{color:#ff560b;}
+.current .am-icon-file-text{color:#ff560b;}
+.current .am-icon-shopping-cart{color:#ff560b;}
+.current .am-icon-user-md{color:#ff560b;}
+.current .am-navbar-label{color:#ff560b;}
+/*����*/
+.am-article-title{font-size:2.2rem;}
+
+/*�Զ��岿��*/
+.blue-color{background:#00b9ef;}
+.purple-color{background:#ad5fd9;}
+.yellow-color{background:#fdbf1e;}
+.green-color{background:#69d355;}
+.gold-color{background:#ceac48;}
+.darkblue-color{background:#2452a9;}
+.cream-color{background:#caaea0;}
+.gray-color{background:#efefef;}
+.w60{width:60%;}
+.w96{width:96%;}
+.r5{border-radius:.5rem;}
+.c9{color:#999}
+.c0{color:#000}
+
+/*����*/
+.back{float:left;display:inline-block;}
+.back img{width:45%;height:45%!important;}
+.search{position:absolute;display:inline-block;right:0;top:0;}
+.search img{width:45%;height:45%!important;}
+
+/*�����̳�*/
+.shop-con h4{margin:0;font-size:1.6rem;color:#fff;}
+.shop-con h4 a{color:#fff;}
+.shop-con-list img{width:100%;}
+.shop-con p{font-size:0.5em;color:#fff;opacity:0.6;margin:0;}
+.shop-arrow{display:inline-block;}
+.shop-arrow img{width:50%;} 
+.price{color:#fb7d1f;}
+
+/*��Ʒ����*/
+.shop-desc img{width:15%;}
+.shop-desc .am-u-sm-2 span{border-right:1px solid #ddd;}
+/*��Ʒ����*/
+.shop-detail .am-list-item-hd{margin-bottom:0.5rem;}
+.shop-detail .price{font-size:2rem; margin-top:-1rem;}
+.shop-item{border-top:1px solid #ddd;}
+.sex{border:1px solid #dfdfdf;padding:5px 15px;display:inline-block;}
+.selected{border:1px solid #0e8cfd!important;color:#0e8cfd;display:inline-block;}
+.shop-sex span:hover{border:1px solid #0e8cfd;color:#0e8cfd;display:inline-block;}
+.shop-num input{border:1px solid #dfdfdf;width:40px;color:#000;text-align:center;height:30px;}
+.shop-num span{border:1px solid #dfdfdf;padding:3px 10px;width:32px;background:#eaeaea;font-size:1.6rem;color:#000; display:inline-block;vertical-align:middle;}
+.shop-num span:hover{border:1px solid #dfdfdf;padding:3px 10px;width:32px;background:#f5f5f5;color:#000;text-align:center;height:30px;}
+.space{heihgt:10px;background-color:#f5f5f5;border:1px solid #ddd;border-left:none;border-right:none;margin:0;padding:2px;}
+/*tab*/
+.shop-detail-content .am-tabs-d2 .am-tabs-nav > .am-active:after{border-bottom:none;}
+.shop-detail-content .am-tabs-bd{border:none;}
+.shop-detail-content>[data-am-widget="tabs"]{margin:0;}
+.shop-detail-content .am-tabs-bd .am-tab-panel{font-size:1.4rem;}
+/*��ť*/
+.btn-buy{ position:fixed;bottom:10%;width:100%;z-index:999; background-color:rgba(0,0,0,0.6);}
+
+/*����ԤԼ*/
+.order .price{}
+.order .am-btn{padding:0.3em 1em;margin-top:0.4rem;}
+.order-title{font-size:1.4rem; white-space:nowrap;}
+.shop-order-date ul {margin:0;padding:0;}
+.shop-order-date ul li{border:1px solid #e0e0e0;background:#fffef7;list-style:none;font-size:1.2rem;float:left; margin-left:.2rem;margin-bottom:.2rem;padding:.1rem .65rem;}
+.shop-order-date ul li span{display:block; text-align:center;}
+
+/*֧��*/
+.shop-pay{margin-top:-1rem;}
+.btn-area{ position:fixed;bottom:0;width:100%;z-index:999;background-color:#ebebeb;}
+.btn-area span{ display:block; line-height:1rem;}
+.btn-area .price{margin-top:-3rem; font-size:1.4rem;display:inline-block;}
+.btn-area .am-btn-default{ background-color:#d2d2d2;border-color:#d2d2d2;}
+.order-user small{font-weight:normal;}
+.shop-ok .am-u-sm-3 img{width:80%;}
+.shop-ok ul{margin:0;padding:0;}
+.shop-ok li{list-style:none;float:left;width:45%; margin-left:.5rem;margin-bottom:1rem;}
+.shop-ok li img{width:100%;border:1px solid #dfdfdf;}
+
+/*����*/
+.knowledge .am-list-item-hd a{line-height:1.6rem; display:inline-block;}
+.knowledge-detail{ width:146px;text-overflow:ellipsis;overflow:hidden;}
+
+/*���ﳵ*/
+.shop-cart .btn-area{bottom:50px;}
+
+/*΢����̳*/
+.am-bbs{position:relative;background:url(../i/app/app-bbs-avatar-bg.jpg);height:120px;}
+.avatar-box{position:absolute;right:0;bottom:-20%;color:#fff;z-index:1000;}
+.img-avatar{border:2px solid #fff;display:inline-block;border-radius:3px;width:50%;}
+.img-avatar img{width:100%;}
+.bbs-avatar img{width:100%;}
+.bbs-box{ border-bottom:1px solid #ddd;}
+.bbs-box span{ display:inline-block;padding-left:1rem;}
+.bbs-user{ margin-top:-2rem;}
+.bbs-replay { text-align:right;}
+.bbs-date{color:#999;}
+.bbs-replay img{width:60%;}
+.bbs-comment{ position:relative;background:#e8e8e8;top:10px;}
+.bbs-comment .bbs-arrow{ position:absolute;background:url(../i/app/app-arrow-top.png) no-repeat;top:-5px;left:10px;width:13px;height:7px;}
+.bbs-content img{width:100%;}
+
+/*�����ѯ*/
+.yzm-code input{width:150px!important;display:inline-block!important;}
+.yzm-code button{display:inline-block!important;}
+.report .am-tabs-nav li a{border-top-left-radius:10px;border-top-right-radius:10px;}
+.report ul{border-top-left-radius:10px;border-top-right-radius:10px;}
+.report .am-tabs-bd{border:none;}
+.report-all{margin:0;padding:0 0.8rem;}
+.report-all li{list-style-image:url(../i/app/icon-star.png);font-size:1.4rem;border-bottom:1px solid #ddd;padding:.4rem 0;}
+.report-all .am-text-secondary{text-decoration:underline;}
+.report-detail ul{margin:0;padding:0;}
+.report-detail li{list-style:none;padding:1rem 0;border-bottom:1px solid #ddd;width:100%;font-size:1.4rem; height:3.2rem;line-height:1.2rem;}
+.report-detail li .am-fl{color:#666}
+.report-result{color:#fff;font-size:1.4rem;}
+
+/*��ʼ���*/
+.info h3,.info p{ margin:.5rem 0;}
+.twocoder img{width:100%;}
+
+/*��Ա����*/
+.user-center{background:url(../i/app/app-bg-center.png) no-repeat;width:100%;height:110px;color:#fff;}
+.user-avatar{width:65px;height:65px;border-radius:300px; display:inline-block; overflow:hidden;border:2px solid #fff;}
+.user-center .sign{border:1px solid #fff;border-radius:20px;padding:.2rem 1.6rem;font-size:1.4rem;color:#fff; display:inline-block; margin-top:.5rem;}
+.user-center .user-text{color:#fff000}
+.user-center-list li{ position:relative;font-size:1.4rem;}
+.user-center-list li .list-arrow{ position:absolute;right:1rem; top:1rem; font-family:����;}
+.icon-order{background:url(../i/app/app-user-icons.png) no-repeat 0 0;width:16px;height:16px;display:inline-block; margin-right:1rem;}
+.icon-yuyue{background:url(../i/app/app-user-icons.png) no-repeat 0 -16px;width:16px;height:16px;display:inline-block; margin-right:1rem;}
+.icon-points{background:url(../i/app/app-user-icons.png) no-repeat 0 -32px;width:16px;height:16px;display:inline-block; margin-right:1rem;}
+.icon-coupon{background:url(../i/app/app-user-icons.png) no-repeat 0 -48px;width:16px;height:16px;display:inline-block; margin-right:1rem;}
+.icon-personal{background:url(../i/app/app-user-icons.png) no-repeat 0 -64px;width:16px;height:16px;display:inline-block; margin-right:1rem;}
+
+.user-center-detail ul{margin:0;padding:0;}
+.user-center-detail li{list-style:none;padding:1rem;border-bottom:1px solid #ddd;width:100%;font-size:1.4rem; height:3.6rem;line-height:1.6rem;}
+.user-center-detail li .am-fl{color:#999}
+
+.order-button .btn{border:1px solid #ddd;border-radius:3rem;padding:.2rem 1.1rem!important;color:#333; display:inline-block; text-align:center; font-size:1.4rem;}
+
+/*�Ż�ȯ*/
+.coupon-list ul{ margin:0; padding:0;}
+.coupon-list ul li{ list-style:none; float:left; display:inline-block!important;width:50%;padding:1rem 1rem;}
+.coupon-list ul li img{width:100%;}
+
+/* ����iphone4/4s */
+@media (device-height:480px) and (-webkit-min-device-pixel-ratio:2){
+	
+}
+
+/* ����iphone6 */
+@media (device-height:667px) and (-webkit-min-device-pixel-ratio:2){
+	.shop-con p{margin-top:0.5rem;}
+	.shop-arrow{ margin-top:1rem;}
+	.knowledge-detail{ width:190px;}
+}
+
+/* ����iphone6 Plus */
+@media (device-height:736px) and (-webkit-min-device-pixel-ratio:2){
+
+}
+div.top-alert{
+	position: fixed;
+	top: 0;width: 100%;
+	z-index: 9999;
+	text-align: center;
+}

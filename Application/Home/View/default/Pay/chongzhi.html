@@ -1,0 +1,79 @@
+<extend name="Base/common"/>
+<block name="style">
+	<link rel="stylesheet" href="__CSS__/order.css">
+</block>
+<block name="body">
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">个人中心</li>
+			</ol>
+		</div>
+		<div class="userCenter am-cf">
+			<div class="am-u-sm-3">
+				<!-- 左侧菜单 -->
+				<include file="Public/leftmenu"/>
+				<!-- 左侧菜单 -->
+			</div>
+
+			<div class=" am-u-sm-9 ">
+
+				<div class="am-tabs" data-am-tabs>
+					<ul class="am-tabs-nav am-nav am-nav-tabs">
+						<li class="am-active"><a href="#tab1">充值</a></li>
+						<!--<li><a href="#tab2">充值历史</a></li>-->
+					</ul>
+
+					<div class="am-tabs-bd">
+
+						<div class="am-tab-panel am-active " id="tab1">
+							<form action='{:U("Pay/chongzhi")}' method="post" name="myform" class="payform" target="_blank">
+								<div class="pay">
+									<div class="form-group">
+										<label class="col-sm-2 control-label"></label>
+
+										<div class="col-sm-5">
+											支付金额：
+											<input type="text" required name="money" class="cart_long" id="goodprice">元
+										</div>
+									</div>
+									<div class="form-group paytype"><label>支付方式：</label><br/>
+
+										<div class="paylogo">
+											<label><input type="radio" name="paytype" value="alipay" checked=""/>
+												支付宝<img src="__IMG__/alipay.gif"></label>
+										</div>
+									</div>
+								</div>
+								<div class="submit">
+									<input type="submit" class="am-btn am-btn-primary" title=" 提交" href="javascript:void(0);"/>
+								</div>
+							</form>
+						</div>
+						<div class="am-tab-panel  " id="tab2">
+							充值历史
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+				<!-- 个人中心 初始状态 end --></div>
+		</div>
+	</div>
+</block>
+<block name="script">
+	<script>
+		$("form").submit(function () {
+			var money = $("#goodprice").val();
+			if (isNaN(money) || money <= 0) {
+				alert("金额必须是正整数!");
+				return false;
+			}
+		})
+
+	</script>
+</block>

@@ -1,0 +1,133 @@
+[ 2016-12-10T22:01:43+08:00 ] 127.0.0.1 /
+ERR: Cron:cron_1 Runat 2016-12-10 22:01:43 Use 0.002000 s
+
+[ 2016-12-10T22:01:43+08:00 ] 127.0.0.1 /
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)
+
+[ 2016-12-10T22:12:07+08:00 ] 127.0.0.1 /
+SQL: SHOW COLUMNS FROM `ht_category` [ RunTime:0.0020s ]
+SQL: SELECT `id`,`name`,`pid`,`title`,`links` FROM `ht_category` WHERE `display` = 1 AND `status` = 1 AND `ismenu` = 1 ORDER BY sort desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_shopcart` [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: cart D:\wamp64\www\hangtian\Application\Home\Model\ShopcartModel.class.php 第 26 行.
+SQL: SHOW COLUMNS FROM `ht_ad` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_ad` WHERE `status` = 1 AND `ypid` = 0  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_category` WHERE `ismenu` = 2 AND `pid` = 0 AND `status` = 1 ORDER BY id asc  [ RunTime:0.0330s ]
+SQL: SELECT * FROM `ht_category` WHERE ( pid='77' )  [ RunTime:0.0100s ]
+SQL: SELECT * FROM `ht_category` WHERE ( pid='133' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_category` WHERE ( pid='137' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_category` WHERE ( pid='141' )  [ RunTime:0.0010s ]
+NOTIC: [8] Trying to get property of non-object D:\wamp64\www\hangtian\Application\Common\Common\function.php 第 948 行.
+NOTIC: [8] Trying to get property of non-object D:\wamp64\www\hangtian\Application\Common\Common\function.php 第 949 行.
+NOTIC: [8] Trying to get property of non-object D:\wamp64\www\hangtian\Application\Common\Common\function.php 第 950 行.
+NOTIC: [8] Trying to get property of non-object D:\wamp64\www\hangtian\Application\Common\Common\function.php 第 951 行.
+NOTIC: [8] Trying to get property of non-object D:\wamp64\www\hangtian\Application\Common\Common\function.php 第 952 行.
+NOTIC: [8] Trying to get property of non-object D:\wamp64\www\hangtian\Application\Common\Common\function.php 第 953 行.
+NOTIC: [8] Undefined index: HTTP_REFERER D:\wamp64\www\hangtian\Application\Common\Common\function.php 第 965 行.
+SQL: SHOW COLUMNS FROM `ht_records` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `ht_records` WHERE ( ip='' and status='1' and page='index' )  [ RunTime:0.0330s ]
+SQL: SELECT `time` FROM `ht_records` WHERE ( ip='' and status='1' and page='index' ) ORDER BY id desc LIMIT 1   [ RunTime:0.0010s ]
+SQL: INSERT INTO `ht_records` (`status`,`page`,`time`,`url`) VALUES ('1','index','1481379126','www.hangtian.app/') [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ht_category` [ RunTime:0.0010s ]
+SQL: SELECT `id`,`name`,`title`,`pid`,`sort`,`list_row`,`meta_title`,`keywords`,`description`,`template_index`,`template_lists`,`template_detail`,`template_edit`,`model`,`model_sub`,`type`,`link_id`,`allow_publish`,`display`,`reply`,`check`,`reply_model`,`extend`,`create_time`,`update_time`,`status`,`icon`,`ismenu`,`links` FROM `ht_category` WHERE `status` = 1 AND `ismenu` = 1 ORDER BY sort desc  [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `ht_document` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_document` WHERE `category_id` IN ('73','97','174','175','237','102','177','230') AND `status` = 1 ORDER BY level desc,id desc LIMIT 10   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_category` WHERE `pid` IN ('73') AND `ismenu` = 1 AND `status` = 1 ORDER BY id desc LIMIT 10   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ht_brand` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_brand` WHERE `ypid` IN ('73','97','174','175','237','102','177','230') AND `status` = 1 ORDER BY id desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_ad` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_ad` WHERE `ypid` IN ('73','97','174','175','237','102','177','230') AND `status` = 1 ORDER BY id desc  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `category_id` IN ('107','169','199','170','207','208','209','210','225','226','167','200','168','211','154','180') AND `status` = 1 ORDER BY level desc,id desc LIMIT 10   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_category` WHERE `pid` IN ('107') AND `ismenu` = 1 AND `status` = 1 ORDER BY id desc LIMIT 10   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_brand` WHERE `ypid` IN ('107','169','199','170','207','208','209','210','225','226','167','200','168','211','154','180') AND `status` = 1 ORDER BY id desc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_ad` WHERE `ypid` IN ('107','169','199','170','207','208','209','210','225','226','167','200','168','211','154','180') AND `status` = 1 ORDER BY id desc  [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: _ D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [8] Undefined index: _ D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [8] Undefined index: _ D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [8] Undefined index: _ D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [8] Undefined index: _ D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [8] Undefined index: _ D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+SQL: SELECT * FROM `ht_document` WHERE `category_id` IN ('71','81','181','182','188','192','183','184','217','218','219','220','234','235','236','238','248') AND `status` = 1 ORDER BY level desc,id desc LIMIT 10   [ RunTime:0.0050s ]
+SQL: SELECT * FROM `ht_category` WHERE `pid` IN ('71') AND `ismenu` = 1 AND `status` = 1 ORDER BY id desc LIMIT 10   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_brand` WHERE `ypid` IN ('71','81','181','182','188','192','183','184','217','218','219','220','234','235','236','238','248') AND `status` = 1 ORDER BY id desc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_ad` WHERE `ypid` IN ('71','81','181','182','188','192','183','184','217','218','219','220','234','235','236','238','248') AND `status` = 1 ORDER BY id desc  [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: _ D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [8] Undefined index: _ D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [8] Undefined index: _ D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+SQL: SELECT * FROM `ht_document` WHERE `category_id` IN ('111','162','201','202','203','204','205','206','193','195','196','221','222') AND `status` = 1 ORDER BY level desc,id desc LIMIT 10   [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_category` WHERE `pid` IN ('111') AND `ismenu` = 1 AND `status` = 1 ORDER BY id desc LIMIT 10   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_brand` WHERE `ypid` IN ('111','162','201','202','203','204','205','206','193','195','196','221','222') AND `status` = 1 ORDER BY id desc  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_ad` WHERE `ypid` IN ('111','162','201','202','203','204','205','206','193','195','196','221','222') AND `status` = 1 ORDER BY id desc  [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: _ D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [8] Undefined index: _ D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\wamp64\www\hangtian\Application\Home\Model\CategoryModel.class.php 第 98 行.
+SQL: SELECT * FROM `ht_document` WHERE `category_id` IN ('164','197','198') AND `status` = 1 ORDER BY level desc,id desc LIMIT 10   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_category` WHERE `pid` IN ('164') AND `ismenu` = 1 AND `status` = 1 ORDER BY id desc LIMIT 10   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_brand` WHERE `ypid` IN ('164','197','198') AND `status` = 1 ORDER BY id desc  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_ad` WHERE `ypid` IN ('164','197','198') AND `status` = 1 ORDER BY id desc  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_document` WHERE `category_id` IN ('232','233','239','240','241','242','243','244','245','246','247') AND `status` = 1 ORDER BY level desc,id desc LIMIT 10   [ RunTime:0.0020s ]
+SQL: SELECT * FROM `ht_category` WHERE `pid` IN ('232') AND `ismenu` = 1 AND `status` = 1 ORDER BY id desc LIMIT 10   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_brand` WHERE `ypid` IN ('232','233','239','240','241','242','243','244','245','246','247') AND `status` = 1 ORDER BY id desc  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_ad` WHERE `ypid` IN ('232','233','239','240','241','242','243','244','245','246','247') AND `status` = 1 ORDER BY id desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_suite` [ RunTime:0.0030s ]
+SQL: SELECT `id`,`title`,`price_sex_0`,`price_sex_1` FROM `ht_suite` WHERE ( status=1 ) ORDER BY sort LIMIT 3   [ RunTime:0.0000s ]
+SQL: SELECT `id`,`title`,`price_sex_0`,`price_sex_1` FROM `ht_suite` WHERE ( status=1 ) ORDER BY sort desc LIMIT 6   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ht_question` [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `ht_question_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `ht_question_category` ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SELECT q.*,c.title as c_title FROM ht_question q left join ht_question_category c on q.c_id=c.id   ORDER BY vtime desc LIMIT 0,100   [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `ht_lesson` [ RunTime:0.0020s ]
+SQL: SELECT `id`,`title`,`content`,`ctime`,`pic` FROM `ht_lesson` ORDER BY ctime desc LIMIT 6   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ht_doctor` [ RunTime:0.0020s ]
+SQL: SELECT `id`,`title`,`ctime`,`pic`,`realname` FROM `ht_doctor` ORDER BY sort LIMIT 8   [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined offset: 6 D:\wamp64\www\hangtian\Runtime\Cache\Home\769e70f2e46f34ceb60619bbda5e4691.php 第 297 行.
+NOTIC: [8] Undefined offset: 6 D:\wamp64\www\hangtian\Runtime\Cache\Home\769e70f2e46f34ceb60619bbda5e4691.php 第 301 行.
+NOTIC: [8] Undefined variable: page D:\wamp64\www\hangtian\Runtime\Cache\Home\769e70f2e46f34ceb60619bbda5e4691.php 第 396 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.129007s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.129007s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-10T22:12:12+08:00 ] 127.0.0.1 /index.php?s=/Home/User/login.html
+SQL: SHOW COLUMNS FROM `ht_category` [ RunTime:0.0010s ]
+SQL: SELECT `id`,`name`,`pid`,`title`,`links` FROM `ht_category` WHERE `display` = 1 AND `status` = 1 AND `ismenu` = 1 ORDER BY sort desc  [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `ht_shopcart` [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: cart D:\wamp64\www\hangtian\Application\Home\Model\ShopcartModel.class.php 第 26 行.
+SQL: SHOW COLUMNS FROM `ht_ad` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_ad` WHERE `status` = 1 AND `ypid` = 0  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_category` WHERE `ismenu` = 2 AND `pid` = 0 AND `status` = 1 ORDER BY id asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_category` WHERE ( pid='77' )  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ht_category` WHERE ( pid='133' )  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_category` WHERE ( pid='137' )  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ht_category` WHERE ( pid='141' )  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: referr D:\wamp64\www\hangtian\Runtime\Cache\Home\b171d71961885d3bf0f7a9b2e0867b01.php 第 69 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+

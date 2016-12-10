@@ -1,0 +1,45 @@
+<extend name="Public/base"/>
+
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<!-- 标题栏 -->
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">消费类型管理</strong> /
+			<small>新增</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+	<div class="am-g ">
+		<div class="am-u-sm-10 am-center">
+			<form action="{:U()}" method="post" class="am-form">
+				<div class="am-form-group">
+					<label class="item-label">类型名称<span class="check-tips"></span></label>
+
+					<div class="controls">
+						<input type="text" class="text input-large" name="name" value="{$data.name}">
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label class="item-label">描述</label>
+
+					<div class="controls">
+						<textarea name="desc" id="desc" cols="30" rows="10">{$data.desc}</textarea>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<input type="hidden" name="id" value="{$data.id}">
+					<button class="am-btn am-btn-primary submit-btn " id="submit" type="submit" target-form="form-horizontal">
+						确 定
+					</button>
+					<button class="am-btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</block>
+
+<block name="script">
+	<script type="text/javascript">
+	</script>
+</block>

@@ -1,0 +1,126 @@
+<extend name="Base/common"/>
+<block name="body">
+
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">个人中心</li>
+			</ol>
+		</div>
+		<div class="userCenter am-cf">
+			<div class="am-u-sm-3">
+				<!-- 左侧菜单 -->
+				<include file="Public/leftmenu"/>
+				<!-- 左侧菜单 -->
+			</div>
+			<div id="memberCenter" class="userCenter-r am-u-sm-9 am-padding-xl"><!-- 个人中心 初始状态 start -->
+				<div class="center_right" id="MemberCenterCtrl">
+					<div class="am-g">
+						<div class="am-u-sm-6"><h2 class="am-fl">个人资料</h2></div>
+					</div>
+					<empty name='po'>
+						<div class="personal_info_none_goods">
+							<p>没有登录，<a href='{:U("user/login")}' class="red">请先登录</a></p>
+
+							<div class="cb"></div>
+						</div>
+						<else/>
+
+						<div class="am-g">
+							<div class="am-u-sm-6 am-cf">
+								<img src="__STATIC__/amaze/i/img-avatar.png" class="am-fl">
+								<p class="am-fl am-padding am-text-lg am-padding-top-0">{$po.realname}<br>
+									<span class="am-text-sm">会员等级：<span class="am-text-warning">普通会员</span></span><br>
+									<!--<a href="#" class="am-text-warning am-text-xs">设置头像 ></a></p>-->
+							</div>
+						</div>
+						<hr>
+						<form method="post" class="person-info am-form am-form-horizontal" name="form" action="{:U('update')}">
+							<div class="am-g">
+								<div class="am-form-group am-text-sm am-margin-bottom-0">
+									<label class="am-u-sm-2 am-form-label am-link-muted am-padding-top-0">真实姓名</label>
+									<div class="am-u-sm-10 am-padding-0">
+										<div class="am-u-sm-4 am-padding-0">
+											<!--<input class="am-input-sm" type="text" name="realname" value="{$po.realname}" >-->
+											{$po.realname}
+										</div>
+									</div>
+								</div>
+								<div class="am-form-group am-text-sm am-padding-top-sm am-margin-bottom-0">
+									<label class="am-u-sm-2 am-form-label am-link-muted am-padding-top-0">卡号</label>
+									<div class="am-u-sm-10 am-padding-0">
+										<div class="am-u-sm-4 am-padding-0">
+											{$po|get_card_num}
+										</div>
+									</div>
+								</div>
+								<div class="am-form-group am-text-sm am-padding-top-sm am-margin-bottom-0">
+									<label class="am-u-sm-2 am-form-label am-link-muted am-padding-top-0">性别</label>
+									<div class="am-u-sm-10 am-padding-0">
+										<div class="am-u-sm-4 am-padding-0">
+											{$po.sex|get_sex}
+										</div>
+									</div>
+								</div>
+								<div class="am-form-group am-text-sm am-padding-top-sm am-margin-bottom-0">
+									<label class="am-u-sm-2 am-form-label am-link-muted am-padding-top-0">身份证号</label>
+									<div class="am-u-sm-10 am-padding-0">
+										<div class="am-u-sm-4 am-padding-0">
+											{$po.id_num|cover_privacy}
+										</div>
+									</div>
+								</div>
+								<div class="am-form-group am-text-sm am-padding-top-sm am-margin-bottom-0">
+									<label class="am-u-sm-2 am-form-label am-link-muted am-padding-top-0">手机号</label>
+									<div class="am-u-sm-10 am-padding-0">
+										<div class="am-u-sm-4 am-padding-0">
+											{$po.mobile}
+											<!--<a href="{:U('Account/security')}" class="am-text-warning am-padding-left">修改手机</a>-->
+										</div>
+									</div>
+								</div>
+								<input type="hidden" name="id" value="{$po.id}"/>
+								<div class="am-form-group am-text-sm am-padding-top-sm am-margin-bottom-0">
+									<label class="am-u-sm-2 am-form-label am-link-muted am-padding-top-0">单位</label>
+									<div class="am-u-sm-10 am-padding-0">
+										<div class="am-u-sm-4 am-padding-0">
+											{$po.company}
+										</div>
+									</div>
+								</div>
+								<div class="am-form-group am-text-sm am-padding-top-sm am-margin-bottom-0">
+									<label class="am-u-sm-2 am-form-label am-link-muted am-padding-top-0">部门</label>
+									<div class="am-u-sm-10 am-padding-0">
+										<div class="am-u-sm-4 am-padding-0">
+											{$po.dept}
+										</div>
+									</div>
+								</div>
+								<div class="am-form-group am-text-sm am-padding-top-sm am-margin-bottom-0">
+									<label class="am-u-sm-2 am-form-label am-link-muted am-padding-top-0">职位</label>
+									<div class="am-u-sm-10 am-padding-0">
+										<div class="am-u-sm-4 am-padding-0">
+											{$po.position}
+										</div>
+									</div>
+								</div>
+								<!--<div class="am-form-group am-text-sm am-padding-top-sm am-margin-bottom-0">-->
+									<!--<label class="am-u-sm-2 am-form-label am-link-muted am-padding-top-0">&nbsp;</label>-->
+									<!--<div class="am-u-sm-10 am-padding-0">-->
+										<!--<div class="am-u-sm-4 am-padding-0">-->
+											<!--<input type="submit" class="am-btn  am-btn-warning am-radius am-padding-left-xl am-padding-right-xl" value="修改"/>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>-->
+							</div>
+						</form>
+
+					</empty>
+					<!-- 个人中心 初始状态 end -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">_init_area();</script>
+</block>

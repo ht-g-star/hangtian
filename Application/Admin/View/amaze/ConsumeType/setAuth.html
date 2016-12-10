@@ -1,0 +1,55 @@
+<extend name="Public/base"/>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<!-- 标题栏 -->
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">消费类别管理</strong> /
+			<small>用户组授权</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+	<div id="consume_types am-g">
+		<div class="am-u-sm-12">
+			<form class="am-form form-horizontal" action="{:U('')}" method="post" enctype="application/x-www-form-urlencoded">
+				<div class="am-u-sm-12">
+					<label class="item-label">{$Think.get.group_name} 所拥有的消费类别权限</label>
+
+					<div class="am-u-sm-6">
+						<ul class="am-list ">
+							<volist name="lists" id="vo">
+								<li class="">
+									<label>
+										<input class="consume_types"
+										<if condition="in_array($vo['id'],$selected)">checked</if>
+										type="checkbox" name="type_ids[]" value="{$vo.id}">{$vo.name}
+									</label>
+								</li>
+							</volist>
+						</ul>
+					</div>
+				</div>
+				<div style="margin-top: 10px;">
+					<input type="hidden" name="group_id" value="{$Think.get.group_id}">
+					<button type="submit" class="am-btn am-btn-primary submit-btn ajax-post" target-form="form-horizontal">
+						确 定
+					</button>
+					<button class="am-btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</block>
+<block name="script">
+	<script type="text/javascript">
+		$(function () {
+			var group = [{$user_groups}];
+			$('.consume_types').each(function () {
+				if ($.inArray(parseInt(this.value, 10), group) > -1) {
+					$(this).prop('checked', true);
+				}
+			});
+		});
+		// 导航高亮
+	</script>
+</block>

@@ -1,0 +1,37 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<div class="user-center-detail">
+		<ul>
+			<li>
+				<dd class="am-fl">姓名</dd>
+				<dd class="am-fr">{$_user.realname}&nbsp;</dd>
+			</li>
+			<li>
+				<dd class="am-fl">卡号</dd>
+				<dd class="am-fr">{$_user.card_num|default='暂无'}&nbsp;</dd>
+			</li>
+			<li>
+				<dd class="am-fl">等级</dd>
+				<dd class="am-fr">{$_user.rank|get_rank}&nbsp;</dd>
+			</li>
+			<li>
+				<dd class="am-fl">性别</dd>
+				<dd class="am-fr">{$_user.sex|get_sex}&nbsp;</dd>
+			</li>
+			<li>
+				<dd class="am-fl">手机</dd>
+				<dd class="am-fr">{$_user.mobile}&nbsp;</dd>
+			</li>
+			<li>
+				<dd class="am-fl">单位</dd>
+				<dd class="am-fr">{$_user.company}&nbsp;</dd>
+			</li>
+			<li>
+				<dd class="am-fl">部门</dd>
+				<dd class="am-fr">{$_user.dept}&nbsp;</dd>
+			</li>
+
+		</ul>
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>

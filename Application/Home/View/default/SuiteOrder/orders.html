@@ -1,0 +1,45 @@
+<volist name="list" id="po">
+	<tr class="single" onmouseover="this.className='singlehover'" onmouseout="this.className='single'">
+		<td class="order-detail">
+
+				<!--<input class="ids row-selected" type="checkbox" name="ids[]" value="{$po.id}">-->
+			<label>
+				<span class="am-text-lg am-padding-left num-text">{$po.title}</span>
+
+			</label><br>
+			<span class="am-text-sm am-link-muted am-padding-left num-text">订单编号:{$po.order_no}</span><br>
+			<span class="am-text-sm am-link-muted am-padding-left num-text">下单时间：{$po.ctime|date='Y-m-d H:i:s',###}</span>
+
+			<!-- 列表详情区域开始 -->
+			<!-- 左边商品区域开始 -->
+		<td class="c2  num-text">{$po.count}</td>
+		<td class="three-area am-text-warning num-text">
+			￥{$po.cost}
+		</td>
+
+		<td class="deal-area">
+			<p class="red">
+				<switch name="po.status">
+					<case value="0">取消</case>
+					<case value="1">待支付</case>
+					<case value="10">待登记</case>
+					<case value="11">待使用</case>
+					<case value="20">完成</case>
+				</switch>
+			</p>
+		</td>
+		<td class="act-area">
+			<a href="{:U('SuiteOrder/detail?id='.$po['id'])}">查看详情</a>
+			<if condition="$po['status'] eq 1">
+				|
+				<a class='confirm' href="{:U('Home/Pay/index',array('so_id'=>$po['id']))}">前去支付</a>
+			</if>
+			<if condition="$po['status'] eq 20">
+				<!--<a class='confirm' href="{:U('SuiteOrder/detail',array('id'=>$po['id']))}">查看报告</a>-->
+				<!--<a class='confirm' href="{:U('SuiteOrder/comment',array('id'=>$po['id']))}">评价</a>-->
+
+			</if>
+		</td>
+		<!-- 列表详情区域结束 -->
+	</tr>
+</volist>

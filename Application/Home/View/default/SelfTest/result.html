@@ -1,0 +1,31 @@
+<extend name="Base/common"/>
+<block name="style">
+
+</block>
+<block name="body">
+	<!--content begin-->
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">健康自测</li>
+			</ol>
+		</div>
+		<div class="con-box am-padding-xl am-margin-top-xl am-margin-bottom-xl">
+			<div class="am-g am-padding-xl">
+				<div class="am-u-sm-5 am-u-sm-centered am-text-center am-padding-xl am-margin-xl">
+					<h2 class="am-link-muted">我们为您推荐的体检套餐为</h2>
+
+					<h1 class="am-padding-0 am-margin-0">{$data.title}</h1>
+					<a href="{:U('Home/Suite/detail',array('id'=>$data['id']))}" class="am-btn am-btn-success am-btn-block am-margin-top-lg am-padding-top-sm am-padding-bottom-sm">
+						立刻体检
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--content end-->
+
+</block>
+<block name="script">
+</block>

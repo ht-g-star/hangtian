@@ -1,0 +1,67 @@
+<extend name="Public/base"/>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<!-- 标题栏 -->
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">行为管理</strong> /
+			<small>短信日志</small>
+		</div>
+	</div>
+</block>
+<block name="body">
+	<div class="am-g am-padding">
+		<!-- 标题栏 -->
+		<div class="main-title">
+			<h2>短信日志</h2>
+		</div>
+		<div class="am-margin-bottom">
+			<form action="" method="post" class="am-form">
+				<label >号码:</label>
+				<input type="tel" value="{$Think.post.mobile}"  name="mobile" placeholder="输入号码">
+				<button class="btn am-btn am-btn-default am-btn-sm " type="submit">查询</button>
+			</form>
+
+			<!---->
+			<!--<button class="btn am-btn am-btn-default am-btn-sm ajax-post confirm" target-form="ids" url="{:U('remove')}">删 除</button>-->
+		</div>
+		<!-- 数据列表 -->
+		<div class="data-table">
+			<table class="am-table am-table-striped am-table-hover am-table-compact am-text-nowrap">
+				<thead>
+				<tr>
+					<!--<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>-->
+					<th class="">编号</th>
+					<th class="">号码</th>
+					<th class="">发送内容</th>
+					<th class="">发送时间</th>
+				</tr>
+				</thead>
+				<tbody>
+				<notempty name="_list">
+					<volist name="_list" id="vo">
+						<tr>
+							<td>{$vo.id}</td>
+							<td>{$vo.mobile}</td>
+							<td>{$vo.content}</td>
+							<td><span>{$vo.create_time|time_format}</span></td>
+						</tr>
+					</volist>
+					<else/>
+					<td colspan="6" class="text-center"> aOh! 暂时还没有内容!</td>
+				</notempty>
+				</tbody>
+			</table>
+		</div>
+		<!-- 分页 -->
+		<div class="page">{$_page}</div>
+		<!-- /分页 -->
+	</div>
+</block>
+<block name="script">
+	<script type="text/javascript">
+		$(function () {
+			$("#action_add").click(function () {
+				window.location.href = $(this).attr('url');
+			})
+		})
+	</script>
+</block>

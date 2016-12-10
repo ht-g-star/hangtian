@@ -1,0 +1,50 @@
+<extend name="Base/mobile_base"/>
+<block name="style">
+
+</block>
+<block name="body">
+	<volist name="addresses" id="a">
+		<div class="am-g">
+			<div class="am-u-sm-12">
+				<h4>{$a.realname} &nbsp; {$a.cellphone}
+					<eq name="a.id" value="$_user.address_id">
+						<span class="am-badge am-badge-danger am-fr">默认</span>
+					</eq>
+				</h4>
+			</div>
+			<div class="am-u-sm-12">
+				<notempty name="a.province">{$a.province}</notempty>
+				<notempty name="a.city">{$a.city}</notempty>
+				<notempty name="a.area">{$a.area}</notempty>
+				<notempty name="a.address">{$a.address}</notempty>
+			</div>
+			<div class="am-u-sm-12 am-g-collapse">
+				<div class=" am-u-sm-6">
+					<label>
+						<input type="radio" name="address_id" value="{$a.id}"
+						<eq name="a.id" value="$_user.address_id">
+							checked
+						</eq>
+						>
+						设为默认
+					</label>
+				</div>
+				<div class="am-u-sm-6 ">
+					<a class="am-btn am-fr am-btn-default am-btn-xs am-icon-trash confirm" href="{:U('User/del_address',array('aid'=>$a['id']))}">删除</a>
+				</div>
+			</div>
+		</div>
+		<div class="space"></div>
+	</volist>
+	<include file="Base/bottom_nav"/>
+</block>
+<block name="script">
+	<script>
+		$("input[name=address_id]").change(function () {
+			var address_id = $(this).val();
+			$.get("{:U('User/set_address_id')}", {'aid': address_id}, function (data) {
+				location.reload();
+			});
+		});
+	</script>
+</block>

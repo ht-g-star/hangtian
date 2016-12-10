@@ -1,0 +1,80 @@
+<!--popup 编辑单位帐号-->
+<div class="am-popup" id="pop_edit">
+	<div class="am-popup-inner">
+		<div class="am-popup-hd">
+			<h4 class="am-popup-title">编辑单位帐号</h4>
+			<span data-am-modal-close class="am-close">&times;</span>
+		</div>
+		<div class="am-popup-bd">
+			<!--begin-->
+			<form action="{:U('index',array('type'=>'edit'))}" method="post" class="am-form am-form-horizontal form-horizontal">
+				<input type="hidden"  name="id" value="">
+
+				<div class="am-form-group">
+					<label for="name" class="am-u-sm-3 am-form-label">名称</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="name" name="name" placeholder="单位名称">
+						<small>输入单位帐号的名字</small>
+					</div>
+				</div>
+
+
+				<div class="am-form-group">
+					<label for="username" class="am-u-sm-3 am-form-label">简称</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="username" name="username" placeholder="简称">
+						<small>输入单位简称</small>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="contact" class="am-u-sm-3 am-form-label">联系人</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="contact" name="contact" placeholder="单位的联系人">
+						<small>输入单位的联系人</small>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="code" class="am-u-sm-3 am-form-label">编码</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="code" name="code" placeholder="编码">
+						<small>输入单位的编码</small>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="contact_tel" class="am-u-sm-3 am-form-label">联系方式</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="contact_tel" name="contact_tel" placeholder="单位的联系人手机">
+						<small>输入单位的联系人的手机号</small>
+					</div>
+				</div>
+
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">状态</label>
+
+					<div class="am-u-sm-9">
+						<label class="am-radio-inline"><input type="radio" value="1" name="status"> 启用
+						</label>
+						<label class="am-radio-inline"><input type="radio" value="0" name="status"> 禁用 </label>
+					</div>
+				</div>
+
+
+				<div class="am-form-group">
+					<div class="am-u-sm-9 am-u-sm-push-3">
+						<button type="submit" class="am-btn am-btn-primary">保存</button>
+					</div>
+				</div>
+			</form>
+			<!--over-->
+		</div>
+	</div>
+</div>

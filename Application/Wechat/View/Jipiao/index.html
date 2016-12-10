@@ -1,0 +1,204 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>机票</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/sm.min.css">
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/sm-extend.css">
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/page.css">
+	<style>
+		select{width: 96%;font-size: 1rem;line-height: 2rem;color: #333;margin-left: 4%;background: none;}
+        h1.title{z-index:1;}
+        header.bar a.pull-left{position:relative;z-index:2;}
+	</style>
+</head>
+<body>
+<style type="text/css">
+.icon-next, .icon-prev{height:2rem;background-position:left center;background-repeat: no-repeat;}
+</style>
+<div class="page-group">
+    <div class="page page-current">
+        <header class="bar bar-nav">
+            <a href="javascript:history.back()" class="fa fa-angle-left pull-left"></a>
+            <h1 class="title">机票</h1>
+        </header>
+        <nav class="bar bar-header-secondary buttons-tab">
+            <a class="tab-link active button" href="#tab1">单程</a>
+            <a class="tab-link button" href="#tab2">往返</a>
+        </nav>
+
+        <div class="content">
+            <div class="tabs">
+                <div id="tab1" class="tab active">
+                    <div class="content-block so-term">
+                        <div class="row">
+                            <div class="item-content col-50" >
+                                <label class="item-title label">出发</label>
+                               <!-- <div class="item-input">无锡</div>-->
+                                <!--<input type="text" class="item-input col-100" name="chufa"  id="chufa">-->
+                                <select name='chufa'>
+                                	<option value="">出发城市</option>
+                                	<volist name='city1' id='vo'>
+                                		<option value="{$vo.name}">{$vo.name}</option>
+                                	</volist>
+                                </select>
+                            </div>
+                            <div class="item-content col-50" >
+                                <label class="item-title label">到达</label>
+                                <!--<div class="item-input">南京</div>-->
+                                <!--<input type="text" class="item-input col-100" name="end" style="text-align: left;">-->
+                            	<select name='end'>
+                                	<option value="">到达城市</option>
+                                	<volist name='city2' id='vo1'>
+                                		<option value="{$vo1.name}">{$vo1.name}</option>
+                                	</volist>
+                                </select>
+                            </div>
+                            <a href="javascript:void(0);" class="fa fa-exchange" id="changecity"></a>
+                        </div>
+                        <div class="row">
+                            <div class="item-content col-100">
+                                <label class="item-title label">出发日期</label>
+                                <!--<div class="item-input">06月14日<small>周二</small></div>-->
+                                <input type="text" class="item-input " placeholder="请选择出发日期" data-toggle='date' id="startdate" name="startdate" value="" >
+                            </div>
+                        </div>
+                        <p><button type="button" class="button button-fill button-warning" id="search" onclick="search()">搜索</button></p>
+                    </div>
+                </div>
+                <div id="tab2" class="tab">
+                    <div class="content-block so-term wf">
+                    	<form id='wfform'>
+                        <div class="row">
+                            <div class="item-content col-50">
+                                <label class="item-title label">出发</label>
+                                <div class="item-input">
+                                	<select name='chufa'>
+	                                	<option value="">出发城市</option>
+	                                	<volist name='city1' id='vo'>
+	                                		<option value="{$vo.name}">{$vo.name}</option>
+	                                	</volist>
+	                                </select>
+                                </div>
+                            </div>
+                            <div class="item-content col-50">
+                                <label class="item-title label">到达</label>
+                                <div class="item-input">
+                                	<select name='end'>
+	                                	<option value="">到达城市</option>
+	                                	<volist name='city2' id='vo1'>
+	                                		<option value="{$vo1.name}">{$vo1.name}</option>
+	                                	</volist>
+	                                </select>
+                                </div>
+                            </div>
+                            <a href="javascript:void(0);" class="fa fa-exchange"></a>
+                        </div>
+                        <div class="row">
+                            <div class="item-content col-50">
+                                <label class="item-title label">去程日期</label>
+                                <div class="item-input">
+                                	  <input type="text" class="item-input " placeholder="请选择出发日期" data-toggle='date' id="wfstime" name="startdate" value="" >
+                                </div>
+                            </div>
+                            <div class="item-content col-50">
+                                <label class="item-title label">返程日期</label>
+                                <div class="item-input">
+                                	  <input type="text" class="item-input " placeholder="请选择返程日期" data-toggle='date' id="wfetime" name="enddate" value="" >
+                                </div>
+                            </div>
+                            <!--<span class="time">3天</span>-->
+                        </div>
+                        <p><button type="button" class="button button-fill button-warning" id="wfsearch" onclick="wfsearch()">搜索</button></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type='text/javascript' src='/Public/hangtian/weixin/js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='/Public/hangtian/weixin/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='/Public/hangtian/weixin/js/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript">
+        function search(){
+            var chufa = $('select[name="chufa"]').val();
+            var end = $('select[name="end"]').val();
+            var startdate = $('input[name="startdate"]').val();
+            if(!chufa.length){
+                alert('请选择出发城市！');
+                return;
+            }else if(!end.length){
+                alert('请选择到达城市!');
+                return;
+            }else if(chufa == end){
+                alert('出发和到达城市不能相同!');
+                return;
+            }else if(!startdate.length){
+                alert('请选择出发时间!');
+                return;
+            }else{
+                location.href='{:U("select")}?chufa='+chufa+'&end='+end+'&startdate='+startdate;
+            }
+        }
+        $("#startdate").calendar();
+        $("#wfstime").calendar();
+        $("#wfetime").calendar();
+        $('#changecity').on('click',function(){
+            var chufa = $('select[name="chufa"]').val();
+            var end = $('select[name="end"]').val();
+            if(chufa && end){
+                $('select[name="chufa"]').val(end);
+                $('select[name="end"]').val(chufa);
+            }
+        })
+        $.fn.serializeObject=function(){  
+            var obj=new Object();  
+            $.each(this.serializeArray(),function(index,param){  
+                if(!(param.name in obj)){  
+                    obj[param.name]=param.value;  
+                }  
+            });  
+            return obj;  
+        };  
+        //往返搜索
+        function wfsearch(){
+            var data=$('#wfform').serializeObject();
+            if(!data.chufa){
+                alert('请选择出发城市！');
+                return false;
+            }
+            if(!data.chufa){
+                alert('请选择到达城市!');
+                return false;
+            }
+            if(!data.startdate){
+                alert('请选择出发日期!');
+                return false;
+            }
+            if(!data.enddate){
+                alert('请选择返程日期!');
+                return false;
+            }
+
+
+            var tempstart = new Date(data.startdate);
+            var tempend = new Date(data.enddate);
+
+            if(tempstart > tempend){
+                alert("返程日期不能早于出发日期！");
+                return false;
+            }
+
+            location.href='{:U("select")}?'+$('#wfform').serialize()+'&iswf=1';
+            return false;
+        }
+</script>
+
+</body>
+</html>

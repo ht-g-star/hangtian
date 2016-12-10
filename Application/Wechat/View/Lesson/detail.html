@@ -1,0 +1,21 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<!-- 文章 -->
+	<article class="am-article am-text-center">
+		<div class="am-article-hd am-padding-top">
+			<h3 class="am-article-title">{$data.title}</h3>
+		</div>
+		<div class="am-article-bd">
+			<p class="am-text-center">
+				<notempty name="data.pic">
+					<img class="am-text-center" style="margin:0 auto;" height="160px" width="230px" src="{$data.pic}">
+				</notempty>
+			</p>
+			<div class="am-text-left am-padding-left-sm am-padding-right-sm">
+				<p class="am-text-left  ">
+					{$data.content}
+				</p>
+			</div>
+		</div>
+	</article>
+</block>

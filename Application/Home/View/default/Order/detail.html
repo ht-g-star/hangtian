@@ -1,0 +1,161 @@
+<extend name="Base/common"/>
+<block name="body">
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">个人中心</li>
+			</ol>
+		</div>
+			<div class="userCenter am-cf">
+				<div class="am-u-sm-3">
+					<!-- 左侧菜单 -->
+					<include file="Public/leftmenu"/>
+					<!-- 左侧菜单 -->
+				</div>
+				<div class="center_right userCenter-r am-u-sm-9 am-padding">
+
+					<span class="red" style="display: block;padding:15px;font-size:17px;">订单详情查看<eq name='ordertype.ordertype' value='1'>(发货，收货 ，快递查询)</eq></span>
+
+					<empty name='detaillist'>
+						<div class="am-text-center am-padding-xl">
+							<p>没有该订单，<a href='{:U("shop/index")}' class="am-text-warning">查询错误</a></p>
+
+							<div class="cb"></div>
+						</div>
+						<else/>
+
+						<table id="table" class="detailtable" width="100%">
+							<volist name="detaillist" id="po">
+								<tbody>
+								<tr width="100%">
+									<th width="30%" class="am-text-sm">订单号：<span class="num-text">{$po.orderid}</span></th>
+									<th width="30%" class="am-text-sm">下单时间：<span class="num-text">{$po.create_time|date='Y-m-d H:i',###}</span></th>
+									<th class="am-text-sm"><eq name='po.ordertype' value='1'>物流：{$po.express|default="暂无"}</eq></th>
+									<th class="am-text-sm"><eq name='po.ordertype' value='1'>运单号：{$po.express_code|default="暂无"}<br><a target="_blank" href="http://www.kuaidi100.com/wuliu.shtml?postid="{$po.express_code}>查看物流</a></eq></th>
+								</tr>
+
+
+								<volist name="po['id']" id="vo">
+									<tr>
+										<td>
+											<div class="am-cf" style="width:250px;">
+													<if condition="$vo['stype'] neq 1">
+														<if condition="$vo['stype'] eq 2">
+														<A href="{:U('hotel/detail?id='.$vo['sid'])}" target="_blank">
+														<img src="{$vo.spic}" width="70" height="70" class="am-fl"/>
+														</A>
+														<span class="am-text-sm am-fr" style="width:170px;">{$vo.sname}</span>
+														</if>
+														<if condition="$vo['stype'] eq 3">
+														<A href="{:U('line/linedetail?xl_id='.$vo['sid'])}" target="_blank">
+														<img src="{$vo.spic}" width="70" height="70" class="am-fl"/>
+														</A>
+														<span class="am-text-sm am-fr" style="width:170px;">{$vo.sname}</span>
+														</if>
+														<else/>
+														<A href="{:U('Article/detail?id='.$vo['goodid'])}">
+														<img src="{$vo.goodid|get_cover_id|get_cover='path'}" width="70" height="70" class="am-fl"/>
+														</A>
+														<span class="am-text-sm am-fr" style="width:170px;">{$vo.goodid|get_good_name}</span>
+													</if>
+													
+											</div>
+										</td>
+										<td align="center">
+											<eq name='ordertype.ordertype' value='1'>规格：{$vo.parameters|default="无"}</eq>
+										</td>
+										<td align="center">单价：{$vo.price} 元</td>
+										<td>数量： {$vo.num} 件</td>
+									</tr>
+									
+									<if condition="$vo['stype'] neq 1">
+									<notempty name="po.order_beizhu">
+									<tr>
+										<td colspan="4">备注：{$po.order_beizhu}</td>
+									</tr>
+									</notempty>
+									</if>
+								</volist>
+								
+								<tr>
+									<td colspan="1" align="left">联系人：{$address.realname}</td>
+									<td colspan="3" align="left">联系电话：{$address.cellphone}</td>
+								</tr>
+
+								<eq name='ordertype.ordertype' value='2'>
+								<tr>
+									<td align="left">入住人数：{$po['crj_num']+$po['rtj_num']}</td>
+									<td colspan="3" align="left">入住时间：{$po['cftime']}</td>
+								</tr>
+								</eq>
+								<eq name='ordertype.ordertype' value='3'>
+									<tr>
+										<td colspan="1" align="left">出行人：{$ordertype.cxrname}</td>
+										<td colspan="3" align="left">出行人电话：{$ordertype.cxrphone}</td>
+									</tr>
+									<tr>
+										<td align="left">出行人数：{$po['crj_num']+$po['rtj_num']}</td>
+										<td colspan="3" align="left">出发时间：{$po['cftime']}</td>
+									</tr>
+								</eq>
+								</eq>
+								<tr>
+									<td colspan="4" align="right" style="background:#ebf8ff">金额：<span
+											class="am-text-warning">{$po.total_money|default="0"}</span>元<eq name='ordertype.ordertype' value='1'>（运费:<span class="red">{$po.ship_price|default="0"}</span>元）</eq>
+									</td>
+								</tr>
+
+
+							</volist>
+							<if condition="$vo['stype'] eq 1">
+							<volist name="translist" id="vo">
+								<tr>
+									<td colspan="5" align="left">收货地址：<span class="red">{$vo.realname} {$vo.cellphone}  {$vo.province} {$vo.city} {$vo.area}{$vo.address}</span>
+									</td>
+								</tr>
+								<!-- 自营还是入驻商家判断 -->
+
+								<tr>
+									<td colspan="5" align="left">发货地址：<span class="red"> {$po.send_name} {$po.send_contact}{$po.send_address} </span>
+									</td>
+								</tr>
+								<!-- 自营还是入驻商家判断 end -->
+							</volist>
+							</if>
+							<tr>
+								<td colspan="5" align="left">
+									<notempty name="cancel">
+										<section class="am-panel am-panel-default">
+											<header class="am-panel-hd">
+												<h3 class="am-panel-title">取消订单申请-
+													<eq name="cancel.status" value="2" >已拒绝</eq>
+													<eq name="cancel.status" value="3" >已经通过</eq>
+													<eq name="cancel.status" value="1" >待审核</eq>
+												</h3>
+											</header>
+											<div class="am-panel-bd">
+												<ul class="am-list">
+													<li>申请问题:{$cancel.title|default='暂无'}</li>
+													<li>申请原因:{$cancel.reason|default='暂无'}</li>
+													<li>申请时间:{$cancel.create_time|time_format},更新时间:{$cancel.update_time|time_format}</li>
+													<li>拒绝原因: {$cancel.refuse_info|default='暂无'}</li>
+												</ul>
+											</div>
+										</section>
+									</notempty>
+								</td>
+							</tr>
+
+							</tbody>
+						</table>
+					</empty>
+					<!--<span class="red" style="display: block;padding:15px;font-size:17px;">快递详情</span>-->
+
+					<!--<div id="retData" style="margin-left:20px">{$kuaidata|default="暂无"}</div>-->
+				</div>
+
+				<!-- 个人中心 初始状态 end -->
+			</div>
+		</div>
+</block>

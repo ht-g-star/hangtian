@@ -1,0 +1,144 @@
+<extend name="Base/common"/>
+<block name="body">
+
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">个人中心</li>
+			</ol>
+		</div>
+		<div class="userCenter am-cf">
+			<div class="am-u-sm-3">
+				<!-- 左侧菜单 -->
+				<include file="Public/leftmenu"/>
+				<!-- 左侧菜单 -->
+			</div>
+			<div class="center_right" style="display: none;">
+				<div class="center_right_loading"></div>
+			</div>
+			<div id="memberCenter" class="userCenter-r am-u-sm-9 am-padding-xl"><!-- 个人中心 初始状态 start -->
+				<div class="center_right" id="MemberCenterCtrl" style="display: block;">
+					<div class="am-g">
+						<div class="am-u-sm-6">
+							<h2 class="am-fl">收货地址管理
+								<small class="am-link-muted">（选中表示为默认）</small>
+							</h2>
+						</div>
+					</div>
+
+					<form method="post" class="person-add" name="form" action="{:U('update')}">
+						<!--收货地址-->
+						<a href='{:U("Address/add")}' class="btn-xiugai orange"/><span class="am-icon-plus"></span>
+						新增地址 </a>
+
+						<php>$user=session("user_auth");</php>
+						<div class="am-g am-padding am-text-sm">
+							<volist name="list" id="vo">
+								<div class="address-box am-u-sm-12 am-padding am-margin-bottom">
+									<div class="am-u-sm-1 am-padding-0 am-margin-0">
+
+										<input type="radio" <eq name="vo.id" value="$user.address_id" >checked="checked"</eq> name="id" value="'.$vo['id'].'">
+									</div>
+									<div class="am-u-sm-9 am-padding-0 am-margin-0">
+										{$vo.realname}<br>
+										{$vo.cellphone}<br>
+										{$vo.province} {$vo.city} {$vo.area} <br>
+										{$vo.address}
+									</div>
+									<div class="am-u-sm-2 am-padding-0 am-margin-0">
+										<span class="edit-address am-text-right">
+										<a class="am-text-warning" onclick="shezhi('{$vo[id]}');">设为默认地址</a><br>
+										<a class="am-link-muted" onclick="shanchu('{$vo[id]}');">删除</a>
+
+									</span>
+									</div>
+								</div>
+							</volist>
+						</div>
+					</form>
+
+
+					<script type="text/javascript">
+
+						$("#btn-add").click(function () {
+							$("li.add").toggle();
+						});
+
+						//增加地址
+						$("#btn-save").click(function () {
+							var p = $("#address").val();
+							var real = $("#realname").val();
+							var ph = $("#phone").val();
+							var url = "{:U('save')}";
+							if (p == '' || real == '' || ph == '') {
+								alert("内容不能为空");
+								return false;
+							}
+							else {
+								$.ajax({
+									type: 'post', //传送的方式,get/post
+									url: url, //发送数据的地址
+									data: {posi: p, pho: ph, rel: real},
+									dataType: "json",
+									success: function (data) {
+										var str = '<li><span><input type="radio" name="id" value="' + data + '" id="default"/></span>' +
+												p + "&nbsp;" + real + "&nbsp;" + ph + '</li>';
+										$("li.add").before(str);
+										$("li.add").fadeOut();
+									},
+									error: function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+										alert(XMLHttpRequest + thrownError);
+									}
+								})
+								//ajax over
+							}//else over
+						});
+						//设置默认
+						function shezhi(val) {
+
+							//判断新地址是否选中,获取地址id
+							$.ajax({
+								type: 'post', //传送的方式,get/post
+								url: '{:U("shezhi")}', //发送数据的地址
+								data: {id: val},
+								dataType: "json",
+								success: function (data) {
+									alert(data);
+									location.reload();
+								},
+								error: function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+									alert(XMLHttpRequest + thrownError);
+								}
+							})
+							//else over
+						}
+						//设置默认
+						function shanchu(val) {
+							//判断新地址是否选中,获取地址id
+							if (confirm("是否确认?")) {
+								$.ajax({
+									type: 'post', //传送的方式,get/post
+									url: '{:U("deleteAddress")}', //发送数据的地址
+									data: {id: val},
+									dataType: "json",
+									success: function (data) {
+										alert(data.msg);
+										window.location.reload();
+									},
+									error: function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+										alert(XMLHttpRequest + thrownError);
+									}
+								})
+
+							}
+						}
+
+
+					</script>
+					<!-- 个人中心 初始状态 end --></div>
+			</div>
+		</div>
+	</div>
+
+</block>

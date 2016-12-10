@@ -1,0 +1,54 @@
+<extend name="Base/common"/>
+<block name="body">
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">个人中心</li>
+			</ol>
+		</div>
+		<div class="userCenter am-cf">
+			<div class="am-u-sm-3">
+				<!-- 左侧菜单 -->
+				<include file="Public/leftmenu"/>
+				<!-- 左侧菜单 -->
+			</div>
+			<div id="memberSuiteOrder" class="userCenter-r am-u-sm-9 am-padding-xl"><!-- 个人中心 初始状态 start -->
+				<div class="am-g" id="MemberSuiteOrderCtrl">
+					<div class="am-u-sm-12">
+						<include file="nav"/>
+					</div>
+					<div class="am-u-sm-12">
+						<table class="am-table">
+							<empty name='list'>
+									<p class="am-text-center am-padding-xl">没有待使用的体检预约</p>
+								<else/>
+								<thead>
+								<tr>
+									<th class="good-name">预约</th>
+									<th class="good-num">数量</th>
+									<th class="good-total">总金额(元)</th>
+									<th class="good-status">交易状态</th>
+									<th class="deal-action">交易操作</th>
+								</tr>
+								</thead>
+								<tbody>
+								<include file="orders"/>
+								</tbody>
+							</empty>
+						</table>
+						<!-- 分页 -->
+						<div class="page">
+							{$page}
+						</div>
+						<!-- 个人中心 初始状态 end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</block>
+<block name="script">
+	<script> //tab菜单切换
+	</script>
+</block>

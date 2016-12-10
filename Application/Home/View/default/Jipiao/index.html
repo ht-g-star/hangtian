@@ -1,0 +1,316 @@
+<extend name="Base/common"/>
+	<link rel="stylesheet" href="/Public/hangtian/css/amazeui.min.css" />
+<block name="style">
+	<title>机票预定</title>
+    <link rel="stylesheet" href="/Public/hangtian/plugin/dtp1/jquery.datetimepicker.css" />
+    <link rel="stylesheet" href="/Public/hangtian/css/style.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="/Public/hangtian/css/style1-IE.css" />
+    <script type="text/javascript" src="/Public/hangtian/js/jquery-1.11.0.js" ></script>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script type="text/javascript" src="/Public/hangtian/js/amazeui.ie8polyfill.min.js" ></script>
+    <![endif]-->
+</block>
+<block name="body">
+<!--面包屑导航-->
+<div class="am-g am-g-fixed am-g-collapse">
+    <div class="am-breadcrumb am-breadcrumb-slash">
+        <li><!-- <a href="/">首页 --></a
+        <li><a href="/index.php?s=/Home/Shop/index.html">健康商城</a></li>
+        <li class="am-active"><a href="#">机票预定</a></li>
+    </div></li>
+</div>
+<form id="searchform">
+<!--section-->
+<div class="ticket_bg">
+    <div class="am-g am-g-fixed am-g-collapse">
+        <div class="am-u-lg-5 search_ticket_group">
+            <!-- <div class="ticket_tab_bar am-avg-lg-2">
+                <li class="active">国内机票</li>
+                <li>国际机票</li>
+            </div> -->
+            <div class="ticket_tab_cnt">
+                <div class="ticket_form_row am-g">
+                    <label class="am-u-lg-3 am-text-right">航程类型:</label>
+                    <div class="am-radio-inline am-u-lg-3">
+                        <input type="radio" name="hbtype" value="dc" checked="checked">
+                        <span>单程</span>
+                    </div>
+                    <div class="am-radio-inline am-u-lg-3 am-u-end">
+                        <input type="radio" name="hbtype" value="wf">
+                        <span>往返</span>
+                    </div>
+                </div>
+                <div class="ticket_form_row am-g">
+                    <label class="am-u-lg-3 am-text-right">出发城市:</label>
+                    <input id="startcity" name="startcity" class="am-u-lg-6 am-u-end stext" type="text" placeholder="中文/拼音" />
+                    <img src="/Public/hangtian/img/add_icon.jpg" />
+
+                </div>
+                <div class="ticket_form_row am-g">
+                    <label class="am-u-lg-3 am-text-right">到达城市:</label>
+                    <input id="endcity" name="endcity" class="am-u-lg-6 am-u-end" type="text" placeholder="中文/拼音" />
+                    <img src="/Public/hangtian/img/add_icon.jpg" />
+                </div>
+                <div class="ticket_form_row am-g">
+                    <label class="am-u-lg-3 am-text-right">出发日期:</label>
+                    <input id="startdate" name="startdate" class="am-u-lg-6 am-u-end" type="text" placeholder="点击选择出发日期" />
+                    <img src="/Public/hangtian/img/date_icon.jpg" />
+                </div>
+               <div class="ticket_form_row am-g">
+                    <label class="am-u-lg-3 am-text-right">返程日期:</label>
+                    <input id="backdate" name="backdate" class="am-u-lg-6 am-u-end" type="text" placeholder="点击选择返程日期" disabled="disabled" />
+                    <img src="/Public/hangtian/img/date_icon.jpg" />
+                </div>
+                <div class="ticket_form_row am-g">
+                    <label class="am-u-lg-3 am-text-right">&nbsp;</label>
+                    <button class="am-u-lg-6 am-u-end am-btn am-btn-warning" id="btnSubmit" type="submit">搜索</button>
+                </div>
+                <div class="city_sort" style="top:72px;">
+                    <a href="javascript:ExchangeCtiy();">
+                        <img src="/Public/hangtian/img/city_sort.jpg" />
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</form>
+<!--国内热门城市-->
+<div id="city_ch" class="ariport_box">
+    <div class="xz_ts">选择城市或输入拼音<a href="#close" class="am-fr">关闭</a></div>
+    <div class="port_tabbar clear">
+        <a class="active" href="#hot">热门城市</a>
+        <a href="#all">全部城市</a>
+    </div>
+    <div class="port_tabcnt clear" data-val="hot">
+        <div class="port_index clear">
+            <span>ABCDE</span>
+            <span>FGHIJ</span>
+            <span>KLMNO</span>
+            <span>PQRST</span>
+            <span>UVWXYZ</span>
+        </div>
+        <div class="port_list">
+            <volist name="remen" id="vo">
+                <a data-id="{$vo.id}" data-sp="{$vo.pinyin}" data-py='{$vo.py}' data-hot="true" >{$vo.name}</a>
+            </volist>
+            <volist name="chengshiAll" id="vo">
+                <a data-id="{$vo.id}" data-sp="{$vo.pinyin}" data-py='{$vo.py}' data-hot="false" >{$vo.name}</a>
+            </volist>
+        </div>
+    </div>
+</div>
+
+<!--国际热门城市-->
+<div id="city_in" class="ariport_box" >
+    <div class="xz_ts">选择城市或输入拼音<a href="#close" class="am-fr">关闭</a></div>
+    <div class="port_tabbar clear">
+        <a class="active" href="#hot">热门城市</a>
+        <a href="#AS">亚洲</a>
+        <a href="#EP">欧洲</a>
+        <a href="#AF">美洲</a>
+        <a href="#DY">大洋洲</a>
+        <a href="#AF">非洲</a>
+    </div>
+    <div class="port_tabcnt clear" data-val="hot">
+        <div class="port_list">
+
+        </div>
+    </div>
+</div>
+<!--<script type="text/javascript" src="/Public/hangtian/js/jquery-1.11.0.js"></script>-->
+<script type="text/javascript" src="/Public/hangtian/plugin/dtp1/jquery.datetimepicker.full.min.js"></script>
+
+<script>
+    //点击展示城市选择框
+    $("#startcity,#endcity").on("focus", function() {
+        showIpt = $(this);					//获取获得焦点元素
+        var sTop = $(this).offset().top;			//定位y
+        var sLeft = $(this).offset().left;			//定位x
+        $("#city_ch").css("top", sTop + 36 + 'px').css("left", sLeft + 'px').show();//定位展示
+        $("#city_in").hide();			//隐藏国际城市选择
+        $("#city_ch .port_list a[data-hot != 'true']").hide();		//默认显示国内热门城市
+
+        $(".port_index").hide();
+        $(".port_list a").hide();
+        $(".port_list a[data-hot='true']").show();
+
+        $(".port_tabbar a").removeClass("active");
+        $(".port_tabbar a:first-child").addClass('active');
+
+        $(".port_list a").on("click", function() {	//某个城市被选中后事件绑定
+            showIpt.val($(this).html());
+            $(".ariport_box").hide();
+        });
+    });
+	$("#startcity,#endcity").on('keyup',function(){
+		var t= $(this).val().toLowerCase();
+		if(t){
+			$('.port_list a').each(function(){
+				var sp =$(this).data('sp').toLowerCase();
+				if(sp.indexOf(t) == 0){
+					$(this).show();
+				}else{
+					$(this).hide();
+				}
+			});
+		}
+	})
+$.prototype.serializeObject=function(){  
+    var obj=new Object();  
+    $.each(this.serializeArray(),function(index,param){  
+        if(!(param.name in obj)){  
+            obj[param.name]=param.value;  
+        }  
+    });  
+    return obj;  
+};  
+$('#searchform').on('submit',function(){
+	var formdata=$(this).serializeObject();
+	var url='{:U("select")}';
+	if(formdata.hbtype=='wf'&&!formdata.backdate){
+		alert('请选择返程日期!');
+		return false;
+	}
+	if(!formdata.startcity){
+		alert('请选择出发地!');
+		return false;
+	}
+	if(!formdata.endcity){
+		alert('请选择目的地!');
+		return false;
+	}
+	if(!formdata.startdate){
+		alert('请选择出发日期!');
+		return false;
+	}
+	if(formdata.startcity==formdata.endcity){
+		alert('出发地和目的地不能相同!!');
+		return false;
+	}
+
+    var temp1 = new Date(formdata.startdate);
+    var temp2 = new Date(formdata.backdate);
+
+    if(temp1 > temp2){
+        alert("返回时间不能早于出发时间，");
+        return false;
+    }
+
+	location.href=url+'&'+$(this).serialize();
+	return false;
+})
+//
+//  $('#btnSubmit').on('click', function(){
+//      var chufa = $('#startcity').val(); //出发城市
+//      var end = $('#endcity').val(); //落地城市
+//      var startdate = $('#startdate').val(); //出发时间
+//      var backdate = $('#backdate').val(); //返程日期
+//      if(!chufa.length){
+//          alert('请选择出发城市！');
+//          return;
+//      }else if(!end.length){
+//          alert('请选择到达城市!');
+//          return;
+//      }else if(chufa == end){
+//          alert('出发和到达城市不能相同!');
+//          return;
+//      }else if(!startdate.length){
+//          alert('请选择出发时间!');
+//          return;
+//      }else{
+//          location.href='{:U("select")}&startcity='+chufa+'&endcity='+end+'&startdate='+startdate+'&hbtype=dc';
+//      }
+//
+//  });
+
+
+
+
+
+
+
+    var showIpt;
+    //切换国内国际
+    $(".ticket_tab_bar li").on("click", function() {
+        $(".ticket_tab_bar li").removeClass("active");
+        $(this).addClass("active");
+    });
+    //热门城市 与全部 切换
+    $("#city_ch .port_tabbar a").on("click", function() {
+        $(".port_tabbar a").removeClass("active");
+        $(this).addClass("active");
+        if ($(this).attr("href") == "#hot") { //点击热门城市
+            $(".port_index").hide();
+            $(".port_list a").hide();
+            $(".port_list a[data-hot='true']").show();
+        } else { //点击全部城市
+            $(".port_index").show();
+            $(".port_index span").removeClass("active");
+            $(".port_index span:first").addClass("active");
+            $(".port_list a").hide();
+            //$(".port_list a[data-hot='false']").show();
+            eachCity('A', 'E'); //默认展示A-E
+        }
+    });
+    //单、返程选择
+    $("input[type='radio']").on('click', function() {
+        if ($(this).val() == "wf") {
+            $("#backdate").removeAttr("disabled");
+        } else {
+            $("#backdate").attr("disabled", "disabled");
+        }
+    });
+    //国内城市 索引点击
+    $(".port_index span").on("click", function() {
+        $(".port_list a").hide();
+        $(".port_index span").removeClass("active");
+        $(this).addClass("active");
+        var fistW = $(this).html().substring(0, 1);
+        var lastW = $(this).html().substr($(this).html().length - 1);
+        eachCity(fistW, lastW);
+    });
+    //显示城市某区间内的城市
+    function eachCity(f, l) {
+        $(".port_list a").each(function() {
+            var myW = $(this).attr("data-sp").substring(0, 1); //获取首字母
+            if (myW >= f && myW <= l) {
+                $(this).show();
+            }
+        });
+    }
+    //国际城市
+    $("#city_in .port_tabbar a").on("click", function() {
+        $("#city_in .port_tabbar a").removeClass("active");
+        $(this).addClass("active");
+        var thisqy = $(this).attr("href").replace("#", ""); //获取选择区域
+        if (thisqy == "hot") {
+            $("#city_in .port_list a").hide();
+            $("#city_in .port_list a[data-hot='true']").show();
+        } else {
+            $("#city_in .port_list a").hide();
+            $('#city_in .port_list a[data-qy=\'' + thisqy + '\']').show();
+        }
+    });
+    $(".xz_ts a").on("click", function() {
+        $(".ariport_box").hide();
+    });
+    //日期选择框初始化
+    $.datetimepicker.setLocale('ch');
+    $("#startdate,#backdate").datetimepicker({
+        timepicker: false,
+        format: 'Y-m-d',
+        minDate: '-1970/01/01'
+    });
+    //交换城市
+    function ExchangeCtiy() {
+        var nowScity = $("#startcity").val();
+        var nowEcity = $("#endcity").val();
+        $("#startcity").val(nowEcity);
+        $("#endcity").val(nowScity);
+    }
+    </script>
+</block> 

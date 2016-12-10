@@ -1,0 +1,15 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<div class="am-g am-padding-sm">
+		<div class="am-u-sm-12 am-u-sm-centered am-text-center am-padding-xs am-margin-xl">
+			<h2 class="am-link-muted">我们为您推荐的体检套餐为</h2>
+
+			<h1 class="am-padding-0 am-margin-0">{$data.title}</h1>
+		</div>
+	</div>
+	<div class="am-g am-padding">
+		<a type="button" href="{:U('Suite/detail',array('id'=>$data['id']))}" class="am-btn am-btn-success am-btn-block am-radius am-padding-top-sm am-padding-bottom-sm">
+			立刻体检
+		</a>
+	</div>
+</block>

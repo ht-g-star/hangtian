@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>机票订单</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<link rel="shortcut icon" href="/favicon.ico">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="/Public/hangtian/weixin/css/sm.min.css">
+		<link rel="stylesheet" href="/Public/hangtian/weixin/css/sm-extend.css">
+		<link rel="stylesheet" href="/Public/hangtian/weixin/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/Public/hangtian/weixin/css/page.css">
+
+		<style type="text/css">
+			h1.title {
+				z-index: 1;
+			}
+			
+			header.bar a.pull-left {
+				position: relative;
+				z-index: 2;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="page-group">
+			<style type="text/css">
+				.icon-next,
+				.icon-prev {
+					height: 2rem;
+					background-position: left center;
+					background-repeat: no-repeat;
+				}
+			</style>
+			<div class="page page-current">
+				<header class="bar bar-nav">
+					<a class="fa fa-angle-left pull-left" onclick="history.back();"></a>
+					<h1 class="title">{$_SESSION['hblist'][0]['fromCityCN']}<i class="fa fa-long-arrow-right"></i>{$_SESSION['hblist'][0]['toCityCN']}</h1>
+				</header>
+				<nav class="bar bar-footer order-bar">
+					<a class="button button-link pull-left">
+						<span class="rmb">¥</span>
+						<strong id="rmb">{:($data['settlement']+$data['airportFee'])}</strong>
+						<i class="fa fa-angle-down"></i>
+					</a>
+					<a class="button button-link pull-right" id="addsubmit">提交订单</a>
+
+				</nav>
+				<div class="content order">
+					<form name="" action="{:U('endorseopt',array('orderid'=>I('oid'),'o'=>I('o'), 'o1'=>I('o1')))}" method="post" id="formact">
+					<div class="info">
+						<div class="tit">
+							{:date('Y-m-d', strtotime($_SESSION['hblist'][0]['fromDate']))} {$data.departureTime} 
+							<span>{:setAirport($_SESSION['hblist'][0]['flightObject'][0]['fromAirport'])}</span>-
+							<span>{:setAirport($_SESSION['hblist'][0]['flightObject'][0]['toAirport'])}</span>
+							<i class="fa fa-angle-right"></i>
+						</div>
+						<if condition="(I('o') neq 'undefined') AND (I('o') neq '')">
+						<span>改签去程座舱:{$_SESSION['hblist'][0]['flightObject'][I('o')]['flightNo']}({:date('Y-m-d', strtotime($_SESSION['hblist'][0]['fromDate']))})</span>
+						<volist name="_SESSION['hblist'][0]['flightObject'][I('o')]['cabinInfo']" id='vo' key='k'>
+							<if condition="$vo['facePrice'] egt $toPrice">
+							<p>
+								<span><input type="radio" name="go" value="{$k}" data-value="{:($vo['facePrice']+$_SESSION['hblist'][0]['flightObject'][I('o')]['airportFee']+$_SESSION['hblist'][0]['flightObject'][I('o')]['fuelTax'])*1.03}"/></span>
+								<span>{$vo.cabinRankDetail} {$vo.cabinCode}舱:</span>
+								<span>票价<span class="rmb">¥</span>{:($vo['facePrice']+$_SESSION['hblist'][0]['flightObject'][I('o')]['airportFee']+$_SESSION['hblist'][0]['flightObject'][I('o')]['fuelTax'])}</span>
+								<span>服务费<span class="rmb">¥</span>{:($vo['facePrice']+$_SESSION['hblist'][0]['flightObject'][I('o')]['airportFee']+$_SESSION['hblist'][0]['flightObject'][I('o')]['fuelTax']) * 0.03}</span>
+							</p>
+							</if>
+						</volist>
+						</if>
+						<if condition="(I('o1') neq 'undefined') AND (I('o1') neq '')">
+						<span>改签回程座舱:{$_SESSION['hblist'][1]['flightObject'][I('o1')]['flightNo']}({:date('Y-m-d', strtotime($_SESSION['hblist'][1]['fromDate']))})</span>
+						<volist name="_SESSION['hblist'][1]['flightObject'][I('o1')]['cabinInfo']" id='vo' key='k'>
+							<if condition="$vo['facePrice'] gt $backPrice">
+							<p>
+								<span><input type="radio" name="back" value="{$k}" data-value="{:($vo['facePrice']+$_SESSION['hblist'][1]['flightObject'][I('o1')]['airportFee']+$_SESSION['hblist'][1]['flightObject'][I('o1')]['fuelTax'])* 1.03}"/></span>
+								<span>{$vo.cabinRankDetail} {$vo.cabinCode}舱:</span>
+								<span>票价<span class="rmb">¥</span>{:($vo['facePrice']+$_SESSION['hblist'][1]['flightObject'][I('o1')]['airportFee']+$_SESSION['hblist'][1]['flightObject'][I('o1')]['fuelTax'])}</span>
+								<span>服务费<span class="rmb">¥</span>{:($vo['facePrice']+$_SESSION['hblist'][1]['flightObject'][I('o1')]['airportFee']+$_SESSION['hblist'][1]['flightObject'][I('o1')]['fuelTax'])*0.03}</span>
+							</p>
+							</if>
+						</volist>
+							<input type="hidden" name="hbtype" value="wf" />
+						</if>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<script type='text/javascript' src='/Public/hangtian/weixin/js/zepto.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='/Public/hangtian/weixin/js/sm.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='/Public/hangtian/weixin/js/sm-extend.min.js' charset='utf-8'></script>
+
+		<script type="text/javascript">
+			$.fn.serializeObject=function(){  
+			    var obj=new Object();  
+			    $.each(this.serializeArray(),function(index,param){  
+			        if(!(param.name in obj)){  
+			            obj[param.name]=param.value;  
+			        }  
+			    });  
+			    return obj;  
+			};
+			$(function() {
+				$("#addsubmit").click(function() {
+					// var chengke = $('input[name="chengke"]').val();
+					// var phone = $('input[name="phone"]').val();
+					// var shenfenzheng = $('input[name="shenfenzheng"]').val();
+					if($('#rmb').html()==0){
+						alert('请选择航班座舱!');
+						return false;
+					}
+					
+					if($("[name='go']").length > 0){
+						if($("[name='go']:checked").length == 0){
+							alert("请选择去程舱位");
+							return false;
+						}
+					}
+
+					if($("[name='back']").length > 0){
+						if($("[name='back']:checked").length == 0){
+							alert('请选择返程舱位');
+							return false;
+						}
+					}
+					$('#formact').submit();
+				})
+			})
+			$('input[type=radio]').on('click',function(){
+				var valback=0;
+				var valgo=0;
+				if($('input[name=go]:checked').length){
+					valgo=$('input[name=go]:checked').data('value');
+					valgo=valgo?valgo:0;
+					if(!valgo){
+						return false;
+					}
+				}
+				if($('input[name=back]:checked').length){
+					valback=$('input[name=back]:checked').data('value');
+					valback=valback?valback:0;
+					if(!valgo){
+						return false;
+					}
+				}
+				$('#rmb').html(valgo+valback);
+			});
+		</script>
+
+	</body>
+
+</html>

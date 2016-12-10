@@ -1,0 +1,158 @@
+<extend name="Public/base"/>
+<block name="style">
+	<link rel="stylesheet" href="__CSS__/admin_index.css">
+</block>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">会员管理</strong> /
+			<small>用户列表</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+	<div class="am-g">
+		<div class="am-u-sm-12 ">
+			<div class="am-btn-toolbar">
+				<div class="am-u-sm-10 am-btn-group am-fl" style="margin-left:-10px;">
+					<button type="button" id="btn_add" class="am-btn am-btn-default am-text-primary am-btn-xs" data-am-modal="{target: '#pop_add'}">
+						<span class="am-icon-plus"></span> 新增
+					</button>
+					<button type="button" id="btn_edit" class="am-btn am-btn-default am-btn-xs am-text-warning am-disabled need_select">
+						<span class="am-icon-pencil-square-o"></span> 编辑
+					</button>
+					<button type="button" id="btn_del" class="am-btn am-btn-default confirm am-btn-xs am-text-danger am-disabled need_select">
+						<span class="am-icon-trash-o"></span> 删除
+					</button>
+					<button type="button" id="btn_froze_money" class="am-btn am-btn-xs am-btn-default">
+						<span class="am-icon-lock"></span> 押金
+					</button>
+					<button type="button" id="btn_charge" class="am-btn am-btn-xs am-btn-default">
+						<span class="am-icon-money"></span> 充值
+					</button>
+					<button type="button" id="btn_consume" class="am-btn am-btn-xs am-btn-default">
+						<span class="am-icon-yen"></span> 消费
+					</button>
+
+					<button type="button" id="btn_open_card" class="am-btn am-btn-xs am-btn-default  am-disabled need_select">
+						<span class="am-icon-chain"></span> 开卡
+					</button>
+					<button type="button" id="btn_recard" class="am-btn am-btn-xs am-btn-default am-disabled need_select">
+						<span class="am-icon-copy"></span> 补卡
+					</button>
+					<button type="button" id="btn_lost" class="am-btn am-btn-xs am-btn-default">
+						<span class="am-icon-tag"></span>
+						挂失
+					</button>
+
+					<button type="button" id="btn_repass" class=" am-btn-xs am-btn am-btn-default">
+						<span class="am-icon-lock"></span>
+						重置密码
+					</button>
+
+					<button type="button" id="btn_view" class=" am-btn-xs am-btn am-btn-default am-disabled need_select">
+						<span class="am-icon-eye"></span>
+						查看
+					</button>
+					<button type="button" id="btn_balance" class=" am-btn-xs am-btn am-btn-default am-disabled need_select">
+						<span class="am-icon-yen"></span>
+						金额调整
+					</button>
+				</div>
+				<div class="am-btn-group am-btn-group-xs" style="position: absolute;right: 0;margin-right: 20px; height:75px;">					
+					<button type="button" class="am-btn am-btn-default" data-am-modal="{target: '#pop_import'}">
+						<span class="am-icon-plus"></span> 统筹团体导入
+					</button>
+					<button class="am-btn am-btn-default" id="export" data-href="{:U('export')}" ><span class="am-icon-file"></span> 导出
+					</button>
+					<button type="button" class="am-btn am-btn-default" style="clear:both;" data-am-modal="{target: '#pop_import_tuan'}">
+						<span class="am-icon-plus"></span> 外部团体导入
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="am-g" style="width:80%;margin-left:0;">
+		<div class="am-u-sm-12">
+			<div class="am-btn-group am-btn-group-xs">
+				<form class="am-form" method="get" action="__ROOT__/Admin.php/Member/tuanjian.html">
+					<label>选择单位筛选</label>
+					<select name="company" id="company">
+						<option value="0">请选择.</option>
+						<volist name="companys" id="c">
+							<notempty name="c.company">
+								<option value="{$c.company}" <eq name="Think.post.company" value="$c['company']" >selected</eq>>{$c.company}</option>
+							</notempty>
+						</volist>
+					</select>
+					<button type="button" id="query" class="am-btn am-btn-primary am-btn-xs" >确定</button>
+					<!-- button type="button" class="am-btn am-btn-warning am-btn-xs" >安排单位体检</button> -->
+					<input type="submit" class="am-btn am-btn-success" value="安排单位体检">
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="am-g am-datatable-hd">
+		<div class="am-u-sm-12 ">
+			<form class="am-form">
+				<div id="scrollable-table" class="am-scrollable-horizontal"> <!---->
+					<table class="am-table am-table-striped am-table-hover am-table-compact am-text-nowrap" id="data-list" style="width:100%;">
+						<thead>
+						<tr>
+							<th>ID</th>
+							<th>会员卡号</th>
+							<th>单位</th>
+							<th>部门</th>
+							<th>职位</th>
+							<th>是否一线</th>
+							<th>姓名</th>
+							<th>性别</th>
+							<th>身份证</th>
+							<th>手机</th>
+							<th>金额</th>
+							<th>等级</th>
+							<th>类型</th>
+							<th>婚否</th>
+							<th>状态</th>
+						</tr>
+						</thead>
+					</table>
+
+				</div>
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<include file="pop_import"/>
+	<include file="pop_import_tuan"/>
+	<include file="pop_add"/>
+	<include file="pop_edit"/>
+
+	<include file="pop_open"/>
+	<include file="pop_charge"/>
+
+	<include file="pop_recard"/>
+
+	<include file="pop_froze_money"/>
+
+	<include file="pop_consume"/>
+	<include file="pop_info"/>
+
+	<include file="pop_repass"/>
+
+	<include file="pop_bat_edit"/>
+	<include file="pop_balance"/>
+
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+	<script type="text/javascript" src="__STATIC__/amaze/js/fnReloadAjax.js"></script>
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript" src="__JS__/member_index.js"></script>
+</block>

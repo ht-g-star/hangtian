@@ -1,0 +1,65 @@
+﻿<extend name="Public/base"/>
+
+
+<block name="style">
+
+</block>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">会员系统设置</strong> /
+			<small>{$meta_title}</small>
+		</div>
+	</div>
+</block>
+<block name="body">
+	<!-- 主体 -->
+	<div class="am-g">
+		<div class="am-u-sm-8">
+
+			<form class="am-form  " action="" method="post">
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">短信开关</label>
+					<div class="am-u-sm-9">
+						<label class="am-radio-inline">
+							<input type="radio" name="SMS_SWITCH" value="0" <eq name="config.SMS_SWITCH" value="0" >checked</eq> data-am-ucheck>
+							关
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" name="SMS_SWITCH" value="1" <eq name="config.SMS_SWITCH" value="1" >checked</eq> data-am-ucheck>
+							开
+						</label>
+					</div>
+					<div class="am-cf"></div>
+				</div>
+
+
+				<div class="am-form-group">
+					<div class="am-u-sm-9 am-u-sm-push-3" >
+						<button type="submit"  class="am-btn am-btn-primary">保存</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+</block>
+
+<block name="script">
+	<script>
+		$(function () {
+			var port = localStorage.getItem("port");
+			if (port) {
+				$("#port_num").val(port);
+			}
+			$("#set_port_btn").click(function () {
+				port = $("#port_num").val();
+				localStorage.setItem("port", port);
+			});
+
+		});
+
+	</script>
+
+</block>

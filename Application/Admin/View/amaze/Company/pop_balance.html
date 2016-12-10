@@ -1,0 +1,55 @@
+<!--popup 批量编辑金额-->
+<div class="am-popup" id="pop_balance">
+	<div class="am-popup-inner">
+		<div class="am-popup-hd">
+			<h4 class="am-popup-title">金额调整</h4>
+			<span data-am-modal-close class="am-close">&times;</span>
+		</div>
+		<div class="am-popup-bd">
+			<!--begin-->
+			<form action="{:U('Company/balance')}" method="post" class="am-form am-form-horizontal form-horizontal">
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">您选择了:</label>
+
+					<div class="am-u-sm-9 selected_person am-padding-top-xs">
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">金额变化:</label>
+
+					<div class="am-u-sm-9">
+						<select name="balance_type">
+							<option value="+">增加</option>
+							<option value="-">减少</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">请输入值:</label>
+
+					<div class="am-u-sm-9 bat_value_div">
+						<input type="text" name="value" required placeholder="请输入金额">
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">备注:</label>
+
+					<div class="am-u-sm-9 bat_value_div">
+						<textarea name="remark" id="remark" ></textarea>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<div class="am-u-sm-9 am-u-sm-push-3">
+						<button type="submit" class="am-btn am-btn-primary">确认</button>
+					</div>
+				</div>
+			</form>
+			<!--over-->
+		</div>
+	</div>
+</div>

@@ -1,0 +1,186 @@
+<extend name="Base/common"/>
+<block name="style">
+	<title>旅游线路</title>
+	<!--<link rel="stylesheet" href="__CSS__/amazeui.min.css">-->
+	<!--<link rel="stylesheet" href="../plugin/pagination/style/normalize.css" />
+	<link rel="stylesheet" href="../plugin/pagination/style/pagination.css" />
+	<link rel="stylesheet" href="../plugin/pagination/style/common.css" />-->
+	<link rel="stylesheet" href="__CSS__/style.css">
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" href="../css/style1-IE.css" />
+		<script type="text/javascript" src="../js/jquery-1.11.0.js" ></script>
+		<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  		<script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+		<script type="text/javascript" src="../js/amazeui.ie8polyfill.min.js" ></script>
+	<![endif]-->
+</block>
+<block name="body">
+		<!--header-->
+		<!--section-->
+		<div class="my_main" style="margin-top: 60px;">
+			<div class="am-g am-g-fixed am-g-collapse">
+				<!--面包屑导航-->
+				<div class="am-breadcrumb am-breadcrumb-slash">
+					<li><a href="/">首页</a></li>
+					<li><a href="/index.php?s=/Home/Shop/index.html">健康商城</a></li>
+					<li class="am-active"><a href="#">疗养线路</a></li>
+				</div>
+				<!--区域选择-->
+				<div class="am-u-lg-12">
+					<div class="qu_box clear">
+						<input type="hidden" value="<notempty name='cityid'>{$cityid}</notempty>" id="city"/>
+						<input type="hidden" value="<notempty name='sectionid'>{$sectionid}</notempty>" id="section"/>
+						<input type="hidden" value="<notempty name='datetime'>{$datetime}</notempty>" id="datetime"/>
+						<!--row1-->
+						<span class="am-u-lg-1">目的地：</span>
+						<div class="am-u-lg-11">
+							<div class="tab_bar clear am-avg-lg-8">
+								<li data-sq="0" class="am-active active">全部<span>({$linecity})</span></li>
+								<volist name='cache' id='vo'>
+									<li data-sq="{$vo.section_id}">{$vo.section_name}<span>({$vo.section_num})</span></li>
+								</volist>
+							</div>
+							<div class="tab_cnt clear">
+								<!--
+									data-sq 上面区域ID
+									data-city 城市id
+								-->
+								<span style="width: 10%;" <if condition="!$cityid">class='active'</if>>全部<span>({$linecity})</span>
+								</span>
+								<volist name='cache' id='vo1'>
+									<volist name='vo1.city' id='vo2'>
+										<span data-sq="{$vo1.section_id}" style="width: 10%;" data-city="{$vo2.city_id}" data-section='{$vo1.section_id}' <if condition="$cityid eq $vo2['city_id']">class='active'</if>>{$vo2.city_name}<span>({$vo2.city_num})</span></span>
+									</volist>
+								</volist>
+							</div>
+						</div>
+
+						<!--row2-->
+						<span class="am-u-lg-1">出行日期：</span>
+
+						<div class="am-u-lg-11 xz_cxdate">
+							<button class="timebtnall am-btn am-btn-sm am-btn-primary datebtn" data-date=''>全部</button>
+							<volist name='cfsj' id='cf'>
+								<button class="timebtn{$cf.cfrq} am-btn am-btn-sm am-btn-trans datebtn" data-date='{$cf.cfrq}'>{$cf.cfrqstr}</button>
+							</volist>
+						</div>
+
+						<!--row3-->
+						<span class="am-u-lg-1">关键词：</span>
+
+						<div class="am-u-lg-4 am-u-end am-input-group">
+							<div class="am-input-group">
+								<input type="text" class="am-form-field" id="keyword" value="<notempty name='keyword'>{$keyword}</notempty>">
+								<span class="am-input-group-btn">
+        							<button class="am-btn am-btn-primary" type="button" id="searchbtn">搜索</button>
+      							</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--区域选择end-->
+
+				<!--线路列表-->
+				<div class="am-u-lg-12 line_group">
+					<volist name='linelist' id='list'>
+						<!--row start-->
+						<div class="line_row clear">
+							<div class="am-u-lg-8 line_img_box">
+								<img src="{$list.xl_list_img}">
+							</div>
+							<div class="am-u-lg-4 line_info_box">
+								<h3 class="title18">
+									<a href="{:U('Home/line/lineDetail/xl_id/'.$list['xl_id'])}">{$list.xl_name}</a>
+								</h3>
+								<if condition="$list['xl_fb_detail']"><p><img src="__IMG__/line_dt_zan.png">{$list.xl_fb_detail}</p></if>
+								<p><img src="__IMG__/line_dt_time.png">行程天数：{$list.xl_cttsws}</p>
+								<p><img src="__IMG__/line_dt_rs.png">出团人数：{$list.xl_ctrs}人起</p>
+								<p class="line_prs"><span>{$list.xl_qijia}</span>{$list.xl_qijia_dw}</p>
+							</div>
+						</div>
+						<!--row end-->
+					</volist>
+
+					<div id="">
+						{$pageshow}
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="__JS__/jquery-2.1.0.js"></script>
+	<!--	<script type="text/javascript" src="../plugin/pagination/js/jquery.pagination.js"></script>-->
+		<script>
+			//选择区域点击事件
+			$(".tab_bar>li").on("click", function() {
+				$(".tab_bar>li").removeClass('active');
+				$(this).addClass("active");
+				if ($(this).attr("data-sq") != 0) {
+					console.log($(this).attr("data-sq"));
+					$(this).parent(".tab_bar").siblings(".tab_cnt").children("span").hide();
+					$(this).parent(".tab_bar").siblings(".tab_cnt").children('span[data-sq=\'' + $(this).attr("data-sq") + '\']').show();
+				} else {
+					$(this).parent(".tab_bar").siblings(".tab_cnt").children("span").show();
+				}
+			});
+			$('.xz_cxdate button').on("click", function() {
+				$('.xz_cxdate button').removeClass("am-btn-primary").addClass("am-btn-trans");
+				$(this).addClass("am-btn-primary").removeClass("am-btn-trans");
+			});
+			
+			$('.tab_cnt span').on('click',function(){
+				$('.tab_cnt span').removeClass('active');
+				$(this).addClass('active');
+				var cityid = $(this).data('city');
+				var section = $(this).data('section');
+				if(cityid){
+					var urll = "./index.php?s=/Home/Line/getLinelist/city_id/"+cityid+"/section_id/"+section;
+				}else{
+					var urll = "./index.php?s=/Home/Line/getLinelist";
+				}
+				if($('#keyword').val()){
+					urll += "/keyword/"+$('#keyword').val();
+				}
+				if($('#datetime').val()){
+					urll += "/cfyf/"+$('#datetime').val();
+				}
+				urll+=".html";
+				location.href = urll;
+			});
+			$('.datebtn').on('click',function(){
+				var datetime = $(this).data('date');
+				var urll = "./index.php?s=/Home/Line/getLinelist/cfyf/"+datetime;
+				if($('#city').val()){
+					urll += "/city_id/"+$('#city').val()+"/section_id/"+$('#section').val();
+				}
+				if($('#keyword').val()){
+					urll += "/keyword/"+$('#keyword').val();
+				}
+				urll+=".html";
+				location.href = urll;
+			});
+			$('#searchbtn').on('click',function(){
+				var keyword = $('#keyword').val();
+				var urll = "./index.php?s=/Home/Line/getLinelist";
+				if($('#city').val()){
+					urll += "/city_id/"+$('#city').val()+"/section_id/"+$('#section').val();
+				}
+				if($('#keyword').val()){
+					urll += "/keyword/"+$('#keyword').val();
+				}
+				if($('#datetime').val()){
+					urll += "/cfyf/"+$('#datetime').val();
+				}
+				urll+=".html";
+				location.href = urll;
+			});
+			if($('#datetime').val()){
+				$('.xz_cxdate button').removeClass('am-btn-primary');
+				$('.xz_cxdate button').addClass('am-btn-trans');
+				$('.timebtn'+$('#datetime').val()).removeClass('am-btn-trans');
+				$('.timebtn'+$('#datetime').val()).addClass('am-btn-primary');
+			}
+		</script>
+
+	
+
+</block>

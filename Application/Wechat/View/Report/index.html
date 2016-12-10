@@ -1,0 +1,48 @@
+<extend name="Base/mobile_base"/>
+<block name="style">
+	<style>
+
+	</style>
+</block>
+<block name="body">
+	<!-- List -->
+	<!--<div class="am-alert am-alert-warning am-text-sm" data-am-alert>-->
+		<!--<button type="button" class="am-close">&times;</button>-->
+		<!--由于系统限制,若您的Android系统无法打开体检报告,您可以移步至PC网站,登录您的账户,查看"报告历史"即可.-->
+	<!--</div>-->
+	<div class="am-g" id="MemberSuiteOrderCtrl">
+		<div class="am-u-sm-12">
+			<table class="am-table am-text-xs">
+				<empty name='list'>
+					<p class="am-text-center am-padding-xl">没有数据</p>
+					<else/>
+					<thead>
+					<tr>
+						<th class="good-name">序号</th>
+						<th class="good-name">报告日期</th>
+						<th class="good-status">身份证号</th>
+						<th>报告</th>
+					</tr>
+					</thead>
+					<tbody>
+					<volist name="list" id="po">
+						<tr>
+							<td class="">{$po.id}</td>
+							<td class="">{$po.date}</td>
+							<td class="">{$po.id_num}</td>
+							<td><a href="{:U('down',array('id'=>$po['id'],'openid'=>$openid))}">查看</a></td>
+							<!-- 列表详情区域结束 -->
+						</tr>
+					</volist>
+					</tbody>
+				</empty>
+			</table>
+			<!-- 个人中心 初始状态 end -->
+		</div>
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>
+<block name="script">
+	<script>
+	</script>
+</block>

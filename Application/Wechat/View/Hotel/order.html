@@ -1,0 +1,378 @@
+<extend name="Base/mobile_base"/>
+
+<block name="style">
+	<link type="text/css" href="__CSS__/selectpick.css" rel="stylesheet"/>
+	<link type="text/css" href="__CSS__/city.css" rel="stylesheet"/>
+</block>
+<block name="body">
+	<div class="am-g am-container am-margin-top-xl">
+		<input type="hidden" value="0" id="isorder" />
+		<div id="check" class="am-panel am-panel-secondary">
+			<div class="am-panel-hd">
+				<h2 class="am-margin-0">填写并核对订单信息</h2>
+			</div>
+			<div class="orderplace am-panel-bd">
+				<div class="o_title ">
+					<h2>入住人信息
+					</h2>
+				</div>
+				<div class="place">
+					<empty name="address">
+						<div id="senderdetail"></div>
+						<div id="formsender" style="position:relative;">
+							<form id="formincart" name="form" class="am-form am-form-inline">
+								
+								<div class="am-u-sm-2 am-margin-top-sm" style="padding: 0;width: 30%;text-align: right;">
+									<label>入住人：</label>
+								</div>
+								<div class="am-u-sm-10 am-margin-bottom-xs" style="padding: 0;width: 70%;">
+									<input type="text" class="cart_long"  style="width: 100%;" id="realname" maxlength="20" data-input="text" value=""><font class="ml10 cleb6100" style="display: none;">入住人不能为空</font>
+								</div>
+								<div class="am-u-sm-2 am-margin-top-sm" style="padding: 0;width: 30%;text-align: right;">
+									<label>手&nbsp;&nbsp;&nbsp;&nbsp;机：</label>
+								</div>
+								<div class="am-u-sm-10 am-margin-bottom-xs" style="padding: 0;width: 70%;">
+									<input type="text" class="cart_long" style="width: 100%;" id="phone" maxlength="11" data-msg="入住人手机号码格式不正确" data-input="text" data-type="cellphone" value="">&nbsp;
+								</div>
+								<span class="am-margin-left"><input id="isdefault" checked="checked" name="default" type="checkbox" class="cart_n_box"> 设为默认
+								<a href="javascript:void(0)" class=" am-btn am-btn-warning ncart_btn_on" onclick="savemsg();">保存</a></span>
+							</form>
+						</div>
+						<else/>
+						<div id="hasaddress">
+							<div id="senderdetail">
+								<p id="f_default">
+									<volist name="address" id="a" >
+										<input type="radio" <eq name="a.id" value="$default_id" >id="default" checked='checked'</eq> name="sender" value="{$a.id}"/>&nbsp;入住人：{$a.realname}&nbsp;&nbsp;联系电话:{$a.cellphone}<br/>
+									</volist>
+								</p>
+							</div>
+							<a href="javascript:void(0);" id="addaddress">新增入住人</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="javascript:void(0);" id="setaddress">修改</a>
+						</div>
+						<div id="formsender" style="position:relative;display: none;">
+							<form id="formincart" name="form" class="am-form am-form-inline">
+								<div class="am-u-sm-2 am-margin-top-sm" style="padding: 0;width: 30%;text-align: right;">
+									<label>入住人：</label>
+								</div>
+								<div class="am-u-sm-10 am-margin-bottom-xs" style="padding: 0;width: 70%;">
+									<input type="text" class="cart_long"  style="width: 100%;" id="realname" maxlength="20" data-input="text" value=""><font class="ml10 cleb6100" style="display: none;">入住人不能为空</font>
+								</div>
+								<div class="am-u-sm-2 am-margin-top-sm" style="padding: 0;width: 30%;text-align: right;">
+									<label>手&nbsp;&nbsp;&nbsp;&nbsp;机：</label>
+								</div>
+								<div class="am-u-sm-10 am-margin-bottom-xs" style="padding: 0;width: 70%;">
+									<input type="text" class="cart_long" style="width: 100%;" id="phone" maxlength="11" data-msg="入住人手机号码格式不正确" data-input="text" data-type="cellphone" value="">&nbsp;
+								</div>
+								<span class="am-margin-left"><input id="isdefault" checked="checked" name="default" type="checkbox" class="cart_n_box"> 设为默认
+									<a href="javascript:void(0)" class="ncart_btn_on am-btn am-btn-primary" onclick="savemsg1();">保存</a>
+									<a href="javascript:void(0)" class="ncart_btn_on am-btn am-btn-primary" onclick="quxiao1();">取消</a>
+								<div class="am-cf"></div>
+							</form>
+						</div>
+						<div id="formsender1" style="position:relative;display: none;">
+							<form id="formincart1" name="form" class="am-form am-form-inline">
+								<input type="hidden" value="" id='addid'>
+								<div class="am-u-sm-2 am-margin-top-sm" style="padding: 0;width: 30%;text-align: right;">
+									<label>入住人：</label>
+								</div>
+								<div class="am-u-sm-10 am-margin-bottom-xs" style="padding: 0;width: 70%;">
+									<input type="text" class="cart_long"  style="width: 100%;" id="realname1" maxlength="20" data-input="text" value=""><font class="ml10 cleb6100" style="display: none;">入住人不能为空</font>
+								</div>
+								<div class="am-u-sm-2 am-margin-top-sm" style="padding: 0;width: 30%;text-align: right;">
+									<label>手&nbsp;&nbsp;&nbsp;&nbsp;机：</label>
+								</div>
+								<div class="am-u-sm-10 am-margin-bottom-xs" style="padding: 0;width: 70%;">
+									<input type="text" class="cart_long" style="width: 100%;" id="phone1" maxlength="11" data-msg="入住人手机号码格式不正确" data-input="text" data-type="cellphone" value="">&nbsp;
+								</div>
+								<div class="am-u-sm-2 am-margin-top-sm">
+									<!--<span class="am-margin-left"><input id="isdefault1" checked="checked" name="default" type="checkbox" class="cart_n_box"> 设为默认地址</span>-->
+								</div>
+								<div class="am-u-sm-10 am-margin-bottom-xs">
+									<a href="javascript:void(0)" class="ncart_btn_on am-btn am-btn-primary" onclick="save();">保存</a>
+									<a href="javascript:void(0)" class="ncart_btn_on am-btn am-btn-primary" onclick="quxiao();">取消</a>
+								</div>
+								<div class="am-cf"></div>
+							</form>
+						</div>
+					</empty>
+
+				</div>
+			</div>
+		</div>
+			<!--收货信息 结束-->
+			<!--订单支付 开始-->
+				<div class="orderplace am-panel am-panel-secondary">
+					<div class="am-panel-hd">
+						<h2 class="am-margin-0">支付</h2>
+					</div>
+					<div class="am-padding-lg">
+						<dl>
+							<dt><h2>支付方式：</h2></dt>
+							<dd>
+								<!--<input type="radio" name="PayType" id="yue" checked="checked" value="1"> 余额支付-->
+								<input type="radio" id="pay" checked="checked" value="2"> 在线支付
+							</dd>
+						</dl>
+					</div>
+				</div>
+				<!--订单支付 结束-->
+				<div class="orderplace am-panel am-panel-secondary">
+					<div class="am-panel-hd">
+						<h2 class="am-margin-0">订单个性需求</h2>
+					</div>
+					<div class="am-padding-lg">
+						<textarea style="width: 95%;margin: 2%;" rows="4" id="message"></textarea>
+					</div>
+				</div>
+				<!--商品信息 开始-->
+
+				<div class="orderplace am-panel am-panel-secondary">
+					<div class="am-panel-hd">
+						<h2 class="am-margin-0">酒店信息</h2>
+					</div>
+					<div class="am-padding-lg">
+						<table border="0" cellspacing="0" cellpadding="0" class="gridtable cart-2" width="100%">
+							<tbody>
+							<tr class="bg-f5">
+								<th class="am-padding-sm">酒店名称</th>
+								<th class="am-padding-sm">酒店所在地</th>
+								<th class="am-padding-sm">数量</th>
+								<th class="am-padding-sm">入住时间</th>
+							</tr>
+							<tr>
+								<td class="am-padding-sm">{$cache.xl_name}</td>
+								<td class="am-padding-sm">{$cache.xl_jd_address}</td>
+								<td class="am-padding-sm">{:I('num')}</td>
+								<td class="am-padding-sm">{:I('cfrq')}</td>
+
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!--商品信息 结束-->
+				<!--提交信息 开始-->
+				<div class="orderplace trans am-text-right am-margin-bottom-xl">
+					<p class="jiesuan">应付总额 <span id="TotalNeedPay" class=" am-text-xl num-text">￥<span class="s_pricece">{$cache.yfze}</span></span>元<br/>
+						<a class="btn_submit_pay am-btn am-btn-primary am-btn-lg am-padding-left-xl am-padding-right-xl" id="ordersubmit">提交订单</a>
+					</p> <!--提交信息 结束-->
+
+				</div>
+
+
+
+</block>
+<block name="script">
+	<script type="text/javascript" src="__JS__/city.js"></script>
+	<script type="text/javascript">
+	//取消
+			function quxiao() {
+				$('#hasaddress').show();
+				$('#formsender1').hide();
+				$('#realname1').val('');
+				$('#phone1').val('');
+			}
+			//取消2
+			function quxiao1() {
+				$('#hasaddress').show();
+				$('#formsender').hide();
+			}
+			//保存
+			function save() {							
+			var id=$("#addid").val();
+			var realname = $("#realname1").val();
+			var cellphone = $("#phone1").val();
+			if(!realname){
+				alert('入住人不能为空！')
+				return false;
+			}
+			if(!cellphone){
+				alert('手机号不能为空！')
+				return false;
+			}
+//			alert(id);
+			$.ajax({
+				type: 'post', //传送的方式,get/post
+				url:"{:U('Wechat/Hotel/addsave')}",
+				data: {
+					id:id,
+					realname: realname,				
+					cellphone: cellphone
+				},
+				dataType: "json",
+				success: function (e) {
+					if(e.status==1){
+						alert(e.msg);
+						location.reload();
+					}else{
+						alert(e.msg);
+					}
+				},
+				error: function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+					alert("表单错误，" + XMLHttpRequest + thrownError);
+				}
+			})
+				
+				
+			}
+			
+			
+		
+			//新增
+			$('#addaddress').on('click',function(){
+				$('#hasaddress').hide();
+				$('#formsender').show();
+				$('#realname').val('');
+				$('#phone').val('');
+			});
+			//修改
+			$('#setaddress').on('click',function(){
+				var val = $('input:radio[name="sender"]:checked').val();
+				//判断新地址是否选中,获取地址id
+				if (val == null) {
+					alert("请选择一个地址!");
+					return false;
+				}
+				$('#hasaddress').hide();
+				$('#formsender1').show();
+//				alert(val);
+				$.ajax({
+					type:"post",
+					url:"{:U('Wechat/Hotel/addset')}",
+					async:true,
+					data:{
+						'addid':val
+					},
+					success:function(e){
+						if(e.status==1){
+							var add=e.add;
+							$('#realname1').val(add.realname);
+							$('#phone1').val(add.cellphone);
+							$('#addid').val(add.id);
+						}else{
+							alert(e.msg);
+						}
+					}
+				});
+								
+			});
+		function savemsg() {
+//判断是否是默认地址
+			if (document.getElementById("isdefault").checked == true) {
+				var info = "yes";
+			}
+			else {
+				var info = "no";
+			}
+			var pca = $("#idprovince").val() + $("#idcity").val() + $("#idarea").val();
+			var address = $("#address").val();
+			var orderid = $("#orderid").val();
+			var username = $("#realname").val();
+			var phone = $("#phone").val();
+			var b = $("#youbian").val();
+
+			$.ajax({
+				type: 'post', //传送的方式,get/post
+				url: '/index.php?s=/Home/Address/build1', //发送数据的地址
+				data: {
+					province: $("#idprovince").val(),
+					city: $("#idcity").val(),
+					area: $("#idarea").val(),
+					posi: address,
+					pho: phone,
+					rel: username,
+					id: orderid,
+					msg: info
+				},
+				dataType: "json",
+				success: function (data) {
+					location.reload();
+				},
+				error: function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+					alert("表单错误，" + XMLHttpRequest + thrownError);
+				}
+			})
+		}
+		function savemsg1() {
+//判断是否是默认地址
+			if (document.getElementById("isdefault").checked == true) {
+				var info = "yes";
+			}
+			else {
+				var info = "no";
+			}
+			var pca = $("#idprovince").val() + $("#idcity").val() + $("#idarea").val();
+			var address = $("#address").val();
+			var orderid = $("#orderid").val();
+			var username = $("#realname").val();
+			var phone = $("#phone").val();
+			var b = $("#youbian").val();
+
+			$.ajax({
+				type: 'post', //传送的方式,get/post
+				url: '/index.php?s=/Home/Address/build', //发送数据的地址
+				data: {
+					province: $("#idprovince").val(),
+					city: $("#idcity").val(),
+					area: $("#idarea").val(),
+					posi: address,
+					pho: phone,
+					rel: username,
+					id: orderid,
+					msg: info
+				},
+				dataType: "json",
+				success: function (data) {
+					location.reload();
+				},
+				error: function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+					alert("表单错误，" + XMLHttpRequest + thrownError);
+				}
+			})
+		}
+		$('#ordersubmit').on('click',function(){
+			if($('#isorder').val() == 1){
+				alert("您已提交过该订单，请勿重复提交!");
+				return false;
+			}else{
+				var val = $('input:radio[name="sender"]:checked').val();
+				//判断新地址是否选中,获取地址id
+				if (val == null) {
+					alert("请选择一个地址!");
+					return false;
+				}
+				var data={
+					num:"{:I('num')}",
+					addressid:val,
+					message:$('#message').val(),
+					rzsj:"{:I('cfrq')}",
+					xl_id:"{:I('id')}",
+					price:$('.s_pricece').eq(0).text(),
+					qprice:"{:I('price')}",
+					priceid:"{:I('priceid')}"
+				};
+				$.ajax({
+					type:"post",
+					url:"{:u('Wechat/Hotel/ordermake')}",
+					async:true,
+					data:data,
+					success:function(e){
+						if(e.status==1){
+							alert(e.msg);
+							$('#isorder').val(1);
+							window.location.href='{:u("UserMallOrder/hotel")}';
+						}else{
+							alert(e.msg);
+						}
+					}
+				});
+			}
+		});
+		
+	</script>
+
+	<script type="text/javascript">
+
+	</script>
+</block>

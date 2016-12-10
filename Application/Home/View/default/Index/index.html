@@ -1,0 +1,426 @@
+<extend name="Base/common"/>
+<block name="style">
+	<link rel="stylesheet" href="__CSS__/index.css">
+</block>
+<block name="body">
+	<!-- 轮播图 -->
+	<include file="Public/slider"/>
+	<!-- /轮播图 -->
+
+	<!-- 主体 -->
+	<div class="common_wrapper">
+
+	</div>
+	<!--content begin-->
+	<div class="am-g am-container">
+		<div class="index_tab">
+			<div class="am-tabs am-padding" data-am-tabs="{noSwipe: 1}" id="doc-my-tabs">
+				<ul class="am-tabs-nav am-nav am-nav-pills">
+					<li class="am-active"><a href="">发现</a></li>
+					<li><a href="">健康体检</a></li>
+					<li><a href="">健康商城</a></li>
+					<li><a href="">健康咨询</a></li>
+					<li><a href="">健康讲坛</a></li>
+					<li><a href="">名医堂</a></li>
+				</ul>
+				<div class="am-tabs-bd">
+					<!--发现-->
+					<div class="am-tab-panel am-active">
+						<div class="am-g">
+							<div class="col-sm-4 am-u-lg-4">
+							<!-- 	<div class="finder_box1">
+									<img src="__STATIC__/amaze/i/index-01.jpg">
+
+									<p>
+										<span class="am-fl am-padding-left"><a href="{:U('SelfTest/index')}">健康互动评测</a></span>
+										<span class="am-fr am-padding-right"><img src="__STATIC__/amaze/i/index_arrow.png"></span>
+									</p>
+
+								</div> -->
+								<div class="finder_box1">
+									<a href="{:U('Mall/forwardSite')}" target="_blank"><img src="__STATIC__/amaze/i/index-011.jpg"></a>
+
+									<p>
+										<span class="am-fl am-padding-left"><a href="{:U('Mall/forwardSite')}" target="_blank">关爱健康商城</a></span>
+										<!-- <span class="am-fl am-padding-left"><a href="{:U('Shop/index')}">关爱健康商城</a></span> -->
+										<span class="am-fr am-padding-right"><img src="__STATIC__/amaze/i/index_arrow.png"></span>
+									</p>
+								</div>
+								<div class="finder_box1 am-margin-top-sm">
+									<img src="__STATIC__/amaze/i/index-098.jpg">
+
+									<p>
+										<span class="am-fl am-padding-left"><a href="{:U('SelfTest/index')}">健康体检</a></span>
+										<span class="am-fr am-padding-right"><img src="__STATIC__/amaze/i/index_arrow.png"></span>
+									</p>
+								</div>
+
+
+							</div>
+							<div class="col-sm-4 am-u-lg-4">
+								<div class="finder_box1">
+									<img src="__STATIC__/amaze/i/index-02.jpg">
+
+									<p>
+										<span class="am-fl am-padding-left"><a href="{:U('Suite/index')}">个人 /
+											团体体检预约</a></span>
+										<span class="am-fr am-padding-right"><img src="__STATIC__/amaze/i/index_arrow.png"></span>
+									</p>
+								</div>
+								<div class="finder_box1 am-margin-top-sm">
+									<a href="{:U('Lesson/index')}"><img src="__STATIC__/amaze/i/index-03.jpg"></a>
+
+									<p>
+										<span class="am-fl am-padding-left"><a href="{:U('Lesson/index')}">健康小知识</a></span>
+										<span class="am-fr am-padding-right"><img src="__STATIC__/amaze/i/index_arrow.png"></span>
+									</p>
+								</div>
+							</div>
+							<div class="col-sm-4 am-u-lg-4">
+								<div class="finder_box1">
+									<a href="__ROOT__/Home/report"><img src="__STATIC__/amaze/i/index-04.jpg"></a>
+
+									<p>
+										<!-- <span class="am-fl am-padding-left"><a href="{:U('SuiteOrder/finished')}">体检报告在线查看</a></span> -->
+										<span class="am-fl am-padding-left"><a href="__ROOT__/Home/report">体检报告在线查看</a></span>
+										<span class="am-fr am-padding-right-xl"><img src="__STATIC__/amaze/i/index_arrow.png"></span>
+									</p>
+								</div>
+								<div class="finder_box1 am-margin-top-sm">
+									<img src="__STATIC__/amaze/i/index-05.jpg">
+
+									<p>
+										<span class="am-fl am-padding-left"><a href="{:U('Question/index')}">健康咨询——与医生直接进行交流</a></span>
+										<span class="am-fr am-padding-right-xl"><img src="__STATIC__/amaze/i/index_arrow.png"></span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="am-tab-panel">
+						<!--健康体检-->
+						<div class="am-g am-g-collapse">
+							<div class="col-sm-3 am-u-lg-3">
+								<div class="health-box1">
+									<p>
+										<span class="btn"><a href="{:U('SelfTest/index')}">健康互动评测 >></a></span>
+										<span class="tips">测评完成后智能选择套餐</span>
+									</p>
+								</div>
+							</div>
+							<div class="col-sm-3 am-u-lg-3">
+								<div class="health-box2">
+									<img src="__STATIC__/amaze/i/health-01.jpg">
+									<ul class="hl-group1">
+										<volist name="suite1" id="s">
+											<li>
+												<dd class="am-fl"><a href="{:U('Suite/detail',array('id'=>$s['id']))}">{$s.title}</a><span>男：￥{$s.price_sex_1}   女：￥{$s.price_sex_0}</span>
+												</dd>
+												<dt class="am-fr"><a href="{:U('Suite/detail',array('id'=>$s['id']))}">选择</a>
+												</dt>
+												<div class="am-cf"></div>
+											</li>
+										</volist>
+										<a href="{:U('Suite/index')}" class="select-more">选择更多</a>
+									</ul>
+								</div>
+							</div>
+							<div class="col-sm-3 am-u-lg-3">
+								<div class="health-box2 ">
+									<ul class="hl-group2">
+										<volist name="suite2" id="s" offset="0" length='3'>
+											<li>
+												<dd class="am-fl"><a href="{:U('Suite/detail',array('id'=>$s['id']))}">{$s.title}</a><span>男：￥{$s.price_sex_1}   女：￥{$s.price_sex_0}</span>
+												</dd>
+												<dt class="am-fr"><a href="{:U('Suite/detail',array('id'=>$s['id']))}">选择</a>
+												</dt>
+												<div class="am-cf"></div>
+											</li>
+										</volist>
+										<a href="{:U('Suite/index')}" class="select-more">选择更多</a>
+									</ul>
+									<img src="__STATIC__/amaze/i/health-02.jpg">
+								</div>
+							</div>
+							<div class="col-sm-3 am-u-lg-3">
+								<div class="health-box2 ">
+									<img src="__STATIC__/amaze/i/health-03.jpg">
+									<ul class="hl-group3">
+										<volist name="suite2" id="s" offset="3" length='3'>
+											<li>
+												<dd class="am-fl"><a href="{:U('Suite/detail',array('id'=>$s['id']))}">{$s.title}</a><span>男：￥{$s.price_sex_1}   女：￥{$s.price_sex_0}</span>
+												</dd>
+												<dt class="am-fr"><a href="{:U('Suite/detail',array('id'=>$s['id']))}">选择</a>
+												</dt>
+												<div class="am-cf"></div>
+											</li>
+										</volist>
+										<a href="{:U('Suite/index')}" class="select-more">选择更多</a>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="am-tab-panel">
+						<!--健康商城-->
+						<div class="am-g am-g-collapse">
+							<div class="col-sm-3 am-u-lg-3">
+								<div class="shop-list shop1 am-padding">
+									<p class="icon-shop1"></p>
+
+									<p class="shop-name"><a href="{:U('Suite/index')}">体检套餐</a></p>
+
+									<p class="shop-tj">
+										{$suite1[0]['title']} 男￥{$suite1[0]['price_sex_1']}
+										女￥{$suite1[0]['price_sex_0']}<br>
+										{$suite1[1]['title']} 男￥{$suite1[1]['price_sex_1']}
+										女￥{$suite1[1]['price_sex_0']}
+									</p>
+									<a href="{:U('Suite/index')}"><img src="__STATIC__/amaze/i/arrow_health_right.png"></a>
+								</div>
+								<div class="shop-list shop5 am-padding">
+									<p class="icon-shop5"></p>
+
+									<p class="shop-name"><a href="{:U('article/index',array('pid'=>160))}">{$tree[1]['title']}</a></p>
+
+									<p class="shop-tj">
+										<volist name="tree[1]['doc']" id="row" offset="1" length='2'>
+											{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}<br/>
+										</volist>
+									</p>
+									<a href="{:U('article/index',array('pid'=>160))}"><img src="__STATIC__/amaze/i/arrow_health_right.png"></a>
+								</div>
+							</div>
+							<div class="col-sm-3 am-u-lg-3">
+								<div class="shop-list shop2 am-padding">
+									<p class="icon-shop2"></p>
+
+									<p class="shop-name"><a href="{:U('article/index',array('pid'=>164))}">{$tree[6]['title']}</a>
+									</p>
+
+									<p class="shop-tj">
+										<volist name="tree[6]['doc']" id="row" offset="1" length='2'>
+											{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}<br/>
+										</volist>
+									</p>
+									<a href="{:U('article/index',array('pid'=>164))}"><img src="__STATIC__/amaze/i/arrow_health_right.png"></a>
+								</div>
+								<div class="shop-list shop6 am-padding">
+									<p class="icon-shop6"></p>
+
+									<p class="shop-name"><a href="{:U('article/index',array('pid'=>107))}">{$tree[2]['title']}</a></p>
+
+									<p class="shop-tj">
+										<volist name="tree[2]['doc']" id="row" offset="1" length='2'>
+											{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}<br>
+										</volist>
+									</p>
+									<a href="{:U('article/index',array('pid'=>107))}"><img src="__STATIC__/amaze/i/arrow_health_right.png"></a>
+								</div>
+							</div>
+							<div class="col-sm-3 am-u-lg-3">
+								<div class="shop-list shop3 am-padding">
+									<p class="icon-shop3"></p>
+
+									<p class="shop-name"><a href="{:U('article/index',array('pid'=>107))}">{$tree[5]['title']}</a>
+									</p>
+
+									<p class="shop-tj">
+										<volist name="tree[5]['doc']" id="row" offset="1" length='2'>
+											{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}<br/>
+										</volist>
+									</p>
+									<a href="{:U('article/index',array('pid'=>107))}"><img src="__STATIC__/amaze/i/arrow_health_right.png"></a>
+								</div>
+								<div class="shop-list shop7 am-padding">
+									<p class="icon-shop7"></p>
+
+									<p class="shop-name"><a href="{:U('article/index',array('pid'=>73))}">{$tree[3]['title']}</a></p>
+
+									<p class="shop-tj">
+										<volist name="tree[3]['doc']" id="row" offset="1" length='2'>
+											 {$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}<br/>
+										</volist>
+									</p>
+									<a href="{:U('article/index',array('pid'=>73))}"><img src="__STATIC__/amaze/i/arrow_health_right.png"></a>
+								</div>
+							</div>
+							<div class="col-sm-3 am-u-lg-3">
+								<div class="shop-list shop4 am-padding">
+									<p class="icon-shop4"></p>
+
+									<p class="shop-name"><a href="{:U('article/index',array('pid'=>71))}">{$tree[0]['title']}</a>
+									</p>
+
+									<p class="shop-tj">
+										<volist name="tree[0]['doc']" id="row" offset="1" length='2'>
+											{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}<br>
+										</volist>
+									</p>
+									<a href="{:U('article/index',array('pid'=>71))}"><img src="__STATIC__/amaze/i/arrow_health_right.png"></a>
+								</div>
+								<div class="shop-list shop8 am-padding">
+									<p class="icon-shop8"></p>
+
+									<p class="shop-name"><a href="{:U('article/index',array('pid'=>159))}">{$tree[4]['title']}</a></p>
+
+									<p class="shop-tj">
+										<volist name="tree[4]['doc']" id="row" offset="1" length='2'>
+											{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}<br/>
+										</volist>
+									</p>
+									<a href="{:U('article/index',array('pid'=>159))}"><img src="__STATIC__/amaze/i/arrow_health_right.png"></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="am-tab-panel">
+						<!--健康咨询-->
+						<div class="con-box am-padding am-margin-top-xl am-margin-bottom-xl">
+							<div class="con-tabs">
+								<ul>
+									<li class="active">全部</li>
+									<volist name="category" id="c">
+										<li data-id="{$c.id}">{$c.title}</li>
+									</volist>
+									<li><a href="{:U('Question/lists')}">更多&gt;&gt;</a></li>
+								</ul>
+							</div>
+							<div class="con-tabs-content am-padding-top">
+								<ul>
+									<volist name="data" id="q" mod="2">
+										<li class='<eq name="mod" value="1" >even<else/>odd</eq> am-padding-xs' data-cid="{$q.c_id}">
+											<a href="{:U('Question/detail',array('id'=>$q['id']))}">
+												<dd class="am-fl am-padding-xs am-padding-left">
+													<img src="__STATIC__/amaze/i/icon_new_post.png">
+													{$q.title}
+													<span class="post-time am-padding-left-xl">{$q.ctime|time_format}</span>
+												</dd>
+												<dt class="am-fr am-padding-xs am-padding-right">
+													<!--<img src="__STATIC__/amaze/i/icon_user.png">-->
+													<empty name="q.vtime">未
+														<else/>
+														已
+													</empty>
+													回复
+												</dt>
+												<div class="am-cf"></div>
+											</a>
+										</li>
+									</volist>
+								</ul>
+							</div>
+							<!--<div class="am-u-sm-12 am-u-sm-centered am-text-center">-->
+							<!--{$page}-->
+							<!--</div>-->
+						</div>
+					</div>
+					<div class="am-tab-panel">
+						<!--健康讲坛-->
+						<div class="health-bbs ">
+							<ul class="am-avg-sm-2 ">
+								<volist name="lessons" id="row">
+									<li class="am-padding  ">
+										<dd class="am-fl">
+											<a href="{:U('Lesson/detail',array('id'=>$row['id']))}">
+												<notempty name="row.pic">
+													<img height="160px" width="230px" src="{$row.pic}">
+													<else/>
+													<img src="__STATIC__/amaze/i/img-bbs1.jpg">
+												</notempty>
+											</a>
+										</dd>
+										<dt class="am-fr am-padding-left-sm">
+										<h4><a href="{:U('Lesson/detail',array('id'=>$row['id']))}">{$row.title}</a>
+										</h4>
+
+										<p>{$row.content|strip_tags|mb_substr=0,60,'utf-8'}...</p>
+										<a href="{:U('Lesson/detail',array('id'=>$row['id']))}">详情</a>
+										</dt>
+										<div class="am-cf"></div>
+									</li>
+								</volist>
+
+								<div class="am-cf"></div>
+								<div class="am-g">
+									<div class="am-u-sm-3 am-u-sm-centered am-text-center am-margin-top-sm">
+										<a href="{:U('Lesson/index')}" class="viem-more">更多...</a></div>
+								</div>
+							</ul>
+						</div>
+					</div>
+					<div class="am-tab-panel">
+						<!--名医堂-->
+						<div class="inner-tabs">
+							<ul>
+								<li class="active">专家风采</li>
+								<!--<li><a href="{:U('Env/index')}">配套服务</a></li>-->
+							</ul>
+							<div class="am-cf"></div>
+							<div class="inner-tabs-content">
+								<div class="doctor_list am-padding am-margin">
+									<div class="am-slider am-slider-default am-slider-carousel am-slider-b3 am-padding" data-am-flexslider="{itemWidth: 206, itemMargin:8,slideshow:false,controlNav: false,}">
+										<ul class="am-slides">
+											<volist name="doctors" id="doc">
+												<li>
+													<a href="{:U('Doctor/detail',array('id'=>$doc['id']))}">
+														<notempty name="doc.pic">
+															<img src="{$doc.pic}"/>
+															<else/>
+															<img src="__STATIC__/amaze/i/doctor_lh.jpg">
+														</notempty>
+													</a>
+													<br>
+													<span class="am-text-center">
+														<a href="{:U('Doctor/detail',array('id'=>$doc['id']))}">{$doc.realname}
+															{$doc.title}</a>
+													</span>
+												</li>
+											</volist>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--content end-->
+	<!-- /主体 -->
+
+</block>
+
+<block name="script">
+	<script>
+		$(function () {
+			//专家风采
+			$(".inner-tabs li").first().addClass("active").siblings().removeClass("active");
+			$(".inner-tabs-content .doctor-list").first().show().siblings().hide();
+			$(".inner-tabs li").click(function () {
+				var index = $(".inner-tabs li").index(this);
+				$(this).addClass("active").siblings().removeClass("active");
+				$(".inner-tabs-content .doctor_list").eq(index).fadeIn().show().siblings().hide();
+			});
+		});
+		$(function () {
+			//健康咨询
+			$(".con-tabs li").first().addClass("active").siblings().removeClass("active");
+			$(".con-tabs li").click(function () {
+				var index = $(".con-tabs li").index(this);
+				$(this).addClass("active").siblings().removeClass("active");
+				var cid = $(this).data('id');
+				if (!cid) {
+					$(".con-tabs-content li").show();
+				} else {
+					$(".con-tabs-content li").hide();
+					$(".con-tabs-content li[data-cid=" + cid + "]").show();
+				}
+
+			});
+
+		});
+	</script>
+</block>

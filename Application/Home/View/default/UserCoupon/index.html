@@ -1,0 +1,102 @@
+<extend name="Base/common"/>
+<block name="style">
+	<link rel="stylesheet" href="__CSS__/order.css">
+</block>
+
+<block name="body">
+	<div class="am-g am-container am-margin-top-lg">
+
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">优惠券</li>
+			</ol>
+		</div>
+		<div class="userCenter am-cf ">
+			<div class="am-u-sm-3">
+				<!-- 左侧菜单 -->
+				<include file="Public/leftmenu"/>
+				<!-- 左侧菜单 -->
+			</div>
+			<div id="memberCenter" class="am-u-sm-9 am-padding-xl userCenter-r"><!-- 个人中心 初始状态 start -->
+				<div class=" " id="MemberCenterCtrl">
+					<div class="am-cf">
+						<div class="am-u-sm-6"><h2 class="am-fl">我的优惠券</h2></div>
+					</div>
+					<div class="am-g">
+						<empty name='couponlist'>
+							<div class="personal_info_none_goods am-u-sm-12">
+								<p>暂时没有优惠券</p>
+							</div>
+							<else/>
+							<ul class="userhas am-list" id="cuser">
+								<volist name="couponlist" id="vo">
+									<li>
+										<a href="javascript:void(0);"><img src="{$vo.icon|get_cover='path'}" width="170" height="170"/></a></p>
+										<p>
+											<a href="javascript:void(0);"><span class="red">{$vo.title}</span></a>
+										</p>
+
+										<p class="am-text-xs">价值：<span class="red">{$vo.price}元</span>|最低消费:{$vo.lowpayment}
+										</p>
+										<p class="am-text-xs">有效期：<span class="red">{$vo.start_time|time_format='Y/m/d'}-{$vo.end_time|time_format='Y/m/d'}</span>
+										</p>
+										<p class="am-text-xs">{$vo.description|default='&nbsp;'|strip_tags|mb_substr=0,20,'utf8'}</p>
+									</li>
+								</volist>
+							</ul>
+						</empty>
+					</div>
+					<hr>
+					<div class="am-g am-hide">
+						<span class="red">已使用</span>
+						<ul class="userhas am-list" id="cuser2">
+							<volist name="couponusedlist" id="vo" empty="暂无">
+								<li>
+									<a href="javascript:void(0);"><img src="{$vo.icon|get_cover='path'}" width="170" height="170"/></a></p>
+									<p>
+										<a href="javascript:void(0);"><span class="red">{$vo.title}</span></a>
+									</p>
+
+									<p class="am-text-xs">价值：<span class="red">{$vo.price}元</span>|最低消费:{$vo.lowpayment}
+									</p>
+									<p class="am-text-xs">有效期：<span class="red">{$vo.start_time|time_format}-{$vo.end_time|time_format}</span>
+									</p>
+									<p class="am-text-xs">{$vo.description|strip_tags|mb_substr=0,20,'utf8'}</p>
+								</li>
+							</volist>
+						</ul>
+					</div>
+					<script type="text/javascript">
+
+						function getcoupon(event) {
+							event = event ? event : window.event;
+							var obj = event.srcElement ? event.srcElement : event.target;
+//这时obj就是触发事件的对象，可以使用它的各个属性
+//还可以将obj转换成jquery对象，方便选用其他元素
+							str = obj.innerHTML.replace(/<\/?[^>]*>/g, ''); //去除HTML tag
+
+							var $obj = $(obj);
+							var id = obj.rel;
+							var b = '{:U("UserCoupon/get")}';
+							$.ajax({
+								type: "post",
+								url: '{:U("User/getcoupon")}',
+								data: {
+									couponid: id
+								},
+								dataType: "json",
+								success: function (data) {
+									alert(data.msg);
+									if (data.status == "1") {
+										window.location.reload();
+									}
+								}
+							});
+						}
+					</script>
+					<!-- 个人中心 初始状态 end --></div>
+			</div>
+		</div>
+	</div>
+</block>

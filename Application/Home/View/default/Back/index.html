@@ -1,0 +1,120 @@
+<extend name="Base/common"/>
+<block name="body">
+    <div class="am-g am-container am-margin-top-lg">
+        <div class="breadcrumb-box">
+            <ol class="am-breadcrumb am-breadcrumb-slash">
+                <li><a href="{:U('Home/Index/index')}">首页</a></li>
+                <li class="am-active">个人中心</li>
+            </ol>
+        </div>
+   <!--      <div class="breadcrumb-box">
+            <ol class="am-breadcrumb am-breadcrumb-slash">
+                <li><a href="{:U('Home/Index/index')}">首页</a></li>
+                <li class="am-active">个人中心</li>
+            </ol>
+        </div> -->
+    <div class="main">
+        <div class="userCenter am-cf">
+            <div class="am-u-sm-3">
+                <!-- 左侧菜单 -->
+                <include file="Public/leftmenu"/>
+                <!-- 左侧菜单 -->
+            </div>
+            <div class="center_right" style="display: none;">
+                <div class="center_right_loading"></div>
+            </div>
+            <div id="memberCenter" class="userCenter-r am-u-sm-9 am-padding-xl"><!-- 个人中心 初始状态 start -->
+                <div class="center_right" id="MemberCenterCtrl" style="display: block;">
+<span style="display: block;padding:15px;font-size:20px;text-align:center;color:red;margin:20px 0;"><i class="
+glyphicon glyphicon-pencil"></i>{$msg} &nbsp;&nbsp;</span>
+
+                    <form action='{:U()}' method="post" name="actform" style="width:89%">
+
+                        <div id="write">
+
+
+                            <ul style="list-style: none">
+
+                                <li>
+                                    <div class="form-item">
+                                        <label class="item-label">订单编号: <span class="am-text-primary">{$list.tag}</span></label><br/>
+                                        <label class="item-label">商品名称: <span class="am-text-default">{$list.goodid|get_good_name}</span><br/>
+                                        <label class="item-label">商品价格: <span class="am-text-danger">{$list.goodid|get_good_price}</span><br/>
+                                        <label class="item-label">下单时间: <span class="am-text-danger">{$list.create_time|date='Y-m-d H:i:s',###}</span>
+
+                                        </label>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-item">
+                                        <label class="item-label"><span class="check-tips"></span> </label>
+
+                                        <div class="controls">
+                                            退货件数:<input type="text" class="text num input-large" name="num"
+                                                        value="{$list.num}"> <span>(最多可退{$list.num}件)	</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-item">
+                                        <label class="item-label">原因:<span class="check-tips"></span> </label>
+
+                                        <div class="controls">
+                                            <textarea rows=5" cols="40" name="reason"></textarea>
+                                        </div>
+                                    </div>
+                                </li>
+
+
+                                <li class="am-margin-top">
+                                    <input type="hidden" name="id" value="{$list.id}">
+                                    <input type="hidden" name="goodid" value="{$list.goodid}">
+                                    <input type="hidden" name="shopid" value="{$list.id}">
+                                    <input type="submit" class="am-btn am-btn-primary btn_submit_pay" value="提交"/></li>
+
+
+                            </ul>
+                        </div>
+
+                    </form>
+
+
+                </div>
+                <script type="text/javascript">
+
+
+                    function delorder() {
+                        document.delform.submit();
+
+                    }
+                    //全选的实现
+                    $(".check-all").click(function () {
+                        $(".ids").prop("checked", this.checked);
+                    });
+                    $(".ids").click(function () {
+                        var option = $(".ids");
+                        option.each(function (i) {
+                            if (!this.checked) {
+                                $(".check-all").prop("checked", false);
+                                return false;
+                            } else {
+                                $(".check-all").prop("checked", true);
+                            }
+                        });
+                    });
+                    require(['memberCenter'], function () {
+                        var el = document.getElementById('MemberCenterCtrl');
+                        avalon.scan(el);
+                        avalon.nextTick(function () {
+                            el.style.display = 'block';
+                        });
+                    });
+                </script>
+                <!-- 个人中心 初始状态 end --></div>
+        </div>
+    </div>
+    <script type="text/javascript">_init_area();</script>
+    </div>
+
+</block>

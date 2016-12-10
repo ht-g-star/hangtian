@@ -1,0 +1,66 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<div class="am-u-sm-12 am-u-sm-centered  am-padding-bottom-lg">
+		<form id="get_code_form" class="am-form am-form-inline" action="{:U('Public/register',array('step'=>2))}" method="post">
+			<div class="am-form-group am-padding-top-xl">
+				<input name="tel" id="tel" type="tel" value="" maxlength="11" placeholder="输入手机号" class="am-form-field"/>
+			</div>
+			<div class="am-form-group">
+				<img src="/index.php?s=Home/Home/verify" alt="" onclick="this.src='/index.php?s=Home/Home/verify&t='+new Date().getMilliseconds()">
+				<input type="text" id="v_code" name="v_code" minlength="3" required placeholder="请填写图中验证码" class="am-form-field am-inline-block"/>
+			</div>
+			<div class="am-form-group am-cf">
+				<input type="text" style="width: 50%" name="code" minlength="3" placeholder="请填写验证码" class="am-u-sm-6 am-form-field passcode am-inline-block"/>
+				<button class="am-btn am-btn-default required am-u-sm-6" id="get_code" type="button">
+					<span class="am-text-sm">获取验证码</span>
+				</button>
+			</div>
+
+			<div class="am-form-group  am-cf">
+				<input class="am-btn am-btn-secondary am-btn-lg am-btn-block" type="submit" value="确认"/>
+			</div>
+		</form>
+
+	</div>
+</block>
+
+
+<block name="script">
+	<script type="text/javascript">
+		var get_code = false;
+		$("#get_code").click(function () {
+			if (get_code) {
+				topAlert("60秒以内不能再次发送!");
+				return false;
+			}
+			var tel = $("#tel").val();
+			if (tel.length == 11) {
+				$.post("/index.php?s=Home/Sms/get_code.html", {'tel': tel,'v_code':$("#v_code").val()}, function (data) {
+					topAlert(data.info, data.status);
+					get_code = true;
+					setTimeout(function () {
+						get_code = false;
+					}, 60000);
+				});
+			} else {
+				topAlert("手机号错误!");
+			}
+		});
+		$("#get_code_form").submit(function () {
+			var tel = $("#tel").val();
+			if (tel.length != 11) {
+				topAlert("手机号错误!");
+				return false;
+			}
+			if ($("input#v_code").val() == "" || $("input#code").val() == "") {
+				topAlert("验证码必须!");
+				return false;
+			}
+
+		});
+		$(function () {
+			$('body').addClass('bg-f5');
+		});
+	</script>
+
+</block>

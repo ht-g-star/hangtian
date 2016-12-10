@@ -1,0 +1,101 @@
+<extend name="Base/common"/>
+<block name="style">
+	<!--<link rel="stylesheet" href="__CSS__/amazeui.min.css">-->
+	<link rel="stylesheet" href="__CSS__/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="__CSS__/style.css">
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" href="../css/style1-IE.css" />
+		<script type="text/javascript" src="../js/jquery-1.11.0.js" ></script>
+		<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  		<script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+		<script type="text/javascript" src="../js/amazeui.ie8polyfill.min.js" ></script>
+	<![endif]-->
+</block>
+<block name="body">
+	<style>
+			.am-u-sm-2{
+				float: left;
+				width: 20%;
+				height: 50px;
+				display: block;
+				margin: 0;
+				margin-top: 10px;
+			}
+			.am-u-sm-10{
+				float: left;
+				width: 70%;
+				height: 50px;
+				display: block;
+				margin: 0;
+				margin-top: 10px;
+			}
+		</style>
+		<!--header-->
+		<!--section-->
+		<div class="my_main" style="margin-top:60px">
+			<input type="hidden" value="0" id="isorder" />
+			<div class="am-g am-g-fixed am-g-collapse">
+				<div class="am-u-lg-12 zf_box_group">
+					<h1>确认订单</h1>
+					<div class="zhfs" style="line-height: 35px;">
+						<p>线路名称：{$data.line.xl_name}</p>
+						<p>联系人：{$data.lxr}</p>
+						<p>联系人手机：{$data.lxrphone}</p>
+						<!-- <p>出行人：{$data.lxr}</p>
+						<p>出行人手机：{$data.lxrphone}</p> -->
+						<p>成人数：{$data.crj_num}</p>
+						<p>儿童数：{$data.rtj_num}</p>
+						<p>出行日期：{$data.rzsj}</p>
+						<p>个性需求：<notempty name='data.message'>{$data.message}<else/>无</notempty></p>
+					</div>
+				</div>
+				<!--付款信息-->
+				<div class="am-u-lg-12 am-text-right">
+					<p>应付总额：<span class="sumpr blod am-text-warning ">{$money}</span>元</p>
+					<button class="am-btn am-btn-lg am-btn-primary" id="ordersubmit">提交订单</button>
+				</div>
+				
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="__JS__/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="__JS__/jquery.dataTables.min.js"></script>
+		<script>
+			$('#ordersubmit').on('click',function(){
+				if($('#isorder').val() == 1){
+					alert('您已提交过该订单，请勿重复提交！');
+					return false;
+				}else{
+					var data={
+						num:"{:I('num')}",
+						addressid:"{:I('addressid')}",
+						message:"{:I('message')}",
+						rzsj:"{:I('rzsj')}",
+						xl_id:"{:I('xl_id')}",
+						priceid:"{:I('priceid')}",
+						crj_num:"{:I('crj_num')}",
+						rtj_num:"{:I('rtj_num')}",
+						price:"{:I('price')}",
+						qprice:"{:I('qprice')}"
+					};
+					$.ajax({
+						type:"post",
+						url:"{:u('Home/Line/ordermake')}",
+						async:true,
+						data:data,
+						success:function(e){
+							if(e.status==1){
+								$('#isorder').val(1);
+								var url='{:u("Home/Line/allorder")}';
+								window.location.href=url;
+							}else{
+								alert(e.msg);
+							}
+						}
+					});
+				}
+			});
+		</script>
+	
+
+</block>

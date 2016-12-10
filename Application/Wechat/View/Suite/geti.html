@@ -1,0 +1,87 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<!-- Slider -->
+	<div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{"directionNav":false}'>
+		<ul class="am-slides">
+			<li>
+			<a href="{:U('Suite/detail',array('id'=>65))}">
+				<img src="__STATIC__/amaze/i/tijian/rztj.jpg">
+				</a>
+			</li>
+			<li>
+			<a href="{:U('Suite/detail',array('id'=>64))}">
+				<img src="__STATIC__/amaze/i/tijian/yjk.jpg">
+				</a>
+			</li>
+			<li>
+				<a href="{:U('Suite/detail',array('id'=>70))}">
+				<img src="__STATIC__/amaze/i/tijian/zcbl.jpg">
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!--商品排序-->
+	<!--
+	<div class="shop-desc am-padding-top-sm am-padding-left-sm am-padding-right-sm">
+		<div class="am-g">
+			<div class="am-u-sm-5">全部商品 <img src="__STATIC__/amaze/i/app/app-arrow-bottom.png"></div>
+			<div class="am-u-sm-2"><span></span></div>
+			<div class="am-u-sm-5">综合排序 <img src="__STATIC__/amaze/i/app/app-arrow-bottom.png"></div>
+		</div>
+	</div>
+	-->
+	<!-- List -->
+	<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+		<div class="am-list-news-bd order">
+			<ul class="am-list">
+				<!--缩略图在标题左边-->
+					<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+					<!-- 	<div class="am-u-sm-5 am-list-thumb">
+							<a href=""></a>
+						</div> -->
+						<div class="am-u-sm-7 am-list-main">
+							<!-- <h3 class="am-list-item-hd">
+								<a href=""></a></h3>
+							<div class="price am-text-xs">女:￥{$s.price_sex_0} 男:￥{$s.price_sex_1}<br>
+								<span class="am-link-muted ">已售：{$s.buy_count|default=0}</span>
+							</div> -->
+							<a href="__ROOT__/Home/index/appointment.html" class="am-btn am-btn-secondary" style="padding-right:1em;">个体化</a>
+						</div>
+					</li>
+						<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+						
+						<div class="am-u-sm-7 am-list-main">
+							<!-- <h3 class="am-list-item-hd">
+								<a href=""></a></h3>
+							<div class="price am-text-xs">女:￥{$s.price_sex_0} 男:￥{$s.price_sex_1}<br>
+								<span class="am-link-muted ">已售：{$s.buy_count|default=0}</span>
+								https://demo.tijianzhuanjia.com/wx/index.html?sid=00-30#/order/list
+							</div> -->
+							<a href="__ROOT__/Home/index/appointment.html?target=porder" class="am-btn am-btn-secondary" style="padding-right:1em;">查看个检订单</a>
+						</div>
+						<div class="am-u-sm-5 am-list-thumb">
+							仅仅查看你已经预约的个检订单
+						</div>
+					</li>
+
+					<!--缩略图在标题左边-->
+					<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+						
+						<div class="am-u-sm-7 am-list-main">
+							<!-- <h3 class="am-list-item-hd">
+								<a href=""></a></h3>
+							<div class="price am-text-xs">女:￥{$s.price_sex_0} 男:￥{$s.price_sex_1}<br>
+								<span class="am-link-muted ">已售：{$s.buy_count|default=0}</span>
+								https://demo.tijianzhuanjia.com/wx/index.html?sid=00-30#/team/star?id=00-30&s=2
+							</div> -->
+							<a href="__ROOT__/Home/index/appointment.html?target=torder" class="am-btn am-btn-secondary" style="padding-right:1em;">查看团检订单</a>
+						</div>
+						<div class="am-u-sm-5 am-list-thumb">
+							仅仅查看你已经预约的团检订单
+						</div>
+					</li>
+			</ul>
+		</div>
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>机票订单</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<link rel="shortcut icon" href="/favicon.ico">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="/Public/hangtian/weixin/css/sm.min.css">
+		<link rel="stylesheet" href="/Public/hangtian/weixin/css/sm-extend.css">
+		<link rel="stylesheet" href="/Public/hangtian/weixin/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/Public/hangtian/weixin/css/page.css">
+
+		<style type="text/css">
+			h1.title {
+				z-index: 1;
+			}
+			
+			header.bar a.pull-left {
+				position: relative;
+				z-index: 2;
+			}
+
+			.modal{}
+			.ct-modal .modal-text{
+				max-height:250px;
+				overflow-y:auto;
+				text-align:left;
+				font-size:0.5rem;
+			}
+			.button.button-fill.button-danger{background:#f6383a;}
+		</style>
+	</head>
+
+	<body>
+		<div class="page-group">
+			<style type="text/css">
+				.icon-next,
+				.icon-prev {
+					height: 2rem;
+					background-position: left center;
+					background-repeat: no-repeat;
+				}
+			</style>
+			<div class="page page-current">
+				<header class="bar bar-nav">
+					<a class="fa fa-angle-left pull-left" onclick="history.back();"></a>
+					<h1 class="title">{$_SESSION['hblist'][0]['fromCityCN']}<i class="fa fa-long-arrow-right"></i>{$_SESSION['hblist'][0]['toCityCN']}</h1>
+				</header>
+				<nav class="bar bar-footer order-bar">
+					<a class="button button-link pull-left">
+						<span class="rmb">¥</span>
+						<strong id="rmb">{:($data['settlement']+$data['airportFee'])}</strong>
+						<i class="fa fa-angle-down"></i>
+					</a>
+					<button class="button button-link pull-right" type="button" id="addsubmit">提交订单</button>
+
+				</nav>
+				<div class="content order">
+					<form name="" action="" method="post" id="formact">
+					<div class="info">
+						<div class="tit">
+							{:date('Y-m-d', strtotime($_SESSION['hblist'][0]['fromDate']))} {$data.departureTime} 
+							<span>{:setAirport($_SESSION['hblist'][0]['flightObject'][I('o')]['fromAirport'])}</span>-
+							<span>{:setAirport($_SESSION['hblist'][0]['flightObject'][I('o')]['toAirport'])}</span>
+							<i class="fa fa-angle-right"></i>
+						</div>
+						<span>选择座舱:{$_SESSION['hblist'][0]['flightObject'][I('o')]['flightNo']}</span>
+						<div>{:date('Y-m-d H:i', strtotime($_SESSION['hblist'][0]['flightObject'][I('o')]['fromDate']))} 至 {:date('H:i', strtotime($_SESSION['hblist'][0]['flightObject'][I('o')]['toDate']))}</div>
+						<volist name="_SESSION['hblist'][0]['flightObject'][I('o')]['cabinInfo']" id='vo' key='k'>
+							<p>
+								<span><input type="radio" name="go" value="{$k}" data-value="{:($vo['facePrice']+$_SESSION['hblist'][0]['flightObject'][I('o')]['airportFee']+$_SESSION['hblist'][0]['flightObject'][I('o')]['fuelTax']) * 1.03}"/></span>
+								<span>{$vo.cabinRankDetail} {$vo.cabinCode}舱:</span>
+								<span>票价<span class="rmb">¥</span>{:($vo["facePrice"]+$_SESSION['hblist'][0]['flightObject'][I('o')]['airportFee']+$_SESSION['hblist'][0]['flightObject'][I('o')]['fuelTax']) * 1.03}</span>
+							</p>
+						</volist>
+						<if condition="count($_SESSION['hblist'][1]['flightObject'][I('o1')]['cabinInfo']) neq 0">
+						<span>回程座舱:{$_SESSION['hblist'][1]['flightObject'][I('o1')]['flightNo']}</span>
+						<div>{:date('Y-m-d H:i', strtotime($_SESSION['hblist'][1]['flightObject'][I('o1')]['fromDate']))} 至 {:date('H:i', strtotime($_SESSION['hblist'][1]['flightObject'][I('o1')]['toDate']))}</div>
+						<volist name="_SESSION['hblist'][1]['flightObject'][I('o1')]['cabinInfo']" id='vo' key='k'>
+							<p>
+								<span><input type="radio" name="back" value="{$k}" data-value="{:($vo['facePrice'] + $_SESSION['hblist'][1]['flightObject'][I('o1')]['airportFee']+$_SESSION['hblist'][1]['flightObject'][I('o1')]['fuelTax']) * 1.03}"/></span>
+								<span>{$vo.cabinRankDetail} {$vo.cabinCode}舱:</span>
+								<span>票价<span class="rmb">¥</span>{:($vo["facePrice"]+$_SESSION['hblist'][1]['flightObject'][I('o1')]['airportFee']+$_SESSION['hblist'][1]['flightObject'][I('o1')]['fuelTax']) * 1.03}</span>
+							</p>
+						</volist>
+							<input type="hidden" name="hbtype" value="wf" />
+						</if>
+					</div>
+					<!--联系人-->
+						<div class="card">
+						    <div class="card-header">选择联系人:</div>
+						    <div class="card-content">
+						    	<if condition="count($address)">
+						    	<volist name='address' id='vo'>
+							        <div class="card-content-inner">
+							        	<input type="radio" name="lxr" value="{$vo.id}" />联系人:{$vo.realname} 电话:{$vo.cellphone}
+							        </div>
+						    	</volist>
+						        <div class="card-content-inner">
+						        	<input type="button" value="新增联系人" class="button button-fill showaddress"/>
+						        </div>
+						    	</if>
+						    	<div class="list-block contact lxrbox">
+									<ul>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">联系人</div>
+													<div class="item-input">
+														<input type="text" id="lxrname" placeholder="请填写联系人姓名">
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">+86</div>
+													<div class="item-input">
+														<input type="tel" id="lxrmobile" placeholder="请填写联系人手机号">
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<input type="button" class="button button-fill btnlxrsave"  value="保存联系人"/>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+						    	
+						    </div>
+						</div>
+						<div class="card">
+						    <div class="card-header">选择乘机人:</div>
+						    <div class="card-content">
+						    	<if condition="count($cjr)">
+							    	<volist name='cjr' id='vo'>
+								    <div class="card-content-inner">
+								      	<input type="checkbox" name="cjr[]" class="cjr" value="{$vo.id}" data-cjrid="{$vo.cjrid}" />乘机人:{$vo.cjrname} 电话:{$vo.cjrmobile}
+								    </div>
+								    </volist>
+								    <div class="card-content-inner">
+								      	<input type="button" value="新增乘机人" class="button button-fill showcjr"/>
+								    </div>
+						    	</if>
+					    	 	<div class="list-block contact cjrbox" style="display: none;">
+									<ul>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">乘机人</div>
+													<div class="item-input">
+														<input type="text" name="chengke" placeholder="请填写乘机人姓名">
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">+86</div>
+													<div class="item-input">
+														<input type="tel" name="phone" placeholder="请填写乘机人手机号">
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">乘客类型</div>
+													<div class="item-input">
+														<input name="fm" type="radio" checked="checked" value="ADU" /><span>成人</span>
+														<input name="fm" type="radio" value="CHD" /><span>儿童</span>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">身份证号码</div>
+													<div class="item-input">
+														<input type="text" name="shenfenzheng" placeholder="请填写身份证号码">
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<input type="button" value="保存乘机人" class="button button-fill savecjrbtn"/>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+						    </div>
+						</div>
+
+						<!-- 投保人 -->
+				       	<div class="card" id="tbrxx" style="display:none;">
+				       		<div class="card-header">投保人信息</div>
+				       		<div class="card-content">
+									<strong style="padding:0 10px;">*因乘机人年龄不满18岁，需要一名18岁以上的投保人，才可以购买保险。</strong>
+									<!-- <div class="list-block contact">
+									<ul>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">投保人姓名：</div>
+													<div class="item-input">
+														<input class="ipt_text" type="text" id="toubaoren" name="toubaoren" placeholder="请输入姓名" />
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">手机号：</div>
+													<div class="item-input">
+														<input class="ipt_text" type="text" id="toubaorenphone" name="toubaorenphone" placeholder="请输入手机号" />
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">身份证号：</div>
+													<div class="item-input">
+														<input class="ipt_text" id="toubaorenid" type="text" name="toubaorenid" placeholder="证件号码" />
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div> -->
+					        </div>
+				       	</div>
+
+						<div class="card" style="display:none;">
+						    <div class="card-header">保险选择:</div>
+						    <div class="card-content">
+						        <div class="card-content-inner">
+						        	<select name='bx'>
+						        		<option value="0">不购买</option>
+						        		<volist name='bxdata' id='vo'>
+						            	<option value="{$vo.prodId}">{$vo.companyName}--{$vo.prodName}</option>
+						            	</volist>
+						        	</select>
+						        	<input type="hidden" name="bxfaceprice" value="0"/>
+									<div class="bxdetail" style="display: none;">
+										<div class="am-g">
+										  <label class="item-title label">保险公司</label>
+										  <label class="item-input" id="bxcompanyName"></label>
+										</div>
+										<div class="am-g">
+										  <label class="item-title label">险种编号</label>
+										  <label class="item-input" id="bxtypecode"></label>
+										</div>
+										<div class="am-g">
+										  <label class="item-title label">保险类型</label>
+										  <label class="item-input" id="bxinsuretype"></label>
+										</div>
+										<div class="am-g">
+										  <label class="item-title label">售价(元)</label>
+										  <label class="item-input" id="bxnormalPrice">
+										  </label>
+										</div>
+										<div class="am-g">
+										  <label class="item-title label">保险天数</label>
+										  <label class="item-input" id="bxterm"></label>
+										</div>
+										<!--<div class="am-g">
+										  <label class="item-title label">购买数量限制</label>
+										  <label class="item-input" id="bxcountLimit"></label>
+										</div>-->
+										<div class="am-g">
+										  <label class="item-title label">被保人年龄限制</label>
+										  <label class="item-input" id="bxinsuredAgeLimit">
+										  </label>
+										</div>
+										<div class="am-g">
+										  <label class="item-title label">投保人年龄限</label>
+										  <label class="item-input" id="bxunderWriteAgeLimit">
+										  </label>
+										</div>
+										<div class="am-g">
+										  <label class="item-title label">简述</label>
+										  <label id="bxdesp">
+										  </label>
+										</div>
+										<div class="am-g">
+										  <label class="item-title label">被保金额(元)</label>
+										  <label class="item-input" id="bxinsuranceAmount">
+										  </label>
+										</div>
+										<div class="am-g">
+										  <label class="item-title label">购买数量</label>
+										  <label class="item-input">
+										  	1份
+										  	<input name="bxnum" type="hidden" value="1" min="1" max="1" disabled="disabled"/>
+										  </label>
+										</div>
+									</div>
+						        </div>
+						    </div>
+						</div>
+
+						<div class="card">
+							<div class="card-content">
+						        <div class="card-content-inner">
+									<a href="javascript:void(0)" onclick="showRule()" class="button button-fill button-danger">查看退改政策</a>
+								</div>
+							</div>
+						</div>
+						<input name="isover18" type="hidden" value="" />
+					</form>
+				</div>
+			</div>
+		</div>
+	  	<input type="hidden" name="bxprice" value="
+	  	<if condition="$_GET['o1'] neq ''">
+	  	{$bxdata[0]['price']*2}
+	  	<else/>
+	  	{$bxdata[0]['price']}
+	  	</if>
+	  	" />
+	  	<input type="hidden" name="bxprodId" value="{$bxdata[0]['prodId']}" />
+		<script type='text/javascript' src='/Public/hangtian/weixin/js/zepto.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='/Public/hangtian/weixin/js/sm.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='/Public/hangtian/weixin/js/sm-extend.min.js' charset='utf-8'></script>
+
+		<script type="text/javascript">
+		var isover18 = 1;
+
+		var fromRule = "";
+		var toRule = "";
+
+		function jsGetAge(strBirthday)
+	{     
+		var returnAge;
+		var strBirthdayArr=strBirthday.split("-");
+		var birthYear = strBirthdayArr[0];
+		var birthMonth = strBirthdayArr[1];
+		var birthDay = strBirthdayArr[2];
+		
+		d = new Date();
+		var nowYear = d.getFullYear();
+		var nowMonth = d.getMonth() + 1;
+		var nowDay = d.getDate();
+		
+		if(nowYear == birthYear)
+		{
+			returnAge = 0;//同年 则为0岁
+		}
+		else
+		{
+			var ageDiff = nowYear - birthYear ; //年之差
+			if(ageDiff > 0)
+			{
+				if(nowMonth == birthMonth){
+					var dayDiff = nowDay - birthDay;//日之差
+					if(dayDiff < 0)
+					{returnAge = ageDiff - 1;}
+					else
+					{returnAge = ageDiff ;}
+				}else{
+					var monthDiff = nowMonth - birthMonth;//月之差
+					if(monthDiff < 0)
+					{returnAge = ageDiff - 1;}
+					else
+					{returnAge = ageDiff ;}
+				}
+			}
+			else
+			{
+				returnAge = -1;//返回-1 表示出生日期输入错误 晚于今天
+			}
+		}
+		return returnAge;//返回周岁年龄
+	}
+		/**
+		 * 选择保险
+		 */
+		$('select[name=bx]').on('change',function(){
+			var pid=$(this).val();
+			if(pid==0){
+				$('.bxdetail').hide();
+				return false;
+			}
+			$.ajax({
+				type:"post",
+				url:"{:U('getbxdetail')}",
+				data:{pid:pid},
+				async:true,
+				success:function(e){
+					if(e){
+						$('#bxcompanyName').html(e.companyName);
+						$('#bxtypecode').html(e.typeCode);
+						$('#bxinsuretype').html(e.insureType=='ACCIDENT'?'航空意外险':'航空延误险');
+						$('#bxnormalPrice').html(e.normalPrice);
+						$('#bxterm').html(e.term);
+		//				$('#bxcountLimit').html('儿童票限购:'+e.countLimit.child+'张,成人票限购:'+e.countLimit.adult+'张');
+						$('#bxinsuredAgeLimit').html(e.insuredAgeLimit.lowerLimit+'至'+e.insuredAgeLimit.upperLimit+'岁');
+						$('#bxunderWriteAgeLimit').html(e.underWriteAgeLimit.lowerLimit+'至'+(e.underWriteAgeLimit.upperLimit==0?'~':e.underWriteAgeLimit.upperLimit)+'岁');
+						$('#bxdesp').html('<a href="'+e.desp+'"target="_blank">点击查看</a>');
+						$('#bxinsuranceAmount').html(e.insuranceAmount);
+						$('input[name=bxfaceprice]').val(e.normalPrice);
+						$('.bxdetail').show();
+						$('input[name=bxnum]').change();
+					}else{
+						$('.bxdetail').hide();
+					}
+				}
+			});
+		});
+		//计算总价
+		$('input[name=bxnum]').on('change',function(){
+			var sump=parseFloat('{$sumprice}');
+			var bnum=$(this).val();
+			var bprice=parseFloat($('#bxnormalPrice').html());
+			var sumprice=sump+bnum*bprice;
+			$('.sumprice').html(sumprice);
+		});
+			$.fn.serializeObject=function(){  
+			    var obj=new Object();  
+			    $.each(this.serializeArray(),function(index,param){  
+			        if(!(param.name in obj)){  
+			            obj[param.name]=param.value;  
+			        }  
+			    });  
+			    return obj;  
+			};
+			var ttteee = 1;
+			$(function() {
+				$("#addsubmit").click(function() {
+					var chengke = $('input[name="chengke"]').val();
+					var phone = $('input[name="phone"]').val();
+					var shenfenzheng = $('input[name="shenfenzheng"]').val();
+					if($('#rmb').html()==0){
+						alert('请选择航班座舱!');
+						return false;
+					}
+					
+					if(!$('input[name=go]:checked').length){
+						alert('请选择航班座舱!');
+						return false;
+					}
+					if($('input[name=back]').length){
+						if(!$('input[name=back]:checked').length){
+							alert('返航航班!');
+							return false;
+						}
+					}
+					var data=$('#formact').serializeObject();
+					if(!data.lxr){
+						$.toast('请选择联系人!');
+						return false;
+					}
+					if(!data["cjr[]"]){
+						$.toast('请选择乘机人!');
+						return false;
+					}
+
+					// var toubaoren = $.trim($("#toubaoren").val());
+					// var toubaorenphone = $.trim($("#toubaorenphone").val());
+					// var toubaorenid = $.trim($("#toubaorenid").val());
+
+					// if(isover18 == 0){
+		   //          	if(!toubaoren.length){
+		   //          		alert("投保人姓名不能为空。");
+		   //          		return false;
+		   //          	}
+
+		   //          	if(!toubaorenphone.length){
+		   //          		alert("投保人手机号不能为空。");
+		   //          		return false;
+		   //          	}
+
+		   //          	if(toubaorenphone.length != 11){
+		   //          		alert("投保人手机号格式不正确，请检查。");
+		   //          		return false;
+		   //          	}
+
+		   //          	if(!toubaorenid.length){
+		   //          		alert("投保人身份证号不能为空。");
+		   //          		return false;
+		   //          	}
+
+		   //          	if(toubaorenid.length != 18){
+		   //          		alert("投保人身份证号格式不正确，请检查。");
+		   //          		return false;
+		   //          	}
+		   //          }
+					$("[name='isover18']").val(isover18);
+					$('#formact').submit();
+					// console.debug(ttteee++);
+					$(this).prop("disabled", true).addClass("disabled");
+				})
+
+				$('input[name=go],input[name=back]').click(function(){
+					$.showPreloader("加载退改政策中");
+					var name = $(this).attr("name");
+					if(name == "go"){
+						$.get("/wechat/jipiao/getHejiaInfo?direct=0&k={$_GET['o']}&g=" + $(this).val(), 
+						function(json){
+							$.hidePreloader();
+							if(json != "null"){
+								json = JSON.parse(json);
+								fromRule = "";
+								fromRule += "去程政策：<br/>";
+								fromRule += "改期说明：" + json.ticketChangeRemark + "<br/>";
+								fromRule += "退票说明：" + json.ticketBounceRemark + "<br/>";
+								fromRule += "签转说明：" + json.ticketSignChangeRemark;
+							}
+							showRule();
+						})
+					}
+
+					if(name == "back"){
+						toRule = "";
+						$.get("/wechat/jipiao/getHejiaInfo?direct=1&k={$_GET['o1']}&g=" + $(this).val(), 
+						function(json){
+							$.hidePreloader();
+							if(json != "null"){
+								json = JSON.parse(json);
+								toRule = "";
+								toRule += "返程政策：<br/>";
+								toRule += "改期说明：" + json.ticketChangeRemark + "<br/>";
+								toRule += "退票说明：" + json.ticketBounceRemark + "<br/>";
+								toRule += "签转说明：" + json.ticketSignChangeRemark;
+							}
+							showRule();
+						})
+					}
+
+					setTotalPrice();
+				});
+
+				setTotalPrice();
+			})
+
+			//联系人
+			$('.btnlxrsave').on('click',function(){
+				var lxrname=$('#lxrname').val();
+				var lxrmobile=$('#lxrmobile').val();
+				if(!lxrname){
+					$.toast('请输入联系人姓名!');
+					return false;
+				}
+				if(!lxrmobile){
+					$.toast('联系人手机号不能为空!');
+					return false;
+				}
+				if(lxrmobile.length!=11){
+					$.toast('手机号码不正确!');
+					return false;
+				}
+				$.ajax({
+					type:"post",
+					url:"{:U('savelxr')}",
+					async:true,
+					data:{
+						phone:lxrmobile,
+						realname:lxrname
+					},
+					success:function(e){
+						if(e.status){
+							$.toast(e.msg,1000);
+							setTimeout(function(){
+								history.go(0);
+							},1000);
+						}else{
+							$.toast(e.msg);
+						}
+					}
+				});
+			});
+
+			function setTotalPrice(){
+				var valback=0;
+				var valgo=0;
+				if($('input[name=go]').length > 0 && $('input[name=go]:checked').length > 0){
+					valgo=$('input[name=go]:checked')[0].getAttribute("data-value");
+					valgo=valgo?valgo:0;
+					if(!valgo){
+						return false;
+					}
+				}
+				if($('input[name=back]').length > 0 && $('input[name=back]:checked').length > 0){
+					valback=$('input[name=back]:checked')[0].getAttribute("data-value");
+					valback=valback?valback:0;
+					if(!valback){
+						return false;
+					}
+				}
+
+				var cjrcount = $("[name='cjr[]']:checked").length;
+
+				var bxprice = $("[name='bxprice']").val();
+
+				$('#rmb').html((parseFloat(valgo) * cjrcount + parseFloat(valback) * cjrcount + parseFloat(bxprice) * cjrcount).toFixed(2) + "(保险：" + (bxprice * cjrcount) + "元)");
+			}
+
+			if('{:count($address)}'>0){
+				$('.lxrbox').hide();
+			}else{
+				$('.lxrbox').show();
+			}
+			$('.showaddress').on('click',function(){
+				$('.lxrbox').show();
+			})
+			//乘机人
+			if("{:count($cjr)}">0){
+				$('.cjrbox').hide();
+			}else{
+				$('.cjrbox').show();
+			}
+			$('.showcjr').on('click',function(){
+				$('.cjrbox').show();
+			})
+			$('.savecjrbtn').on('click',function(){
+				var data=$('#formact').serializeObject();
+				if(!data.chengke){
+					$.toast('请填写乘机人姓名!');
+					return false;
+				}
+				if(!data.shenfenzheng){
+					$.toast('身份证信息不能为空!');
+					return false;
+				}
+				if(data.shenfenzheng.length!=18){
+					$.toast('身份证信息不正确!');
+					return false;
+				}
+				if(!data.phone){
+					$.toast('乘机人手机号不能为空!');
+					return false;
+				}
+				if(data.phone.length!=11){
+					$.toast('乘机人手机号不正确!');
+					return false;
+				}
+				$.ajax({
+					type:"post",
+					url:"{:U('savecjr')}",
+					async:true,
+					data:data,
+					success:function(e){
+						if(e.status){
+							$.toast(e.msg,1000);
+							setTimeout(function(){
+								history.go(0);
+							},1000);
+						}else{
+							$.toast(e.msg);
+						}
+					}
+				});
+			})
+
+
+
+			$(function(){
+				$(".cjr").click(function(){
+					setTotalPrice();
+					var cjrid = $(this).attr("data-cjrid");
+					cjrid = cjrid.split("");
+					var birthday = cjrid[6] + cjrid[7] + cjrid[8] + cjrid[9] + "-" + cjrid[10] + cjrid[11] + "-"  + cjrid[12] + cjrid[13];
+					var age = jsGetAge(birthday);
+					if(age >= 18){
+						isover18 = 1;
+						$("#tbrxx").hide();
+					}else{
+						isover18 = 0;
+						$("#tbrxx").show();
+						// $("html, body").animate({ scrollTop: $('#tbrxx').offset().top }, 500);
+					}
+				});
+			})
+
+			function showRule(){
+				var rule = fromRule + "<br/>" + toRule;
+				$.alert(rule);
+				$(".modal").addClass("ct-modal").css("margin-top", "-200px");
+			}
+		</script>
+
+	</body>
+
+</html>

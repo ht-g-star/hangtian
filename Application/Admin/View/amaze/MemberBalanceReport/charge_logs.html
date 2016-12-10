@@ -1,0 +1,96 @@
+<extend name="Public/base"/>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<!-- 标题栏 -->
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">{$meta_title}</strong> /
+			<small>列表</small>
+		</div>
+	</div>
+</block>
+<block name="body">
+	<div class="am-g am-padding">
+		<!-- 标题栏 -->
+
+		<div class="am-margin-bottom">
+			<form action="{:U()}" method="get" class="am-form">
+				<label>会员搜索:</label>
+				<input type="text" placeholder="输入会员号/会员姓名" name="search" value="{:I('search')}">
+				|
+				<label>搜索时间:</label>
+				<input type="date" value="{$Think.get.starttime}" name="starttime" placeholder="开始时间">~
+				<input type="date" value="{$Think.get.endtime}" name="endtime" placeholder="结束时间">
+
+
+				<button class="btn am-btn am-btn-default am-btn-sm " type="submit">筛选</button>
+				<button data-href="{:U('out3')}" class="btn am-btn am-btn-default am-btn-sm " type="button" id="out3">导出
+				</button>
+				<span class="am-text-xs">(ps:只能导出该条件的前5000条)</span>
+			</form>
+
+			<!---->
+			<!--<button class="btn am-btn am-btn-default am-btn-sm ajax-post confirm" target-form="ids" url="{:U('remove')}">删 除</button>-->
+		</div>
+		<!-- 数据列表 -->
+		<div class="data-table">
+			<table class="am-table am-table-striped am-table-hover am-table-compact am-text-nowrap">
+				<thead>
+				<tr>
+					<!--<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>-->
+					<th class="">编号</th>
+					<th class="">用户</th>
+					<th class="">卡号</th>
+					<th class="">详情</th>
+					<th class="">金额</th>
+					<th class="">理由</th>
+					<th class="">执行时间</th>
+				</tr>
+				</thead>
+				<tbody>
+				<notempty name="_list">
+					<volist name="_list" id="vo">
+						<tr>
+							<!--<td><input class="ids" type="checkbox" name="ids[]" value="{$vo.id}" /></td>-->
+							<td>{$vo.id}</td>
+							<td>{$vo.cid|get_customer_name}</td>
+							<td><notempty name="vo.card_num" >
+								{$vo.card_num}
+							<else/>
+								{$vo.cid|get_card_num_by_id}
+							</notempty></td>
+							<td>{$vo.remark}</td>
+							<td>{$vo.money}</td>
+							<td>{$vo['reason']|get_carge_reason}</td>
+							<td><span>{$vo.ctime|time_format}</span></td>
+						</tr>
+					</volist>
+					<else/>
+					<td colspan="6" class="text-center"> aOh! 暂时还没有内容!</td>
+				</notempty>
+				</tbody>
+			</table>
+		</div>
+		<!-- 分页 -->
+		<div class="page">{$_page}</div>
+		<!-- /分页 -->
+	</div>
+</block>
+<block name="script">
+	<script type="text/javascript">
+		$(function () {
+			$("#action_add").click(function () {
+				window.location.href = $(this).attr('url');
+			});
+
+		});
+		$("form.am-form").submit(function () {
+			var data = $(this).serialize();
+			window.location.href = $(this).attr("action") + "&" + data;
+			return false;
+		});
+		$("#out3").click(function () {
+			var data = $("form.am-form").serialize();
+			window.location.href = $(this).data("href") + "&" + data;
+			return false;
+		});
+	</script>
+</block>

@@ -1,0 +1,23 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<div class="am-g am-margin-top-sm info">
+		<div class="am-u-sm-11 am-u-sm-centered am-padding">
+			<h3>亲爱的会员，</h3>
+
+			<p>请在自助终端上扫描二维码进行打印！</p>
+
+			<p class="twocoder am-padding-top-xs">
+
+
+			<div id="qrcode"  class="am-text-center"></div>
+			</p>
+		</div>
+	</div>
+</block>
+<block name="script">
+	<script>
+		$(function () {
+			$('#qrcode').qrcode("{$user.card_num}");
+		});
+	</script>
+</block>

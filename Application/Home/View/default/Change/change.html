@@ -1,0 +1,83 @@
+<extend name="Base/common"/>
+<block name="style">
+	<link rel="stylesheet" href="__CSS__/order.css">
+	<style>
+		a.trash{
+			background-color:transparent;
+		}
+	</style>
+</block>
+<block name="body">
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">个人中心</li>
+			</ol>
+		</div>
+		<div class="userCenter am-cf">
+			<div class="am-u-sm-3">
+				<!-- 左侧菜单 -->
+				<include file="Public/leftmenu"/>
+				<!-- 左侧菜单 -->
+			</div>
+			<div class="center_right" style="display: none;">
+				<div class="center_right_loading"></div>
+			</div>
+			<div id="memberCenter" class="userCenter-r am-u-sm-9 am-padding-xl">
+				<!-- 个人中心 初始状态 start -->
+				<div class="am-g" id="MemberCenterCtrl">
+					<!--标题-->
+					<div class="am-cf">
+						<div class="am-u-sm-6"><h2 class="am-fl">关爱积分</h2></div>
+					</div>
+					<!--标题-->
+					<div class="am-tabs am-margin-left">
+						<ul class="am-tabs-nav am-nav am-nav-tabs">
+							<li class="am-active"><a href='{:U("Change/change")}' class="red">兑换关爱积分</a></li>
+							<li><a href='{:U("Jifen/order")}' class="red">兑换历史</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="am-tab-panel am-active ">
+					<div class="am-text-left">
+						<h3 id="guide">兑换指南</h3>
+					
+					   兑换规则:关爱积分采用<span class="am-text-danger">1:1</span>兑换规则<br>
+					   <span class="am-text-danger">目前只支持账户余额转换关爱积分，不支持逆向转换</span><br>
+					   建议用户根据实际需要兑换相应额度的关爱积分(小数点保留后两位).
+					</div>
+					<form action='{:U("Jifen/change")}' method="post" name="myform" class="payform" target="_blank">
+						<div class="pay">
+							<div class="form-group">
+								<label class="col-sm-1 control-label"></label>
+								<div class="col-sm-5">
+									兑换关爱积分：
+									<input type="text" required name="money" class="cart_long" id="goodprice">积分
+								</div>
+								<div class="col-sm-5">
+									当前账户余额：{$user.balance|round=2}元(可兑换<span class="am-text-warning">{$user.balance|round=2}</span>积分)
+								</div>
+							</div>
+						</div>
+						<div class="submit">
+							<input type="submit" class="am-btn am-btn-primary" title=" 提交" href="javascript:void(0);"/>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</block>
+<block name="script">
+	<script>
+		$("form").submit(function () {
+			var money = $("#goodprice").val();
+			if (isNaN(money) || money <= 0) {
+				alert("金额必须大于零!");
+				return false;
+			}
+		})
+
+	</script>
+</block>

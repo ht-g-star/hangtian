@@ -1,0 +1,95 @@
+<extend name="Base/common"/>
+<block name="style">
+	<link rel="stylesheet" href="__CSS__/order.css">
+	<style>
+		a.trash{
+			background-color:transparent;
+		}
+		.am-hover:hover td{ background: #F2FBF9; }
+	</style>
+</block>
+<block name="body">
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">个人中心</li>
+			</ol>
+		</div>
+		<div class="userCenter am-cf">
+			<div class="am-u-sm-3">
+				<!-- 左侧菜单 -->
+				<include file="Public/leftmenu"/>
+				<!-- 左侧菜单 -->
+			</div>
+			<div class="center_right" style="display: none;">
+				<div class="center_right_loading"></div>
+			</div>
+			<div id="memberCenter" class="userCenter-r am-u-sm-9 am-padding-xl">
+				<!-- 个人中心 初始状态 start -->
+				<div class="am-g" id="MemberCenterCtrl">
+					<!--标题-->
+					<div class="am-cf">
+						<div class="am-u-sm-6"><h2 class="am-fl">关爱积分</h2></div>
+					</div>
+					<!--标题-->
+					<div class="am-tabs am-margin-left">
+						<ul class="am-tabs-nav am-nav am-nav-tabs">
+							<li><a href='{:U("Change/change")}' class="red">兑换关爱积分</a></li>
+							<li class="am-active"><a href='{:U("Jifen/order")}' class="red">兑换历史</a></li>
+						</ul>
+					</div>
+				</div>
+				<empty name='list'>
+					<p class="am-text-center am-padding-xl">
+							没有兑换记录
+					</p>
+					<else/>
+					<div class="data-table">
+						<table class="">
+							<thead>
+								<tr>
+									<th class="" style="">用户名</th>
+									<th class="" style="text-align:center;width:20%">兑换金额</th>
+									<th class="" style="text-align:center;width:20%">兑换积分</th>
+									<th class="" style="text-align:center;width:20%">兑换时间</th>
+									<th class="" style="text-align:center;">兑换状态</th>
+								</tr>
+							</thead>
+							<tbody>
+								<volist name="list" id="po">
+									<tr class="am-hover">
+										<td>{$uid.realname}</td>
+										<td style="text-align:center;">{$po.money}</td>
+										<td style="text-align:center;">{$po.money}</td>
+										<td style="text-align:center;">{$po.update_time|date='Y-m-d H:i:s',###}</td>
+										<td style="text-align:center;">
+											<eq name="po.status" value="1">已扣款</eq>
+											<eq name="po.status" value="2">兑换中</eq>
+											<eq name="po.status" value="3">兑换成功</eq>
+										</td>
+									</tr>
+								</volist>
+							</tbody>
+						</table>
+					</div>
+					<div class="page">
+						{$page}
+					</div>
+				</empty>
+			</div>
+		</div>
+	</div>
+</block>
+<block name="script">
+	<script>
+		$("form").submit(function () {
+			var money = $("#goodprice").val();
+			if (isNaN(money) || money <= 0) {
+				alert("金额必须是正整数!");
+				return false;
+			}
+		})
+
+	</script>
+</block>

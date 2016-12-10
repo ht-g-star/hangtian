@@ -1,0 +1,243 @@
+<extend name="Base/common"/>
+<block name="style">
+
+</block>
+<block name="body">
+	<!--content begin-->
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">健康自测</li>
+			</ol>
+		</div>
+		<div class="con-box am-padding-xl am-margin-bottom-xl">
+			<form class="am-form am-form-horizontal" method="post">
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">您的性别是</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="sex"> 男
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" name="sex"> 女
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label for="doc-ipt-year-1" class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">您的年龄是</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<input type="number" style="width:12rem;display:inline-block" name="age" id="doc-ipt-year-1" placeholder="输入您的年龄">
+						岁
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">您失眠、多梦或睡中容易惊醒，睡眠质量差吗？</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="q1"> 有
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="0" name="q1"> 无
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">您不时感到莫名的郁闷，情绪压抑吗？</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="q2"> 有
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="0" name="q2"> 无
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">
+						您有记忆力下降，容易忘事吗？</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="q3"> 有
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="0" name="q3"> 无
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">
+						您后背酸痛，颈肩痛吗？</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="q4"> 有
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="0" name="q4"> 无
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">
+						您每天坐姿时间≥6小时吗？</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="q5"> 有
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="0" name="q5"> 无
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">
+						您有高血压吗？</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="q6"> 有
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="0" name="q6"> 无
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">
+						您当前血压偏高（≥140/90mmHg）吗？</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="q7"> 有
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="0" name="q7"> 无
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">
+						您有高血压家族史？</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="q8"> 有
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="0" name="q8"> 无
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">
+						您饮食偏咸（喜食咸肉、咸鱼、咸菜等）吗？</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="q9"> 有
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="0" name="q9"> 无
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">
+						您有糖尿病吗？</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="q10"> 有
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="0" name="q10"> 无
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">
+						您当前血糖偏高（空腹血糖≥6.11mmol/L或餐后2小时≥7.8mmol/L）吗？</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="q11"> 有
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="0" name="q11"> 无
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">
+						您有糖尿病家族史吗？</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="q12"> 有
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="0" name="q12"> 无
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">
+						您饮食偏甜（包括甜品、碳酸饮料等）吗？</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="q13"> 有
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="0" name="q13"> 无
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">
+						您有吸烟吗？</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="q14"> 有
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="0" name="q14"> 无
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group check-form am-padding">
+					<label class="am-u-sm-8 am-form-label am-text-left am-padding-bottom-xs">
+						您每周运动≥4小时吗？</label>
+
+					<div class="am-u-sm-4 am-text-right">
+						<label class="am-radio-inline">
+							<input type="radio" value="1" name="q15"> 有
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="0" name="q15"> 无
+						</label>
+					</div>
+				</div>
+				<div class="am-g">
+					<div class="am-u-sm-3 am-u-sm-centered">
+						<button type="submit" class="am-btn am-btn-secondary am-btn-block am-radius am-padding-top-sm am-padding-bottom-sm">
+							健康自测
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!--content end-->
+
+</block>
+<block name="script">
+</block>

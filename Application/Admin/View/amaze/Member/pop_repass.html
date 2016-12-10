@@ -1,0 +1,67 @@
+<!--popup 重置密码-->
+<div class="am-popup" id="pop_repass">
+	<div class="am-popup-inner">
+		<div class="am-popup-hd">
+			<h4 class="am-popup-title">重置密码</h4>
+			<span data-am-modal-close class="am-close">&times;</span>
+		</div>
+		<div class="am-popup-bd">
+			<!--begin-->
+			<form action="{:U('Member/repass')}" method="post" class="am-form am-form-horizontal form-horizontal">
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">刷卡</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" name="card_num" autocomplete="off" required placeholder="请先放入卡片,再双击此处">
+						<input type="hidden" name="card_sn" value="">
+					</div>
+
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">姓名</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" name="realname" readonly placeholder="刷卡后获取姓名">
+						<input type="hidden" name="id">
+					</div>
+
+				</div>
+
+				<!--<div class="am-form-group">-->
+				<!--<label class="am-u-sm-3 am-form-label">输入原密码</label>-->
+
+				<!--<div class="am-u-sm-9">-->
+				<!--<input type="password" name="password0" minlength="6" required placeholder="请输入旧密码">-->
+				<!--</div>-->
+				<!--</div>-->
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">输入新密码</label>
+
+					<div class="am-u-sm-9">
+						<input type="password" name="password1" minlength="6" required placeholder="请输入新密码">
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">再次输入新密码</label>
+
+					<div class="am-u-sm-9">
+						<input type="password" name="password" minlength="6" required placeholder="再次请输入新密码">
+					</div>
+				</div>
+
+
+				<div class="am-form-group">
+					<div class="am-u-sm-9 am-u-sm-push-3">
+						<button type="submit" class="am-btn am-btn-primary">重置密码</button>
+					</div>
+				</div>
+
+			</form>
+			<!--over-->
+		</div>
+	</div>
+</div>

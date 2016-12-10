@@ -1,0 +1,265 @@
+<extend name="Base/common"/>
+<block name="style">
+	<style>
+
+		div.period_box {
+			padding: 5px 20px;
+			border: 1px solid #ccc;
+			border-radius: 2px;
+			cursor: pointer;
+		}
+
+		div.time_box, div.sex_box {
+			padding: 5px 20px;
+			border: 1px solid #ccc;
+			border-radius: 2px;
+			cursor: pointer;
+		}
+
+		div.time_box_selected, div.sex_box_selected, div.period_box_selected {
+			border: 1px solid #0e8cfd;
+			color: #0e8cfd;
+		}
+
+		div.am-disabled {
+			color: #ccc;
+			cursor: not-allowed;
+		}
+	</style>
+</block>
+<block name="body">
+	<!--content begin-->
+	<div class="am-g am-container  am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">健康体检</li>
+			</ol>
+		</div>
+		<div class="step-box am-padding-top am-padding-bottom">
+			<ul>
+				<li class="step-active">1 选择套餐</li>
+				<li class="step-active">2 套餐详情</li>
+				<li>3 填写信息</li>
+				<li>4 确认订单</li>
+				<div class="am-cf"></div>
+			</ul>
+		</div>
+		<div class="am-u-sm-12 am-padding-bottom">
+			2.套餐详情
+		</div>
+		<div class="am-g am-container">
+			<div class="am-u-sm-12 am-u-sm-centered shop-box am-cf">
+				<div class="am-u-sm-5"><img src="{$data.pic}" width="100%"/></div>
+				<div class="am-u-sm-7">
+					<h1>{$data.title}</h1>
+					<input type="hidden" name="s_id" value="{$data.id}" id="s_id">
+
+					<p class="des">{$data.description}</p>
+					<hr/>
+					<div class="am-g">
+						<div class="am-u-sm-6"> 价格:
+							<span class="am-text-warning am-text-lg" data-price_sex_0="{$data.price_sex_0}" id="price" data-price_sex_1="{$data.price_sex_1}">￥{$data.price_sex_1}~￥{$data.price_sex_0}</span>
+						</div>
+						<div class="am-u-sm-6"> 销量: {$data.buy_count}</div>
+					</div>
+					<hr/>
+					<!--<div class="am-g am-margin-top-sm">-->
+					<!--<div class="am-u-sm-3">数量</div>-->
+					<!--<div class="am-u-sm-4 am-u-end">-->
+					<!--<div class="am-input-group">-->
+					<!--<span class="am-input-group-btn">-->
+					<!--<button class="am-btn am-btn-default" id="minus_btn" type="button">-</button>-->
+					<!--</span>-->
+					<!--<input type="number" id="num" class="am-form-field am-text-center" value="1">-->
+					<!--<span class="am-input-group-btn">-->
+					<!--<button class="am-btn am-btn-default" id="plus_btn" type="button">+</button>-->
+					<!--</span>-->
+					<!--</div>-->
+					<!--</div>-->
+					<!--</div>-->
+					<div class="am-g am-margin-top-sm">
+						<div class="am-u-sm-3">预约日期</div>
+						<div class="am-u-sm-9 am-text-sm am-g-collapse">
+							<volist name="period" id="p" empty="暂时不能预约">
+
+								<div class="am-u-sm-3 am-text-center am-u-end  period_box <if condition='$p[total_num] elt $p[use_num]' > am-disabled </if>  " data-pid="{$p.id}">
+									{$p.period}
+									剩余:{$p['total_num']-$p['use_num']}
+								</div>
+							</volist>
+						</div>
+					</div>
+					<div class="am-g am-margin-top-sm">
+						<div class="am-u-sm-3">性别</div>
+						<div class="am-u-sm-9 am-text-sm am-g-collapse">
+							<div class="am-u-sm-4 am-text-center   sex_box " data-pid="1">
+								男
+							</div>
+							<div class="am-u-sm-4 am-text-center am-u-end sex_box " data-pid="0">
+								女
+							</div>
+						</div>
+					</div>
+
+					<div class="am-g am-margin-top-sm">
+						<div class="am-u-sm-3">预约时间</div>
+						<div class="am-u-sm-9 am-text-sm am-g-collapse">
+							<div class="am-u-sm-4 am-text-center   time_box " data-pid="am">
+								上午
+							</div>
+							<div class="am-u-sm-4 am-text-center am-u-end time_box " data-pid="pm">
+								下午
+							</div>
+						</div>
+					</div>
+					<div class="am-g am-margin-top-sm">
+						<div class="am-u-sm-6  am-u-sm-centered">
+							<button class="am-btn am-btn-xl am-btn-primary" id="order_now">立即预订</button>
+						</div>
+						<div class="am-u-sm-6 ">
+							<!--<button class="am-btn ">加入购物车</button>-->
+						</div>
+					</div>
+					<div class="am-g am-margin-top-sm">
+						<div class="am-u-sm-3 ">&nbsp;</div>
+						<div class="am-u-sm-5 am-u-end ">{:hook('SharePage',array("title",$meta_title))}</div>
+						<!--<div class="am-u-sm-4 am-u-end am-icon-heart"><a href="">收藏</a></div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--shopContent-->
+	<div class="am-g am-container">
+		<div data-am-widget="tabs" class="am-tabs am-tabs-default shop-content">
+			<ul class="am-tabs-nav am-cf" data-am-scrollspy-nav="{offsetTop: 100}" data-am-sticky>
+				<li class="am-active"><a href="#detail">套餐详情</a></li>
+<li><a href="#properties">规格参数</a></li>
+				<li><a href="#record">成交记录</a></li>
+				<li><a href="#eva">评价</a></li>
+			</ul>
+		</div>
+		<div class="am-tabs-bd am-margin">
+			<div data-tab-panel-0 class="am-margin-top-sm  " id="detail">
+				{$data.content}
+			</div>
+			<div data-tab-panel-1 class="am-margin-top-sm " id="properties">
+				{$data.properties}
+			</div>
+			<div data-tab-panel-2 class="am-margin-top-sm " id="record">
+				<div class="am-g am-padding">
+					共<span class="am-text-warning num-text">{$records_count}</span>条
+					<hr>
+						<table class="am-table">
+							<thead>
+							<tr>
+								<th>姓名</th>
+								<th>创建时间</th>
+								<th>预约时间</th>
+							</tr>
+							</thead>
+							<tbody>
+								<volist name="records" id="r" >
+									<tr>
+										<td>{$r.realname|cover_name}</td>
+										<td class="num-text">{$r.ctime|time_format}</td>
+										<td class="num-text am-text-warning">{$r.order_time|time_format}</td>
+									</tr>
+								</volist>
+							</tbody>
+						</table>
+				</div>
+			</div>
+			<div data-tab-panel-3 class="am-margin-top-sm " id="eva">
+				<div class="am-g am-padding">
+					共<span class="num-text am-text-warning">{$comments_count}</span>条
+					<!--<div class="am-fr"><button class="am-btn am-btn-primary">发表评价</button></div>-->
+					<div class="am-cf"></div>
+					<hr>
+					<table class="am-table">
+						<thead>
+						<tr>
+							<th width="10%">姓名</th>
+							<th width="60%">内容</th>
+							<th width="10%">星级</th>
+							<th width="20%">评价时间</th>
+						</tr>
+						</thead>
+						<tbody>
+						<volist name="comments" id="r" >
+							<tr>
+								<td>{$r.realname|cover_name}</td>
+								<td class="num-text">{$r.content}
+								</td>
+								<td class="num-text am-text-danger">{$r.stars}</td>
+								<td class="num-text am-text-warning">{$r.ctime|time_format}</td>
+							</tr>
+							<tr>
+								<td colspan="4">
+								<div class="replay-box am-text-sm am-padding-xs">
+									<span class="am-text-primary">航疗：</span>亲，我们会用最好的服务提供给您！
+								</div></td>
+							</tr>
+						</volist>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--content end-->
+	<!-- /主体 -->
+
+</block>
+<block name="script">
+	<script>
+		$("#minus_btn").click(function () {
+			var num = $("input#num").val();
+			if (num <= 1) {
+				$("input#num").val(1);
+			} else {
+				$("input#num").val(--num);
+			}
+		});
+
+		$("#plus_btn").click(function () {
+			var num = $("input#num").val();
+			$("input#num").val(++num);
+		});
+		$("div.period_box:not('.am-disabled')").click(function () {
+			$("div.period_box").removeClass("period_box_selected");
+			$(this).addClass("period_box_selected");
+		});
+		$("div.time_box").click(function () {
+			$("div.time_box").removeClass("time_box_selected");
+			$(this).addClass("time_box_selected");
+		});
+		$("div.sex_box").click(function () {
+			$("div.sex_box").removeClass("sex_box_selected");
+			$(this).addClass("sex_box_selected");
+			var id = $(this).data("pid");
+			$("#price").html("￥" + $("#price").data("price_sex_" + id));
+		});
+		$("#order_now").click(function () {
+			var num = $("input#num").val();
+//			if (!num) {
+			num = 1;
+//			}
+			var s_id = $("input#s_id").val();
+			var pid = $("div.period_box_selected").data("pid");
+			var time = $("div.time_box_selected").data("pid");
+			var sex = $("div.sex_box_selected").data("pid");
+			if (!pid || !time) {
+				topAlert("时间不完整!");
+				return;
+			}
+			if (sex === undefined) {
+				topAlert("请选择性别!");
+				return;
+			}
+			location.href = "{:U('Home/Suite/order')}" + "&pid=" + pid + "&num=" + num + "&s_id=" + s_id + "&time=" + time + "&sex=" + sex;
+		});
+	</script>
+</block>

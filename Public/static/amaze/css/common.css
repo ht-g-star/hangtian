@@ -1,0 +1,393 @@
+/*覆盖原amazeui.css 值 */
+.am-topbar{background-color:rgba(245,245,245,0.8);min-height:76px;border-bottom:none;}
+.am-container{max-width: 1110px;}
+.am-topbar-btn {margin-top:24px;}
+@media only screen and (min-width:641px) {
+  .am-topbar-nav > li > a {
+    line-height: 76px;
+  }
+  .am-topbar-nav > li > a:hover{
+    background-color:#fff;
+  }
+}
+.am-slider-default {
+  margin:0;
+  background-color:none;
+}
+.am-slider-default .am-control-nav {
+  bottom: 15px;
+}
+.am-slider-default .am-control-nav li a {
+  width: 14px;
+  height: 14px;
+  background-color: #fff;
+}
+.am-topbar-brand{padding:0;}
+
+/*自定义*/
+/*导航字体*/
+.am-topbar-nav>li>a{padding:0 7px;}
+.am-nav li a{color:#333;}
+.am-collapse .am-margin-top-lg{margin-top:25px;}
+/*导航动画*/
+
+header.small {min-height:3.8rem;border-bottom:none;}
+header.small li a {font-size:1.6rem;line-height:4.1rem;}
+header.small li  {font-size:1.6rem ; }
+header.small h1 a img{height: 3.2rem;}
+header.small h1.am-margin-top-sm{margin: 0;}
+header.small .am-topbar-right{margin-top:1rem!important;}
+header.am-topbar, header.am-container,header a, header li,header.small h1 a img{-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}
+
+/*首页banner*/
+#index-slider{margin-top:-60px;}
+/*footer*/
+.footer{background:#f2f2f2;}
+.footer p{color:#606060;font-size:18px;font-weight:bold;margin-bottom:0.2rem;}
+.footer ul{margin:0;padding:0;}
+.footer ul li{list-style:none;margin:0;padding:0;}
+.footer ul li a{color:#606060;font-size:1.4rem;}
+.footer ul li a:hover{color:#999;}
+.footer_info{ font-size:1.4rem;color:#606060; display:block;border-top:2px solid #fff;}
+.footer-border{border-left:2px solid #fff;font-size:1.4rem;}
+.footer_line{border-bottom:1px dotted #4a4a4a; display:block; padding:2px 0 10px 0;}
+.hot_line{color:#000;padding-top:6px;padding-bottom:6px;display:block;}
+/*首页幻灯button*/
+.btn_zj{background:url(../i/btn_health_check.png) no-repeat; background-position:0 0; display:inline-block; width:334px;height:70px;cursor: pointer;}
+.btn_zj:hover {background:url(../i/btn_health_check.png) no-repeat; background-position:0 bottom;}
+.btn_zj:active {color:#fff;}
+.btn_zj:visited {color:#fff;}
+.am-slides li{ position: relative;}
+.am-slides li span a{ position: absolute; right:26.5%;top:80%;}
+/*发现*/
+.index_tab{margin:0;padding:0;}
+.index_tab .am-tabs-nav{ margin-left:200px;}
+.index_tab .am-nav a{border-radius:5px 5px 0 0; background-color:#ededed;font-size:1.8rem;}
+.index_tab .am-nav a:hover{color:#fff;background-color:#00b9ef;}
+.index_tab .am-nav > li.am-active > a, .index_tab .am-nav > li.am-active > a:hover,.index_tab .am-nav > li.am-active > a:focus{color:#fff;background-color:#00b9ef;}
+.am-tabs-bd{border:none;}
+.finder_box1{position: relative;}
+.finder_box1 span{display: inline-block;color:#fff;}
+.finder_box1 p{position:absolute; background-color: rgba(0,0,0,0.5);height:40px;bottom:-20px;bottom:-16px\9;z-index: 11;display:block;width:100%;width:342px;line-height: 40px;}
+.finder_box1 span a{color:#fff;}
+.finder_box1 span a:hover{color:#00b9ef;}
+.index1 img{height:432px\9;}/*ie兼容*/
+/*名医堂*/
+.inner-tabs {margin: 0;padding:2rem;background: #f3f3f3;}
+.inner-tabs li{list-style: none;float: left;padding-right:2rem;font-size:1.6rem;color:#999; cursor:pointer;}
+.inner-tabs li.active{color:#333;}
+.doctor_list{background:#fff;padding:40px 35px 25px 40px;}
+.doctor_list .am-slides{padding:0 20px; margin-left:-15px;}
+.doctor_list .am-slider,.doctor_list .am-slider-default{box-shadow:none;-webkit-box-shadow:none;}
+.doctor_list .am-slider li {width:206px!important;padding:0 10px;}
+.doctor_list .am-slider li img {width:196px;}
+.doctor_list .am-slides li span{ display:inline-block;text-align:center;}
+.doctor_list .am-slides li a{font-size:1.4rem;color:#4a4a4a; padding-top:1rem;}
+
+.hide{display:none;}
+
+/*健康体检*/
+.health-box1{background:url(../i/bg_health_go.jpg) no-repeat;height:473px;width:260px;}
+.health-box1 .btn{border-radius:40px;border:1px solid #fff;padding:10px 30px; display:inline-block;}
+.health-box1 p{padding:148px 0 0 45px;}
+.health-box1 .btn a{color:#fff;}
+.health-box1 .btn:hover{border:1px solid #8be5ff}
+.health-box1 .btn:hover a{color:#8be5ff;}
+.tips{color:#c2e9f8;font-size:1.4rem;display:block;padding:1rem 0 0 1rem;}
+
+.health-box2 ul{margin:0;width:260px;height:236px;padding:30px 30px 19px 30px; overflow:hidden;}
+.health-box2 ul li{list-style:none;margin-bottom:6px;}
+.health-box2 ul li a{color:#fff;}
+.health-box2 ul li a:hover{color:#fff;opacity:0.8;}
+.health-box2 ul li span{color:#fff;font-size:1.2rem;display:block;opacity:0.5;}
+.select-more{font-size:1.2rem;color:#fff;border:1px solid #fff;padding:2px 30px;opacity:0.5; display:inline-block; cursor:pointer; margin:10px 0 0 48px;}
+.select-more:hover{color:#fff;opacity:0.8;}
+
+.health-box2 dd{width:160px; white-space:nowrap;}
+.hl-group1{background:#69ba43;}
+.hl-group1 li dt a{color:#e7ff5f;font-weight:normal;}
+.hl-group2{background:#8e44ad;}
+.hl-group2 li dt a{color:#de8fff;font-weight:normal;}
+.hl-group3{background:#1abc9c;}
+.hl-group3 li dt a{color:#e7ff5f;font-weight:normal;}
+/*健康商城*/
+.shop-list {width:263px;width:264px \9;text-align:center;border-left:1px solid #fff;border-top:1px solid #fff;}
+.shop-list p{margin:15px 0;}
+.shop1{background-color:#b3f4a6;}
+.shop2{background-color:#ffd0d4;}
+.shop3{background-color:#fff0c9;}
+.shop4{background-color:#def8ff;}
+.shop5{background-color:#b2e8ee;}
+.shop6{background-color:#ffd2a1;}
+.shop7{background-color:#cdd8ff;}
+.shop8{background-color:#ffd0d4;}
+.shop-list .icon-shop1{background:url(../i/icon_health_shop.png) no-repeat; background-position:0 0;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .icon-shop2{background:url(../i/icon_health_shop.png) no-repeat; background-position:-64px 0;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .icon-shop3{background:url(../i/icon_health_shop.png) no-repeat; background-position:-128px 0;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .icon-shop4{background:url(../i/icon_health_shop.png) no-repeat; background-position:-192px 0;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .icon-shop5{background:url(../i/icon_health_shop.png) no-repeat; background-position:0 -64px;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .icon-shop6{background:url(../i/icon_health_shop.png) no-repeat; background-position:-64px -64px;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .icon-shop7{background:url(../i/icon_health_shop.png) no-repeat; background-position:-128px -64px;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .icon-shop8{background:url(../i/icon_health_shop.png) no-repeat; background-position:-192px -64px;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .shop-name{margin-top:0px;}
+.shop-list .shop-name a{font-size:2.4rem;color:#333;}
+.shop-list .shop-name a:hover{opacity:0.8;}
+.shop-list .shop-tj{font-size:1.4rem;opacity:0.5;}
+/*健康讲坛*/
+.health-bbs ul{margin:0;padding:0;}
+.health-bbs li{list-style:none;border:1px solid #dfdfdf;width:530px;height:206px;float:left;}
+.health-bbs li dt{width:250px; margin-top:0;}
+.health-bbs li dt p{font-size:1.4rem;color:#999;font-weight:normal;}
+.health-bbs ul li a{color:#fb7d1f;font-weight:normal;}
+.health-bbs ul li a:hover{color:#333;opacity:0.8;}
+.viem-more{border:1px solid #dfdfdf; padding:4px 30px; display:inline-block; cursor:pointer;}
+.viem-more:hover{border:1px solid #ccc;color:#fb7d1f;}
+.index_tab .health-bbs li{width:500px;}
+.index_tab .health-bbs dt{width:225px; margin-left:-5px;}
+/*健康咨询*/
+.con-box{background:#f5f5f5;}
+.con-box ul{margin:0;padding:0; padding-left:15px;}
+.con-tabs li{border-radius:25px;padding:4px 8px;width:90px;background:#dcdcdc;color:#888;display:inline-block;list-style:none; height:36px;line-height:28px;text-align:center;margin-right:1px;}
+.con-tabs li:hover{ cursor:pointer;}
+.con-tabs li.active{background:#f83f51;color:#fff;}
+.con-tabs li a{color:#666;}
+.con-tabs-content li{list-style:none;font-size:1.4rem;}
+.con-tabs-content li img{ vertical-align:middle;}
+.con-tabs-content .odd{background:#e9e9e9;}
+.con-tabs-content .even{background:#fefefe;}
+.con-tabs-content li dt{color:#888;font-weight:normal;margin-top:0;}
+.post-time{color:#999;}
+.con-tabs-content ul li a{color:#333;}
+.con-tabs-content ul li a:hover{color:#0e90d2;}
+/*右边菜单*/
+.right_bar{bottom:10px;position: fixed;z-index: 999;right:4%;}
+.right_bar a{ display: block;margin-top: 10px;}
+.right_bar .am-gotop-fixed{right:4%;width:46px;min-height:46px;bottom:230px;}
+.right_bar .am-gotop-fixed .am-gotop-icon-custom{max-width:46px;}
+/*login*/
+.login-container{background-image:url(../i/bg_login_container.jpg); background-size:cover;width:100%;height:100%;background-color:#23b7e5;}
+.login-box { width:600px; background-color:rgba(255,255,255,0.8);border-radius:5px;margin-top:6rem;}
+.login-box h3{ font-size:2.2rem;font-weight: normal;margin-top:1em;}
+/*面包屑*/
+.breadcrumb-box{height:4rem;}
+/*预约步骤*/
+.step-box ul{margin:0;padding:0;}
+.step-box ul li{list-style: none;float: left;background:url(../i/bg-step.png)  -270px 0 no-repeat;width:268px;height:42px;text-align:center;line-height:42px;margin-right:2px;}
+.step-box ul li:nth-child(1){background:url(../i/bg-step.png) 0 0 no-repeat;width:265px;height:42px;}
+.step-box ul li:nth-child(4){background:url(../i/bg-step.png)  -542px 0 no-repeat;width:265px;height:42px; margin-right: 0;}
+.step-box ul li.step-active:nth-child(1){ background:url(../i/bg-step.png) 0 -42px no-repeat!important;width:265px;height:42px;color:#fff}
+.step-box ul li.step-active:nth-child(2){ background:url(../i/bg-step.png) -270px -42px no-repeat!important;width:268px;height:42px;color:#fff}
+.step-box ul li.step-active:nth-child(3){ background:url(../i/bg-step.png) -270px -42px no-repeat!important;width:268px;height:42px;color:#fff}
+.step-box ul li.step-active:nth-child(4){ background:url(../i/bg-step.png) right -42px no-repeat!important;width:265px;height:42px;color:#fff}
+ul#suite_wrapper li.selected span{background:url(../i/icon-checked.png);display: inline-block; width:13px;height:13px; position:absolute;bottom:1px;right:1px;}
+/*商品详情*/
+.shop-box{background:#f5f5f5; padding: 2rem;}
+.shop-content{margin-top:1rem;width: 100%;margin-left:0}
+.shop-content li {margin-right:0.5rem;}
+.shop-content li a{font-size:1.8rem; background: #333;color:#fff!important;}
+.shop-content li a:hover{background:#444;}
+.shop-box hr{border-top:1px solid #ddd;}
+.shop-content .am-tabs-nav{margin:0;padding:0;background-color: #fff!important;}
+.shop-content li:nth-child(4){margin-right:0;}
+/*提示*/
+.am-alert{position:fixed;top:0px;width:100%;z-index: 9999;text-align: center}
+/*健康咨询二级页面*/
+.health-banner{background:url(../i/bg_health_zx.jpg) no-repeat; height:157px;}
+.health-banner a{ margin-top:8rem;margin-left:2.8rem;}
+#health-popup{height:498px;}
+/*名医堂二级页面*/
+.doctor-content{background: #f5f5f5;width:100%;}
+.doctor-content ul{margin:0;padding:0;}
+.doctor-content li{list-style: none;float:left; text-align: center; margin:10px 13px 20px 0;}
+.doctor-content li:nth-child(5){margin-right: 0;}
+.doctor-content li:nth-child(10){margin-right: 0;}
+.doctor-content li span{display:inline-block;padding-top: 10px;}
+.doctor-content li span a{color:#333;}
+.doctor-content li span a:hover{color:#0e90d2;}
+.doctor-content h2{font-size:2.4rem;font-weight: normal; margin: 0;}
+.doctor-content h4{font-size:1.6rem;font-weight: normal; margin: 0;}
+.doctor-content h6{margin: 0;}
+.doctor-content hr{border-top:1px solid #ddd;}
+/*bg-f5*/
+.bg-f5{background:#f5f5f5;}
+.bg-fff{background:#fff;}
+.height100{height:100%;}
+.num-text{font-family:arial;margin-top:5px;}
+hr{border-top:1px solid #ddd;}
+/*个人中心*/
+.userCenter{ margin-bottom:2rem;background:#f5f5f5;}
+.userCenter-r{border-left:1rem solid #fff;min-height:50rem;}
+.userCenter .am-nav li a{font-size:1.4rem;font-weight: 100;}
+.userCenter .am-nav li h3 a {font-size:1.6rem;font-weight: 600;}
+.userCenter .am-nav li a.am-active{color:#ff6600;}
+/*个人中心-收货地址*/
+.address-box{background:#fff;border-radius:5px; position:relative;}
+.edit-address{position:absolute;top:1rem;right:1rem;}
+.edit-address a{cursor: pointer;}
+/*个人中心-体检预约*/
+.userCenter-r .am-nav .am-active a{color:#fb7d1f!important;}
+.userCenter-r table{margin-top:1rem;border:1px solid #ddd;}
+.userCenter-r table th{background: #efefef;background: #efefef;font-weight: 100; height:2.8rem;padding:3px 10px;border-bottom:1px solid #ddd;}
+.userCenter-r table td{background: #fff;font-weight: 100;padding:5px 10px; line-height:2.4rem;}
+/*个人中心-安全*/
+.security_bar {background: #fafafa; border-color: #ddd;  margin-top:15px;  height: 76px;}
+.security_content_index {border: 1px solid #eee;  margin-top: 1rem;  padding: 0 1rem;}
+.security_content_index ul{margin:0;padding:0;}
+.security_content_index ul li {position: relative;  width: 680px;  padding: 17px 0 0 103px;list-style: none;}
+.security_content_index ul .icon {width: 41px;  height: 53px;  position: absolute;  left: 28px;  top: 12px; background: url(../i/security_sprite131104.png) no-repeat 0 -140px;}
+.security_content_index ul .icon2 {width: 41px;  height: 53px;  position: absolute;  left: 28px;  top: 12px;  background: url(../i/security_sprite131104.png) no-repeat 0 -76px;}
+.security_content_index ul .icon3 {width: 41px;  height: 53px;  position: absolute;  left: 28px;  top: 12px;  background: url(../i/security_sprite131104.png) no-repeat 0 0;}
+.security_content_index ul .col2 {height: 17px;  width: 134px;  background: url(../i/security_bg02_131104.png) no-repeat 0 0;  overflow: hidden;}
+.security_content_index ul .col23 {height: 17px; width: 134px; background: url(../i/security_bg02_131104.png) no-repeat 0 -16px;  overflow: hidden;}
+.security_content_index ul .col24 {height: 17px; width: 134px; background: url(../i/security_bg02_131104.png) no-repeat 0 -36px;  overflow: hidden;}
+.security_content_index ul .col25 {height: 17px; width: 134px; background: url(../i/security_bg02_131104.png) no-repeat 0 -50px;  overflow: hidden;}
+.security_content_index ul .col1 {font-size:1.4rem;  padding-left: 15px;}
+.security_content_index ul span {display: inline-block;  vertical-align: middle; font-size:1.4rem;}
+.security_content_index ul .col3 {display: block;  color: #969696;  padding-top: 7px;}
+.security_content_index ul .history {line-height: 22px;  color: #aaa;  position: absolute;  text-align: right;  width: 250px;  right: 0;  top: 19px;}
+.security_content_index p {border-bottom: 1px solid #eee;  height: 83px;  position: relative;}
+.security_content_index p i.success {  background: url(../i/succ.png) no-repeat 0 0px;}
+.security_content_index p span.title {  margin: 36px 20px 0 0;  font-size: 14px;  display: inline-block;  position: absolute;  font-weight: bold;  height: 30px;}
+#mobileform {  height: 144px;}
+#mobileform .inputBg {  height: 30px;  margin: 10px;}
+.security_content_index p span.tip {  margin: 36px 20px 0 64px;  font-size: 14px;  display: inline-block;  position: absolute;  height: 30px;}
+.security_content_index p span {  margin: 38px 0 0 0;  position: absolute;  display: inline-block;}
+.security_content_index p a, .security_content_index p a:hover {  margin: 38px 90px 0 0;  float: right;}
+.account_right .deepblue {  color: #0e90d2;  text-decoration: none; position:absolute;right:-90px;font-size:1.4rem;}
+.security_content_index p i {  width: 36px;  height: 36px;  display: inline-block;  overflow: hidden;  margin: 25px 20px 0 32px;}
+.security_content_index p i.failure {  background: url(../i/failure.png) no-repeat 0 0px;}
+.security_content_index p a, .security_content_index p a:hover {  margin: 38px 90px 0 0;  float: right;  display: inline;}
+/*登录历史*/
+.account_history {  width:100%; padding:20px;border: 1px solid #e9e9e9;background-color:#fff;}
+.account_history h5 {  height:3.4rem; font-size:1.4rem;padding-left: 2rem;line-height:3.4rem;border:1px solid #e9e9e9;background:#ccc;margin-bottom:0;}
+.account_history .history {width: 100%;}
+.account_history .history .thead {background-color: #fff;}
+.account_history .history tr{height: 30px;line-height: 30px;border-bottom: 1px solid #e9e9e9;}
+.account_history .history td {text-align: center;border-right: 1px solid #ddd;padding:0.3rem 1rem;}
+
+/*健康商城二级页面*/
+ /*健康商城子菜单*/
+.shops-nav{margin-top:-0.2rem;}
+.shops-nav h3{background:#236bc4;color:#fff;font-size:1.6rem!important;height:2.8rem;}
+.shops-nav h4{color:#fff;font-size:1.4rem;border-top:1px solid #3c92e2;border-bottom:1px solid #3c92e2;padding-left:2rem;}
+.shops-nav {background:#377bee;}
+.shops-nav a{color:#fff;font-size:1.4rem;}
+.products-list ul{margin:0.1rem 0 0 1rem;padding:0;}
+.products-list li{list-style: none;float:left;width:10rem;padding:0.2rem 0 0.2rem 1rem;opacity: 0.75;}
+/*商品列表*/
+.shops-detail ul{margin:0;padding:0;}
+.shops-detail ul li{list-style: none;float:left;width:260px;margin-right:0.9rem;background:#f5f5f5;margin-bottom: 1rem;}
+.shops-detail ul li:nth-child(4){margin-right:0;}
+.shops-detail ul li:nth-child(8){margin-right:0;}
+.shops-detail ul li:nth-child(12){margin-right:0;}
+.shops-detail ul li:nth-child(16){margin-right:0;}
+.shops-detail ul li:nth-child(20){margin-right:0;}
+.shops-detail ul li:nth-child(24){margin-right:0;}
+.shops-detail ul li:nth-child(28){margin-right:0;}
+.shops-detail ul li:nth-child(32){margin-right:0;}
+.shops-detail ul li:nth-child(36){margin-right:0;}
+.shops-detail ul li:nth-child(40){margin-right:0;}
+.shops-detail ul li span{display:block;}
+.shops-detail ul li a{color:#333;}
+.shops-detail ul li a:hover{color:#f60;}
+.shops-detail ul li:hover{box-shadow: 0 10px 15px #ccc; cursor: pointer;transform:translate3D(0,-2px,0)}
+/*购物车*/
+.shop-cart-content{background:#f5f5f5;min-height: 510px;}
+ /*--*/
+.shop-cart{min-height:520px;}
+.shop-cart table {width:100%;}
+.shop-cart th{background:#eaeaea;height:4.8rem;font-weight:100;padding:0.3rem 1rem;}
+.shop-cart td{padding:0.3rem 1rem; height:5rem;border-bottom:1px solid #ddd;background:#fff;}
+.pay-box{background:#fff; width: 100%;}
+.shop-cart hr{border-top:1px solid #ddd;}
+.user-type{border:1px solid #ddd; display:inline-block; padding:0.3rem 2rem;color:#333;}
+.user-type:hover{border:1px solid #0e8cfd;color:#0e8cfd;}
+.shop-cart-list{border-bottom:1px solid #ddd; background:#fff;}
+.shop-cart .ok-info{width:55rem;}
+.shop-cart-list small{font-size:1rem;color:#999;}
+.goodnum {
+  border: 1px solid #cacbcb;
+  width: 42px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  padding: 1px;
+  margin: 0;
+  font-size: 12px;
+  font-family: verdana;
+  color: #333;
+  -webkit-appearance: none;
+}
+/*--*/
+.pay-select{padding:20px;}
+.pay-select li{list-style:none; float:left; margin-right:4rem; /*width:250px;*/}
+.pay-select li img{height:60px;}
+
+/*注册*/
+/*注册步骤*/
+.reg-box{min-height: 550px;}
+.reg-step ul li{list-style: none; float:left; margin-right:30px;}
+.reg-box h1{font-weight:100; position:relative;}
+.reg-box .have-pass{position:absolute;right:2rem;top:3rem;}
+.reg-box .passcode{width:45%!important;}
+.reg-box .am-form-group {position:relative;}
+.reg-box .am-form-group .require{position:absolute;right:-6rem;top:0.5rem;}
+.reg-ok{width:100%;}
+
+.form-select select{border:1px solid #ddd; height:3.2rem;line-height:3.2rem;border-radius:none;background-color: #fff;margin-top:-4px;}
+/*健康商城二级页面*/
+.lists-area ul {background-color: #fff;margin:0;padding:0;}
+.lists-area ul li{list-style: none; float: left; }
+.list-fl-content li{padding:1rem;line-height: 2.2rem;}
+.list-left{padding:1rem 2rem!important;width:15rem;}
+.list-fl-content{border:1px solid #ddd; box-shadow: 0 1px 2px #eee;}
+.ml_content_top li a{color:#333;}
+.ml_content_top li{padding:0 1rem;border:1px solid #ddd;font-size:1.2rem;margin-right:-1px;}
+.ml_content_top li.active{background-color:#003e9b;}
+.ml_content_top li.active a{color:#fff;}
+.goodlist li{float: left;width:260px;margin-right:10px;list-style: none;}
+.goodlist li:nth-child(4){margin-right:0;}
+.goodlist li:nth-child(8){margin-right:0;}
+.goodlist li:nth-child(12){margin-right:0;}
+.goodlist li:nth-child(16){margin-right:0;}
+.goodlist li:nth-child(20){margin-right:0;}
+.goodlist li:nth-child(24){margin-right:0;}
+.goodlist li:nth-child(28){margin-right:0;}
+.goodlist li:nth-child(32){margin-right:0;}
+.goodlist li:nth-child(36){margin-right:0;}
+.goodlist li:nth-child(40){margin-right:0;}
+.goodlist li:nth-child(44){margin-right:0;}
+.goodlist li:nth-child(48){margin-right:0;}
+.goodlist li:nth-child(52){margin-right:0;}
+.goodlist li img{width:260px;}
+a.t2{color:#333;}
+.t2 a{color:#333;}
+.picture img{width:260px;}
+.salesrank ul{margin:0;padding:0;}
+.salesrank ul li{list-style: none;float: left;width:260px;margin-right:10px;}
+.salesrank ul li:nth-child(4){margin-right:0;}
+.salesrank ul li:nth-child(8){margin-right:0;}
+.salesrank ul li:nth-child(12){margin-right:0;}
+.salesrank ul li:nth-child(16){margin-right:0;}
+.dginfo_info {margin:0;padding:0;}
+.dginfo_info li{ list-style-type: none!important;}
+/*配套服务*/
+.service-box{background:#eeeeee}
+.service-box .am-nav-tabs > li.am-active > a, .am-nav-tabs > li.am-active > a:hover, .am-nav-tabs > li.am-active > a:focus{background:none;border:none;color:#000;}
+.service-box .am-nav-tabs{border:none;}
+.service-box .am-nav-tabs > li > a{font-size:2rem;color:#999;}
+.service-box .am-nav-tabs > li > a:hover{border-bottom:none;}
+/*健康自测*/
+.check-form{background:#fff;border:1px solid #a9afbe;border-radius:10px;}
+.check-form-box{border:1px solid #ddd;position:relative;background:#fff;}
+.arrow-zj{position:absolute;left:-15px;top:40px;}
+.zx-fl{background:#55a7fe;color:#fff;}
+.zx-fl li {list-style: none;padding:10px;font-size:1.4rem;}
+.zx-fl li a{color:#fff;}
+.zx-fl hr{border-top:1px dotted #a0ceff;margin:1rem 0;}
+/*解决ie下图标倾斜*/
+i{font-style:normal\9;}
+/*个人收藏*/
+.shoucang{list-style:none;background-color: #fff;border:1px solid #ddd;}
+/*预约详情评论*/
+.replay-box{color:#000;background: #deecf8;}

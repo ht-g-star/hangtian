@@ -1,0 +1,19 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<form class="am-form am-margin-top" method="post" >
+		<fieldset>
+			<div class="am-form-group">
+				<input type="tel" name="tel" class="" id="doc-ipt-mobile-1" placeholder="请输入手机号码/会员卡号">
+			</div>
+			<div class="am-form-group ">
+				<input type="password" name="password" class="" id="doc-ipt-code-1" placeholder="输入密码">
+			</div>
+			<p>
+				<button type="submit" class="am-btn am-btn-secondary am-btn-block">登录</button>
+				<br>
+				<a href="{:U('Public/register')}" class="am-btn am-btn-secondary am-btn-block">注册</a>
+			</p>
+			<div class="am-form-group"><a href="{:U('Public/forget')}">忘记密码?</a></div>
+		</fieldset>
+	</form>
+</block>

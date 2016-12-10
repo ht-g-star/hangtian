@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>机票改签</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/sm.min.css">
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/sm-extend.css">
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/page.css">
+    <style type="text/css">
+        h1.title{z-index:1;}
+        header.bar a.pull-left{position:relative;z-index:2;}
+        .jipiao_item{font-size:0.5rem;width:100%;margin:5px 0;margin-left:-4%;padding-bottom:5px;border-bottom:1px #ccc solid;}
+        .jipiao_item .row{margin:0;}
+        .jipiao_item .jipiao_title{font-size:0.7rem;font-weight:bold;}
+        </style>
+</head>
+<body>
+<div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav">
+                <a href="javascript:history.back();" class="fa fa-angle-left pull-left"></a>
+                <h1 class="title">{$data.fromCity}<i class="fa fa-long-arrow-right"></i>{$data.toCity}</h1>
+            </header>
+            <div class="content">
+                <if condition="$iswf eq 1">
+                <div class="buttons-tab">
+                    <a href="#tab1" class="tab-link active button">去程(<php>echo I('startdate');</php>)</a>
+                    <a href="#tab2" class="tab-link button">返程(<php>echo I('backdate');</php>)</a>
+                </div>
+                </if>
+                <div class="tabs">
+                    <div id="tab1" class="tab active">
+                        <div class="list-block contacts-block" style="margin:0;">
+                            <div class="list-group">
+                                <ul>
+                                    <volist name="list.0.flightObject" id="vo2" key='k'>
+                                        <php>
+                                            $count1 = count($vo2['cabinInfo']);
+                                            $tmpFaceprice = $vo2["cabinInfo"][$count1-1]["facePrice"];
+                                            if($tmpFaceprice > $toPrice)
+                                            {
+                                        </php>
+                                        <li class="qchb" id="{$vo2['flightNo']}">
+                                            <div class="item-content">
+                                                <label class="row jipiao_item">
+                                                    <div class="col-80">
+                                                        <div class="row jipiao_title"><input type="radio" name="qchb" data-id="{$k-1}" value="{$vo2['flightNo']}" /> 航班:{$vo2['flightNo']}
+                                                                        <if condition="$vo2['shareFlightNo'] eq true">
+                                                                        <small>(共享航班)</small>
+                                                                        </if>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-40">
+                                                                <div class="time">{$vo2.fromDate|gettime}</div>
+                                                                {:setAirport($vo2["fromAirport"])}
+                                                            </div>
+                                                            <div class="col-20">
+                                                                至
+                                                            </div>
+                                                            <div class="col-40">
+                                                                <div class="time">{$vo2.toDate|gettime}</div>
+                                                                {:setAirport($vo2["toAirport"])}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-20 sm">
+                                                        <div class="rmb">¥<strong>
+                                                        <php>
+                                                        foreach($vo2['cabinInfo'] as $tmp){
+                                                            if($tmp['facePrice'] > $toPrice){
+                                                                echo ($tmp['facePrice'] + $vo2['airportFee'] + $vo2['fuelTax']);
+                                                                break;
+                                                            }
+                                                        }
+                                                        </php>
+                                                        起</strong></div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <php>}</php>
+                                    </volist>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab2" class="tab">
+                        <div class="list-block contacts-block" style="margin:0;">
+                            <div class="list-group">
+                                <ul>
+                                    <volist name="list.1.flightObject" id="vo2" key='k'>
+                                        <li class="fhhb" id="{$vo2['flightNo']}">
+                                            <div class="item-content">
+                                                <label class="row jipiao_item">
+                                                    <div class="col-80">
+                                                        <div class="row jipiao_title"><input type="radio" name="fhhb" data-id="{$k-1}" value="{$vo2['flightNo']}" /> 航班:{$vo2['flightNo']}
+                                                                    <if condition="$vo2['shareFlightNo'] eq true">
+                                                                    <small>(共享航班)</small>
+                                                                    </if>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-40">
+                                                                <div class="time">{$vo2.fromDate|gettime}</div>
+                                                                {:setAirport($vo2["fromAirport"])}
+                                                            </div>
+                                                            <div class="col-20">
+                                                                至
+                                                            </div>
+                                                            <div class="col-40">
+                                                                <div class="time">{$vo2.toDate|gettime}</div>
+                                                                {:setAirport($vo2["toAirport"])}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-20 sm">
+                                                        <div class="rmb">¥<strong>
+                                                        <php>
+                                                        foreach($vo2['cabinInfo'] as $tmp){
+                                                            if($tmp['facePrice'] > $backPrice){
+                                                                echo ($tmp['facePrice'] + $vo2['airportFee'] + $vo2['fuelTax']);
+                                                                break;
+                                                            }
+                                                        }
+                                                        </php>
+                                                        起</strong></div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </li>
+                                    </volist>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="bar bar-tab">
+                <!-- <p class="buttons-row"> -->
+                    <!-- <a href="javascript:void(0)" class="button button-round" id="resetchoose">重新选择</a> -->
+                    <a href="javascript:void(0)" class="button button-round active" style="width:80%;margin:0 auto;" id="chooseticket">立即改签</a>
+                <!-- </p> -->
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="page-group">
+    <div class="page page-current">
+        <header class="bar bar-nav">
+            <a href="javascript:history.back();" class="fa fa-angle-left pull-left"></a>
+            <h1 class="title">{$data.fromCity}<i class="fa fa-long-arrow-right"></i>{$data.toCity}</h1>
+        </header>
+        <div class="content list-d infinite-scroll infinite-scroll-bottom" data-distance="10">
+            <div class="list-block contacts-block">
+                <div class="list-group">
+                    <ul>
+                    <volist name="list.0.flightObject" id="vo2" key='k'>
+                        <li>
+                            <a href="{:U('endorseshow',array('o'=>($k-1),'oid'=>I('oid')))}" class="external">
+                            <div class="item-content">
+                                <div class="row">
+                                    <div class="col-70">
+                                        <div class="row">航班:{$vo2['flightNo']}</div>
+                                        <div class="row">
+                                            <div class="col-40"><div class="time">{$vo2.fromDate|gettime}</div>
+                                            {:setAirport($vo2["fromAirport"])}
+                                            </div>
+                                            <div class="col-20 point"><i class="fa fa-angle-right"></i></div>
+                                            <div class="col-40"><div class="time">{$vo2.toDate|gettime}</div>
+                                            {:setAirport($vo2["toAirport"])}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-30 sm">
+                                        <div class="rmb">¥<strong>{$vo2['cabinInfo'][0]['policy'][0]['settlement']}</strong></div>{$vo2['cabinInfo'][0]['cabinRankDetail']}
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                        </li>
+                    </volist>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 加载提示符 -->
+           <!-- <div class="infinite-scroll-preloader">
+                <div class="preloader"></div>
+            </div>-->
+        </div>
+    </div>
+</div> -->
+<script type='text/javascript' src='/Public/hangtian/weixin/js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='/Public/hangtian/weixin/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='/Public/hangtian/weixin/js/sm-extend.min.js' charset='utf-8'></script>
+
+
+<script type="text/javascript">
+    function gourl(url){
+        //location.href = url;
+    }
+
+    $(function(){
+        $("#chooseticket").click(function(){
+            var qchb, fhhb;
+
+            if($("[name='qchb']:checked").length > 0){
+                qchb = $("[name='qchb']:checked").data("id");
+            }
+
+            
+
+            <if condition="$iswf eq 1">
+            if($("[name='fhhb']:checked").length > 0){
+                fhhb = $("[name='fhhb']:checked").data("id");
+            }
+            if(fhhb == undefined && qchb == undefined){
+                alert('请至少选择一个方向的航班');
+                return false;
+            }
+            <else />
+            if(qchb == undefined){
+                alert("请选择乘坐的航班");
+                return false;
+            }
+            </if>
+
+            var url = "/wechat/jipiao/endorseshow/oid/{$order.orderid}/o/" + qchb;
+            if(fhhb != undefined){
+                url += "/o1/" + fhhb;
+            }
+            location.href = url;
+        })
+    })
+</script>
+
+</body>
+</html>

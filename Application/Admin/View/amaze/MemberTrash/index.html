@@ -1,0 +1,67 @@
+<extend name="Public/base"/>
+<block name="style">
+	<link rel="stylesheet" href="__CSS__/admin_index.css">
+</block>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg ">会员管理</strong> /
+			<small>已删除会员</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+	<div class="am-g">
+		<div class="am-u-sm-12 ">
+			<div class="am-btn-toolbar">
+				<div class="am-u-sm-9 am-btn-group am-fl " style="margin-left:-10px;">
+					<button type="button" id="btn_recycle" class="am-btn am-btn-default am-text-primary am-btn-xs am-disabled need_select">
+						<span class="am-icon-recycle"></span> 恢复
+					</button>
+					<button type="button" id="btn_del" class="am-btn am-text-danger am-btn-default am-text-primary am-btn-xs am-disabled need_select">
+						<span class="am-icon-minus"></span> 彻底删除
+					</button>
+				</div>
+			</div>
+			<br>
+		</div>
+	</div>
+
+	<div class="am-g am-datatable-hd">
+		<div class="am-u-sm-12 ">
+			<form class="am-form">
+				<div id="scrollable-table"> <!--class="am-scrollable-horizontal"-->
+					<table class="am-table am-table-striped am-table-hover am-table-compact am-text-nowrap" id="data-list" style="width:100%;">
+						<thead>
+						<tr>
+							<th>ID</th>
+							<th>会员卡号</th>
+							<th>单位</th>
+							<th>部门</th>
+							<th>职位</th>
+							<th>是否一线</th>
+							<th>姓名</th>
+							<th>性别</th>
+							<th>身份证</th>
+							<th>手机</th>
+							<th>金额</th>
+							<th>等级</th>
+							<th>状态</th>
+						</tr>
+						</thead>
+					</table>
+
+				</div>
+			</form>
+
+		</div>
+
+	</div>
+
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript" src="__JS__/member_trash.js"></script>
+</block>

@@ -1,0 +1,650 @@
+<extend name="Base/common"/>
+<block name="style">
+	<title>{$line.xl_name}</title>
+	<!--<link rel="stylesheet" href="__CSS__/amazeui.min.css">-->
+	<link rel="stylesheet" href="__CSS__/jquery.datetimepicker.css">
+	<link rel="stylesheet" href="__CSS__/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="__CSS__/style.css">
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" href="../css/style1-IE.css" />
+		<script type="text/javascript" src="../js/jquery-1.11.0.js" ></script>
+		<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  		<script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+		<script type="text/javascript" src="../js/amazeui.ie8polyfill.min.js" ></script>
+	<![endif]-->
+
+
+	<style type="text/css">
+		.xc_to_btn.positionAbsolute{position:absolute;top:100px;left:0;}
+		.xc_to_btn.positionFixed{position:fixed;top:100px;left:210px;}
+		.navfixed{position: fixed;top: 50px;z-index: 99999;max-width: 1000px;}
+		.xdsoft_datetimepicker .xdsoft_calendar td, .xdsoft_datetimepicker .xdsoft_calendar th{padding:10px 15px;}
+	</style>
+</block>
+<block name="body">
+<style type="text/css">
+		.date_box{height:auto;}
+	</style>
+		<!--header-->
+		<!--section-->
+		<div class="my_main" style="margin-top: 60px;">
+			<input type="hidden" id="goodsimg" value="{$line.xl_list_img}" />
+			<input type="hidden" id="goodsname" value="{$line.xl_name}" />
+			<div class="am-g am-g-fixed am-g-collapse">
+				<!--面包屑导航-->
+				<div class="am-breadcrumb am-breadcrumb-slash">
+					<li><a href="{:U('Index/index')}">首页</a></li>
+					<li><a href="{:U('Shop/index')}">健康商城</a></li>
+					<li><a href="{:U('Line/getlinelist')}">旅游线路</a></li>
+					<li class="am-active"><a href="{:U('line/lineDetail?xl_id='.$lineid)}">{$line.xl_name}</a></li>
+				</div>
+				<!--banner大图-->
+				<img class="am-u-lg-12" src="{$line.xl_list_img}">
+				<!--tag标签 线路id 标题 简介  价格-->
+				<div class="am-u-lg-12 line_info_gp">
+					<div class="am-u-lg-10 line_tag">
+						<volist name='biaoqin' id='vo'>
+							<span class="tag_item">{$vo}</span>
+						</volist>
+					</div>
+					<div class="am-u-lg-2 am-pagination-right">线路编号：{$line.xl_code}</div>
+					<div class="am-u-lg-9">
+						<h1 class="line_title">{$line.xl_name}</h1>
+						<p>{$line.xl_fb_detail}</p>
+					</div>
+					<div class="am-u-lg-3">
+						<div class="am-u-lg-9 am-pagination-right line_price s_price">
+							{$line.xl_qijia}
+						</div>
+						<div class="am-u-lg-3 line_dw">
+							<p>{$line.xl_qijia_dw}起</p>
+						</div>
+					</div>
+				</div>
+				<!--出发地 时间 日期  预订按钮-->
+				<div class="am-u-lg-12 info_yd_row">
+					<div class="am-u-lg-2">
+						<label>出发地：</label>
+						<span>{$line.xl_cf_city}出发</span>
+					</div>
+					<div class="am-u-lg-2">
+						<label>出团人数：</label>
+						<span>{$line.xl_ctrs}人起</span>
+					</div>
+					<div class="am-u-lg-2">
+						<label>出游天数：</label>
+						<span>{$line.xl_cttsws}</span>
+					</div>
+					<div class="am-u-lg-4" style="overflow: hidden;">
+						<input type="hidden" id="priceid" />
+						<label style="float: left;width: 20%;">出发日期：</label>
+						<gt name='lineinfocount' value='1'>
+							<div style="float: left;width: 80%;border: none;padding-left: 0 !important;padding-top: 8px;line-height: 25px;">
+								<volist name='lineinfo' id='vo' key="k">
+									<p class="pp" data-price='{$vo[5]}' data-min='{$vo[2]}' data-max='{$vo[3]}' data-pid='{$vo[1]}'>{$vo[2]}~{$vo[3]}</p>
+								</volist>
+							</div>
+							<else/>
+							<div style="float: left;width: 80%;border: none;padding-left: 0 !important;">
+								<volist name='lineinfo' id='vo' key="k">
+									<p class="pp" data-price='{$vo[5]}' data-min='{$vo[2]}' data-max='{$vo[3]}' data-pid='{$vo[1]}'>{$vo[2]}~{$vo[3]}</p>
+								</volist>
+							</div>
+						</gt>
+						
+						<!-- <a href="{:U('line/lineDetail?xl_id='.$lineid)}">更多&gt;&gt;</a> -->
+					</div>
+					<input type="button" class="am-btn am-u-lg-2 am-btn-warning yd_btn" value="立即预订" onclick="location.href=&#39;#yd&#39;">
+				</div>
+				<!--收藏分享-->
+				<div class="am-u-lg-12 share_gp">
+					<div class="am-u-lg-2">
+						<span>收藏产品：</span><a href="javascript:vod(0);" onclick="favor();return false;"><img src="__IMG__/sc_icon.png"></a>
+					</div>
+					<div class="am-u-lg-10">
+						<span class="am-fl">分享到：</span>
+						<a title="分享到新浪微博" target="_blank" href="http://service.t.sina.com.cn/share/share.php?title={$line.xl_name}。（来自http://{$_SERVER['HTTP_HOST']}）&amp;url=http://{$_SERVER['HTTP_HOST']}{:U('Hotel/detail?id='.$line['xl_id'])}&amp;pic={$line.xl_list_img}" data-item="sina" class="J_vivo_share"><img alt="新浪微博" class="am-fl" src="__IMG__/fx_sina.png"></a>
+						<a title="分享到腾讯微博" target="_blank" href="http://v.t.qq.com/share/share.php?title={$line.xl_name}（来自http://{$_SERVER['HTTP_HOST']}）。&amp;url=http://{$_SERVER['HTTP_HOST']}{:U('Hotel/detail?id='.$line['xl_id'])}&amp;pic={$line.xl_list_img}" data-item="tencent" class="J_vivo_share"><img alt="腾讯微博" class="am-fl" src="__IMG__/fx_txweibo.png"></a>
+						<a target="_blank" title="分享到人人网" href="http://widget.renren.com/dialog/share?resourceUrl=http://{$_SERVER['HTTP_HOST']}{:U('Hotel/detail?id='.$line['xl_id'])};srcUrl=http://{$_SERVER['HTTP_HOST']}&amp;title={$line.xl_name}。（来自{:C('SITENAME')}）&amp;pic={$line.xl_list_img}" data-item="renren" class="J_vivo_share"><img alt="人人网" class="am-fl" src="__IMG__/fx_rr.png"></a>
+					</div>
+				</div>
+				<!--全部跳转按钮-->
+				<div class="am-u-lg-12 am-avg-lg-6 am-thumbnails to_btn" id="linenav">
+					<li class="active"><a href="{:U('line/lineDetail?xl_id='.$lineid)}#xlts">线路特色</a></li>
+					<li><a href="{:U('line/lineDetail?xl_id='.$lineid)}#xcap">行程安排</a></li>
+					<li><a href="{:U('line/lineDetail?xl_id='.$lineid)}#xftm">透明消费</a></li>
+					<li><a href="{:U('line/lineDetail?xl_id='.$lineid)}#ydxz">预订须知</a></li>
+					<!--<li><a href="{:U('line/lineDetail?xl_id='.$lineid)}#cjjl">成交记录</a></li>
+					<li><a href="{:U('line/lineDetail?xl_id='.$lineid)}#pj">评价<span>0</span>条</a></li>-->
+				</div>
+				<!--线路特色-->
+				<div id="xlts" class="am-u-lg-12  xlts_box">
+					{$line.xl_tese}
+				</div>
+				<!--行程安排-->
+				<h1 id="xcap" class="am-u-lg-12 title">行程安排</h1>
+				<div class="am-u-lg-12 xcap_box">
+					<!--行程跳转按钮-->
+					<div class="xc_to_btn">
+						<volist name='line.xl_xc' id='vo1'>
+							<a href="{:U('line/lineDetail?xl_id='.$lineid)}#d{$vo1.xl_ts}">D{$vo1.xl_ts}</a>
+						</volist>
+					</div>
+					<!--行程细节-->
+					<volist name='line.xl_xc' id='vo2'>
+						<div id="d{$vo2.xl_ts}" class="am-u-lg-12 xc_group">
+							<h2 class="xc_dt_title">Day{$vo2.xl_ts} {$vo2.xl_xcbt}</h2>
+							<div class="am-u-lg-8 rc_gp_info">
+								<div class="am-u-lg-11 am-u-lg-offset-1">
+									{$vo2.xl_xcsm}
+									<notempty name='vo2.xl_xct'><img src="{$vo2.xl_xct}"></notempty>
+								</div>
+							</div>
+							<div class="am-u-lg-4 rc_gp">
+								<div class="am-u-lg-12 rc_box">
+									<div class="am-u-lg-2 ">
+										<img src="__IMG__/rc_cy_icon.png">
+									</div>
+									<h3 class="am-u-lg-10 ">餐饮</h3>
+									<p class="am-u-lg-10 am-u-lg-offset-2">
+										<notempty name='vo2.xl_cy'>{$vo2.xl_cy}<else/>无</notempty>
+									</p>
+								</div>
+	
+								<div class="am-u-lg-12 rc_box">
+									<div class="am-u-lg-2 ">
+										<img src="__IMG__/rc_zs_icon.png">
+									</div>
+									<h3 class="am-u-lg-10 ">住宿</h3>
+									<p class="am-u-lg-10 am-u-lg-offset-2">
+										<notempty name='vo2.xl_zs'>{$vo2.xl_zs}<else/>无</notempty>
+									</p>
+								</div>
+	
+								<div class="am-u-lg-12 rc_box">
+									<div class="am-u-lg-2 ">
+										<img src="__IMG__/rc_jt_icon.png">
+									</div>
+									<h3 class="am-u-lg-10 ">交通</h3>
+									<p class="am-u-lg-10 am-u-lg-offset-2">
+										参考航班：<notempty name='vo2.xl_ckhb'>{$vo2.xl_ckhb}<else/>无</notempty>
+									</p>
+								</div>
+							</div>
+						</div>
+					</volist>
+				</div>
+
+				<!--消费透明-->
+				<h1 id="xftm" class="am-u-lg-12 title">消费透明</h1>
+				<div class="am-u-lg-12 xcap_box">
+					<div class="am-u-lg-6 xftm_box">
+						<h3 class="title18">费用包含</h3>
+						<p>{$line.xl_bh}</p>
+
+					</div>
+					<div class="am-u-lg-6 xftm_box">
+						<h3 class="title18">费用不含</h3>
+						<p>{$line.xl_bbh}</p>
+					</div>
+				</div>
+
+				<!--预订须知-->
+				<if condition="$line['xl_ydts'] OR $line['xl_tkzc']">
+				<h1 id="ydxz" class="am-u-lg-12 title">预订须知</h1>
+				<div class="am-u-lg-12 xcap_box">
+					<div class="am-u-lg-12 ydxz_box">
+						<if condition="$line['xl_ydts']">
+						<h3 class="title18 am-text-center">旅游线路预订须知</h3>
+						<p>
+							{:str_replace(PHP_EOL,'<br/>',$line['xl_ydts'])}
+						</p>
+						</if>
+						<if condition="$line['xl_tkzc']">
+						<h3 class="title18 am-text-center">旅游线路退改政策</h3>
+						<p>
+							{:str_replace(PHP_EOL,'<br/>',$line['xl_tkzc'])}
+						</p>
+						</if>
+					</div>
+				</div>
+				</if>
+
+				<!--选择日期与人数-->
+				<h1 id="yd" class="am-u-lg-12 title">选择日期及人数</h1>
+				<div class="am-u-lg-12 xcap_box">
+					<div class="am-u-lg-8 date_box">
+						<input id="pickDateBtn" type="text" value="{:date('Y-m-d')}" style="display: none;">
+					</div>
+					<div class="am-u-lg-4 xz_rs">
+						<div class="am-u-lg-12 pull_hight">
+							<div class="am-u-lg-9 am-pagination-right line_price s_price">
+								{$line.xl_qijia}
+							</div>
+							<div class="am-u-lg-3 line_dw">
+								<p>{$line.xl_qijia_dw}起</p>
+							</div>
+							<div class="am-u-lg-12 cfts">
+								<span>出发地：{$line.xl_cf_city} </span><span>出游天数：{$line.xl_cttsws}</span>
+							</div>
+							<div class="am-u-lg-12 xz_bg_box">
+								<span>选择人数 </span>
+							</div>
+							<div class="am-u-lg-12">
+								<span class="am-u-lg-6 am-padding-left-sm">成人人数</span>
+								<span class="am-u-lg-6 am-padding-left-sm">儿童人数</span>
+							</div>
+							<div class="am-u-lg-12">
+								<div class="am-u-lg-6 am-padding-left-sm">
+									<div class="number-group clear">
+										<input class="jiannum" type="button" value="-">
+										<input class="numval" type="text" value="0" id="adultnum">
+										<input class="jianum" type="button" value="+">
+									</div>
+								</div>
+								<div class="am-u-lg-6 am-padding-left-sm">
+									<div class="number-group clear">
+										<input class="jiannum" type="button" value="-">
+										<input class="numval" type="text" value="0" id="childnum">
+										<input class="jianum" type="button" value="+">
+									</div>
+									
+								</div>
+
+							</div>
+							<div class="am-u-lg-12 yd_gp">
+								<div class="am-u-lg-7">
+									<p class="" style='color:orange'>咨询电话</p>
+									<p style='color:orange'>4000096828</p>
+								</div>
+								<div class="am-u-lg-5">
+									<button class="am-btn am-btn-warning am-btn-xl am-radius" id="ydsubmit">立即预订</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+				<!--预定选择类型模态框-->
+
+				<div class="model">
+					<div class="model_cnt">
+						<span class="close_btn">X</span>
+						<h1 class="title18 am-text-center">选择套餐</h1>
+						<p class="rztime">2016年6月30日入住</p>
+						<div class="hotel_type_box am-g">
+							<volist name='lineinfo' id='vo' key="k">
+								<!--套餐row-->
+								<div class="am-u-lg-12 hotel_type_row" data-start="{$vo[2]}" data-end="{$vo[3]}" data-week="{$vo[4]}" style="display:none;">
+									<div class="am-u-lg-2">
+										<input type="radio" name="hotel-t" data-price="{$vo[5]}" data-pid='{$vo[1]}' data-setname="{$vo[6]}">
+										<!-- <input type="hidden" class="lineinfo" name="startdate" data-price='' data-end='' data-week='' data-pid='{$vo[1]}' value="" data-setname="{$vo[6]}"/> -->
+									</div>
+									<div class="am-u-lg-6">
+										<h2 class="title16">{$vo[6]}</h2>
+									</div>
+									<div class="am-u-lg-4 ht_prs">
+										￥<span>{$vo[5]}</span>
+									</div>
+								</div>
+							</volist>
+						</div>
+						<p class="am-text-center">
+							<button class="am-btn am-btn-primary" onclick="confirmSet(this)">确认提交</button>
+							<button class="am-btn am-btn-default" onclick="closemodel();">关闭</button>
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="model">
+			<div class="model_cnt">
+				<span class="close_btn">X</span>
+				<h1 class="title18 am-text-center">选择套餐</h1>
+				<p class="rztime">2016年6月30日入住</p>
+				<div class="hotel_type_box am-g">
+					<volist name='lineinfo' id='vo' key="k">
+						<!--套餐row-->
+						<div class="am-u-lg-12 hotel_type_row" data-start="{$vo[2]}" data-end="{$vo[3]}" style="display:none;">
+							<div class="am-u-lg-2">
+								<input type="radio" name="hotel-t" data-price="{$vo[5]}" data-pid='{$vo[1]}' data-setname="{$vo[6]}">
+								<!-- <input type="hidden" class="lineinfo" name="startdate" data-price='' data-end='' data-week='' data-pid='{$vo[1]}' value="" data-setname="{$vo[6]}"/> -->
+							</div>
+							<div class="am-u-lg-6">
+								<h2 class="title16" style="font-size:1.8rem;">{$vo[2]}<br/>{$vo[3]}</h2>
+							</div>
+							<div class="am-u-lg-4 ht_prs">
+								￥<span>{$vo[5]}</span>
+							</div>
+						</div>
+					</volist>
+				</div>
+				<p class="am-text-center">
+					<button class="am-btn am-btn-primary" onclick="confirmSet(this)">确认提交</button>
+					<button class="am-btn am-btn-default" onclick="closemodel();">关闭</button>
+				</p>
+			</div>
+		</div>
+		<script type="text/javascript" src="__JS__/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="__JS__/jquery.datetimepicker.full.min.js"></script>
+		<script type="text/javascript" src="__JS__/jquery.dataTables.min.js"></script>
+		<script>
+			function closemodel(){
+				$('.model').hide();
+				$('[name=\'hotel-t\']').prop('checked', false);
+				$(".hotel_type_row").hide();
+			}
+			//确认酒店套餐
+			function confirmSet(obj){
+				var input = $(obj).parents(".model").find("input:checked");
+
+				if(input.length == 0){
+					alert("请先选择套餐");
+					return false;
+				}
+
+				var price = input.data("price");
+				var pid = input.data("pid");
+				var name = input.data("setname");
+
+				$('#priceid').val(pid);
+				$('.s_price').text(price);
+
+				$(".xdsoft_current").find("span").html(price);
+
+				closemodel();
+			}
+			$(function(){
+			var pp = $(".pp");
+				$.datetimepicker.setLocale('ch');
+			Date.prototype.format = function(format) {
+			       var date = {
+			              "M+": this.getMonth() + 1,
+			              "d+": this.getDate(),
+			              "h+": this.getHours(),
+			              "m+": this.getMinutes(),
+			              "s+": this.getSeconds(),
+			              "q+": Math.floor((this.getMonth() + 3) / 3),
+			              "S+": this.getMilliseconds()
+			       };
+			       if (/(y+)/i.test(format)) {
+			              format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+			       }
+			       for (var k in date) {
+			              if (new RegExp("(" + k + ")").test(format)) {
+			                     format = format.replace(RegExp.$1, RegExp.$1.length == 1
+			                            ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+			              }
+			       }
+			       return format;
+			}
+			var mindate = 0;
+			var maxdate = 0;
+			$.each(pp, function(){
+				var tmpMin = new Date($(this).data("min"));
+				var tmpMax = new Date($(this).data("max"));
+				if(mindate == 0){
+					mindate = tmpMin;
+				}
+				if(maxdate == 0){
+					maxdate = tmpMax;
+				}
+
+				if(tmpMin < mindate){
+					mindate = tmpMin;
+				}
+				if(tmpMax > maxdate){
+					maxdate = tmpMax;
+				}
+			})
+
+			var minDate = mindate.format('yyyy/MM/dd');
+			var maxDate = maxdate.format('yyyy/MM/dd');
+			$(".close_btn").on("click",function(){
+				closemodel();
+			});
+			$("#pickDateBtn").datetimepicker({
+				timepicker: false,
+				format: 'Y-m-d',
+				minDate: minDate,
+				maxDate: maxDate,
+				inline: true,
+				scrollMonth:false,
+				scrollTime:false,
+				scrollInput:false,
+				//				opened:true,
+				onChangeDateTime: function() {},
+				onSelectDate: function(){
+					var dateinput1 = $('#pickDateBtn').val();
+					var tempcount = 0;
+					dateinput = Date.parse(dateinput1);
+					if(pp.length > 1){
+						var modelList = $(".hotel_type_row");
+						$.each(modelList, function(){
+							var max = Date.parse($(this).data("end"));
+							var min = Date.parse($(this).data("start"));
+							if(min <= dateinput && max >= dateinput){
+								$(this).show();
+								tempcount++;
+							}
+						})
+						if(tempcount > 1){
+							$(".rztime").html(dateinput1 + "出行");
+							$(".model").show();
+						}else{
+							for(var i = 0; i < pp.length; i++){
+								var max = Date.parse(pp.eq(i).data("max"));
+								var min = Date.parse(pp.eq(i).data("min"));
+								if(min <= dateinput && max >= dateinput){
+									$('#priceid').val(pp.eq(i).data("pid"));
+									$('.s_price').text(pp.eq(i).data("price"));
+									closemodel();
+								}else{
+									return false;
+								}
+							}
+						}
+					}else{
+						for(var i = 0; i < pp.length; i++){
+							var max = Date.parse(pp.eq(i).data("max"));
+							var min = Date.parse(pp.eq(i).data("min"));
+							if(min <= dateinput && max >= dateinput){
+								$('#priceid').val(pp.eq(i).data("pid"));
+								$('.s_price').text(pp.eq(i).data("price"))
+							}else{
+								return false;
+							}
+						}
+					}
+				},
+				onGenerate: function(){
+					var td = $("td");
+					$.each(td, function(){
+						if(!$(this).hasClass("xdsoft_disabled")){
+							var tdDate = $(this).data("year") + "-" + ($(this).data("month") + 1) + "-" + $(this).data("date");
+							tdDate = Date.parse(tdDate);
+							var _this = this;
+							$.each(pp, function(){
+								var max = Date.parse($(this).data("max"));
+								var min = Date.parse($(this).data("min"));
+								if(min - 24 * 60 * 60 * 1000 <= tdDate && max >= tdDate){
+									//$(_this).find("div").append("<br/><span style='color:red'>" + $(this).data("price") + "</span>");
+									if($(_this).find("div").has("span").length > 0){
+										$(_this).find("div span").html($(this).data("price"));
+									}else{
+										$(_this).find("div").append("<br/><span style='color:red'>" + $(this).data("price") + "</span>");
+									}
+								}
+							})
+						}
+					})
+				}
+			});
+			$('#table-myorder').DataTable({
+				"paging": false,
+				"lengthChange": false,
+				"searching": false,
+				"ordering": true,
+				"info": false,
+				"autoWidth": true,
+				"ordering": false,
+				"language": {
+					"sLengthMenu": "每页显示 _MENU_ 条记录",
+					"sZeroRecords": "抱歉， 没有找到",
+					"sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+					"sInfoEmpty": "没有数据",
+					"sZeroRecords": "没有检索到数据",
+					"oPaginate": {
+						"sFirst": "首页",
+						"sPrevious": "前一页",
+						"sNext": "后一页",
+						"sLast": "尾页"
+					}
+				}
+			});
+			$('#table-myorder2').DataTable({
+				"paging": false,
+				"lengthChange": false,
+				"searching": false,
+				"ordering": true,
+				"info": false,
+				"autoWidth": true,
+				"ordering": false,
+				"language": {
+					"sLengthMenu": "每页显示 _MENU_ 条记录",
+					"sZeroRecords": "抱歉， 没有找到",
+					"sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+					"sInfoEmpty": "没有数据",
+					"sZeroRecords": "没有检索到数据",
+					"oPaginate": {
+						"sFirst": "首页",
+						"sPrevious": "前一页",
+						"sNext": "后一页",
+						"sLast": "尾页"
+					}
+				}
+			});
+			//数字框组加减
+			$(".jiannum").on("click", function() {
+				var nmval = $(this).siblings(".numval").val();
+				if (nmval == 0) {
+				} else {
+					$(this).siblings(".numval").val(--nmval);
+				}
+			});
+			$(".jianum").on("click",function() {
+				var nmval =  $(this).siblings(".numval").val();
+				$(this).siblings(".numval").val(++nmval);
+			});
+			
+			//行程安排锚点跳转
+			$(".xc_to_btn a").on("mouseenter", function() {
+				$(this).html('第' + ($(this).index() + 1) + '天');
+			});
+			$(".xc_to_btn a").on("mouseout", function() {
+				$(this).html('D' + ($(this).index() + 1));
+			});
+			
+			
+			
+			var dateinput1 = $('#pickDateBtn').val();
+			dateinput = Date.parse(dateinput1);
+			
+			$.each(pp, function(){
+				var max = Date.parse($(this).data("max"));
+				var min = Date.parse($(this).data("min"));
+				if(min <= dateinput && max >= dateinput){
+					$('#priceid').val($(this).data("pid"));
+					$('.s_price').text($(this).data("price"))
+				}
+			})
+
+			$('#ydsubmit').on('click',function(){
+				if(!$('#priceid').val()){
+					alert('请选择规定的出行日期');
+					return false;
+				}
+				if(!$('#pickDateBtn').val()){
+					alert('请选择出行日期');
+					return false;
+				}
+				if($('#adultnum').val() == 0){
+					alert('请选择成人人数');
+					return false;
+				}
+				if(!$('#childnum').val()){
+					$('#childnum').val(0);
+				}	
+				var price = $('.s_price').eq(0).text();
+				var num = parseInt($('#adultnum').val())+parseInt($('#childnum').val());
+				location.href = "./index.php?s=/Home/Line/order/xlid/"+{$lineid}+"/cfdate/"+$('#pickDateBtn').val()+"/priceid/"+$('#priceid').val()+"/adult/"+$('#adultnum').val()+"/child/"+$('#childnum').val()+"/num/"+num+"/price/"+price+".html";
+			});
+			//收藏
+			
+			})
+
+			function favor() { 
+				var favorid="{:I('xl_id')}";
+				var price=$('.line_price').eq(0).text();
+					$.ajax({
+				type:'post', //传送的方式,get/post
+				url:'{:U("Collect/add")}', //发送数据的地址
+				data:{id:favorid,price:price,goodstype:3,goodsimg:$('#goodsimg').val(),goodsname:$('#goodsname').val()},
+				 dataType: "json",
+				success:function(data){
+						if(data.status == 0){
+							alert(data.info);
+							return false;
+						}
+						alert(data.msg)
+					}
+				})
+			}
+
+
+			$(function(){
+				var imgp = $(".xlts_box p").has("img");
+				$.each(imgp, function(i){
+					$(this).css({
+						"text-align": "center"
+					})
+					$(this).find("img").css({
+						"float": "none"
+					});
+
+				})
+
+
+				var tobtnHigh;
+				var tobtnBottom;
+				var linenav;
+				$(document).ready(function() {
+					tobtnHigh = $("#xcap").offset().top;
+					if($("#ydxz").length > 0){
+						tobtnBottom = $("#ydxz").offset().top;
+					}
+					linenav = $('#linenav').offset().top;
+				});
+				// console.log(tobtnBottom);
+				window.onscroll = function(e) {
+					var e = e || window.event;
+					var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+					var scrolltop1 = document.documentElement.scrollTop || document.body.scrollTop;
+					if (scrolltop >= tobtnHigh && scrolltop <= tobtnBottom) {
+						$(".xc_to_btn").css("position", "fixed").css("display", "block").css("top", "200px").css("left", "50%").css("margin-left", "-610px");
+					} else {
+						$(".xc_to_btn").css("position", "absolute").css("display", "none").css("left", "").css("margin-left", "-89px");
+					}
+					if (scrolltop1 >= linenav) {
+						$("#linenav").addClass("navfixed");
+					} else {
+						$("#linenav").removeClass("navfixed");
+					}
+				}
+			})
+
+		</script>
+</block>

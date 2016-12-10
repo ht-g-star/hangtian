@@ -1,0 +1,147 @@
+/*覆盖原amazeui.css 值 */
+.am-topbar{background:#f1fcf6;min-height:76px;border-bottom:none;}
+.am-container{max-width:1110px;}
+.am-topbar-btn {margin-top:24px;}
+@media only screen and (min-width:641px) {
+  .am-topbar-nav > li > a {
+    line-height: 76px;
+  }
+  .am-topbar-nav > li > a:hover{
+    background-color:#effff8;
+  }
+}
+.am-slider-default {
+  margin:0;
+  background-color:none;
+}
+.am-slider-default .am-control-nav {
+  bottom: 15px;
+}
+.am-slider-default .am-control-nav li a {
+  width: 14px;
+  height: 14px;
+  background-color: #fff;
+}
+.am-slider-default .am-direction-nav a{
+	/*width:48px;
+	height:48px;*/
+}
+/*自定义*/
+/*导航字体*/
+.am-nav li a{font-size:1.8rem;color:#444;}
+.am-collapse .am-margin-top-lg{margin-top:25px;}
+/*footer*/
+.footer{background:#f2f2f2;}
+.footer p{color:#606060;font-size:18px;font-weight:bold;margin-bottom:0.2rem;}
+.footer ul{margin:0;padding:0;}
+.footer ul li{list-style:none;margin:0;padding:0;}
+.footer ul li a{color:#606060;font-size:1.4rem;}
+.footer ul li a:hover{color:#999;}
+.footer_info{ font-size:1.4rem;color:#606060; display:block;border-top:2px solid #fff;}
+.footer-border{border-left:2px solid #fff;font-size:1.4rem;}
+.footer_line{border-bottom:1px dotted #4a4a4a; display:block; padding:2px 0 10px 0;}
+.hot_line{color:#000;padding-top:6px;padding-bottom:6px;display:block;}
+/*首页幻灯button*/
+.btn_zj{background:url(../i/btn_health_check.png) no-repeat; background-position:0 0; display:inline-block; width:334px;height:70px;cursor: pointer;}
+.btn_zj:hover {background:url(../i/btn_health_check.png) no-repeat; background-position:0 bottom;}
+.btn_zj:active {color:#fff;}
+.btn_zj:visited {color:#fff;}
+.am-slides li{ position: relative;}
+.am-slides li span a{ position: absolute; right:26.5%;top:80%;}
+/*发现*/
+.index_tab{margin:0;padding:0;}
+.index_tab .am-tabs-nav{ margin-left:200px;}
+.index_tab .am-nav a{border-radius:5px 5px 0 0; background-color:#ededed;}
+.index_tab .am-nav a:hover{color:#fff;background-color:#00b9ef;}
+.index_tab .am-nav > li.am-active > a, .index_tab .am-nav > li.am-active > a:hover,.index_tab .am-nav > li.am-active > a:focus{color:#fff;background-color:#00b9ef;}
+.am-nav li a{color:#888;}
+.am-tabs-bd{border:none;}
+.finder_box1{position: relative;}
+.finder_box1 span{display: inline-block;color:#fff;}
+.finder_box1 p{position:absolute; background-color: rgba(0,0,0,0.5);height:40px;bottom:-20px;bottom:-16px\9/*ie兼容*/;z-index: 11;display:block;width:100%;width:342px;line-height: 40px;}
+.finder_box1 span a{color:#fff;}
+.finder_box1 span a:hover{color:#00b9ef;}
+.index1 img{height:432px\9;/*ie兼容*/}
+
+/*名医堂*/
+.inner-tabs {margin: 0;padding:2rem;background: #f3f3f3;}
+.inner-tabs li{list-style: none;float: left;padding-right:2rem;font-size:1.6rem;color:#999; cursor:pointer;}
+.inner-tabs li.active{color:#333;}
+.doctor_list{background:#fff;padding:40px 35px 25px 40px;}
+.doctor_list .am-slides{padding:0 20px; margin-left:-15px;}
+.doctor_list .am-slider,.doctor_list .am-slider-default{box-shadow:none;-webkit-box-shadow:none;}
+.doctor_list .am-slider li {width:206px!important;padding:0 10px;}
+.doctor_list .am-slider li img {width:196px;}
+.doctor_list .am-slides li span{ display:inline-block;text-align:center;}
+.doctor_list .am-slides li a{font-size:1.4rem;color:#4a4a4a; padding-top:1rem;}
+
+.hide{display:none;}
+
+/*健康体检*/
+.health-box1{background:url(../i/bg_health_go.jpg) no-repeat;height:473px;width:260px;}
+.health-box1 .btn{border-radius:40px;border:1px solid #fff;padding:10px 30px; display:inline-block;}
+.health-box1 p{padding:148px 0 0 45px;}
+.health-box1 .btn a{color:#fff;}
+.health-box1 .btn:hover{border:1px solid #8be5ff}
+.health-box1 .btn:hover a{color:#8be5ff;}
+.tips{color:#c2e9f8;font-size:1.4rem;display:block;padding:1rem 0 0 1rem;}
+
+.health-box2 ul{margin:0;width:260px;height:236px;padding:30px 30px 19px 30px; overflow:hidden;}
+.health-box2 ul li{list-style:none;margin-bottom:6px;}
+.health-box2 ul li a{color:#fff;}
+.health-box2 ul li a:hover{color:#fff;opacity:0.8;}
+.health-box2 ul li span{color:#fff;font-size:1.2rem;display:block;opacity:0.5;}
+.select-more{font-size:1.2rem;color:#fff;border:1px solid #fff;padding:2px 30px;opacity:0.5; display:inline-block; cursor:pointer; margin:10px 0 0 48px;}
+.select-more:hover{color:#fff;opacity:0.8;}
+
+.health-box2 dd{width:160px; white-space:nowrap;}
+.hl-group1{background:#69ba43;}
+.hl-group1 li dt a{color:#e7ff5f;font-weight:normal;}
+.hl-group2{background:#8e44ad;}
+.hl-group2 li dt a{color:#de8fff;font-weight:normal;}
+.hl-group3{background:#1abc9c;}
+.hl-group3 li dt a{color:#e7ff5f;font-weight:normal;}
+/*健康商城*/
+.shop-list {width:263px;width:264px \9;text-align:center;border-left:1px solid #fff;border-top:1px solid #fff;}
+.shop-list p{margin:15px 0;}
+.shop1{background-color:#b3f4a6;}
+.shop2{background-color:#ffd0d4;}
+.shop3{background-color:#fff0c9;}
+.shop4{background-color:#def8ff;}
+.shop5{background-color:#b2e8ee;}
+.shop6{background-color:#ffd2a1;}
+.shop7{background-color:#cdd8ff;}
+.shop8{background-color:#ffd0d4;}
+.shop-list .icon-shop1{background:url(../i/icon_health_shop.png) no-repeat; background-position:0 0;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .icon-shop2{background:url(../i/icon_health_shop.png) no-repeat; background-position:-64px 0;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .icon-shop3{background:url(../i/icon_health_shop.png) no-repeat; background-position:-128px 0;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .icon-shop4{background:url(../i/icon_health_shop.png) no-repeat; background-position:-192px 0;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .icon-shop5{background:url(../i/icon_health_shop.png) no-repeat; background-position:0 -64px;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .icon-shop6{background:url(../i/icon_health_shop.png) no-repeat; background-position:-64px -64px;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .icon-shop7{background:url(../i/icon_health_shop.png) no-repeat; background-position:-128px -64px;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .icon-shop8{background:url(../i/icon_health_shop.png) no-repeat; background-position:-192px -64px;width:64px;height:64px; margin: 0 0 0 80px;}
+.shop-list .shop-name{margin-top:0px;}
+.shop-list .shop-name a{font-size:2.4rem;color:#333;}
+.shop-list .shop-name a:hover{opacity:0.8;}
+.shop-list .shop-tj{font-size:1.4rem;opacity:0.5;}
+/*健康讲坛*/
+.health-bbs ul{margin:0;padding:0;}
+.health-bbs li{list-style:none;border:1px solid #dfdfdf;width:500px; float:left;}
+.health-bbs li dt{width:220px; margin-top:0;}
+.health-bbs li dt p{font-size:1.4rem;color:#999;font-weight:normal;}
+.health-bbs ul li a{color:#fb7d1f;font-weight:normal;}
+.health-bbs ul li a:hover{color:#333;opacity:0.8;}
+.viem-more{border:1px solid #dfdfdf; padding:4px 30px; display:inline-block; cursor:pointer;}
+.viem-more:hover{border:1px solid #ccc;color:#fb7d1f;}
+/*健康咨询*/
+.con-box{background:#f5f5f5;}
+.con-box ul{margin:0;padding:0; padding-left:15px;}
+.con-tabs li{border-radius:25px;padding:4px 8px;width:90px;background:#dcdcdc;color:#888;display:inline-block;list-style:none; height:36px; line-height:28px;text-align:center;}
+.con-tabs li:hover{ cursor:pointer;}
+.con-tabs li.active{background:#f83f51;color:#fff;}
+.con-tabs-content li{list-style:none;font-size:1.4rem;}
+.con-tabs-content li img{ vertical-align:middle;}
+.con-tabs-content .odd{background:#e9e9e9;}
+.con-tabs-content .even{background:#fefefe;}
+.con-tabs-content li dt{color:#888;font-weight:normal;margin-top:0;}
+.post-time{color:#999;}

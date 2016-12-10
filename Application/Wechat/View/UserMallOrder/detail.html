@@ -1,0 +1,213 @@
+<extend name="Base/mobile_base"/>
+<block name="style">
+	<style>
+
+	</style>
+</block>
+<block name="body">
+	<div class="am-g">
+		<div class="am-u-sm-12 am-padding">
+			<div class="am-panel am-panel-default">
+				<div class="am-panel-hd">订单详情查看</div>
+				<empty name='detaillist'>
+					<div class="am-text-center am-padding-xl">
+						<p>没有该订单，<a href='{:U("Mall/index")}' class="am-text-warning">查询错误</a></p>
+					</div>
+					<else/>
+					<volist name="detaillist" id="po">
+						<ul class="am-list am-list-static">
+							<li>订单号：{$po.orderid}</li>
+							<li>下单时间：{$po.create_time|date='Y-m-d H:i',###}</li>
+							<eq name='ordertype.ordertype' value='1'>
+								<li>物流：{$po.express|default="暂无"}</li>
+								<li>运单号：{$po.express_code|default="暂无"}</li>
+							</eq>
+						</ul>
+						<php>
+							if($ordertype1 != 4){
+						</php>
+						<div class="am-panel-bd">
+							订单详情:
+							<ul class="am-list am-list-static">
+								<volist name="po['id']" id="vo">
+									<switch name="vo.stype" >
+										<case value="1">
+											<li>
+												<div class="am-cf">
+													<A href="{:U('Article/detail?id='.$vo['goodid'])}">
+														<img src="{$vo.goodid|get_cover_id|get_cover='path'}" width="70" height="70" class="am-fl"/>
+														<span class="am-text-sm am-fr">{$vo.goodid|get_good_name}</span><br>
+													</A>
+													<span class="am-text-sm am-fr">规格：{$vo.parameters|default="无"} 单价：{$vo.price} 元 数量： {$vo.num}	件</span>
+												</div>
+											</li>
+										</case>
+										<case value="2">
+											<li>
+												<div class="am-cf">
+													<A href="{:U('hotel/detail?id='.$vo['goodid'])}">
+														<img src="{$vo.spic}" width="70" height="70" class="am-fl"/>
+														<span class="am-text-sm am-fr">{$vo.sname}</span><br>
+													</A>
+													<span class="am-text-sm am-fr">单价：{$vo.price} 元 数量： {$vo.num}	件</span>
+												</div>
+											</li>
+										</case>
+										<case value="3">
+											<li>
+												<div class="am-cf">
+													<A href="{:U('line/detail?id='.$vo['goodid'])}">
+														<img src="{$vo.spic}" width="70" height="70" class="am-fl"/>
+														<span class="am-text-sm am-fr">{$vo.sname}</span><br>
+													</A>
+													<span class="am-text-sm am-fr">单价：{$vo.price} 元 数量： {$vo.num}	件</span>
+												</div>
+											</li>
+										</case>
+									</switch>
+								</volist>
+							</ul>
+						</div>
+						<php>}else{</php>
+							<div class="am-panel-bd">
+								机票详情：
+								<table class="am-table">
+									<tr>
+										<td>联系人：{$jipiao.lxr_name}</td>
+									</tr>
+									<tr>
+										<td>联系电话：{$jipiao.lxr_phone}</td>
+									</tr>
+									<tr>
+										<td>出发：{$jipiao.fromcitycn}</td>
+									</tr>
+									<tr>
+										<td>到达：{$jipiao.tocitycn}</td>
+									</tr>
+									<tr>
+										<td>出发时间：{$jipiao.departuredate} {$jipiao.departuretime}</td>
+									</tr>
+									<tr>
+										<td>返回时间：{$jipiao.arrivaldate} {$jipiao.arrivaltime}</td>
+									</tr>
+									<tr>
+										<td>航班号：{$jipiao.flightno}</td>
+									</tr>
+									<!-- <tr>
+										<td>仓位：{$jipiao.cabinrankdetail}</td>
+									</tr> -->
+									<tr>
+										<td>乘机人：{$jipiao.passengername}</td>
+									</tr>
+									<tr>
+										<td>机票号：{$jipiao.ticketno}</td>
+									</tr>
+								</table>
+								<if condition="$jipiao['iswf'] eq 1">
+										返程机票详情：
+									<table class="am-table">
+										<tr>
+											<td>出发时间：{$jipiao.departuredate1} {$jipiao.departuretime1}</td>
+										</tr>
+										<tr>
+											<td>返回时间：{$jipiao.arrivaldate1} {$jipiao.arrivaltime1}</td>
+										</tr>
+										<tr>
+											<td>航班号：{$jipiao.flightno1}</td>
+										</tr>
+										<tr>
+											<td>仓位：{$jipiao.cabinrankdetail1}</td>
+										</tr>
+									</table>
+								</if>
+							</div>
+						<php>}</php>
+
+						<php>
+                          $ck = explode("|", $jipiao["passengername"]);
+                          $ck = count($ck);
+                        </php>
+						<div class="am-panel-footer">
+							金额：<span
+								class="am-text-warning">{$po.total_money|default="0"}</span>元 
+								<if condition="$ordertype1 eq 4">
+								(含{$ck * 20}元保险费用)
+								</if>
+						</div>
+					</volist>
+				</empty>
+			</div>
+			<neq name='ordertype.ordertype' value="4">
+				<eq name='ordertype.ordertype' value='1'>
+					<div class="am-panel am-panel-default">
+						<div class="am-panel-hd">地址信息</div>
+						<div class="am-panel-bd">
+							<ul>
+								<volist name="translist" id="vo">
+									<li>收货地址：<span class="red">{$vo.realname} {$vo.cellphone}  {$vo.province} {$vo.city} {$vo.area}{$vo.address}</span>
+									</li>
+									<li>发货地址：<span class="red"> {$po.send_name} {$po.send_contact}{$po.send_address} </span>
+									</li>
+								</volist>
+							</ul>
+						</div>
+					</div>
+					<else/>
+					<div class="am-panel am-panel-default">
+						<div class="am-panel-hd">联系人信息</div>
+						<div class="am-panel-bd">
+							<ul>
+								<volist name="translist" id="vo">
+									<li>联系人：<span class="red">{$vo.realname}</span>
+									</li>
+									<li>电话：<span class="red">{$vo.cellphone}</span>
+									</li>
+								</volist>
+							</ul>
+						</div>
+					</div>
+				</eq>
+			</eq>
+			<neq name='ordertype.ordertype' value='1'>
+				<div class="am-panel am-panel-default">
+					<div class="am-panel-hd">个性需求</div>
+					<div class="am-panel-bd">
+						<notempty name='ordertype.message'>{$ordertype.message}<else/>无</notempty>
+					</div>
+				</div>
+			</neq>
+			<notempty name="cancel">
+				<section class="am-panel am-panel-default">
+					<header class="am-panel-hd">
+						<h3 class="am-panel-title">取消订单申请-
+							<eq name="cancel.status" value="2">已拒绝</eq>
+							<eq name="cancel.status" value="3">已经通过</eq>
+							<eq name="cancel.status" value="1">待审核</eq>
+						</h3>
+					</header>
+					<div class="am-panel-bd">
+						<ul class="am-list">
+							<li>申请问题:{$cancel.title|default='暂无'}</li>
+							<li>申请原因:{$cancel.reason|default='暂无'}</li>
+							<li>申请时间:{$cancel.create_time|time_format},更新时间:{$cancel.update_time|time_format}</li>
+							<li>拒绝原因: {$cancel.refuse_info|default='暂无'}</li>
+						</ul>
+					</div>
+				</section>
+			</notempty>
+			<eq name='ordertype.ordertype' value='1'>
+				<div class="am-panel am-panel-default">
+					<div class="am-panel-hd">快递详情</div>
+					<div class="am-panel-bd">
+						{$kuaidata|default="暂无"}
+					</div>
+				</div>
+			</eq>
+		</div>
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>
+<block name="script">
+	<script>
+	</script>
+</block>

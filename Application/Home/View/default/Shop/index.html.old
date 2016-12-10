@@ -1,0 +1,119 @@
+<extend name="Base/common"/>
+<block name="style">
+</block>
+<block name="body">
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">健康商城</li>
+			</ol>
+		</div>
+	</div>
+	<div class="am-g am-g-collapse am-container am-cf">
+		<div class="am-u-sm-3 shops-nav">
+			<!-- 左侧菜单 -->
+			<div class="am-g left_menu am-g-collapse">
+				<h3 class="am-text-center am-padding-xs am-margin-0"><span class="am-icon-bars"></span> 全部商品</h3>
+				<volist name="category" id="cate">
+					<div class="am-margin-bottom-xs">
+						<h4 class="am-padding-xs am-margin-0">
+						<if condition="$cate['id'] eq 107">
+						<a href="javascript:void(0)">{$cate.title}</a><span class="am-fr am-padding-right-sm am-icon-angle-right"></span>
+						<else />
+						<a href="{:U('home/article/index/pid/'.$cate['id'])}">{$cate.title}</a><span class="am-fr am-padding-right-sm am-icon-angle-right"></span>
+						</if>
+						</h4>
+						<if condition="$cate['child'] neq false">
+							<div class="products-list am-cf">
+								<!--子分类-->
+								<volist name="cate['child']" id="cate_sub">
+									<ul>
+										<li>
+											<!-- <a href="{:U('home/article/lists/pid/'.$cate_sub['id'])}">{$cate_sub.title}</a> -->
+										<eq name="cate_sub.title" value="疗养院">
+											<a href="{:U('home/article/lists/pid/'.$cate_sub['id'])}">{$cate_sub.title}</a>
+										<else/>
+											<eq name="cate_sub.title" value="度假村">
+												<a href="{:U('home/hotel/index')}">度假村 </a>
+											<else/>
+												<eq name="cate_sub.title" value="旅途票务">
+													<a href="{:U('Home/Jipiao/index')}">旅途票务 </a>
+												<else/>
+													<eq name="cate_sub.title" value="旅游线路">
+														<a href="{:U('home/line/getLineList')}">旅游线路 </a>
+													<else/>
+														<eq name="cate_sub.title" value="景点门票">
+															<a href="{:U('home/article/lists/pid/168')}">景点门票 </a>
+														<else/>
+															<a href="{:U('home/article/lists/pid/'.$cate_sub['id'])}">{$cate_sub.title}</a>
+														</eq>
+													</eq>
+												</eq>
+											</eq>
+										</eq>
+											<if condition="$cate_sub['child']">
+												<volist name="cate_sub['child']" id="cate_sub_two">
+													<a href="{:U('home/article/lists/pid/'.$cate_sub_two['id'])}">{$cate_sub_two.title} </a>
+												</volist>
+											</if>
+										</li>
+									</ul>
+								</volist>
+							</div>
+						</if>
+					</div>
+				</volist>
+
+			</div>
+		</div>
+		<div class="am-u-sm-9 am-padding-top-xl am-margin-top am-padding-left">
+			<!-- 轮播图 -->
+			<div class="am-slider am-slider-default" data-am-flexslider id="index-slider">
+				<ul class="am-slides">
+					<li>
+						<a href="{:U('Home/Suite/index')}"><img src="__STATIC__/amaze/i/banner-shop-2.jpg"/></a>
+					</li>
+					<li>
+						<a href="./index.php?s=/home/article/detail/id/177.html"><img src="__STATIC__/amaze/i/banner-shop-1.jpg"/></a>
+					</li>
+					<li>
+						<!-- <a href="./index.php?s=/home/article/detail/id/177.html"> --><img src="__STATIC__/amaze/i/banner-shop-3.jpg"/></a>
+					</li>
+				</ul>
+			</div>
+			<!-- /轮播图 -->
+		</div>
+	</div>
+
+
+	<!-- 主体 -->
+	<!--content begin-->
+	<volist name="tree" id="row">
+		<div class="am-g am-container am-margin-top">
+
+			<h4>{$row.title}
+				<span class="am-fr"><a href="{:U('Home/Article/index',array('pid'=>$row['id']))}">更多&gt;</a></span></h4>
+
+			<div class="shops-detail am-text-center">
+				<ul>
+					<volist name="row.doc" id="goods" offset="0" length='8'>
+						<li>
+							<a href="{:U('Home/Article/detail',array('id'=>$goods['id']))}">
+								<img width="260px" height="260px" src="{$goods.cover_id|get_cover='path'}"></a>
+							<a href="{:U('Home/Article/detail',array('id'=>$goods['id']))}">
+								<span class="am-text-lg " style="height:3.2em">{$goods.title|mb_substr=0,40,'utf-8'}</span>
+							</a>
+							<span class="am-link-muted am-text-xs">{$goods.description}</span>
+							<span class="am-text-warning num-text am-padding-top-xs am-margin-bottom">¥{$goods.price}</span>
+						</li>
+					</volist>
+				</ul>
+			</div>
+		</div>
+	</volist>
+
+	<!--content end-->
+	<!-- /主体 -->
+
+</block> 

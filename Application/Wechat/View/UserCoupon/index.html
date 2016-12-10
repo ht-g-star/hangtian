@@ -1,0 +1,56 @@
+<extend name="Base/mobile_base"/>
+<block name="style">
+	<style>
+
+	</style>
+</block>
+<block name="body">
+	<!-- List -->
+	<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+		<div class="am-list-news-bd order">
+			<ul class="am-list">
+				<!--缩略图在标题左边-->
+					<empty name='couponlist'>
+						<div class="personal_info_none_goods am-u-sm-12">
+							<p>暂时没有优惠券</p>
+						</div>
+						<else/>
+						<ul class="userhas am-list" id="cuser">
+							<volist name="couponlist" id="vo">
+								<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+									<div class="am-u-sm-12 am-list-main">
+										<div class="am-u-sm-5 am-list-thumb">
+											<a href="#">
+												<notempty name="vo.icon">
+													<img src="{$vo.icon|get_cover='path'}"/>
+													<else/>
+													<img src="__STATIC__/amaze/i/app/app-shop-list1.jpg"/>
+												</notempty>
+											</a>
+										</div>
+										<div class="am-u-sm-7">
+											<h3 class="am-list-item-hd">
+												{$vo.title}
+											</h3>
+											<div class="price am-text-xs">价值：<span class="red">{$vo.price}元</span>|最低消费:{$vo.lowpayment}</div>
+											<div class="order-button  am-text-xs">
+												<p class="am-padding-0 am-margin-0">{$vo.description|default='&nbsp;'|strip_tags|mb_substr=0,20,'utf8'}</p>
+												<p class="am-padding-0 am-margin-0">有效期：<span class="red">{$vo.start_time|time_format='Y/m/d'}-{$vo.end_time|time_format='Y/m/d'}</span></p>
+											</div>
+										</div>
+									</div>
+								</li>
+							</volist>
+						</ul>
+					</empty>
+					<div class="space"></div>
+			</ul>
+			{$page}
+		</div>
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>
+<block name="script">
+	<script>
+	</script>
+</block>

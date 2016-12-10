@@ -1,0 +1,203 @@
+<!-- <extend name="Base/mobile_base"/> -->
+<block name="body">
+	<!--商城分类-->
+	<div class="shop-con">
+
+<!-- 	<div class="am-g am-g-collapse" style="background-color:#be1081;">
+		<div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('Mall/s11')}"><img src="__STATIC__/amaze/i/11/index.jpg"></a>
+			</div>
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('Mall/s11')}">双十一专区</a></h4>
+				<a href="{:U('Mall/s11')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a>
+			</div>
+			
+		</div> -->
+
+		<div class="am-g am-g-collapse blue-color">
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('Suite/index')}">体检套餐</a></h4>
+
+				<p class="am-text-xs">
+					{$suites[0]['title']} 男￥{$suites[0]['price_sex_1']} 女￥{$suites[0]['price_sex_0']}<br>
+				</p>
+				<a href="{:U('Suite/index')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-right.png"></a>
+			</div>
+			<div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('Suite/index')}"><img src="__STATIC__/amaze/i/app/app-img-shop1.jpg"></a>
+			</div>
+		</div>
+		<div class="am-g am-g-collapse purple-color">
+		
+			<div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('Mall/lyzq')}"><img src="__STATIC__/amaze/i/app/app-img-shop2.jpg"></a>
+			</div>
+				<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('Mall/lyzq')}">{$tree[0]['title']}</a></h4>
+
+				<p>
+					<volist name="tree[0]['doc']" id="row" offset="1" length='2'>
+						<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+					</volist>
+				</p>
+				<a href="{:U('Mall/lyzq')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a>
+			</div>		
+		</div>
+
+		<div class="am-g am-g-collapse green-color">
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('Mall/list1')}">{$tree[1]['title']}</a></h4>
+				<volist name="tree[1]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist>
+				<a href="{:U('Mall/list1')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-right.png"></a>
+			</div>
+			<div class="am-u-sm-7 shop-con-list">
+				<!--<a href="{:U('article/index',array('pid'=>107))}"><img src="__STATIC__/amaze/i/app/app-img-shop3.jpg"></a>
+				  -->
+				<a href="{:U('Mall/list1')}"><img src="__STATIC__/amaze/i/app/app-img-shop14.jpg"></a>
+			</div>
+		</div>
+
+		<div class="am-g am-g-collapse" style="background-color:pink;">
+		<div class="am-u-sm-7 shop-con-list">
+				<!--<a href="{:U('Mall/list1')}"><img src="__STATIC__/amaze/i/app/app-img-shop4.jpg"></a> -->			
+				<a href="{:U('Mall/gasc')}"><img src="__STATIC__/amaze/i/gasc.jpg"></a>
+			</div>
+		<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('Mall/gasc')}">关爱健康商城</a></h4>
+				<!-- <volist name="tree[2]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist> -->
+				<a href="{:U('Mall/gasc')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a>
+				<!-- <a href="{:U('article/index',array('pid'=>164))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-right.png"></a> -->
+				<!-- <h4><a href="{:U('article/index',array('pid'=>107))}">{$tree[2]['title']}</a></h4> -->
+				<!-- <volist name="tree[2]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist> -->
+				<!-- <a href="{:U('article/index',array('pid'=>107))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a> -->
+			</div>							
+		</div>
+
+		<div class="am-g am-g-collapse yellow-color">
+		
+		
+		
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('Mall/chaoshi')}">{$tree[2]['title']}</a></h4>
+				<!-- <volist name="tree[2]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist> -->
+				<a href="{:U('Mall/chaoshi')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-right.png"></a>
+				<!-- <h4><a href="{:U('article/index',array('pid'=>107))}">{$tree[2]['title']}</a></h4> -->
+				<!-- <volist name="tree[2]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist> -->
+				<!-- <a href="{:U('article/index',array('pid'=>107))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a> -->
+			</div>
+				<div class="am-u-sm-7 shop-con-list">
+				<!--<a href="{:U('Mall/list1')}"><img src="__STATIC__/amaze/i/app/app-img-shop4.jpg"></a> -->
+				
+				<a href="{:U('Mall/chaoshi')}"><img src="__STATIC__/amaze/i/app/app-img-shop11.jpg"></a>
+			</div>
+			
+			
+		</div>
+		
+			<div class="am-g am-g-collapse"  style="background-color:#97c7dd;">
+				
+		
+			<div class="am-u-sm-7 shop-con-list">
+				<!--<a href="{:U('Mall/list1')}"><img src="__STATIC__/amaze/i/app/app-img-shop4.jpg"></a> -->
+				
+				<a href="{:U('Mall/ghjk')}"><img src="__STATIC__/amaze/i/app/app-img-shop12.jpg"></a>
+			<!-- 	<a href="{:U('article/index',array('pid'=>111))}"><img src="__STATIC__/amaze/i/app/app-img-shop12.jpg"></a> -->
+			</div>
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('Mall/ghjk')}">航天个护健康</a></h4>
+				<!-- <volist name="tree[2]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist> -->
+				<a href="{:U('Mall/ghjk')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a>
+				<!-- <h4><a href="{:U('article/index',array('pid'=>107))}">{$tree[2]['title']}</a></h4> -->
+				<!-- <volist name="tree[2]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist> -->
+				<!-- <a href="{:U('article/index',array('pid'=>107))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a> -->
+			</div>
+		
+			
+		</div>
+
+		<!--
+		<div class="am-g am-g-collapse gold-color">
+		
+			
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('article/index',array('pid'=>159))}">{$tree[4]['title']}</a></h4>
+				<volist name="tree[4]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist>
+				<a href="{:U('article/index',array('pid'=>159))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-right.png"></a>
+			</div>
+			<div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('article/index',array('pid'=>159))}"><img src="__STATIC__/amaze/i/app/app-img-shop6.jpg"></a>
+			</div>
+			
+		</div>
+		  -->
+		<!-- <div class="am-g am-g-collapse darkblue-color">
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('article/index',array('pid'=>111))}">{$tree[5]['title']}</a></h4>
+
+				<volist name="tree[5]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist>
+				<a href="{:U('article/index',array('pid'=>111))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-right.png"></a>
+			</div> -->
+			<!-- <div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('article/index',array('pid'=>111))}"><img src="__STATIC__/amaze/i/app/app-img-shop7.jpg"></a>
+			</div> -->
+	<!-- 	</div> -->
+		<!-- <div class="am-g am-g-collapse cream-color">
+			<div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('article/index',array('pid'=>164))}"><img src="__STATIC__/amaze/i/app/app-img-shop8.jpg"></a>
+			</div>
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('article/index',array('pid'=>164))}">{$tree[6]['title']}</a></h4>
+
+				<volist name="tree[6]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist>
+				<a href="{:U('article/index',array('pid'=>164))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a>
+			</div>
+		</div> -->
+		
+		<div class="am-g am-g-collapse" style="background-color:#dfa4e6;">
+	
+		<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('Mall/jkcp')}">进口产品</a></h4>
+				<!-- <volist name="tree[2]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist> -->
+				<a href="{:U('Mall/jkcp')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-right.png"></a>
+				<!-- <a href="{:U('article/index',array('pid'=>164))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-right.png"></a> -->
+				<!-- <h4><a href="{:U('article/index',array('pid'=>107))}">{$tree[2]['title']}</a></h4> -->
+				<!-- <volist name="tree[2]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist> -->
+				<!-- <a href="{:U('article/index',array('pid'=>107))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a> -->
+			</div>	
+				<div class="am-u-sm-7 shop-con-list">
+				<!--<a href="{:U('Mall/list1')}"><img src="__STATIC__/amaze/i/app/app-img-shop4.jpg"></a> -->			
+				<a href="{:U('Mall/jkcp')}"><img src="__STATIC__/amaze/i/jkcp/jkcp.jpg"></a>
+			</div>						
+		</div>
+
+		
+	
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260107831'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1260107831%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+		
+	</div> 
+	<include file="Base/bottom_nav"/>
+</block>

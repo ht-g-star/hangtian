@@ -1,0 +1,21 @@
+<extend name="Base/common"/>
+
+
+<block name="body">
+
+	<!-- Contents
+	-->
+	<div class="am-g am-container am-margin-top-lg">
+
+
+		<div id="container_article am-u-sm-12" style='min-height:320px;'>
+			<h2>{$info.title}</h2>
+
+			<div id="artticle_contents">{$info.content}</div>
+
+
+			<p class="ctime am-text-right am-text-xs">
+				发表于 {$info.create_time|date='Y-m-d H:i',###}</p>
+		</div>
+	</div>
+</block>

@@ -1,0 +1,39 @@
+<extend name="Base/common"/>
+<block name="style">
+	<style>
+		body{background: url("__STATIC__/amaze/i/bg-002.jpg") bottom;background-size:cover;width:100%;height:100%;}
+	</style>
+</block>
+<block name="body">
+	<!--content begin-->
+	<div class="am-g am-container am-margin-top-lg am-margin-bottom">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">名医堂</li>
+			</ol>
+		</div>
+		<div class="am-padding am-cf am-margin-bottom bg-fff" style="min-height:500px;">
+			<ul class="am-avg-sm-5">
+				<volist name="_list" id="vo">
+					<li class="am-text-center am-center am-margin-bottom">
+						<a href="{:U('Doctor/detail',array('id'=>$vo['id']))}">
+							<notempty name="vo.pic">
+								<img src="{$vo.pic}" class=" am-img-thumbnail" width="196px" height="206px">
+								<else/>
+								<img src="__STATIC__/amaze/i/doctor_lh.jpg">
+							</notempty>
+						</a>
+						<br>
+						<span class="am-text-center">
+						<a href="#">{$vo.realname} {$vo.title}</a></span>
+					</li>
+				</volist>
+			</ul>
+		</div>
+	</div>
+	<!--content end-->
+</block>
+<block name="script">
+
+</block>

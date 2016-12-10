@@ -1,0 +1,61 @@
+﻿<extend name="Public/base"/>
+
+
+<block name="style">
+
+</block>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">微信配置</strong> /
+			<small>{$meta_title}</small>
+		</div>
+	</div>
+</block>
+<block name="body">
+	<!-- 主体 -->
+	<div class="am-g">
+		<div class="am-u-sm-8">
+			<form action="{:U()}" method="post" role="form" class="am-form ">
+				<volist name="configs" id="c" >
+					<switch name="c.type">
+						<case value="1">
+							<div class="am-form-group">
+								<label for="config_{$key}">{$c.title}:</label>
+								<input type="text" class="" id="config_{$key}" name="config[{$c.name}]" value="{$c.value}" placeholder="请输入{$c.title}">
+							</div>
+						</case>
+						<case value="2">
+							<div class="am-panel  am-panel-default">
+								<div class="am-panel-hd">
+									{$c.title}:
+								</div>
+								<div class="am-panel-body">
+									<textarea type="text" rows="10" class="am-form-control" name="config[{$c.name}]">{$c.value}</textarea>
+								</div>
+							</div>
+						</case>
+					</switch>
+
+				</volist>
+
+
+				<div class="form-group">
+					<button class="am-btn am-btn-primary submit-btn " id="submit" type="submit"  >
+						确 定
+					</button>
+					<button class="am-btn am-btn-default return-btn" onclick="javascript:history.back(-1);return false;">
+						返 回
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</block>
+
+<block name="script">
+	<script>
+
+	</script>
+
+</block>

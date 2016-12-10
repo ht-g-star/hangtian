@@ -1,0 +1,39 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<!--商城分类-->
+	<div class="shop-con">
+		<div class="am-g am-g-collapse cream-color" style="background:#00b9ef">
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('article/index',array('pid'=>177))}">养生药膳</a></h4>
+
+				<a href="{:U('article/index',array('pid'=>177))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-right.png"></a>
+			</div>
+			<div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('article/index',array('pid'=>177))}"><img src="__STATIC__/amaze/i/lyzq/ys.jpg"></a>
+			</div>
+		</div>
+	<!-- 	<div class="am-g am-g-collapse cream-color" style="background:purple;">
+			
+			<div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('article/index',array('pid'=>178))}"><img src="__STATIC__/amaze/i/lyzq/tdsp.jpg"></a>
+			</div>
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('article/index',array('pid'=>178))}">疗养院特定商品</a></h4>
+
+				<a href="{:U('article/index',array('pid'=>178))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a>
+			</div>
+		</div> -->
+		<div class="am-g am-g-collapse cream-color" style="background:purple;">
+		<div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('article/index',array('pid'=>230))}"><img src="__STATIC__/amaze/i/lyzq/mwjp.jpg"></a>
+			</div>
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('article/index',array('pid'=>230))}">美味佳品</a></h4>
+
+				<a href="{:U('article/index',array('pid'=>230))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a>
+			</div>
+			
+		</div>
+		</div>
+	<include file="Base/bottom_nav"/>
+</block>

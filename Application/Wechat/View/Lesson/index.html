@@ -1,0 +1,33 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<!-- List -->
+	<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+		<div class="am-list-news-bd knowledge">
+			<ul class="am-list">
+				<!--缩略图在标题左边-->
+				<volist name="_list" id="row">
+					<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+						<div class="am-u-sm-5 am-list-thumb">
+							<a href="{:U('detail',array('id'=>$row['id']))}">
+								<notempty name="row.pic">
+									<img src="{$row.pic}" width="100%"/>
+									<else/>
+									<img src="__STATIC__/amaze/i/app/img-bbs1.jpg" width="100%"/>
+								</notempty>
+							</a>
+						</div>
+						<div class="am-u-sm-7 am-list-main">
+							<h3 class="am-list-item-hd">
+								<a href="{:U('detail',array('id'=>$row['id']))}">{$row.title}</a>
+							</h3>
+
+							<div class="am-list-item-text knowledge-detail">{$row.content|strip_tags|mb_substr=0,40,'utf-8'}...
+							</div>
+						</div>
+					</li>
+				</volist>
+
+			</ul>
+		</div>
+	</div>
+</block>

@@ -1,0 +1,134 @@
+<extend name="Public/base"/>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">财务管理</strong> /
+			<small>支付管理</small>
+		</div>
+	</div>
+</block>
+<block name="body">
+	<div class="am-g am-padding">
+		<!-- 高级搜索 -->
+			<div class="am-search-form    am-margin-bottom">
+				<form action="" class="search-form am-form am-text-sm ">
+					<div class="am-g">
+						<div class="am-u-sm-12">
+							<ul class="am-nav am-nav-tabs am-nav-justify">
+								<li class='<empty name="status">am-active</empty>'>
+									<a href="{:U('index')}">所有日志</a></li>
+								<li class='<eq name="status" value="1" >am-active</eq>'>
+									<a href="{:U('index',array('status'=>1))}">待支付日志</a></li>
+								<li class='<eq name="status" value="2" >am-active</eq>'>
+									<a href="{:U('index',array('status'=>2))}">在线支付日志</a></li>
+								<li class='<eq name="status" value="3" >am-active</eq>'>
+									<a href="{:U('index',array('status'=>3))}">货到付款日志</a></li>
+							</ul>
+						</div>
+					</div>
+					<br>
+					
+					<div class="sleft  am-input-group  am-fl">
+						<label for="orderid">订单号:</label><input type="text" name="out_trade_no" id="out_trade_no" class="search-input am-padding-xs " value="{:I('out_trade_no')}" placeholder="日志内容">
+						| <label>创建时间:</label>
+						<input type="date" name="time-start" class="search-input am-padding-xs" id="time-start" value="{:I('time-start')}" placeholder="开始">~
+						<input type="date" name="time-end" class="search-input am-padding-xs" id="time-end" value="{:I('time-end')}" placeholder="截至">
+						|
+						<label>会员昵称:</label><input type="text" name="nickname" id="nickname" class="search-input am-padding-xs " value="{:I('nickname')}" placeholder="会员昵称">
+						<button type="button" id="search" class="am-btn am-btn-primary am-icon-search" url="{:U('Admin/Pay/index')}">
+							搜索
+						</button>
+
+					</div>
+				</form>
+				<br>
+			</div>
+		<!-- 标题栏 -->
+		<div class="main-title">
+			<h2>支付管理</h2>
+		</div>
+		<!-- 数据列表 -->
+		<div class="data-table">
+			<table class="am-table am-table-striped am-table-hover am-table-compact am-text-nowrap">
+				<thead>
+				<tr>
+					<!--<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>-->
+					<th class="">编号</th>
+					<th class="">会员编号</th>
+					<th class="">会员昵称</th>
+					<th class="">订单号</th>
+					<th class="">支付总额</th>
+					<th class="">支付状态</th>
+					<th class="">创建时间</th>
+				</tr>
+				</thead>
+				<tbody>
+				<notempty name="list">
+					<volist name="list" id="vo">
+						<tr>
+							<td>{$vo.id}</td>
+							<td>{$vo.uid}</td>
+							<td><notempty name='vo.nickname'>{$vo.nickname}<else/>暂无</notempty></td>
+							<td>{$vo.out_trade_no}</td>
+							<td>{$vo.money}</td>
+							<td>
+								<eq name='vo.status' value='0'>待支付</eq>
+								<eq name='vo.status' value='1'>在线支付</eq>
+								<eq name='vo.status' value='2'>货到付款</eq>
+							</td>
+							<td><span>{$vo.create_time|time_format}</span></td>
+						</tr>
+					</volist>
+					<else/>
+					<td colspan="6" class="text-center"> aOh! 暂时还没有内容!</td>
+				</notempty>
+				</tbody>
+			</table>
+		</div>
+		<!-- 分页 -->
+		<div class="page">{$_page}</div>
+		<!-- /分页 -->
+	</div>
+</block>
+<block name="script">
+	<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+	<php>if(C('COLOR_STYLE')=='blue_color') echo '
+		<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">
+		';
+	</php>
+	<link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$("#action_add").click(function () {
+				window.location.href = $(this).attr('url');
+			});
+			$("#search").click(function () {
+				var url = $(this).attr('url');
+				var query = $('.search-form').find('input').serialize();
+				query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g, '');
+				query = query.replace(/^&/g, '');
+				if (url.indexOf('?') > 0) {
+					url += '&' + query;
+				} else {
+					url += '?' + query;
+				}
+				window.location.href = url;
+			});
+			$('#time-start').datetimepicker({
+				format: 'yyyy-mm-dd',
+				language: "zh-CN",
+				minView: 2,
+				autoclose: true
+			});
+
+			$('#time-end').datetimepicker({
+				format: 'yyyy-mm-dd',
+				language: "zh-CN",
+				minView: 2,
+				autoclose: true
+			});
+		})
+	</script>
+</block>

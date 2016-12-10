@@ -1,0 +1,70 @@
+<extend name="Public/base"/>
+
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<!-- 标题栏 -->
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">健康讲坛</strong> /
+			<small>{$meta_title}</small>
+		</div>
+	</div>
+</block>
+
+
+<block name="body">
+	<div class="am-g">
+		<div class="am-u-sm-12 ">
+			<div class="am-btn-toolbar">
+				<div class="am-u-sm-9 am-btn-group am-fl" style="margin-left:-10px;">
+					<a class="btn am-btn am-btn-default am-text-primary am-btn-xs am-icon-plus" href="{:U('add')}">
+						新增</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="am-u-sm-12  ">
+			<div id="scrollable-table"> <!--class="am-scrollable-horizontal"-->
+				<table class="am-table am-table-striped am-table-hover am-table-compact am-text-nowrap" id="data-list" style="width:100%;">
+					<thead>
+					<tr>
+						<th class="">ID</th>
+						<th class="">标题</th>
+						<th class="">内容摘要</th>
+						<th class="">创建时间</th>
+						<th class="">排序</th>
+						<th class="">操作</th>
+					</tr>
+					</thead>
+
+					<tbody>
+					<notempty name="_list">
+						<volist name="_list" id="vo">
+							<tr>
+								<td>{$vo.id}</td>
+								<td>{$vo.title}</td>
+								<td>{$vo.content|strip_tags|mb_substr=0,50,'utf-8'}</td>
+								<td><span>{$vo.ctime|time_format}</span></td>
+								<td><span>{$vo.sort}</span></td>
+								<td>
+									<a href="{:U('edit?id='.$vo['id'])}" class="">编辑</a>
+									<a href="{:U('del?id='.$vo['id'])}" class="confirm ajax-get">删除</a>
+								</td>
+							</tr>
+						</volist>
+						<else/>
+						<td colspan="9" class="text-center"> Oh! 暂时还没有内容!</td>
+					</notempty>
+					</tbody>
+				</table>
+			</div>
+			<div class="page">
+				{$_page}
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+	<script type="text/javascript">
+	</script>
+</block>

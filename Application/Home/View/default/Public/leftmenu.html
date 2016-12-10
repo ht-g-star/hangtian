@@ -1,0 +1,34 @@
+<ul class="am-nav am-padding-xl">
+	<li class="am-nav-header"><h3><a class="home-me">订单中心</a></h3>
+		<ul class="am-nav">
+
+			<li><a href='{:U("Center/allorder")}'>普通订单</a></li>
+			<li><a href='{:U("Jipiao/orderList")}'>机票订单</a></li>
+			<li><a href='{:U("Hotel/allorder")}'>酒店订单</a></li>
+			<li><a href='{:U("Line/allorder")}'>旅游订单</a></li>
+			<li><a href='{:U("SuiteOrder/allorder")}'>体检预约</a></li>
+			<li><a href='{:U("UserCoupon/index")}'>优 惠 券</a></li>
+			<!--<li><a href='{:U("Comment/lists")}'>评价管理</a></li>-->
+		</ul>
+	</li>
+	<li class="am-nav-header"><h3><a class="home-me">个人中心</a></h3>
+		<ul class="am-nav">
+			<li><a href='{:U("Center/index")}'>我的主页</a></li>
+			<li><a href='{:U("Member/index")}'>个人资料</a></li>
+			<li><a href='{:U("Report/index")}'>报告历史</a></li>
+			<li><a href='{:U("Address/index")}'>收货地址</a></li>
+			<li><a href='{:U("User/profile")}'>修改密码</a></li>
+			<!--<li><a href='{:U("Account/security")}'>安全中心</a></li>-->
+			<!--<li><a href='{:U("Shopcart/index")}'>我的购物车</a></li>-->
+			<!--<li><a href='{:U("UserEnvelope/index")}'>站内信</a></li>-->
+			<li><a href='{:U("Collect/index")}'>我的收藏</a></li>
+		</ul>
+	</li>
+</ul>
+
+<script>/* 左边菜单高亮 */
+url = window.location.pathname + window.location.search;
+url = url.replace(/(\/(p)\/\d+)|(&p=\d+)|(\/(id)\/\d+)|(&id=\d+)|(\/(group)\/\d+)|(&group=\d+)/, "");
+$("a[href='" + url + "']").addClass("am-active");
+</script>
+   

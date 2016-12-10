@@ -1,0 +1,99 @@
+<extend name="Public/base"/>
+<block name="style">
+    <style>
+    .form-inline .form-control{
+        width:auto;
+    }
+    .sub{padding-left: 20px;}
+
+    .admin-content .am-form input.values{
+	    width: 600px !important;
+    }
+    </style>
+
+</block>
+<block name="nav">
+    <div class="am-cf am-padding ">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">微信配置</strong> /
+            <small>{$meta_title}</small>
+        </div>
+    </div>
+</block>
+
+<block name="body">
+    <div class="am-panel am-panel-default">
+        <div class="am-panel-hd">
+            <div class="fl">
+                <a class="am-btn am-btn-primary confirm " onclick="send_menu()" href="javascript:void(0)"  >发送菜单
+                </a>
+            </div>
+        </div>
+
+        <div class="am-panel-bd">
+            <!--<p class="am-check-tips">手机端会员中心地址：{:C('site_url')}{:U('Wap/User/index')}</p>-->
+
+            <p class="am-form-help">主菜单类型为主菜单时，子菜单才生效，此时主菜单值不必填写；否则主菜单为普通按钮，子菜单无效。</p>
+            <p style="padding-left: 70px;">
+	            <span>菜单名称</span>
+	            <span style="padding-left: 120px;">菜单类型</span>
+	            <span style="padding-left: 40px">菜单值</span>
+            </p>
+            <form action="{:U()}" method="post" role="form" class="am-form  ">
+                <for start="1" end="4" name="i">
+                    <div class="am-form-inline">
+                        <div class="am-form-group">
+                            <label class="item-label">主菜单{$i}</label>
+                            <input type="text" class="form-control" name="button[{$i}][name]" placeholder="按键显示名称" value="{$button.$i.name}">
+                            <select name="button[{$i}][type]" class="form-control" >
+                                <option value="sub" <if condition="$button[$i]['type'] eq 'sub'"  >selected</if>    >主菜单</option>
+                                <option value="view" <if condition="$button[$i]['type'] eq 'view'"  >selected</if>    >跳转URL</option>
+                                <option value="click" <if condition="$button[$i]['type'] eq 'click'"  >selected</if>  >单击</option>
+                                <option value="location_select" <if condition="$button[$i]['type'] eq 'location_select'"  >selected</if>  >选择位置</option>
+
+                            </select>
+                            <input type="text" class="form-control" name="button[{$i}][value]" placeholder="关键词或者跳转URL" value="{$button.$i.value}">
+                        </div>
+                    </div>
+                    <for name="j" start="1" end="6">
+                        <div class="am-form-inline sub">
+                            <div class="form-group">
+                                <label class="item-label">子菜单{$j}</label>
+                                <input type="text" class="form-control" name="button[{$i}][sub][{$j}][name]" placeholder="按键显示名称" value="{$button.$i.sub.$j.name}">
+                                <select name="button[{$i}][sub][{$j}][type]" class="form-control" >
+                                    <option value="view" <if condition="$button[$i]['sub'][$j]['type'] eq 'view' "  >selected</if>    >跳转URL</option>
+                                    <option value="click" <if condition="$button[$i]['sub'][$j]['type'] eq 'click' "  >selected</if>   >单击</option>
+                                    <option value="location_select" <if condition="$button[$i]['sub'][$j]['type'] eq 'location_select'"  >selected</if>  >选择位置</option>
+                                </select>
+                                <input type="text" class="form-control values" name="button[{$i}][sub][{$j}][value]" placeholder="关键词或者跳转URL" value="{$button.$i.sub.$j.value}">
+                            </div>
+                        </div>
+                    </for>
+                </for>
+				<div class="am-cf">&nbsp;</div>
+                <div class="am-form-group">
+                    <button class="am-btn am-btn-primary submit-btn " id="submit" type="submit"  >确 定</button>
+                    <button class="am-btn am-btn-default btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+                </div>
+
+            </form>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</block>
+
+<block name="script">
+<script>
+    function send_menu(){
+        var url="{:U('send')}";
+        if(confirm('确认发送？成功后24小时内生效')){
+            $.get(url,{},function(data){
+                alert(data.info);
+            },'json');
+        }
+        return false;
+    }
+
+</script>
+
+</block>

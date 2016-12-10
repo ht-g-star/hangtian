@@ -1,0 +1,87 @@
+<extend name="Public/base"/>
+<block name="style">
+	<link rel="stylesheet" href="__CSS__/admin_index.css">
+</block>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">单位管理</strong> /
+			<small>单位列表</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+	<div class="am-g">
+		<div class="am-u-sm-12 ">
+			<div class="am-btn-toolbar">
+				<div class="am-u-sm-9 am-btn-group am-fl" style="margin-left:-10px;">
+					<button type="button" id="btn_add" class="am-btn am-btn-default am-text-primary am-btn-xs" data-am-modal="{target: '#pop_add'}">
+						<span class="am-icon-plus"></span> 新增
+					</button>
+					<button type="button" id="btn_edit" class="am-btn am-btn-default am-btn-xs am-text-warning am-disabled need_select">
+						<span class="am-icon-pencil-square-o"></span> 编辑
+					</button>
+					<button type="button" id="btn_del" class="am-btn am-btn-default  am-btn-xs am-text-danger am-disabled need_select">
+						<span class="am-icon-trash-o"></span> 删除
+					</button>
+					<button type="button" class="am-btn am-btn-default am-text-primary am-btn-xs" data-am-modal="{target: '#pop_import'}">
+						<span class="am-icon-plus"></span> 批量导入
+					</button>
+					<!--<button type="button" id="btn_repass" class=" am-btn-xs am-btn am-btn-default">-->
+						<!--<span class="am-icon-lock"></span>-->
+						<!--重置密码-->
+					<!--</button>-->
+
+					<!--<button type="button" id="btn_view" class=" am-btn-xs am-btn am-btn-default am-disabled need_select">-->
+						<!--<span class="am-icon-eye"></span>-->
+						<!--查看-->
+					<!--</button>-->
+					<!--<button type="button" id="btn_balance" class=" am-btn-xs am-btn am-btn-default am-disabled need_select">-->
+						<!--<span class="am-icon-yen"></span>-->
+						<!--金额调整-->
+					<!--</button>-->
+				</div>
+			</div>
+			<br>
+		</div>
+	</div>
+
+	<div class="am-g am-datatable-hd">
+		<div class="am-u-sm-12 ">
+			<form class="am-form">
+				<div id="scrollable-table"> <!--class="am-scrollable-horizontal"-->
+					<table class="am-table am-table-striped am-table-hover am-table-compact am-text-nowrap" id="data-list" style="width:100%;">
+						<thead>
+						<tr>
+							<th>ID</th>
+							<th>编码</th>
+							<th>单位名称</th>
+							<th>简称</th>
+							<th>联系人姓名</th>
+							<th>联系人手机</th>
+							<!--<th>最后一次登录时间</th>-->
+							<th>状态</th>
+						</tr>
+						</thead>
+					</table>
+
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+	<include file="pop_add"/>
+	<include file="pop_edit"/>
+	<include file="pop_info"/>
+	<include file="pop_repass"/>
+	<include file="pop_balance"/>
+	<include file="pop_import"/>
+
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript" src="__JS__/company.js"></script>
+</block>

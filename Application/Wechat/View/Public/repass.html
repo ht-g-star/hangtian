@@ -1,0 +1,71 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<div class="am-u-sm-12 am-u-sm-centered  am-padding-bottom-lg">
+
+		<form class="am-form am-form-horizontal " role="form" action="__SELF__" method="post">
+			<input type="hidden" name="action" value="repass">
+
+			<div class="am-form-group am-padding-top-xl">
+				<div class="am-form-group">
+					<input type="password" id="inputPassword_new" class="am-form-field" placeholder="请输入密码"
+					       errormsg="密码为6-20位" nullmsg="请填写密码" datatype="*6-20" name="password" required>
+				</div>
+			</div>
+			<div class="am-form-group">
+				<input type="password" id="inputPassword_new2" class="am-form-field" placeholder="请再次输入密码"
+				       recheck="password" errormsg="您两次输入的密码不一致" nullmsg="请填确认密码" datatype="*"
+				       name="repassword">
+			</div>
+			<div class="controls Validform_checktip text-warning"></div>
+
+			<div class="am-form-group control-group">
+				<div class="controls">
+					<button type="submit" class="am-btn am-btn-secondary am-btn-block">
+						修 改
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</block>
+
+<block name="script">
+	<script type="text/javascript">
+		$(document)
+				.ajaxStart(function () {
+					$("button:submit").addClass("log-in").attr("disabled", true);
+				})
+				.ajaxStop(function () {
+					$("button:submit").removeClass("log-in").attr("disabled", false);
+				});
+
+
+		$("form").submit(function () {
+			var self = $(this);
+			$.post(self.attr("action"), self.serialize(), success, "json");
+			return false;
+
+			function success(data) {
+				if (data.status) {
+					alert("修改成功");
+					window.location.href = data.url;
+				} else {
+					self.find(".Validform_checktip").text(data.info);
+					//刷新验证码
+					$(".reloadverify").click();
+				}
+			}
+		});
+
+		$(function () {
+			var verifyimg = $(".verifyimg").attr("src");
+			$(".reloadverify").click(function () {
+				if (verifyimg.indexOf('?') > 0) {
+					$(".verifyimg").attr("src", verifyimg + '&random=' + Math.random());
+				} else {
+					$(".verifyimg").attr("src", verifyimg.replace(/\?.*$/, '') + '?' + Math.random());
+				}
+			});
+		});
+	</script>
+</block>

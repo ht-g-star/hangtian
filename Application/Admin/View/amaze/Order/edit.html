@@ -1,0 +1,243 @@
+<extend name="Public/base"/>
+#tab1 table{border-right:1px solid #F00;border-bottom:1px solid #F00}
+#tab1 table td{border-left:1px solid #F00;border-top:1px solid #F00}
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">订单管理</strong> /
+			<small>编辑订单</small>
+		</div>
+	</div>
+</block>
+<block name="body">
+	<div class="am-g am-padding am-padding-top-0">
+		<div class="main-title">
+			<h2>
+				{$info['id']?'编辑':'新增'}订单
+
+			</h2>
+		</div>
+		<ul class="tab-nav nav am-cf">
+			<li data-tab="tab1" class="current"><a href="javascript:void(0);">订单修改</a></li>
+			<li data-tab="tab2"><a href="javascript:void(0);">订单详情</a></li>
+		</ul>
+		<div class="tab-content">
+
+			<div id="tab1" class="tab-pane in tab1">
+				<form action="{:U()}" method="post" class="form-horizontal">
+
+					<div class="form-item">
+						<label class="item-label">订单号<span class="check-tips">（唯一的id）</span></label>
+
+						<div class="controls">
+							<input type="text" class="text input-large" readonly name="id" value="{$info.id|default=''}">
+						</div>
+					</div>
+					<div class="form-item">
+						<label class="item-label">订单编号<span class="check-tips"></span></label>
+						<div class="controls">
+							<input type="text" class="text input-large" readonly name="id" value="{$info.orderid|default=''}">
+						</div>
+					</div>
+					<div class="form-item">
+						<label class="item-label">金额<span class="check-tips">（商品金额）</span></label>
+
+						<div class="controls">
+							<input type="text" class="text input-large" name="total" value="{$info.total}">
+						</div>
+					</div>
+
+
+					<div class="form-item">
+						<label class="item-label">总额<span class="check-tips">（总额）</span></label>
+
+						<div class="controls">
+							<input type="text" class="text input-large" name="total_money" value="{$info.total_money}">
+						</div>
+					</div>
+					<div class="form-item">
+						<label class="item-label">会员备注<span class="check-tips"></span></label>
+
+						<div class="controls">
+							<input type="text" class="text input-large" name="message" value="{$info.message}">
+						</div>
+					</div>
+					<div class="form-item">
+						<label class="item-label">是否推送<span class="check-tips"></span></label>
+
+						<div class="controls">
+							<input type="text" class="text input-large" value="{:($info['ists']?'是':'否')}">
+						</div>
+					</div>
+
+					<div class="form-item">
+						<label class="item-label">状态<span class="check-tips"></span></label>
+
+						<div class="controls">
+							<select name="status" id="status">
+								<option value='1'
+								<eq name="info.status" value="1">selected</eq>
+								>已提交</option>
+								<option value='2'
+								<eq name="info.status" value="2">selected</eq>
+								>已发货</option>
+								<option value='3'
+								<eq name="info.status" value="3">selected</eq>
+								>已签收</option>
+								<option value='4'
+								<eq name="info.status" value="4">selected</eq>
+								>取消订单成功</option>
+								<option value='5'
+								<eq name="info.status" value="5">selected</eq>
+								>取消订单拒绝</option>
+								<option value='6'
+								<eq name="info.status" value="6">selected</eq>
+								>已关闭</option>
+							</select>
+						</div>
+					</div>
+
+
+					<div class="form-item">
+						<input type="hidden" name="id" value="{$info.id|default=''}">
+						<button class="btn am-btn am-btn-primary submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">
+							确 定
+						</button>
+						<button class="btn am-btn am-btn-default btn-return" onclick="javascript:history.back(-1);return false;">
+							返 回
+						</button>
+					</div>
+				</form>
+			</div>
+
+			<div id="tab2" class="tab-pane  tab2">
+				<table id="table" class="gridtable am-table am-table-striped am-table-hover am-table-compact am-text-nowrap dataTable no-footer" width="100%">
+					<thead>
+					<tr>
+						<th>商品编号</th>
+						<th>商品名</th>
+						<th>规格</th>
+						<th>价格</th>
+						<th>数量</th>
+
+					</tr>
+					</thead>
+					</tbody>
+					<volist name="list" id="vo">
+						<tr>
+							<td>
+								<if condition="$vo['stype'] neq 1">
+									{$vo.sid}
+									<else/>
+									{$vo.goodid}
+								</if>
+							</td>
+							<td>
+							<switch name="vo['stype']" >
+									<case value="1">
+										<a href="__ROOT__/index.php?s=/Home/Article/detail/id/{$vo['goodid']}" target="_blank">
+											<img src="{$vo.goodid|get_cover_id|get_cover='path'}" width="40" height="40"/>{$vo.goodid|get_good_name}
+										</a>
+									</case>
+									<case value="2">
+										<a href="{:U('Home/Hotel/detail',array('id'=>$vo['goodid']))}" target="_blank">
+											<img src="{$vo.spic}" width="40" height="40"/>{$vo.sname}
+										</a>
+									</case>
+									<case value="3">
+										<a href="{:U('Home/Line/detail',array('id'=>$vo['goodid']))}" target="_blank">
+											<img src="{$vo.spic}" width="40" height="40"/>{$vo.sname}
+										</a>
+									</case>
+								</switch>
+							</td>
+							<td><span class="weight">{$vo.parameters|default="无"}</span></td>
+							<td>
+								<if condition="$vo['stype'] neq 1">
+									￥{$vo.price}
+									<else/>
+									￥{$vo.goodid|get_good_price}
+								</if>
+							</td>
+							<td>{$vo.num}</td>
+
+						</tr>
+					</volist>
+					</tbody></table>
+				<section class="am-panel am-panel-default">
+					<header class="am-panel-hd">
+						<h3 class="am-panel-title">详情</h3>
+					</header>
+					<div class="am-panel-bd">
+						<ul class="am-list">
+							<li>小计：{$detail.total}元</li>
+							<eq name='detail.ordertype' value='1'>
+							<li>运费：{$detail.ship_price}元</li>
+							</eq>
+							<li>总金额： {$detail.total_money}元</li>
+							<eq name='detail.ordertype' value='2'>
+								<li>入住时间：{$detail.rztime}</li>
+							</eq>
+							<eq name='detail.ordertype' value='3'>
+								<li>出行时间：{$detail.rztime}</li>
+							</eq>
+							<li>下单时间：{$detail.create_time||date='Y-m-d H:i:s',###}</li>
+							<li>订单备注:&nbsp;{$info.message}</li>
+						</ul>
+						<ul class="am-list">
+							<eq name='detail.ordertype' value='1'>
+								<li>收件人：{$trans.realname}</li>
+							</eq>
+							<eq name='detail.ordertype' value='2'>
+								<li>入住人：{$trans.realname}</li>
+								<li>入住人数：{$info.crj_num}人</li>
+							</eq>
+							<eq name='detail.ordertype' value='3'>
+								<li>联系人：{$trans.realname}</li>
+								<li>出行人数：成年人 {$info.crj_num} 人；儿童 {$info.rtj_num}人</li>
+							</eq>
+							<li>联系方式：{$trans.cellphone}</li>
+							<eq name='detail.ordertype' value='1'>
+								<li>地址：{$trans.province} {$trans.city} {$trans.area} {$trans.address}</li>
+							</eq>
+						</ul>
+					</div>
+				</section>
+
+				<notempty name="cancel">
+					<section class="am-panel am-panel-default">
+						<header class="am-panel-hd">
+							<h3 class="am-panel-title">取消订单申请</h3>
+						</header>
+						<div class="am-panel-bd">
+							<ul class="am-list">
+								<li>申请问题:{$cancel.title|default='暂无'}</li>
+								<li>申请原因:{$cancel.reason|default='暂无'}</li>
+								<li>申请时间:{$cancel.create_time|time_format},更新时间:{$cancel.update_time|time_format}</li>
+								<li>拒绝原因: {$cancel.refuse_info|default='暂无'}</li>
+
+							</ul>
+						</div>
+					</section>
+				</notempty>
+
+
+			</div>
+
+		</div>
+	</div>
+
+</block>
+<block name="script">
+	<script type="text/javascript" charset="utf-8">
+		//导航高亮
+		if ($('ul.tab-nav').length) {
+			//当有tab时，返回按钮不显示
+			$('.btn-return').hide();
+		}
+		$(function () {
+			//支持tab
+			showTab();
+		})
+
+	</script>
+</block>

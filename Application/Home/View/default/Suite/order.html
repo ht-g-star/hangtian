@@ -1,0 +1,101 @@
+<extend name="Base/common"/>
+<block name="body">
+	<!--content begin-->
+	<div class="am-g am-container  am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">健康体检</li>
+			</ol>
+		</div>
+		<div class="step-box am-padding-top am-padding-bottom">
+			<ul>
+				<li class="step-active">1 选择套餐</li>
+				<li class="step-active">2 套餐详情</li>
+				<li class="step-active">3 填写信息</li>
+				<li>4 确认订单</li>
+				<div class="am-cf"></div>
+			</ul>
+		</div>
+		<div class="am-u-sm-12 am-padding-bottom">
+			3.填写信息
+		</div>
+
+	</div>
+
+	<div class="am-g am-container">
+		<div class="am-g">
+			<div class=" am-u-sm-12">
+				<hr>
+				<p class="am-text-lg am-padding-0 am-margin-0">套餐: <span class="am-text-warning">{$data.title}</span>
+			</div>
+		</div>
+		<hr>
+		<div class="am-g am-padding am-margin">
+			<div class="bg-f5 am-padding-xl">
+				<p class="am-text-lg">预约信息:</p>
+
+				<p>时间:<span class="am-text-warning">{$period.period} {$time}</span>,还剩余: <span class="am-text-warning">{$period['total_num']-$period['use_num']}</span>
+				</p>
+
+				<form action="{:U('Home/Suite/order_confirm')}" method="post" class=" am-form-inline ">
+					<input type="hidden" value="{$num}" name="num" id="num">
+					<input type="hidden" value="{$s_id}" name="s_id" id="s_id">
+					<input type="hidden" value="{$p_id}" name="p_id" id="p_id">
+					<input type="hidden" value="{$time}" name="time" id="time">
+					<input type="hidden" value="{$sex}" name="sex" id="sex">
+					<assign name="user" value="$Think.session.user_auth" />
+					<div class="am-g">
+						<for start="0" end="$num">
+							<div class="am-u-sm-12 ">
+								<input class="am-form-field am-margin-bottom-xs" type="text" required value="{$user.realname}" name="realname[{$i}]" placeholder="请输入真实姓名"/>
+								<input class="am-form-field am-margin-bottom-xs" type="text" required value="{$user.mobile}"   name="tel[{$i}]" maxlength="11" placeholder="请输入联系手机号"/>
+								<input class="am-form-field am-margin-bottom-xs id_num" type="text" required value="{$user.id_num}" maxlength="18" name="id_num[{$i}]"  placeholder="请输入身份证号码"/>
+
+								<div class="form-select am-inline-block">
+									<select disabled >
+										<option value="1" <eq name="sex" value="1" >selected</eq>>男</option>
+										<option value="0" <eq name="sex" value="0" >selected</eq>>女</option>
+									</select>
+								</div>
+
+							</div>
+						</for>
+					</div>
+					<div class="am-g am-margin">
+						<div class="am-u-sm-5 am-u-sm-centered">
+							<button class="am-btn am-btn-primary am-padding-left-xl am-padding-right-xl" type="submit">
+								确认
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!--content end-->
+	<!-- /主体 -->
+
+</block>
+<block name="script">
+	<script>
+		$("input.id_num").blur(function () {
+			var id_num = $(this).val();
+			var sex = 0;
+			if (id_num.length == 15) {
+				sex = id_num.substr(14, 1);
+			} else if (id_num.length == 18) {
+				sex = id_num.substr(16, 1);
+			} else {
+				topAlert("身份证为15或者18位!");
+				return false;
+			}
+//			$(this).next("select").val(sex);
+//			$(this).next("select").next("input[name=sex]").val(sex);
+		});
+		$("form.am-form").submit(function () {
+
+		});
+	</script>
+</block>

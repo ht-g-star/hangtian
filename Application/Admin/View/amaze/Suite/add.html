@@ -1,0 +1,137 @@
+<extend name="Public/base"/>
+<block name="style">
+	<link rel="stylesheet" href="__CSS__/admin_index.css">
+</block>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">体检</strong> /
+			<small>{$meta_title}</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+	<div class="am-g">
+		<div class="am-u-sm-8">
+			<!--begin-->
+			<form action="{:U('index',array('type'=>$action))}" method="post" enctype="multipart/form-data" class="am-form form-horizontal  am-form-horizontal">
+				<input type="hidden" name="id" value="{$data.id}">
+
+				<div class="am-form-group">
+					<label for="title" class="am-u-sm-3 am-form-label">标题</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="title" name="title" value="{$data.title}" placeholder="套餐标题">
+						<small>输入套餐的标题</small>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label for="title" class="am-u-sm-3 am-form-label">编码</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="code" name="code" value="{$data.code}" placeholder="套餐编码">
+						<small>输入套餐的编码,不知道可以留空</small>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label for="title" class="am-u-sm-3 am-form-label">价格:男</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="price_sex_1" name="price_sex_1" value="{$data.price_sex_1}" placeholder="男性价格">
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label for="title" class="am-u-sm-3 am-form-label">价格:女</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="price_sex_0" name="price_sex_0" value="{$data.price_sex_0}" placeholder="女性价格">
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label for="title" class="am-u-sm-3 am-form-label">描述</label>
+
+					<div class="am-u-sm-9">
+						<textarea id="description" name="description" placeholder="请用两三句话简单描述下.">{$data.description}</textarea>
+						<small>套餐的简介,请用两三句话说明.</small>
+					</div>
+				</div>
+
+
+				<div class="am-form-group">
+					<label for="title" class="am-u-sm-3 am-form-label">图片</label>
+
+					<div class=" am-form-file am-u-sm-9">
+						<i class="am-icon-cloud-upload"></i> 选择要上传的文件
+						<input type="file" id="pic" name="pic">
+					</div>
+					<div id="file-list" class="am-u-sm-9">
+						<notempty name="data.pic"><img src="{$data.pic}" height="100px"></notempty>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="title" class="am-u-sm-3 am-form-label">套餐内容</label>
+
+					<div class="am-u-sm-9">
+						<label class="textarea">
+							<textarea name="content">{$data['content']}</textarea>
+							{:hook('documentEditFormContent', array('name'=>'content','value'=>$data['content']))}
+						</label>
+						<small>输入套餐的详细内容</small>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="title" class="am-u-sm-3 am-form-label">规格参数</label>
+
+					<div class="am-u-sm-9">
+						<label class="textarea">
+							<textarea name="properties">{$data['properties']}</textarea>
+							{:hook('documentEditFormContent', array('name'=>'properties','value'=>$data['properties']))}
+						</label>
+						<small>输入套餐的规格参数</small>
+					</div>
+				</div>
+
+
+				<div class="am-form-group">
+					<label for="sort" class="am-u-sm-3 am-form-label">排序</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="sort" name="sort" value="{$data.sort}" placeholder="排序">
+						<small>排序编号,数字越小越靠前</small>
+					</div>
+				</div>
+
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">状态</label>
+
+					<div class="am-u-sm-9">
+						<label class="am-radio-inline"><input type="radio" value="1"
+							<eq name="data.status" value="1">checked</eq>
+							name="status"> 可用
+						</label>
+						<label class="am-radio-inline"><input type="radio" value="0"
+							<eq name="data.status" value="0">checked</eq>
+							name="status"> 禁用</label>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<div class="am-u-sm-9 am-u-sm-push-3">
+						<button type="submit" class="am-btn am-btn-primary">保存</button>
+					</div>
+				</div>
+			</form>
+			<!--over-->
+		</div>
+	</div>
+
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript" src="__JS__/suite.js"></script>
+</block>

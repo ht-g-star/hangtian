@@ -1,0 +1,92 @@
+<extend name="Public/base"/>
+<block name="style">
+	<link rel="stylesheet" href="__CSS__/admin_index.css">
+</block>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">体检</strong> /
+			<small>{$meta_title}</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+	<div class="am-g">
+		<div class="am-u-sm-12 ">
+			<div class="am-btn-toolbar">
+				<div class="am-u-sm-5 am-btn-group am-fl" style="margin-left:-10px;">
+					<!--<button type="button" id="btn_add" class="am-btn am-btn-default am-text-primary am-btn-xs" data-am-modal="{target: '#pop_add'}">-->
+					<!--<span class="am-icon-plus"></span> 新增-->
+					<!--</button>-->
+					<!--<button type="button" id="btn_edit" class="am-btn am-btn-default am-btn-xs am-text-warning am-disabled need_select">-->
+					<!--<span class="am-icon-pencil-square-o"></span> 编辑-->
+					<!--</button>-->
+					<button type="button" id="btn_del" class="am-btn am-btn-default  am-btn-xs am-text-danger am-disabled need_select">
+						<span class="am-icon-trash-o"></span> 删除
+					</button>
+
+					<!--<button type="button" id="btn_repass" class=" am-btn-xs am-btn am-btn-default">-->
+					<!--<span class="am-icon-lock"></span>-->
+					<!--重置密码-->
+					<!--</button>-->
+
+					<button type="button" id="btn_export" class=" am-btn-xs am-btn am-btn-default">
+						<span class="am-icon-download"></span>
+						导出当前结果
+					</button>
+					<span>(最多只能导出500条数据)</span>
+
+					<!--<button type="button" id="btn_view" class=" am-btn-xs am-btn am-btn-default am-disabled need_select">-->
+					<!--<span class="am-icon-eye"></span>-->
+					<!--查看-->
+					<!--</button>-->
+					<!--<button type="button" id="btn_balance" class=" am-btn-xs am-btn am-btn-default am-disabled need_select">-->
+					<!--<span class="am-icon-yen"></span>-->
+					<!--金额调整-->
+					<!--</button>-->
+				</div>
+				<div class="am-u-sm-5 am-u-end">
+					<form class="am-form">
+						<label>预约时间:</label>
+						<input type="date" value="{$Think.post.starttime}" name="starttime" id="starttime" placeholder="开始时间">~
+						<input type="date" value="{$Think.post.endtime}" name="endtime" id="endtime" placeholder="结束时间">
+						<button class="btn am-btn am-btn-default am-btn-sm " id="query" type="button">筛选</button>
+					</form>
+				</div>
+			</div>
+			<br>
+		</div>
+	</div>
+
+	<div class="am-g am-datatable-hd">
+		<div class="am-u-sm-12 ">
+			<form class="am-form">
+				<div id="scrollable-table"> <!--class="am-scrollable-horizontal"-->
+					<table class="am-table am-table-striped am-table-hover am-table-compact am-text-nowrap" id="data-list" style="width:100%;">
+						<thead>
+						<tr>
+							<th>ID</th>
+							<th>会员号</th>
+							<th>联系人姓名</th>
+							<th>身份证号</th>
+							<th>联系人手机</th>
+							<th>创建时间</th>
+							<th>套餐名称</th>
+							<th>预约时间</th>
+						</tr>
+						</thead>
+					</table>
+
+				</div>
+			</form>
+		</div>
+	</div>
+
+</block>
+
+<block name="script">
+	<script type="text/javascript" src="__STATIC__/amaze/js/fnReloadAjax.js"></script>
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript" src="__JS__/suite_order_info.js"></script>
+</block>

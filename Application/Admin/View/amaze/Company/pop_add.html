@@ -1,0 +1,84 @@
+<!--popup 新增单位帐号-->
+<div class="am-popup" id="pop_add">
+	<div class="am-popup-inner">
+		<div class="am-popup-hd">
+			<h4 class="am-popup-title">新增单位帐号</h4>
+			<span data-am-modal-close class="am-close">&times;</span>
+		</div>
+		<div class="am-popup-bd">
+			<!--begin-->
+			<form action="{:U('index',array('type'=>'add'))}" method="post" class="am-form form-horizontal am-form-horizontal">
+				<div class="am-form-group">
+					<label for="name" class="am-u-sm-3 am-form-label">名称</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="name" name="name" placeholder="单位名称">
+						<small>输入单位名称</small>
+					</div>
+				</div>
+
+
+				<div class="am-form-group">
+					<label for="username" class="am-u-sm-3 am-form-label">用户名</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="username" name="username" placeholder="简称">
+						<small>输入单位简称</small>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="code" class="am-u-sm-3 am-form-label">编码</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="code" name="code" placeholder="编码">
+						<small>输入单位的编码</small>
+					</div>
+				</div>
+
+				<!--<div class="am-form-group">-->
+					<!--<label for="password" class="am-u-sm-3 am-form-label">密码</label>-->
+
+					<!--<div class="am-u-sm-9">-->
+						<!--<input type="password" id="password" name="password" placeholder="单位登录的密码">-->
+						<!--<small>输入单位帐号登录用的密码</small>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="am-form-group">-->
+					<!--<label for="password1" class="am-u-sm-3 am-form-label">确认密码</label>-->
+
+					<!--<div class="am-u-sm-9">-->
+						<!--<input type="password" id="password1" name="password1" placeholder="确认密码">-->
+						<!--<small>请再确认一次密码</small>-->
+					<!--</div>-->
+				<!--</div>-->
+
+				<div class="am-form-group">
+					<label for="contact" class="am-u-sm-3 am-form-label">联系人</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="contact" name="contact" placeholder="单位的联系人">
+						<small>输入单位的联系人</small>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="contact_tel" class="am-u-sm-3 am-form-label">联系方式</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="contact_tel" name="contact_tel" placeholder="单位的联系人手机">
+						<small>输入单位的联系人的手机号</small>
+					</div>
+				</div>
+
+
+				<div class="am-form-group">
+					<div class="am-u-sm-9 am-u-sm-push-3">
+						<button type="submit" class="am-btn am-btn-primary">保存</button>
+					</div>
+				</div>
+			</form>
+			<!--over-->
+		</div>
+	</div>
+</div>

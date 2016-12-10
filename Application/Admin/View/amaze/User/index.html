@@ -1,0 +1,81 @@
+<extend name="Public/base"/>
+
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<!-- 标题栏 -->
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">用户管理</strong> /
+			<small>管理员列表</small>
+		</div>
+	</div>
+</block>
+
+
+<block name="body">
+	<div class="am-g">
+		<div class="am-u-sm-12 ">
+			<div class="am-btn-toolbar">
+				<div class="am-u-sm-9 am-btn-group am-fl" style="margin-left:-10px;">
+					<a class="btn am-btn am-btn-default am-text-primary am-btn-xs am-icon-plus" href="{:U('add')}">新
+						增</a>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="am-u-sm-12  ">
+			<div id="scrollable-table"> <!--class="am-scrollable-horizontal"-->
+				<table class="am-table am-table-striped am-table-hover am-table-compact am-text-nowrap" id="data-list" style="width:100%;">
+					<thead>
+					<tr>
+						<th class="">UID</th>
+						<th class="">用户名</th>
+						<th class="">登录次数</th>
+						<th class="">最后登录时间</th>
+						<th class="">最后登录IP</th>
+						<th class="">状态</th>
+						<th class="">操作</th>
+					</tr>
+					</thead>
+
+					<tbody>
+					<notempty name="_list">
+						<volist name="_list" id="vo">
+							<php>if($vo['nickname']=='litao'){continue;}</php>
+							<tr>
+								<td>{$vo.uid}</td>
+								<td>{$vo.nickname}</td>
+								<td>{$vo.login}</td>
+								<td><span>{$vo.last_login_time|time_format}</span></td>
+								<td><span>{:long2ip($vo['last_login_ip'])}</span></td>
+								<td>{$vo.status_text}</td>
+								<td>
+									<eq name="vo.status" value="1">
+										<a href="{:U('User/changeStatus?method=forbidUser&id='.$vo['uid'])}" class="ajax-get confirm">禁用</a>
+										<else/>
+										<a href="{:U('User/changeStatus?method=resumeUser&id='.$vo['uid'])}" class="ajax-get confirm">启用</a>
+									</eq>
+									<a href="{:U('AuthManager/group?uid='.$vo['uid'])}" class="authorize">授权</a>
+									<a href="{:U('User/changeStatus?method=deleteUser&id='.$vo['uid'])}" class="confirm ajax-get">删除</a>
+									<a href="{:U('User/updatePassword?id='.$vo['uid'])}" class="">重置密码</a>
+								</td>
+							</tr>
+						</volist>
+						<else/>
+						<td colspan="9" class="text-center"> aOh! 暂时还没有内容!</td>
+					</notempty>
+					</tbody>
+				</table>
+			</div>
+			<div class="page">
+				{$_page}
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript">
+	</script>
+</block>

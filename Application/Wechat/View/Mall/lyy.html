@@ -1,0 +1,73 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<!--商城分类-->
+	<div class="shop-con">
+		<div class="am-g am-g-collapse cream-color">
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm" style="height:47px;">
+				<h4><a href="{:U('article/index',array('pid'=>207))}">华北地区</a>&nbsp;&nbsp;></h4>
+			<!-- 	<a href="{:U('Jipiao/index')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a> -->
+			</div>
+		  <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+		</div>
+		<div class="am-g am-g-collapse cream-color">
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm" style="height:47px;">
+				<h4><a href="{:U('article/index',array('pid'=>208))}">华中地区</a>&nbsp;&nbsp;></h4>
+
+				<!-- <a href="/Wechat/article/index/pid/170.html" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a> -->
+				 
+			</div>
+			 <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+		</div>
+		<div class="am-g am-g-collapse cream-color">
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm" style="height:47px;">
+				<h4><a href="{:U('article/index',array('pid'=>209))}">华南地区</a>&nbsp;&nbsp;></h4>
+
+			<!-- 	<a href="{:U('Hotel/index')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a> -->
+			
+			</div>
+			 <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+		</div>
+		<div class="am-g am-g-collapse cream-color">
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm" style="height:47px;">
+				<h4><a href="{:U('article/index',array('pid'=>210))}">华东地区</a>&nbsp;&nbsp;></h4>
+
+				<!-- <a href="/Wechat/article/index/pid/170.html" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a> -->
+				  
+			</div>
+			 <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+		</div>
+		<div class="am-g am-g-collapse cream-color">
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm" style="height:47px;">
+				<h4><a href="{:U('article/index',array('pid'=>225))}">西南地区</a>&nbsp;&nbsp;></h4>
+
+				<!-- <a href="{:U('Line/index')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a> -->
+				 
+			</div>
+			 <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+		</div>
+		<!-- <div class="am-g am-g-collapse cream-color">
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm" style="height:47px;">
+				<h4><a href="{:U('article/index',array('pid'=>224))}">西北地区</a>&nbsp;&nbsp;></h4>
+				<volist name="tree[2]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist>
+				<a href="{:U('article/index',array('pid'=>180))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a>
+				 
+			</div>
+			 <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+		</div> -->
+		<div class="am-g am-g-collapse cream-color">
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('article/index',array('pid'=>226))}">东北地区</a>&nbsp;&nbsp;></h4>
+				<!-- <volist name="tree[2]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist> -->
+				<!-- <a href="{:U('article/index',array('pid'=>180))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a> --> 
+			</div>
+			 <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+			 
+		</div>
+
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>

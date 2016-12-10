@@ -1,0 +1,50 @@
+<!--popup 充值-->
+<div class="am-popup" id="pop_charge">
+	<div class="am-popup-inner">
+		<div class="am-popup-hd">
+			<h4 class="am-popup-title">充值</h4>
+			<span data-am-modal-close class="am-close">&times;</span>
+		</div>
+		<div class="am-popup-bd">
+			<!--begin-->
+			<form action="{:U('Member/charge')}" method="post" class="am-form form-horizontal am-form-horizontal">
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">刷卡</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" name="card_num" autocomplete="off" required placeholder="请先放入卡片,再双击此处">
+						<input type="hidden" name="card_sn" value="">
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">充值缘由</label>
+
+					<div class="am-u-sm-9">
+						<php>
+							$last_charge_reason=session('last_charge_reason');
+						</php>
+						<textarea name="reason">{$last_charge_reason|default='前台充值'}</textarea>
+					</div>
+				</div>
+
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">充值金额</label>
+
+					<div class="am-u-sm-9">
+						<input type="number" name="money" required placeholder="请输入充值金额">
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<div class="am-u-sm-9 am-u-sm-push-3">
+						<button type="submit" class="am-btn am-btn-primary">确认充值</button>
+					</div>
+				</div>
+			</form>
+			<!--over-->
+		</div>
+	</div>
+</div>

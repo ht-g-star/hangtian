@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>机票信息</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/sm.min.css">
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/sm-extend.css">
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/page.css">
+    <style type="text/css">
+        h1.title{z-index:1;}
+        header.bar a.pull-left{position:relative;z-index:2;}
+        .jipiao_item{font-size:0.5rem;width:100%;margin:5px 0;margin-left:-4%;padding-bottom:5px;border-bottom:1px #ccc solid;}
+        .jipiao_item .row{margin:0;}
+        .jipiao_item .jipiao_title{font-size:0.7rem;font-weight:bold;}
+        </style>
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current">
+                <header class="bar bar-nav">
+                    <a href="javascript:history.back();" class="fa fa-angle-left pull-left"></a>
+                    <h1 class="title">{:I('chufa')}<i class="fa fa-long-arrow-right"></i>{:I('end')}</h1>
+                </header>
+                <div class="content">
+                    <if condition="I('iswf') eq 1">
+                    <div class="buttons-tab">
+                        <a href="#tab1" class="tab-link active button">去程(<php>echo I('startdate');</php>)</a>
+                        <a href="#tab2" class="tab-link button">返程(<php>echo I('enddate');</php>)</a>
+                    </div>
+                    </if>
+                    <div class="tabs">
+                        <div id="tab1" class="tab active">
+                            <div class="list-block contacts-block" style="margin:0;">
+                                <div class="list-group">
+                                    <ul>
+                                        <volist name="list.0.flightObject" id="vo2" key='k'>
+                                            <li class="qchb" id="{$vo2['flightNo']}">
+                                                <div class="item-content">
+                                                    <label class="row jipiao_item">
+                                                        <div class="col-80">
+                                                            <div class="row jipiao_title"><input type="radio" name="qchb" data-id="{$k-1}" value="{$vo2['flightNo']}" /> 航班:{$vo2['flightNo']}
+                                                                    <if condition="$vo2['shareFlightNo'] eq true">
+                                                                    <small>(共享航班)</small>
+                                                                    </if>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-40">
+                                                                    <div class="time">{$vo2.fromDate|gettime}</div>
+                                                                    {:setAirport($vo2["fromAirport"])}
+                                                                </div>
+                                                                <div class="col-20">
+                                                                    至
+                                                                </div>
+                                                                <div class="col-40">
+                                                                    <div class="time">{$vo2.toDate|gettime}</div>
+                                                                    {:setAirport($vo2["toAirport"])}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-20 sm">
+                                                            <div class="rmb">¥<strong>{$vo2['cabinInfo'][0]['policy'][0]['settlement']}起</strong></div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </volist>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab2" class="tab">
+                            <div class="list-block contacts-block" style="margin:0;">
+                                <div class="list-group">
+                                    <ul>
+                                        <volist name="list.1.flightObject" id="vo2" key='k'>
+                                            <li class="fhhb" id="{$vo2['flightNo']}">
+                                                <div class="item-content">
+                                                    <label class="row jipiao_item">
+                                                        <div class="col-80">
+                                                            <div class="row jipiao_title"><input type="radio" name="fhhb" data-id="{$k-1}" value="{$vo2['flightNo']}" /> 航班:{$vo2['flightNo']}
+                                                                    <if condition="$vo2['shareFlightNo'] eq true">
+                                                                    <small>(共享航班)</small>
+                                                                    </if>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-40">
+                                                                    <div class="time">{$vo2.fromDate|gettime}</div>
+                                                                    {:setAirport($vo2["fromAirport"])}
+                                                                </div>
+                                                                <div class="col-20">
+                                                                    至
+                                                                </div>
+                                                                <div class="col-40">
+                                                                    <div class="time">{$vo2.toDate|gettime}</div>
+                                                                    {:setAirport($vo2["toAirport"])}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-20 sm">
+                                                            <div class="rmb">¥<strong>{$vo2['cabinInfo'][0]['policy'][0]['settlement']}起</strong></div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </volist>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <nav class="bar bar-tab">
+                    <p class="buttons-row" style="width:80%;margin:0 auto;">
+                        <a href="javascript:void(0)" class="button button-round" id="resetchoose">重新选择</a>
+                        <a href="javascript:void(0)" class="button button-round active" id="chooseticket">立即预定</a>
+                    </p>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <script type='text/javascript' src='/Public/hangtian/weixin/js/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='/Public/hangtian/weixin/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='/Public/hangtian/weixin/js/sm-extend.min.js' charset='utf-8'></script>
+    <script type="text/javascript">
+    function gourl(url){
+        //location.href = url;
+    }
+    $(function(){
+
+        // $(".jipiao_item").click(function(){
+        //     if($(this).find("[name='qchb']").length > 0){
+        //         var obj = $(this).find("[name='qchb']");
+        //         var hbno = obj.val();
+        //         hbno = hbno.split("");
+        //         hbno = hbno[0] + hbno[1];
+        //         console.log(hbno);
+        //         $(".fhhb").hide();
+        //         $(".fhhb[id*='" + hbno + "']").show();
+        //     }else{
+        //         var obj = $(this).find("[name='fhhb']");
+        //         var hbno = obj.val();
+        //         console.log(hbno);
+        //         hbno = hbno.split("");
+        //         hbno = hbno[0] + hbno[1];
+        //         $(".qchb").hide();
+        //         $(".qchb[id*='" + hbno + "']").show();
+        //     }
+        // })
+
+        $("#resetchoose").click(function(){
+            $("[type='radio']").prop("checked", false);
+            $(".fhhb, .qchb").show();
+        })
+
+        $("#chooseticket").click(function(){
+            var qchb = $("[name='qchb']:checked").data("id");
+            if(qchb == undefined){
+                alert("请选择乘坐的航班");
+                return false;
+            }
+
+            var fhhb;
+
+            <if condition="I('iswf') eq 1">
+            fhhb = $("[name='fhhb']:checked").data("id");
+            if(fhhb == undefined){
+                alert('请选择返程的航班');
+                return false;
+            }
+            </if>
+
+            var url = "/wechat/jipiao/addorder/o/" + qchb;
+            if(fhhb != undefined){
+                url += "/o1/" + fhhb;
+            }
+            location.href = url;
+        })
+    })
+    </script>
+</body>
+</html>

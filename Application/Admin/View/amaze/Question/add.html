@@ -1,0 +1,66 @@
+<extend name="Public/base"/>
+
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<!-- 标题栏 -->
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">咨询管理</strong> /
+			<small>{$meta_title}</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+	<div class="am-g ">
+		<div class="am-u-sm-10 am-center">
+			<form action="" method="post" class="am-form">
+				<input type="hidden" name="id" value="{$Think.get.id}">
+				<div class="am-form-group">
+					<label class="item-label">标题<span class="check-tips"></span></label>
+
+					<div class="controls">
+						<input type="text" class="text " name="title" value="{$data.title}">
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label class="item-label">分类<span class="check-tips"></span></label>
+
+					<div class="controls">
+						<select name="c_id">
+							<volist name="cats" id="cat">
+								<option value="{$cat.id}" <eq name="cat.id" value="$data.c_id" >selected</eq>>{$cat.title}</option>
+							</volist>
+						</select>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label class="item-label">咨询内容</label>
+
+					<div class="controls">
+						{:hook("documentEditFormContent",array('name'=>'content'))}
+						<textarea name="content">{$data.content}</textarea>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label class="item-label">用户称呼:</label>
+
+					<div class="controls">
+						<input type="text" class="text input-large" name="c_name" value="{$data.c_name}">
+					</div>
+				</div>
+				<div class="am-form-group">
+					<button class="am-btn am-btn-primary submit-btn " id="submit" type="submit" target-form="form-horizontal">
+						确 定
+					</button>
+					<button class="am-btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript">
+	</script>
+</block>

@@ -1,0 +1,62 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+
+	<!--商城分类-->
+	<div class="shop-con">
+
+		<!-- <div class="am-g am-g-collapse cream-color" style="background:#00b9ef">
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('Mall/jkgl')}">健康管理</a></h4>
+
+				<a href="{:U('article/index',array('pid'=>171))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-right.png"></a>
+			</div>
+			<div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('Mall/jkgl')}"><img src="__STATIC__/amaze/i/lyzq/jkgl.jpg"></a>
+			</div>
+		</div>
+ -->		
+ <div class="am-g am-g-collapse cream-color" style="background:purple;">
+			
+			<div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('Mall/tsfw')}"><img src="__STATIC__/amaze/i/lyzq/tsfw.jpg"></a>
+			</div>
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('Mall/tsfw')}">特色服务</a></h4>
+
+				<a href="{:U('Mall/tsfw')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a>
+			</div>
+		</div>
+		<div class="am-g am-g-collapse cream-color  yellow-color" >
+			<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('Mall/tssp')}">特色商品 </a></h4>
+
+				<a href="{:U('Mall/tssp')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-right.png"></a>
+			</div>
+			<div class="am-u-sm-7 shop-con-list">
+				<a href="{:U('Mall/tssp')}"><img src="__STATIC__/amaze/i/lyzq/tssp.jpg"></a>
+			</div>
+		</div>
+
+		<div class="am-g am-g-collapse purple-color">
+		<div class="am-u-sm-7 shop-con-list">
+				<!--<a href="{:U('Mall/list1')}"><img src="__STATIC__/amaze/i/app/app-img-shop4.jpg"></a> -->			
+				<a href="{:U('Mall/gasc')}"><img src="__STATIC__/amaze/i/gasc.jpg"></a>
+			</div>
+		<div class="am-u-sm-5 am-text-center am-padding-top-sm">
+				<h4><a href="{:U('Mall/gasc')}">关爱健康商城</a></h4>
+				<!-- <volist name="tree[2]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist> -->
+				<a href="{:U('Mall/gasc')}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a>
+				<!-- <a href="{:U('article/index',array('pid'=>164))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-right.png"></a> -->
+				<!-- <h4><a href="{:U('article/index',array('pid'=>107))}">{$tree[2]['title']}</a></h4> -->
+				<!-- <volist name="tree[2]['doc']" id="row" offset="1" length='2'>
+					<p>{$row.title|mb_substr=0,5,'utf-8'}￥{$row.price}</p>
+				</volist> -->
+				<!-- <a href="{:U('article/index',array('pid'=>107))}" class="shop-arrow"><img src="__STATIC__/amaze/i/app/app-arrow-left.png"></a> -->
+			</div>							
+		</div>
+	
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>

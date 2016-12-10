@@ -1,0 +1,117 @@
+﻿<extend name="Public/base"/>
+
+
+<block name="style">
+	<link rel="stylesheet" href="__CSS__/admin_index.css">
+</block>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">会员管理</strong> /
+			<small>{$meta_title}</small>
+		</div>
+	</div>
+</block>
+<block name="body">
+	<!-- 主体 -->
+	<div class="am-g">
+		<div class="am-u-sm-12">
+			<table class="am-table am-table-striped am-table-hover am-table-compact">
+				<thead>
+				<tr>
+					<th>序号</th>
+					<th>会员卡号</th>
+					<th>身份证号</th>
+					<th>姓名</th>
+					<th>充值姓名</th>
+					<th>单位名称</th>
+					<th>部门</th>
+					<th>职位</th>
+					<th>余额</th>
+					<th>充值金额</th>
+				</tr>
+				</thead>
+				<tbody>
+				<volist name="wrong" id="_row">
+					<tr class="am-danger">
+						<td></td>
+						<td></td>
+						<td>{$_row}</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</volist>
+				<volist name="result" id="row">
+					<tr class=<if condition="$row['new_realname'] neq $row['realname'] or $row['card_num'] neq $row['new_card_num'] ">
+						am-danger</if>>
+						<td>{$key+1}</td>
+						<td>{$row.card_num}</td>
+						<td>{$row.id_num}</td>
+						<td>{$row.realname}</td>
+						<td>{$row.new_realname}</td>
+						<td>{$row.company}</td>
+						<td>{$row.dept}</td>
+						<td>{$row.position}</td>
+						<td>{$row.balance}</td>
+						<td>{$row.money}</td>
+					</tr>
+				</volist>
+				<tfoot>
+				<tr>
+					<td colspan="13">共计 {$total_count|default=0} 人,金额 {$total_money|default=0} 元.</td>
+				</tr>
+				</tfoot>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<hr>
+	<div class="am-u-sm-12">
+		<h3>出错数据:</h3>
+		<table class="am-table am-table-striped am-table-hover am-table-compact">
+			<thead>
+			<tr>
+				<th>序号</th>
+				<th>会员卡号</th>
+				<th>身份证号</th>
+				<th>姓名</th>
+				<th>充值姓名</th>
+				<th>单位名称</th>
+				<th>部门</th>
+				<th>职位</th>
+				<th>余额</th>
+				<th>充值金额</th>
+			</tr>
+			</thead>
+			<tbody>
+			<volist name="wrong_data" id="_row">
+				<tr class="am-danger">
+					<td></td>
+					<td></td>
+					<td>{$_row}</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</volist>
+			
+
+			</tbody>
+		</table>
+	</div>
+</block>
+
+<block name="script">
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript">
+	</script>
+</block>

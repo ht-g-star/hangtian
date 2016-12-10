@@ -1,0 +1,91 @@
+<extend name="Public/base"/>
+<block name="nav">
+    <div class="am-cf am-padding ">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">微信配置</strong> /
+            <small>{$meta_title}</small>
+        </div>
+    </div>
+</block>
+<block name="body">
+<div class="am-panel am-panel-default">
+    <div class="am-panel-bd">
+        <div class="am-g">
+            <form action="{:U()}" method="post"  enctype="multipart/form-data" role="form" class="am-form  am-u-sm-12">
+                <input type="hidden" name="id" value="{$v.id}"/>
+                <div class="am-form-group ">
+                    <label class="item-label">关键词 </label>
+                    <input type="text" class="form-control" name="keyword" value="{$v.keyword}">
+                    <span class="am-form-help">(通过关键词触发回复，同样关键词的图文回复触发多图文)</span>
+                </div>
+
+                <div class="am-form-group">
+                    <label class="item-label">回复类型</label>
+                    <select class="form-control"  name="type" id="r_type">
+                        <option value="1" <eq name="v.type" value="1" >selected</eq>> 文本</option>
+                        <option value="2" <eq name="v.type" value="2" >selected</eq>>图文</option>
+                    </select>
+                </div>
+
+                <div class="am-form-group news">
+                    <label class="item-label">标题</label>
+                    <input type="text" class="text input-large form-control" name="title" value="{$v.title}">
+	                <span class="am-form-help">图文回复的标题</span>
+                </div>
+
+                <div class="am-form-group ">
+                    <label class="item-label">描述</label>
+                    <textarea class="text input-large form-control" name="text" >{$v.text}</textarea>
+	                <span class="am-form-help">(文本回复内容，或者是图文回复的描述)</span>
+                </div>
+
+                <div class="am-form-group news">
+                    <label class="item-label">排序</label>
+                    <input type="number" class="text input-large form-control" name="sort" value="{$v.sort}">
+	                <span class="am-form-help">(越小越靠后)</span>
+                </div>
+
+                <div class="am-form-group news">
+                    <label class="item-label">图片</label>
+                    <input type="file"   name="pic" >
+                    <notempty name="v.pic">
+                        <img src="{$v.pic}" height="100px" alt=""/>
+                    </notempty>
+                </div>
+
+
+                <div class="am-form-group news">
+                    <label class="item-label">图文外链</label>
+                    <input type="text" class="text  input-large form-control" name="link" value="{$v.link}">
+	                <span class="am-form-help">点击图文连接的地址</span>
+                </div>
+
+                <!--<div class="form-group news">-->
+                    <!--<label class="item-label">图文内容</label>-->
+                    <!--<textarea  class="text input-large form-control" name="content" rows="20" >{$v.content}</textarea>-->
+                <!--</div>-->
+
+
+                <div class="am-form-group">
+                    <button class="am-btn am-btn-primary submit-btn " id="submit" type="submit" target-form="form">确 定</button>
+                    <button class="am-btn am-btn-default btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+                </div>
+            </form>	
+        </div><!-- /.row (nested) -->
+    </div><!-- /.panel-body -->
+</div><!-- /.panel -->
+</block>
+<block name="script">
+    <script>
+        $(function(){
+            $("#r_type").change();
+        })
+        $("#r_type").change(function(){
+           var x=$("#r_type").val();
+            if(x==1){
+                $(".news").hide();
+            }else{
+                $(".news").show();
+            }
+        });
+    </script>
+</block>

@@ -1,0 +1,56 @@
+<extend name="Public/base"/>
+
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<!-- 标题栏 -->
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">咨询管理</strong> /
+			<small>{$meta_title}</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+	<div class="am-g ">
+		<div class="am-u-sm-10 am-center">
+			<form action="" method="post" class="am-form">
+				<input type="hidden" name="id" value="{$Think.get.id}">
+				<div class="am-form-group">
+					<label class="item-label">咨询内容</label>
+
+					<div class="controls">
+						<textarea name="content">{$data.content}</textarea>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label class="item-label">回复</label>
+					<div class="controls">
+						<textarea name="reply">{$data.reply}</textarea>
+					</div>
+				</div>
+
+
+				<div class="am-form-group">
+					<label class="item-label">状态</label>
+					<div class="controls">
+						<label ><input type="radio" name="status" <eq name="data.status" value="1" >checked</eq> value="1">显示</label>
+						<label ><input type="radio" name="status" <eq name="data.status" value="0" >checked</eq> value="0">隐藏</label>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<button class="am-btn am-btn-primary submit-btn " id="submit" type="submit" target-form="form-horizontal">
+						确 定
+					</button>
+					<button class="am-btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript">
+	</script>
+</block>

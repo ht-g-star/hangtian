@@ -1,0 +1,526 @@
+<extend name="Base/common"/>
+<block name="style">
+	<title>{$cache.xl_name}</title>
+	<!--<link rel="stylesheet" href="__PUBLIC__/Home/css/amazeui.min.css">-->
+	<link rel="stylesheet" href="__PUBLIC__/Home/css/jquery.datetimepicker.css">
+	<link rel="stylesheet" href="__PUBLIC__/Home/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/Home/css/zoom.css">
+
+	<link rel="stylesheet" href="__PUBLIC__/Home/css/style.css">
+	<style>
+		.navfixed{position: fixed;top: 50px;z-index: 99999;max-width: 1000px;}
+		.xdsoft_datetimepicker .xdsoft_calendar td, .xdsoft_datetimepicker .xdsoft_calendar th{padding:10px 15px;}
+	</style>
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" href="../css/style1-IE.css" />
+		<script type="text/javascript" src="../js/jquery-1.11.0.js" ></script>
+		<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  		<script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+		<script type="text/javascript" src="../js/amazeui.ie8polyfill.min.js" ></script>
+	<![endif]-->
+</block>
+<block name="body">
+	<style type="text/css">
+		.date_box{height:auto;}
+	</style>
+		<!--section-->
+		<div class="my_main">
+			<input type="hidden" id="priceid" />
+			<input type="hidden" id="goodsimg" value="{$cache.xl_list_img}" />
+			<input type="hidden" id="goodsname" value="{$cache.xl_name}" />
+			<div class="am-g am-g-fixed am-g-collapse">
+				<volist name='lineinfo' id='vo' key="k">
+					<input type="hidden" class="lineinfo" name="startdate" data-price='{$vo[5]}' data-end='{$vo[3]}' data-week='{$vo[4]}' data-pid='{$vo[1]}' value="{$vo[2]}" data-setname="{$vo[6]}"/>
+				</volist>
+				<!--面包屑导航-->
+				<div class="am-breadcrumb am-breadcrumb-slash" style="margin-top: 60px;">
+					<li><a href="/">首页</a></li>
+					<li><a href="{:U('Shop/index')}">健康商城</a></li>
+					<li><a href="{:U('Hotel/index')}">酒店预订</a></li>
+					<li class="am-active"><a href="#">{$cache.xl_name}</a></li>
+				</div>
+
+				<!--酒店简介-->
+				<div class="am-u-lg-12 hotel_abstract">
+					<h1 class="am-u-lg-8 hotel_name">{$cache.xl_name}</h1>
+					<!--收藏与分享-->
+					<div class="am-u-lg-4 am-pagination-right">
+						<div class="am-u-lg-6">
+							<a href="javascript:void(0);" onclick="favor();return false;"><img class="am-fr" src="__PUBLIC__/Home/img/sc_icon.png"></a>
+							<span class="am-fr">收藏产品：</span>
+						</div>
+						<div class="am-u-lg-6">
+							<a target="_blank" title="分享到人人网" href="http://widget.renren.com/dialog/share?resourceUrl=http://{$_SERVER['HTTP_HOST']}{:U('Hotel/detail?id='.$cache['xl_id'])};srcUrl=http://{$_SERVER['HTTP_HOST']}&amp;title={$cache.xl_name}。（来自{:C('SITENAME')}）&amp;pic={:C('DOMAIN')}{$cache.xl_list_img}" data-item="renren" class="J_vivo_share"><img alt="人人网" class="am-fr" src="__PUBLIC__/Home/img/fx_rr.png"></a>
+							<a title="分享到腾讯微博" target="_blank" href="http://v.t.qq.com/share/share.php?title={$cache.xl_name}（来自http://{$_SERVER['HTTP_HOST']}）。&amp;url=http://{$_SERVER['HTTP_HOST']}{:U('Hotel/detail?id='.$cache['xl_id'])}&amp;pic={$cache.xl_list_img}" data-item="tencent" class="J_vivo_share"><img alt="腾讯微博" class="am-fr" src="__PUBLIC__/Home/img/fx_txweibo.png">
+							<a title="分享到新浪微博" target="_blank" href="http://service.t.sina.com.cn/share/share.php?title={$cache.xl_name}。（来自http://{$_SERVER['HTTP_HOST']}）&amp;url=http://{$_SERVER['HTTP_HOST']}{:U('Hotel/detail?id='.$cache['xl_id'])}&amp;pic={$cache.xl_list_img}" data-item="sina" class="J_vivo_share"><img alt="新浪微博" class="am-fr" src="__PUBLIC__/Home/img/fx_sina.png"></a>
+							<span class="am-fr">分享到：</span>
+						</div>
+					</div>
+					<!--地址-->
+					<p class="am-u-lg-12">
+						{$cache.xl_cf_city}-{$cache.xl_jd_address}
+					</p>
+					<!--简介详情-->
+					<div class="am-u-lg-12 hotel_abstract_dt">
+						{$cache.xl_fb_detail}
+						<br />
+						{$cache.xl_jd_jianjie}
+					</div>
+					<div class="am-u-lg-12" style="margin-top: 15px;">
+						<div class="am-u-lg-9 am-pagination-left line_price"><span class="s_price" style="font-size: 5.5rem;font-weight: normal;">{$cache.xl_qijia}</span><span style="font-size: 1.8rem;">{$cache.xl_qijia_dw}</span></div>
+					</div>
+				</div>
+
+				<!--酒店相册，超出5张自动隐藏，但相册打开后能显示全部-->
+				<div class="am-u-lg-12 hotel_album_box gallery clear">
+					<!--demo start-->
+					<!-- <div class="img_bx">
+						<a href="{$cache.xl_list_img}">
+							<img class="img_album" src="{$cache.xl_list_img}">
+						</a>
+					</div> -->
+					<!--demo end-->
+					<volist name="cache.xl_list_img_arr" id='vo'>	
+					<div class="img_bx">
+						<a href="{$vo}">
+							<img class="img_album" src="{$vo}">
+						</a>
+					</div>
+					</volist>
+				</div>
+
+				<!--全部跳转按钮-->
+				<div class="am-u-lg-12 am-avg-lg-5 am-thumbnails to_btn" id="linenav">
+					<li class="active"><a href="#tcbh">套餐包含</a></li>
+					<li><a href="#fwss">服务设施</a></li>
+					<li><a href="#ydxz">预订须知</a></li>
+					<!--<li><a href="#pj">评价<span>0</span>条</a></li>-->
+					<li><a href="#liyd">立即预订</a></li>
+				</div>
+
+				<!--套餐包含-->
+				<div id="tcbh" class="am-u-lg-12 xcap_box">
+					<div class="am-u-lg-12 hotel_tcbh">
+						<div>
+							<p class="hotel_type">套餐包含：</p>
+							<volist name=":explode(PHP_EOL, $cache['xl_bh'])" id='vo'>
+							<p>{$vo}</p>
+							</volist>
+						</div>
+						<if condition="$cache['xl_bbh']">
+						<div>
+							<p class="hotel_type">套餐不包含：</p>
+							<volist name=":explode(PHP_EOL, $cache['xl_bbh'])" id='vo'>
+							<p>{$vo}</p>
+							</volist>
+						</div>
+						</if>
+					</div>
+				</div>
+
+				<!--服务设施-->
+				<h1 id="fwss" class="am-u-lg-12 title">服务设施</h1>
+				<div class="am-u-lg-12 xcap_box">
+					<div class="fwss_title">通用设施</div>
+					<div class="fwss_list clear">
+						<volist name=":explode(',', $cache['xl_tyss'])" id="vo">
+							<span><img src="__PUBLIC__/Home/img/fwss_icon.jpg">{$vo}</span>
+						</volist>
+					</div>
+					<div class="fwss_title">活动设施</div>
+					<div class="fwss_list clear">
+						<volist name=":explode(',', $cache['xl_hdss'])" id="vo">
+							<span><img src="__PUBLIC__/Home/img/fwss_icon.jpg">{$vo}</span>
+						</volist>
+					</div>
+					<div class="fwss_title">服务项目</div>
+					<div class="fwss_list clear">
+						<volist name=":explode(',', $cache['xl_fuxm'])" id="vo">
+							<span><img src="__PUBLIC__/Home/img/fwss_icon.jpg">{$vo}</span>
+						</volist>
+					</div>
+					<div class="fwss_title">客房设施</div>
+					<div class="fwss_list clear">
+						<volist name=":explode(',', $cache['xl_kfss'])" id="vo">
+							<span><img src="__PUBLIC__/Home/img/fwss_icon.jpg">{$vo}</span>
+						</volist>
+					</div>
+				</div>
+
+				<!--预订须知-->
+				<h1 id="ydxz" class="am-u-lg-12 title">预订须知</h1>
+				<div class="am-u-lg-12 xcap_box">
+					<div class="am-u-lg-12 ydxz_box">
+						<if condition="$cache['xl_ydts']">
+						<h3 class="title18 am-text-center">酒店产品预订须知</h3>
+						<p>
+							{:str_replace(PHP_EOL,'<br/>',$cache['xl_ydts'])}
+						</p>
+						</if>
+						<if condition="$cache['xl_tkzc']">
+						<h3 class="title18 am-text-center">酒店产品退改政策</h3>
+						<p>
+							{:str_replace(PHP_EOL,'<br/>',$cache['xl_tkzc'])}
+						</p>
+						</if>
+					</div>
+				</div>
+
+				<!--选择日期与人数-->
+				<h1 id="liyd" class="am-u-lg-12 title">选择日期及人数</h1>
+				<div class="am-u-lg-12 xcap_box">
+					<div class="am-u-lg-8 date_box">
+						<input id="pickDateBtn" type="text" style="display: none;" value="{:date('Y-m-d')}">
+					</div>
+					<div class="am-u-lg-4 xz_rs">
+						<div class="am-u-lg-12 pull_hight">
+							<div class="am-u-lg-9 am-pagination-right line_price s_price">{$cache.xl_qijia}</div>
+							<div class="am-u-lg-3 line_dw">
+								<p>{$cache.xl_qijia_dw}</p>
+							</div>
+
+							<span class="am-u-lg-12 am-pagination-right am-padding-left-sm am-p">选择数量</span>
+
+							<div class="am-u-lg-12  am-pagination-right am-padding-left-sm  clear">
+								<div class="number-group am-fr  clear">
+									<input class="jiannum" type="button" value="-">
+									<input class="numval" type="text" value="1">
+									<input class="jianum" type="button" value="+">
+								</div>
+							</div>
+
+							<div class="am-u-lg-12 yd_gp">
+								<div class="am-u-lg-7">
+									<p class="" style="color:orange">咨询电话</p>
+									<p style="color:orange">4000096828</p>
+								</div>
+								<div class="am-u-lg-5">
+									<button class="am-btn am-btn-warning am-btn-xl am-radius" onclick="ydhotel()">立即预订</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!--预定选择类型模态框-->
+
+		<div class="model">
+			<div class="model_cnt">
+				<span class="close_btn">X</span>
+				<h1 class="title18 am-text-center">选择套餐</h1>
+				<p class="rztime">2016年6月30日入住</p>
+				<div class="hotel_type_box am-g">
+					<volist name='lineinfo' id='vo' key="k">
+						<!--套餐row-->
+						<div class="am-u-lg-12 hotel_type_row" data-start="{$vo[2]}" data-end="{$vo[3]}" data-week="{$vo[4]}" style="display:none;">
+							<div class="am-u-lg-2">
+								<input type="radio" name="hotel-t" data-price="{$vo[5]}" data-pid='{$vo[1]}' data-setname="{$vo[6]}">
+								<!-- <input type="hidden" class="lineinfo" name="startdate" data-price='' data-end='' data-week='' data-pid='{$vo[1]}' value="" data-setname="{$vo[6]}"/> -->
+							</div>
+							<div class="am-u-lg-6">
+								<h2 class="title16" title="{$vo[6]}" style="height:4rem;overflow:hidden">{$vo[6]}</h2>
+							</div>
+							<div class="am-u-lg-4 ht_prs">
+								￥<span>{$vo[5]}</span>
+							</div>
+						</div>
+					</volist>
+				</div>
+				<p class="am-text-center">
+					<button class="am-btn am-btn-primary" onclick="confirmSet(this)">确认提交</button>
+					<button class="am-btn am-btn-default" onclick="closemodel();">关闭</button>
+				</p>
+			</div>
+		</div>
+		
+
+		<script type="text/javascript" src="__PUBLIC__/Home/js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.datetimepicker.full.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/Home/js/zoom.js"></script><div id="zoom" style="display: none;"><a class="close"></a><a href="#previous" class="previous"></a><a href="#next" class="next"></a><div class="content loading"></div></div>
+		<script type="text/javascript">
+			$(function(){
+				var pp = $(".lineinfo");
+
+				var maxDate, minDate, tmpDate1 = 0, tmpDate2 = 0;
+				$.each(pp, function(i){
+					var tmp1 = Date.parse($(this).data("end"));
+					var tmp2 = Date.parse($(this).val());
+					if(i == 0){
+						tmpDate1 = tmp1;
+						tmpDate2 = tmp2;
+					}else{
+						if(tmp1 > tmpDate1){
+							tmpDate1 = tmp1;
+						}
+						if(tmp2 < tmpDate2){
+							tmpDate2 = tmp2;
+						}
+					}
+				})
+
+				maxDate = new Date(tmpDate1).getFullYear() + "/" + (new Date(tmpDate1).getMonth() + 1) + "/" + new Date(tmpDate1).getDate();
+
+				if(tmpDate2 <= Date.parse(new Date()))
+				{
+					tmpDate2 = new Date();
+				}
+				minDate = new Date(tmpDate2).getFullYear() + "/" + (new Date(tmpDate2).getMonth() + 1) + "/" + new Date(tmpDate2).getDate();
+
+				// console.log(maxDate);
+				// console.log(minDate);
+				// console.log(pp);
+
+
+				$.datetimepicker.setLocale('ch');
+				$("#pickDateBtn").datetimepicker({
+					timepicker: false,
+					format: 'Y-m-d',
+					minDate: minDate,
+					maxDate: maxDate,
+					inline: true,
+					keyboardNavigation:false,
+					scrollMonth:false,
+					scrollTime:false,
+					scrollInput:false,
+					//				opened:true,
+					onChangeDateTime: function() {},
+					onSelectDate: function(){
+						var dateinput1 = $('#pickDateBtn').val();
+						var dateinput = Date.parse(dateinput1);
+						dateweek = new Date(dateinput);
+						dateweek = dateweek.getDay();
+						//dateweek = dateweek.toString();
+						if(pp.length > 1){
+							var modelList = $(".hotel_type_row");
+							var tempcount = 0;
+							$.each(modelList, function(){
+								var tempStart = Date.parse($(this).data("start"));
+								var tempEnd = Date.parse($(this).data("end"));
+								var tempWeek = $(this).data("week");
+								tempWeek = tempWeek.toString();
+								if(tempStart <= dateinput && tempEnd >= dateinput && tempWeek.indexOf(dateweek) >= 0){
+									$(this).show();
+									tempcount++;
+								}
+							})
+							if(tempcount > 1){
+								$(".rztime").html(dateinput1 + "入住");
+								$(".model").show();
+							}else{
+								for(var i = 0; i < pp.length; i++)
+								{
+									var max = Date.parse(pp.eq(i).data("end"));
+									var min = Date.parse(pp.eq(i).val());
+									if(min <= dateinput && max >= dateinput){
+										var week = pp.eq(i).data("week");
+										week = week.toString();
+										if(week.indexOf(dateweek)>=0){
+											$('#priceid').val(pp.eq(i).data("pid"));
+											$('.s_price').text(pp.eq(i).data("price"));
+										}
+										closemodel();
+									}else{
+										return false;
+									}
+								}
+							}
+						}else{
+							for(var i = 0; i < pp.length; i++)
+							{
+								var max = Date.parse(pp.eq(i).data("end"));
+								var min = Date.parse(pp.eq(i).val());
+								if(min <= dateinput && max >= dateinput){
+									var week = pp.eq(i).data("week");
+									week = week.toString();
+									if(week.indexOf(dateweek)>=0){
+										$('#priceid').val(pp.eq(i).data("pid"));
+										$('.s_price').text(pp.eq(i).data("price"));
+									}
+								}else{
+									return false;
+								}
+							}
+						}
+					},
+					onGenerate: function(){
+						var td = $("td");
+						$.each(td, function(){
+							if(!$(this).hasClass("xdsoft_disabled")){
+								var tdDate = $(this).data("year") + "-" + ($(this).data("month") + 1) + "-" + $(this).data("date");
+								tdDate = Date.parse(tdDate);
+								var _this = this;
+								$.each(pp, function(){
+									var max = Date.parse($(this).data("end"));
+									var min = Date.parse($(this).val());
+									if(min <= tdDate && max >= tdDate){
+										var week = $(this).data("week");
+										week = week.toString();
+										var tdDateWeek = new Date(tdDate).getDay();
+										if(week.indexOf(tdDateWeek) >= 0){
+											if($(_this).find("div").has("span").length > 0){
+												$(_this).find("div span").html($(this).data("price"));
+											}else{
+												$(_this).find("div").append("<br/><span style='color:red'>" + $(this).data("price") + "</span>");
+											}
+										}
+									}
+								})
+							}
+						})
+					}
+				});
+				
+					var dateinput1 = $('#pickDateBtn').val();
+					dateinput = Date.parse(dateinput1);
+					dateweek = new Date(dateinput);
+					dateweek = dateweek.getDay();
+					dateweek = dateweek.toString();
+					$.each(pp, function(){
+						var max = Date.parse($(this).data("end"));
+						var min = Date.parse($(this).val());
+						if(min <= dateinput && max >= dateinput){
+							var week = $(this).data("week");
+							week = week.toString();
+							if(week.indexOf(dateweek)>=0){
+								$('#priceid').val($(this).data("pid"));
+								$('.s_price').text($(this).data("price"));
+							}
+						}
+					})
+
+				$('#pickDateBtn').change(function(){
+					
+				})
+				
+				
+				$('#table-myorder2').DataTable({
+					"paging": true,
+					"lengthChange": false,
+					"searching": false,
+					"ordering": true,
+					"info": false,
+					"autoWidth": true,
+					"ordering": false,
+					"language": {
+						"sLengthMenu": "每页显示 _MENU_ 条记录",
+						"sZeroRecords": "抱歉， 没有找到",
+						"sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+						"sInfoEmpty": "没有数据",
+						"sZeroRecords": "没有检索到数据",
+						"oPaginate": {
+							"sFirst": "首页",
+							"sPrevious": "前一页",
+							"sNext": "后一页",
+							"sLast": "尾页"
+						}
+					}
+				});
+				var linenav;
+				$(document).ready(function() {
+					linenav = $('#linenav').offset().top;
+				});
+				window.onscroll = function(e) {
+					var e = e || window.event;
+					var scrolltop1 = document.documentElement.scrollTop || document.body.scrollTop;
+					if (scrolltop1 >= linenav) {
+						$("#linenav").addClass("navfixed");
+					} else {
+						$("#linenav").removeClass("navfixed");
+					}
+				}
+				//数字框组加减
+				$(".jiannum").on("click", function() {
+					var nmval = $(this).siblings(".numval").val();
+					if (nmval == 1) {} else {
+						$(this).siblings(".numval").val(--nmval);
+					}
+				});
+				$(".jianum").on("click", function() {
+					var nmval = $(this).siblings(".numval").val();
+					$(this).siblings(".numval").val(++nmval);
+				});
+				
+				
+				$(".close_btn").on("click",function(){
+					closemodel();
+				});
+			
+
+			})
+
+			function closemodel(){
+				$('.model').hide();
+				$('[name=\'hotel-t\']').prop('checked', false);
+				$(".hotel_type_row").hide();
+			}
+
+			//确认酒店套餐
+			function confirmSet(obj){
+				var input = $(obj).parents(".model").find("input:checked");
+
+				if(input.length == 0){
+					alert("请先选择套餐");
+					return false;
+				}
+
+				var price = input.data("price");
+				var pid = input.data("pid");
+				var name = input.data("setname");
+
+				$('#priceid').val(pid);
+				$('.s_price').text(price);
+
+				$(".xdsoft_current").find("span").html(price);
+
+				closemodel();
+			}
+			
+			//预定酒店
+			function ydhotel(){
+				if(!$('#priceid').val()){
+					alert('请选择规定的出行日期');
+					return false;
+				}
+				if(!$('#pickDateBtn').val()){
+					alert('请选择出行日期');
+					return false;
+				}
+				var price = $('.s_price').eq(0).text();
+				location.href="{:u('home/hotel/order')}&id={:I('id')}&cfrq="+$('#pickDateBtn').val()+"&num="+$('.numval').val()+"&price="+price+'&priceid='+$('#priceid').val();
+			}
+			// function tjholteod(){
+			// 	location.href='add_order.html';
+			// }
+			//收藏
+			function favor() { 
+				// var uexist="{:get_username()}";
+				// if(uexist){
+					var favorid="{:I('id')}";
+					var price=$('.s_price').html();
+					$.ajax({
+						type:'post', //传送的方式,get/post
+						url:'{:U("Collect/add")}', //发送数据的地址
+						data:{id:favorid,price:price,goodstype:2,goodsimg:$('#goodsimg').val(),goodsname:$('#goodsname').val()},
+						 dataType: "json",
+						success:function(data){
+								if(data.status == 0){
+									alert(data.info);
+									return false;
+								}
+								alert(data.msg);
+							}
+					})	
+				// }
+				// else
+				// {
+				// 	showBg();
+				// }
+			}
+		</script>
+
+	
+</block> 

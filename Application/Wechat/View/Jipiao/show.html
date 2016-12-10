@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>单程机票详情</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/sm.min.css">
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/sm-extend.min.css">
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/Public/hangtian/weixin/css/page.css">
+    <style type="text/css">
+        h1.title{z-index:1;}
+        header.bar a.pull-left{position:relative;z-index:2;}
+    </style>
+</head>
+<body>
+<div class="page-group">
+    <div class="page page-current">
+        <header class="bar bar-nav">
+            <a class="fa fa-angle-left pull-left" onclick="history.back();"></a>
+            <h1 class="title">{$info.fromCity}<i class="fa fa-long-arrow-right"></i>{$info.toCity}</h1>
+        </header>
+        <div class="content">
+            <div class="detail-dc">
+                <div class="row">
+                    <div class="col-33">
+                        {$info.fromDate}<strong>{$info.fromDate_h}</strong>
+                        <php>
+                        echo setAirport($info["fromAirport"]);
+                        </php>
+                    </div>
+                    <div class="col-33 point">
+                        <!--2小时15分钟-->
+                        <i class="fa fa-angle-right"></i>
+                    </div>
+                    <div class="col-33">
+                        {$info.toDate}<strong>{$info.toDate_h}</strong>
+                        <php>
+                        echo setAirport($info["toAirport"]);
+                        </php>
+                    </div>
+                </div>
+                <!--<p>
+                    <span>南航CZ6412</span>
+                    <span>空客320(中)</span>
+                    <span>准点率95%</span>
+                    <span>提供餐点</span>
+                </p>-->
+            </div>
+
+            <div class="detail-list">
+                <div class="buttons-tab fixed-tab"data-offset="44">
+                    <a href="#tab1" class="tab-link active button">全部</a>
+                    <!--<a href="#tab2" class="tab-link button">头等/商务舱</a>
+                    <a href="#tab3" class="tab-link button">商旅预订</a>
+                    <a href="#tab4" class="tab-link button">价格低</a>-->
+                </div>
+                <div class="content-block">
+                    <div class="tabs">
+                        <div id="tab1" class="tab active">
+                            <div class="list-block">
+                                <ul>
+                                <volist name="info.cabinInfo" id="vo">
+                                    <li onclick="gourl('{$vo.url}')">
+                                        <div class="row">
+                                            <div class="col-60">
+                                                <div class="tit">{$vo.cabinRankDetail}</div>
+                                                <!--<p>经济舱<a href="#">退改详情</a><a href="#" class="button">极速出票</a></p>-->
+                                            </div>
+                                            <div class="col-20"><span class="rmb">¥</span>{$vo.policy.0.settlement}</div>
+                                            <div class="col-20">
+                                                <button class="button button-fill button-warning">预订</button>
+                                                剩{$vo.restSeatNumber}张
+                                            </div>
+                                        </div>
+                                    </li>
+                                </volist>
+
+
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type='text/javascript' src='/Public/weixin/js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='/Public/weixin/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='/Public/weixin/js/sm-extend.min.js' charset='utf-8'></script>
+
+
+<script type="text/javascript">
+    function gourl(url){
+        location.href = url;
+    }
+</script>
+
+</body>
+</html>

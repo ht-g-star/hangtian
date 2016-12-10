@@ -1,0 +1,147 @@
+<!--popup 编辑会员-->
+<div class="am-popup" id="pop_edit">
+	<div class="am-popup-inner">
+		<div class="am-popup-hd">
+			<h4 class="am-popup-title">编辑会员</h4>
+			<span data-am-modal-close class="am-close">&times;</span>
+		</div>
+		<div class="am-popup-bd">
+			<!--begin-->
+			<form action="{:U('index',array('type'=>'edit'))}" method="post" class="am-form am-form-horizontal form-horizontal">
+				<input type="hidden" name="id">
+
+				<div class="am-form-group">
+					<label for="realname2" class="am-u-sm-3 am-form-label">姓名</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="realname2" name="realname" placeholder="姓名">
+						<small>输入会员的名字</small>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="company2" class="am-u-sm-3 am-form-label">公司名称</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="company2" name="company" placeholder="公司名称">
+						<small>输入公司的名称</small>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="dept2" class="am-u-sm-3 am-form-label">部门</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="dept2" name="dept" placeholder="部门">
+						<small>输入公司的部门</small>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="position2" class="am-u-sm-3 am-form-label">职位</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="position2" name="position" placeholder="职位">
+						<small>输入公司的职位</small>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">性别</label>
+
+					<div class="am-u-sm-9">
+						<label class="am-radio-inline"><input type="radio" value="1" name="sex"> 男
+						</label>
+						<label class="am-radio-inline"><input type="radio" value="0" name="sex"> 女</label>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">是否一线</label>
+
+					<div class="am-u-sm-9">
+						<label class="am-radio-inline"><input type="radio" value="1" name="is_onsite"> 是
+						</label>
+						<label class="am-radio-inline"><input type="radio" value="0" name="is_onsite"> 否</label>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="mobile2" class="am-u-sm-3 am-form-label">手机</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="mobile2" name="mobile" maxlength="11" placeholder="输入会员的手机号码">
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="id_num2" class="am-u-sm-3 am-form-label">身份证</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="id_num2" name="id_num" maxlength="18" placeholder="输入会员的身份证号码">
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="rank2" class="am-u-sm-3 am-form-label">会员等级</label>
+
+					<div class="am-u-sm-9">
+						<select id="rank2" name="rank">
+							<option value="0">普通会员</option>
+							<option value="1">航天内部会员</option>
+							<option value="2">VIP会员</option>
+						</select>
+						<span class="am-form-caret"></span>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="level" class="am-u-sm-3 am-form-label">会员类别</label>
+
+					<div class="am-u-sm-9">
+						<select id="level" name="level">
+							<option value=""></option>
+							<option value="Ⅰ">Ⅰ</option>
+							<option value="Ⅱ">Ⅱ</option>
+							<option value="Ⅲ">Ⅲ</option>
+							<option value="Ⅳ">Ⅳ</option>
+							<option value="Ⅴ">Ⅴ</option>
+							<option value="Ⅵ">Ⅵ</option>
+							<option value="Ⅶ">Ⅶ</option>
+						</select>
+						<span class="am-form-caret"></span>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label for="married" class="am-u-sm-3 am-form-label">婚否</label>
+
+					<div class="am-u-sm-9">
+						<select id="married" name="married">
+							<option value="不确定">不确定</option>
+							<option value="有">有</option>
+							<option value="无">无</option>
+						</select>
+						<span class="am-form-caret"></span>
+					</div>
+				</div>
+
+
+				<div class="am-form-group">
+					<label for="service2" class="am-u-sm-3 am-form-label">服务</label>
+
+					<div class="am-u-sm-9">
+						<textarea class="" rows="3" name="service" id="service2" placeholder="输入服务"></textarea>
+						<small>（含体检内容）</small>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<div class="am-u-sm-9 am-u-sm-push-3">
+						<button type="submit" class="am-btn am-btn-primary">保存</button>
+					</div>
+				</div>
+			</form>
+			<!--over-->
+		</div>
+	</div>
+</div>

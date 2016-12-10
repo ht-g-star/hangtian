@@ -1,0 +1,93 @@
+<extend name="Public/base"/>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<!-- 标题栏 -->
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">行为管理</strong> /
+			<small>行为列表</small>
+		</div>
+	</div>
+</block>
+<block name="body">
+	<div class="am-g am-padding">
+		<!-- 标题栏 -->
+		<div class="main-title">
+			<h2>行为日志</h2>
+		</div>
+
+		<div class="am-margin-bottom">
+			<form action="{:U()}" method="get" class="am-form">
+				<label>选择管理员:</label>
+				<select name="uid">
+					<option
+					<empty name="Think.get.uid">selected</empty>
+					value="0">请选择</option>
+					<volist name="users" id="u">
+						<option
+						<eq name="Think.get.uid" value="$u.uid">selected</eq>
+						value="{$u.uid}">{$u.nickname}</option>
+					</volist>
+				</select>
+				|
+				<label>填写周期:</label>
+				<input type="date" value="{$Think.get.starttime}" name="starttime" placeholder="开始时间">~
+				<input type="date" value="{$Think.get.endtime}" name="endtime" placeholder="结束时间">
+
+
+				<button class="btn am-btn am-btn-default am-btn-sm " type="submit">筛选</button>
+			</form>
+
+			<!---->
+			<!--<button class="btn am-btn am-btn-default am-btn-sm ajax-post confirm" target-form="ids" url="{:U('remove')}">删 除</button>-->
+		</div>
+		<!-- 数据列表 -->
+		<div class="data-table">
+			<table class="am-table am-table-striped am-table-hover am-table-compact am-text-nowrap">
+				<thead>
+				<tr>
+					<!--<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>-->
+					<th class="">编号</th>
+					<th class="">描述</th>
+					<th class="">执行者</th>
+					<th class="">执行时间</th>
+				</tr>
+				</thead>
+				<tbody>
+				<notempty name="_list">
+					<volist name="_list" id="vo">
+						<tr>
+							<!--<td><input class="ids" type="checkbox" name="ids[]" value="{$vo.id}" /></td>-->
+							<td>{$vo.id}</td>
+							<td>{$vo.title}</td>
+							<td>{:get_nickname($vo['uid'])}</td>
+							<td><span>{$vo.create_time|time_format}</span></td>
+							<!--<td><a href="{:U('Action/edit?id='.$vo['id'])}">详细</a>-->
+							<!--<a class="confirm ajax-get" href="{:U('Action/remove?ids='.$vo['id'])}">删除</a>-->
+							<!--</td>-->
+						</tr>
+					</volist>
+					<else/>
+					<td colspan="6" class="text-center"> aOh! 暂时还没有内容!</td>
+				</notempty>
+				</tbody>
+			</table>
+		</div>
+		<!-- 分页 -->
+		<div class="page">{$_page}</div>
+		<!-- /分页 -->
+	</div>
+</block>
+<block name="script">
+	<script type="text/javascript">
+		$(function () {
+			$("#action_add").click(function () {
+				window.location.href = $(this).attr('url');
+			});
+
+		});
+		$("form.am-form").submit(function () {
+			var data = $(this).serialize();
+			window.location.href = $(this).attr("action") + "&" + data;
+			return false;
+		});
+	</script>
+</block>

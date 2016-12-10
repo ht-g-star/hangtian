@@ -1,0 +1,68 @@
+﻿<extend name="Public/base"/>
+
+
+<block name="style">
+
+</block>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">会员系统设置</strong> /
+			<small>读卡器配置</small>
+		</div>
+	</div>
+</block>
+<block name="body">
+	<!-- 主体 -->
+	<div class="am-g">
+		<div class="am-u-sm-8">
+			<form class="am-form am-container form-horizontal">
+				<div class="am-form-group">
+					<label for="port_num" class="am-u-sm-3 am-form-label">输入端口号</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" id="port_num" name="port_num" maxlength="2" placeholder="输入USB端口号">
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<div class="am-u-sm-12 am-u-sm-push-3 am-margin-top">
+						<button type="button" id="set_port_btn" class="am-btn am-btn-primary">保存</button>
+						<br>
+						<small>若点击保存之后,5s内没有弹出设置成功而且听到读卡器蜂鸣两次,请重新检查连接,并确认端口号,以及是否使用Chrome浏览器,并且安装了插件.</small>
+
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">插件更新:</label>
+
+					<div class="am-u-sm-9">
+
+						<a href="/Data/wx_738.crx">最新插件</a><br>
+						<small>若更新后顶部出现无法安装的黄色警告,请打开Chrome设置->更多工具->扩展程序,然后先删除原来的cardreader程序,再将刚才下载的插件更新即可在最新网站上生效.</small>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+</block>
+
+<block name="script">
+	<script>
+		$(function () {
+			var port = localStorage.getItem("port");
+			if (port) {
+				$("#port_num").val(port);
+			}
+			$("#set_port_btn").click(function () {
+				port = $("#port_num").val();
+				localStorage.setItem("port", port);
+			});
+
+		});
+
+	</script>
+
+</block>

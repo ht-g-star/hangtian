@@ -1,0 +1,82 @@
+<extend name="Public/base"/>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">咨询管理</strong> /
+			<small>{$meta_title}</small>
+		</div>
+	</div>
+</block>
+<block name="body">
+	<div class="am-g">
+		<div class="am-u-sm-12">
+
+			<h5>标题:{$question.title}</h5>
+			<p class="am-margin-0 am-padding-0">内容:{$question.content}</p>
+
+			<ul class="am-list">
+				<volist name="ans" id="a">
+					<li>{$a.content}<span class="am-badge">{$a.doctor|default='匿名'}</span><span class="am-fr">{$a.ctime|time_format}</span></li>
+				</volist>
+			</ul>
+
+
+			<button type="button" class="am-btn am-btn-danger" data-am-modal="{target: '#add_answer'}">
+				增加回复
+			</button>
+
+			<div class="am-popup" id="add_answer">
+				<div class="am-popup-inner">
+					<div class="am-popup-hd">
+						<h4 class="am-popup-title">增加回复</h4>
+						<span data-am-modal-close class="am-close">&times;</span>
+					</div>
+					<div class="am-popup-bd">
+						<form method="post" enctype="multipart/form-data" role="form" class="am-form  am-u-sm-12">
+							<input type="hidden" name="id" value="{$Think.get.id}"/>
+
+							<div class="am-form-group ">
+								<label class="item-label">医生姓名 </label>
+								<input type="text" class="form-control" name="doctor" value="{$v.keyword}">
+								<span class="am-form-help"></span>
+							</div>
+
+							<div class="am-form-group">
+								<label class="item-label">回复内容</label>
+								<textarea class="text input-large form-control" name="content">{$v.text}</textarea>
+							</div>
+
+							<div class="am-form-group">
+								<button class="am-btn am-btn-primary submit-btn am-margin-left-0" id="submit" type="button" target-form="form">
+									确定
+								</button>
+								<button class="am-btn am-btn-default btn-return am-margin-left-0" onclick="javascript:history.back(-1);return false;">
+									返 回
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- /.row (nested) -->
+		</div>
+		<!-- /.panel-body -->
+	</div>
+	<!-- /.panel -->
+</block>
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script>
+		$(function () {
+			$("#submit").click(function () {
+				$.post("{:U('answer',array('q_id'=>$_GET['id']))}", $(".am-form").serialize(), function (data) {
+					if (data && data.status) {
+						location.reload();
+					} else {
+						alert(data.info);
+					}
+				}, 'json');
+			});
+		})
+	</script>
+</block>

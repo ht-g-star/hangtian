@@ -1,0 +1,16 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<div class="user-center-detail am-cf">
+		<ul>
+			<li>
+				<dd class="am-fl">当前余额： <span class="am-text-danger">{$_user.balance}元</span></dd>
+				<!--<dd class="am-fr"><a href="#" class="am-text-warning">充值</a></dd>-->
+			</li>
+			<li>
+				<dd class="am-fl">当前押金： <span class="am-text-danger">{$_user.frozen_balance}元</span>
+				</dd>
+			</li>
+		</ul>
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>

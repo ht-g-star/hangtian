@@ -1,0 +1,33 @@
+<extend name="Base/mobile_base"/>
+<block name="style">
+	<style>
+
+	</style>
+</block>
+<block name="body">
+	<div class="am-g">
+		<div class="am-u-sm-12">
+			<h3>{$suite.title}</h3>
+		</div>
+		<div class="am-u-sm-12">
+			<p>预约时间:{$period.period}</p>
+
+			<p>创建时间:{$order.ctime|time_format}</p>
+		</div>
+		<!-- List -->
+		<div class="am-u-sm-12">
+
+			<volist name="info" id="i">
+				<ul class="am-list">
+					<li>{$i.realname} {$i.sex|get_sex} {$i.id_num|cover_privacy}</li>
+					<li>联系电话:{$i.tel}</li>
+				</ul>
+			</volist>
+		</div>
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>
+<block name="script">
+	<script>
+	</script>
+</block>

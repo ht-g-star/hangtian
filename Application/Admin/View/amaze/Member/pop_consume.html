@@ -1,0 +1,95 @@
+<!--popup 消费-->
+<div class="am-popup" id="pop_consume">
+	<div class="am-popup-inner">
+		<div class="am-popup-hd">
+			<h4 class="am-popup-title">消费</h4>
+			<span data-am-modal-close class="am-close">&times;</span>
+		</div>
+		<div class="am-popup-bd">
+			<!--begin-->
+			<form class="am-form form-horizontal am-form-horizontal" action="{:U('Member/consume')}" method="post">
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">刷卡</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" name="card_num" autocomplete="off" required placeholder="请先放入卡片,再双击此处">
+						<input type="hidden" name="card_sn" value="">
+					</div>
+
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">姓名</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" name="realname" readonly placeholder="刷卡后获取姓名">
+						<input type="hidden" name="id">
+					</div>
+
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">可用余额</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" name="balance" readonly placeholder="刷卡后获取余额">
+					</div>
+
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">已冻结部分</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" name="frozen_balance" readonly placeholder="刷卡后获取">
+					</div>
+
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">消费金额</label>
+
+					<div class="am-u-sm-9">
+						<input type="text" name="money" required placeholder="请输入消费金额">
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">密码</label>
+
+					<div class="am-u-sm-9">
+						<input type="password" name="password" required placeholder="请输入密码">
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">消费类别</label>
+
+					<div class="am-u-sm-9">
+						<select name="type">
+							<volist name="consume_type" id="type">
+								<option value="{$type}">{$type}</option>
+							</volist>
+						</select>
+					</div>
+				</div>
+
+
+				<div class="am-form-group">
+					<label class="am-u-sm-3 am-form-label">缘由</label>
+
+					<div class="am-u-sm-9">
+						<textarea name="reason">{:session('last_reason')}</textarea>
+					</div>
+				</div>
+
+
+				<div class="am-form-group">
+					<div class="am-u-sm-9 am-u-sm-push-3">
+						<button type="submit" class="am-btn am-btn-primary">确定</button>
+					</div>
+				</div>
+			</form>
+			<!--over-->
+		</div>
+	</div>
+</div>

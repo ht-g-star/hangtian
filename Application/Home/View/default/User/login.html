@@ -1,0 +1,91 @@
+<extend name="Base/common_pure"/>
+
+<block name="body">
+	<form class="form-horizontal login-user" action='{:U("User/login")}' name="user" method="post">
+		<div class="am-g login-container">
+			<div class="login-box am-u-sm-centered">
+				<div class="am-u-md-11 am-u-sm-centered am-padding-top-xl am-padding-bottom-xl">
+					<a href="{:U('Home/Index/index')}"><img src="__STATIC__/amaze/i/img_logo.png"></a>
+
+					<h3>用户登录</h3>
+
+					<div class="am-input-group">
+						<span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+						<input type="text" id="username" name="username" class="am-form-field" placeholder="身份证号/会员卡号" required>
+					</div>
+					<br>
+
+					<div class="am-input-group">
+						<span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
+						<input type="password" id="password" name="password" class="am-form-field" placeholder="密码" required>
+					</div>
+					<br>
+
+					<div class="am-input-group">
+						<input name="reffer" type="hidden" value="{$referr}">
+						<input type="checkbox" name="remember"> 自动登录
+					</div>
+
+					<br>
+
+					<div class="am-cf">
+						<input type="submit" name="" id="login_btn_cart" value="登 录" class="am-btn am-btn-primary am-btn-lg am-fl am-btn-block">
+						<br>&nbsp;
+						<br>
+						<a href="{:U('User/register')}" class="am-fr">注册</a>
+						<a href="{:U('User/forget')}" class="am-fl">忘记密码</a>
+					</div>
+					<br>
+
+				</div>
+			</div>
+			<p class="am-text-center am-text-sm">©2016年中国航天无锡疗养院版权所有</p>
+		</div>
+	</form>
+
+</block>
+
+
+<block name="script">
+	<script type="text/javascript">
+
+		$(document)
+				.ajaxStart(function () {
+					$("button:submit").addClass("log-in").attr("disabled", true);
+				})
+				.ajaxStop(function () {
+					$("button:submit").removeClass("log-in").attr("disabled", false);
+				});
+
+
+		$("#loginform").submit(function () {
+			var self = $(this);
+			$.post(self.attr("action"), self.serialize(), success, "json");
+			return false;
+
+			function success(data) {
+				if (data.status) {
+					window.location.href = data.url;
+				} else {
+					self.find(".Validform_checktip").text(data.info);
+					//刷新验证码
+					$(".reloadverify").click();
+				}
+			}
+		});
+
+		$(function () {
+			var verifyimg = $(".verifyimg").attr("src");
+			$(".reloadverify").click(function () {
+				if (verifyimg.indexOf('?') > 0) {
+					$(".verifyimg").attr("src", verifyimg + '&random=' + Math.random());
+				} else {
+					$(".verifyimg").attr("src", verifyimg.replace(/\?.*$/, '') + '?' + Math.random());
+				}
+			});
+		});
+		$(function () {
+			$("div.login-container").height($(window).height());
+		});
+	</script>
+</block>

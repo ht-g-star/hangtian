@@ -1,0 +1,25 @@
+<!--标题-->
+<div class="am-g">
+	<div class="am-u-sm-6"><h2 class="am-fl">体检预约</h2></div>
+</div>
+<!--标题-->
+<div class="am-tabs">
+	<ul class="am-tabs-nav am-nav am-nav-tabs ">
+		<li class='<eq name="ACTION_NAME" value="allorder" >am-active</eq>'>
+			<a href='{:U("SuiteOrder/allorder")}' class="red">所有</a>
+		</li>
+		<li class='<eq name="ACTION_NAME" value="needpay" >am-active</eq>'>
+			<a href='{:U("SuiteOrder/needpay")}' class="red">待支付</a>
+		</li>
+
+		<!--<li class='<eq name="ACTION_NAME" value="tobeconfirmed" >am-active</eq>'>-->
+			<!--<a href='{:U("SuiteOrder/tobeconfirmed")}' class="red">待确认</a>-->
+		<!--</li>-->
+		<li class='<eq name="ACTION_NAME" value="tobeuse" >am-active</eq>'>
+			<a href='{:U("SuiteOrder/tobeuse")}' class="red">待使用</a>
+		</li>
+		<li class='<eq name="ACTION_NAME" value="finished" >am-active</eq>'>
+			<a href='{:U("SuiteOrder/finished")}' class="red">已完成</a>
+		</li>
+	</ul>
+</div>

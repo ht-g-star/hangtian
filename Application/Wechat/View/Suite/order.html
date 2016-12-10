@@ -1,0 +1,72 @@
+<extend name="Base/mobile_base"/>
+<block name="style">
+	<style>
+
+	</style>
+</block>
+<block name="body">
+	<div class="am-g">
+		<div class=" am-u-sm-12">
+			<p>套餐:{$data.title}</p>
+
+			<p>预约时间:{$period.period}{$time},还剩余{$period['total_num']-$period['use_num']}</p>
+
+			<form action="{:U('Suite/order_confirm')}" method="post" class=" am-form am-form-inline ">
+				<input type="hidden" value="{$num}" name="num" id="num">
+				<input type="hidden" value="{$s_id}" name="s_id" id="s_id">
+				<input type="hidden" value="{$p_id}" name="p_id" id="p_id">
+				<input type="hidden" value="{$time}" name="time" id="time">
+				<input type="hidden" value="{$sex}" name="sex" id="sex">
+				<assign name="user" value="$Think.session.user_auth"/>
+
+
+				<for start="0" end="$num">
+					<div class="am-form-group ">
+						<input class="am-form-field am-margin-bottom-xs" type="text" required value="{$user.realname}" name="realname[{$i}]" placeholder="请输入真实姓名"/>
+						<input class="am-form-field am-margin-bottom-xs" type="text" required value="{$user.mobile}" name="tel[{$i}]" maxlength="11" placeholder="请输入联系手机号"/>
+						<input class="am-form-field am-margin-bottom-xs id_num" type="text" required value="{$user.id_num}" maxlength="18" name="id_num[{$i}]" placeholder="请输入身份证号码"/>
+						<select disabled>
+							<option value="1"
+							<eq name="sex" value="1">selected</eq>
+							>男</option>
+							<option value="0"
+							<eq name="sex" value="0">selected</eq>
+							>女</option>
+						</select>
+					</div>
+				</for>
+				<hr>
+				<div class="am-u-sm-6 am-form-group am-u-sm-centered">
+					<button class="am-btn am-btn-primary am-btn-block" type="submit">确认</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>
+<block name="script">
+	<script>
+		$("input.id_num").blur(function () {
+			var id_num = $(this).val();
+			var sex = 0;
+			if (id_num.length == 15) {
+				sex = id_num.substr(14, 1);
+			} else if (id_num.length == 18) {
+				sex = id_num.substr(17, 1);
+			} else {
+				alert("身份证为15或者18位!");
+				return false;
+			}
+			if (sex % 2 == 0) {
+				sex = 0;
+			} else {
+				sex = 1;
+			}
+			$(this).next("select").val(sex);
+			$(this).next("select").next("input[name=sex]").val(sex);
+		});
+		$("form.am-form").submit(function () {
+
+		});
+	</script>
+</block>

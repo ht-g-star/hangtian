@@ -1,0 +1,72 @@
+<extend name="Base/common"/>
+<block name="body">
+
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">个人中心</li>
+			</ol>
+		</div>
+		<div class="userCenter am-cf">
+			<div class="am-u-sm-3">
+				<!-- 左侧菜单 -->
+				<include file="Public/leftmenu"/>
+				<!-- 左侧菜单 -->
+			</div>
+			<!-- 个人中心 初始状态 start -->
+			<div id="MemberCenterCtrl" class="userCenter-r am-u-sm-9 am-padding-xl">
+				<div class="am-g">
+					<div class="am-u-sm-6"><h2 class="am-fl">我的收藏</h2></div>
+				</div>
+				<empty name='list'>
+					<p class="am-text-center am-padding-top">没有收藏的物品！<a href='{:U("shop/index")}' class="red">去收藏</a>
+					</p>
+					<else/>
+					<ul class="shoucang am-margin-0 am-padding-sm am-list">
+						<volist name="list" id="fo">
+							<li class="out" onmouseover="this.className='over'" onmouseout="this.className='out'"><h3>
+								收藏时间：{$fo.create_time|time_format}</h3>
+							<span class="red">
+								<if condition="$fo.goodstype eq 2"> 
+									<a href="{:U('Hotel/detail?id='.$fo['goodid'])}"><img src="{$fo.goodsimg}" width="70" height="70"/></a> <a href="{:U('Hotel/detail?id='.$fo['goodid'])}">{$fo.goodsname} </a>
+									<elseif condition="$fo.goodstype eq 3"/>
+									<a href="{:U('Line/lineDetail?xl_id='.$fo['goodid'])}"><img src="{$fo.goodsimg}" width="70" height="70"/></a> <a href="{:U('Line/lineDetail?xl_id='.$fo['goodid'])}">{$fo.goodsname} </a>
+									<else/>
+									<a href="{:U('Article/detail?id='.$fo['goodid'])}"><img src="{$fo.goodid|get_cover_id|get_cover='path'}" width="70" height="70"/></a> <a href="{:U('Article/detail?id='.$fo['goodid'])}">{$fo.goodid|get_good_name} </a>
+								</if>
+							</span>
+								<if condition="$fo.goodstype eq 2"> 
+									<span class="am-text-warning num-text">￥{$fo.price}</span>
+									<elseif condition="$fo.goodstype eq 3"/>
+									<span class="am-text-warning num-text">￥{$fo.price}</span>
+									<else/>
+									<span class="am-text-warning num-text">￥{$fo.goodid|get_good_price}</span>
+								</if>
+								<span class="am-text-danger  ">&nbsp;&nbsp;&nbsp;<a class="am-text-danger confirm" href="{:U('delete',array('id'=>$fo['id']))}">删除收藏</a></span>
+							</li>
+						</volist>
+					</ul>
+				</empty>
+				<!-- 分页 -->
+				<div class="page am-margin-top">
+					{$page}
+				</div>
+				<!-- 个人中心 初始状态 end -->
+			</div>
+		</div>
+	</div>
+
+</block>
+
+<block name="script">
+	<script>
+		$(".confirm").click(function () {
+			if (confirm("请确认操作")) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+	</script>
+</block>

@@ -1,0 +1,115 @@
+<extend name="Base/common"/>
+<block name="body">
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">个人中心</li>
+			</ol>
+		</div>
+		<div class="userCenter am-cf">
+			<div class="am-u-sm-3">
+				<!-- 左侧菜单 -->
+				<include file="Public/leftmenu"/>
+				<!-- 左侧菜单 -->
+			</div>
+			<div id="memberSuiteOrder" class="userCenter-r am-u-sm-9 am-padding-xl"><!-- 个人中心 初始状态 start -->
+				<div class="am-g" id="MemberSuiteOrderCtrl">
+					<div class="am-u-sm-12">
+						<div class="am-g">
+							<div class="am-u-sm-6"><h2 class="am-fl">体检评价</h2></div>
+						</div>
+						<div class="am-g">
+							<div class="am-u-sm-6"><p>下单时间:{$order.ctime|time_format}</p></div>
+						</div>
+						<div class="am-g">
+							<div class="am-u-sm-6"><p>预约时间:{$period.period} {$order.time}</p></div>
+						</div>
+					</div>
+					<div class="am-u-sm-12 ">
+						<a class="am-btn am-btn-default am-round am-icon-angle-left" href="javascript:history.back()">
+							返回</a>
+					</div>
+					<div class="am-u-sm-12  am-margin-top">
+						<notempty name="comment">
+							<div class="am-u-sm-12">
+								<div class="star am-form-group">
+									<div class="title">请对您的体检评分:
+										<php>$empty_star=5-$comment['stars'];</php>
+										<for start="0" end="$comment.stars">
+											<i class="am-icon-star"></i></for><for start="0" end="$empty_star"><i class="am-icon-star-o"></i>
+										</for>
+									</div>
+
+								</div>
+								<div class="am-form-group">
+									<label for="countent">您的看法:</label>
+
+									<p>{$comment.content}</p>
+								</div>
+							</div>
+							<else/>
+							<form action="{:U('comment')}" class="am-form" method="post" name="actform">
+								<input type="hidden" name="id" value="{$Think.get.id}">
+
+								<div class="am-u-sm-12">
+									<div class="star am-form-group">
+										<div class="title">请对您的体检评分:</div>
+										<div id="goodid" class="target-demo"></div>
+										<div id="goodid-hint" class="hint"></div>
+									</div>
+									<div class="star am-form-group">
+										<input type="hidden" id="stars" name="stars" value="{$comment.stars}">
+									</div>
+									<div class="am-form-group">
+										<label for="countent">请写下您的看法:</label>
+										<textarea id="countent" rows="3" cols="50" name="content"></textarea>
+									</div>
+									<div class="am-form-group">
+										<input type="submit" class="am-btn am-btn-primary btn-central orange" name="submit" value="提交">
+									</div>
+								</div>
+							</form>
+						</notempty>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</block>
+<block name="script">
+	<script type="text/javascript" src="__JS__/jquery.raty.min.js"></script>
+	<script type="text/javascript">
+		function set(obj) {
+			$("#score").val(obj.value);
+		}
+	</script>
+	<script type="text/javascript">
+		$(function () {
+			$.fn.raty.defaults.path = '__IMG__';
+			$('#goodid').raty({
+				number: 5,//多少个星星设置
+				targetType: 'hint',//类型选择，number是数字值，hint，是设置的数组值
+				path: '__IMG__',
+				hints: ['差', '一般', '较好', '好', '非常好'],
+				cancelOff: 'cancel-off-big.png',
+				cancelOn: 'cancel-on-big.png',
+				size: 32,
+				starHalf: 'star-half-big.png',
+				starOff: 'star-off-big.png',
+				starOn: 'star-on-big.png',
+				target: '#goodid-hint',
+				cancel: false,
+				targetKeep: true,
+				targetText: '请选择评分',
+
+				click: function (score, evt) {
+					$('input#stars').val(score);
+
+				}
+			});
+
+
+		});
+	</script>
+</block>

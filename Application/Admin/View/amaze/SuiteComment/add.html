@@ -1,0 +1,56 @@
+<extend name="Public/base"/>
+<block name="style">
+	<link rel="stylesheet" href="__CSS__/admin_index.css">
+</block>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">体检</strong> /
+			<small>{$meta_title}</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+	<div class="am-g">
+		<div class="am-u-sm-8">
+			<!--begin-->
+			<form action="{:U('index',array('type'=>$action))}" method="post"  class="am-form form-horizontal am-form-horizontal">
+				<input type="hidden" name="id" value="{$data.id}">
+
+				<div class="am-form-group">
+					<label for="stars" class="am-u-sm-3 am-form-label">星级</label>
+
+					<div class="am-u-sm-9">
+						<input type="number" id="stars" name="stars" value="{$data.stars}" placeholder="输入星级 最高5">
+						<small>排序编号,数字越小越靠前</small>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="content" class="am-u-sm-3 am-form-label">评价内容</label>
+
+					<div class="am-u-sm-9">
+						<textarea id="content" name="content" placeholder="评价内容.">{$data.content}</textarea>
+					</div>
+				</div>
+
+
+
+
+				<div class="am-form-group">
+					<div class="am-u-sm-9 am-u-sm-push-3">
+						<button type="submit" class="am-btn am-btn-primary">保存</button>
+					</div>
+				</div>
+			</form>
+			<!--over-->
+		</div>
+	</div>
+
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript" src="__JS__/suite.js"></script>
+</block>

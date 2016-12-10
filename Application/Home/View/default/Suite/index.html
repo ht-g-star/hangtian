@@ -1,0 +1,83 @@
+<extend name="Base/common"/>
+<block name="style">
+	<style>
+		li.suite {
+			background-color: #f6f6f6;
+			border: 1px solid #dfdfdf;
+			position: relative;
+			height:120px;
+		}
+
+		ul#suite_wrapper li.am-active {
+			background-color: #fff;
+		}
+		ul#suite_wrapper li:hover {
+			cursor: pointer;
+		}
+		ul#suite_wrapper li.selected {
+			background-color: #fff;
+			border:1px solid #73b4f8;
+		}
+
+	</style>
+</block>
+<block name="body">
+
+	<!--content begin-->
+	<div class="am-g am-container  am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">健康体检</li>
+			</ol>
+		</div>
+		<div class="step-box am-padding-top am-padding-bottom">
+			<ul>
+				<li class="step-active">1 选择套餐</li>
+				<li>2 套餐详情</li>
+				<li>3 填写信息</li>
+				<li>4 确认订单</li>
+				<div class="am-cf"></div>
+			</ul>
+		</div>
+		<div class="am-u-sm-12 am-padding-bottom">
+			1.选择套餐
+		</div>
+		<div class="am-g am-container">
+			<ul class="am-avg-sm-5 " id="suite_wrapper">
+				<volist name="suites" id="s">
+					<li class="suite am-padding-top-lg am-padding-bottom" data-id="{$s.id}">
+						<span></span>
+						<div class="am-u-sm-12 am-text-center">{$s.title}</div>
+						<div class="am-u-sm-12 am-text-center am-text-danger">男:￥{$s.price_sex_1}</div>
+						<div class="am-u-sm-12 am-text-center am-text-danger">女:￥{$s.price_sex_0}</div>
+					</li>
+				</volist>
+			</ul>
+		</div>
+		<div class="am-u-sm-2 am-u-sm-centered am-margin-lg am-padding-lg">
+			<button class="am-btn am-btn-primary am-padding-left-xl am-padding-right-xl" id="next">下一步</button>
+		</div>
+	</div>
+	<!--content end-->
+	<!-- /主体 -->
+
+</block>
+<block name="script">
+	<script>
+		$("ul#suite_wrapper li.suite").hover(function () {
+			$(this).toggleClass("am-active");
+		});
+		$("ul#suite_wrapper li.suite").click(function () {
+			$("ul#suite_wrapper li.suite").removeClass("selected");
+			$(this).addClass("selected");
+		});
+		$("#next").click(function () {
+			var id = $("ul#suite_wrapper li.selected").data("id");
+			if(!id){
+			    topAlert("您必须选择一个套餐!");return false;
+			}
+			location.href = "{:U('Home/Suite/detail')}" + "&id=" + id;
+		});
+	</script>
+</block>

@@ -1,0 +1,70 @@
+<extend name="Public/base"/>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">数据</strong> /
+			<small>列表</small>
+		</div>
+	</div>
+</block>
+<block name="body">
+	<div class="am-g am-padding am-padding-top-0">
+	<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+	<div class="main-title">
+		<h2>{:isset($info['id'])?'编辑':'新增'}城市</h2>
+	</div>
+	<div class="tab-wrap">
+		<ul class="tab-nav nav am-cf">
+			<li data-tab="tab1" class="current"><a href="javascript:void(0);">基 础</a></li>
+		</ul>
+		<div class="tab-content">
+			<form action="{:U()}" method="post" class="form-horizontal">
+				<!-- 基础 -->
+				<div id="tab1" class="tab-pane in tab1">
+					<div class="form-item">
+						<label class="item-label">城市名称<span class="check-tips"></span></label>
+						<div class="controls">
+							<input type="text" class="text input-large"  name="name" value="{$info.name}">
+						</div>
+					</div>
+					<div class="form-item">
+						<label class="item-label">排序<span class="check-tips"></span></label>
+						<div class="controls">
+							<input type="text" class="text input-large"  name="sort" value="{$info.sort}">
+						</div>
+					</div>
+					<div class="form-item">
+						<label class="item-label">拼音缩写<span class="check-tips"></span></label>
+						<div class="controls">
+							<input type="text" class="text input-large"  name="suoxie" value="{$info.suoxie}">
+						</div>
+					</div>
+					<div class="form-item">
+						<label class="item-label">推荐<span class="check-tips"></span></label>
+						<div class="controls">
+							<input type="checkbox" class=""  name="remen" value="1">
+						</div>
+					</div>
+
+				</div>
+
+				<div class="form-item">
+					<input type="hidden" name="id" value="{$info.id|default=''}">
+					<button type="submit" id="submit" class="btn am-btn am-btn-primary submit-btn ajax-post" target-form="form-horizontal">确 定</button>
+					<button class="btn am-btn am-btn-default btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+				</div>
+			
+</form>
+		</div>
+	</div>
+		</div>
+</block>
+
+<block name="script">
+	<script type="text/javascript">
+		<present name="info.id">
+				Think.setValue("remen", {$info.remen|default=0});
+		</present>
+		//导航高亮
+		highlight_subnav('{:U('Jipiao/index')}');
+	</script>
+</block>

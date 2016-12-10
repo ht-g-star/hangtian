@@ -1,0 +1,12 @@
+#data-list tbody tr {
+    cursor: pointer;
+}
+
+.top-alert {
+    margin: 0 !important;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    z-index: 2000;
+}

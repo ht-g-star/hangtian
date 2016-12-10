@@ -1,0 +1,117 @@
+<extend name="Base/common"/>
+<block name="body">
+
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">个人中心</li>
+			</ol>
+		</div>
+		<div class="userCenter am-cf">
+			<div class="am-u-sm-3">
+				<!-- 左侧菜单 -->
+				<include file="Public/leftmenu"/>
+				<!-- 左侧菜单 -->
+			</div>
+			<!-- 个人中心 初始状态 start -->
+			<div class="am-u-sm-9 userCenter-r am-padding-xl">
+				<div class="am-g am-margin-top-lg">
+					<div class="am-u-sm-6 am-cf">
+						<img src="__STATIC__/amaze/i/img-avatar.png" class="am-fl">
+
+						<p class="am-fl am-padding am-text-lg">
+							{$user.realname}<br>
+							<a href="{:U('Member/index')}" class="am-text-warning am-text-xs">个人信息 ></a><br>
+
+							<if condition="C('SIGN_SCORE') gt 0">
+								<if condition="isSigned(is_login())">
+									<button class="am-btn am-btn-xs am-btn-warning am-disabled" type="button">已签到
+									</button>
+									<else/>
+									<button class="am-btn am-btn-xs am-btn-warning" type="button" onclick="qiandao()">
+										每日签到
+									</button>
+								</if>
+							</if>
+
+
+						</p>
+					</div>
+					<div class="am-u-sm-6">
+						<p class="am-padding-xl am-text-right am-text-sm">
+							会员等级：<span class="am-text-warning">{$user.rank|get_rank}</span><br>
+							手机号：{$user.mobile}<br>
+							会员积分：<span id="score" class="am-text-warning">{$user.id|get_score}</span><br>
+							
+								<!-- 此处是关爱通 -->
+						<eq name="in_list" value="1">
+								关爱积分：<span class="am-text-warning">{$gatjf_balance}&nbsp;<a class="am-text-primary am-text-sm" href="{:U('Change/change')}">兑换</a> </span><br>
+							</eq>
+							
+							可用余额：<span class="am-text-warning">{$user.balance|round=2} <a class="am-text-primary am-text-sm" href="{:U('Pay/chongzhi')}">去充值</a> </span>
+						</p>
+					</div>
+				</div>
+				<hr>
+				<div class="am-g">
+					<div class="am-u-sm-6 am-cf am-padding-xl">
+						<img src="__STATIC__/amaze/i/icon-userCenter01.png" class="am-fl">
+
+						<p class="am-fl am-padding  ">
+							待支付的订单：<a href="{:U('Home/Center/needpay')}" class="am-text-warning">{$onum|default=0}</a>
+							<br>
+							<a href="{:U('Home/Center/needpay')}" class="am-link-muted am-text-sm">查看 ></a>
+						</p>
+
+						<div class="am-cf am-margin-xl"></div>
+						<img src="__STATIC__/amaze/i/icon-userCenter02.png" class="am-fl">
+
+						<p class="am-fl am-padding  am-padding-top-xs">
+							待确认商品数：<a href="{:U('Home/Center/tobeconfirmed')}" class="am-text-warning">{$cnum}</a>
+							<br>
+							<a href="{:U('Home/Center/tobeconfirmed')}" class="am-link-muted am-text-sm">查看 ></a>
+						</p>
+					</div>
+					<div class="am-u-sm-6 am-cf am-padding-xl">
+						<img src="__STATIC__/amaze/i/icon-userCenter03.png" class="am-fl">
+
+						<p class="am-fl am-padding  am-padding-top-xs">
+							待收货的订单：<a href="{:U('Home/Center/tobeshipped')}" class="am-text-warning">{$dnum}</a>
+							<br>
+							<a href="{:U('Home/Center/tobeshipped')}" class="am-link-muted am-text-sm">查看 ></a>
+						</p>
+
+						<div class="am-cf am-margin-xl"></div>
+						<img src="__STATIC__/amaze/i/icon-userCenter04.png" class="am-fl">
+
+						<p class="am-fl am-padding  am-padding-top-xs">
+							收藏的商品：<a href="{:U('Home/Collect/index')}" class="am-text-warning">{$ccnum}</a>
+							<br>
+							<a href="{:U('Home/Collect/index')}" class="am-link-muted am-text-sm">查看 ></a>
+						</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</block>
+
+<block name="script">
+	<script type="text/javascript">
+		function qiandao() {
+			var b = '{:U("Sign/index")}';
+			$.ajax({
+				type: "GET",
+				url: '{:U("Sign/index")}',
+				data: {username: b},
+				dataType: "json",
+				success: function (data) {
+					alert(data.msg);
+					$("span#score").html(data.score);
+				}
+			});
+		}
+	</script>
+</block>

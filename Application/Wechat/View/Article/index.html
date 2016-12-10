@@ -1,0 +1,40 @@
+<extend name="Base/mobile_base"/>
+<block name="style">
+	<style>
+	.am-list-news-default .am-list .am-list-thumb img{
+		margin-top:-20%;
+		/*margin:0 auto;*/
+
+	}
+	</style>
+</block>
+<block name="body">
+	<!-- List -->
+	<div data-am-widget="list_news" class="am-list-news am-list-news-default" style="height:50px;">
+		<div class="am-list-news-bd order">
+			<ul class="am-list">
+				<!--缩略图在标题左边-->
+				<volist name="list" id="list" empty="暂时没有数据">
+					<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+						<div class="am-u-sm-5 am-list-thumb" style="margin:0 auto;">
+							<a href="{:U('Article/detail?id='.$list['id'])}">
+								<img
+										src="{$list.cover_id|get_cover='path'}"/>
+							</a>
+						</div>
+						<div class="am-u-sm-7 am-list-main">
+							<h3 class="am-list-item-hd">
+								<a href="{:U('Article/detail?id='.$list['id'])}"> {$list.title}</a>
+							</h3>
+
+							<div class="price am-text-xs">￥{$list.price}<br>
+							</div>
+						</div>
+					</li>
+				</volist>
+			</ul>
+			{$page}
+		</div>
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>

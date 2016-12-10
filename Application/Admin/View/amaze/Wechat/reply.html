@@ -1,0 +1,63 @@
+<extend name="Public/base"/>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">微信配置</strong> /
+			<small>{$meta_title}</small>
+		</div>
+	</div>
+</block>
+<block name="body">
+
+	<div class="am-panel am-panel-default">
+		<div class="am-panel-hd">
+			<div class="fl">
+				<a class="am-btn am-btn-primary btn-add " id="action_add" href="{:U('add')}">新 增</a>
+			</div>
+		</div>
+
+		<div class="am-panel-bd">
+			<div class="am-table-responsive">
+				<table class="am-table am-table-striped am-table-bordered am-table-hover dataTables " id="dataTables">
+					<!-- 必须设定表格的id == -->
+					<thead>
+					<tr>
+						<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+						<th class="">关键词</th>
+						<th class="">类型</th>
+						<th class="">排序</th>
+						<th class="">标题</th>
+						<th class="">操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					<volist name="_list" id="vo">
+						<tr>
+							<td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}"/></td>
+							<td>{$vo.keyword}</td>
+							<td>
+								<eq name="vo.type" value="1">文本</eq>
+								<eq name="vo.type" value="2">图文</eq>
+							</td>
+							<td>{$vo.sort|default='0'}</td>
+							<td><span>{$vo.title}</span></td>
+
+							<td>
+								<a href="{:U('edit?&id='.$vo['id'])}">编辑</a>
+								<a href="{:U('del&id='.$vo['id'])}" class="confirm ajax-get">删除</a>
+							</td>
+						</tr>
+					</volist>
+					</tbody>
+				</table>
+			</div>
+			<!-- /.table-responsive -->
+		</div>
+		<!-- /.panel-body -->
+	</div>
+	<!-- /.panel -->
+</block>
+
+<block name="script">
+
+
+</block>

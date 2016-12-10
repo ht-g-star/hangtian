@@ -1,0 +1,107 @@
+<extend name="Base/common"/>
+<block name="body">
+	<section>
+		<div class="am-g am-container am-margin-top-lg">
+			<div class="breadcrumb-box">
+				<ol class="am-breadcrumb am-breadcrumb-slash">
+					<li><a href="{:U('Home/Index/index')}">首页</a></li>
+					<li><a href="{:U('Home/Center/index')}">个人中心</a></li>
+					<li class="am-active">修改密码</li>
+				</ol>
+			</div>
+			<div class="userCenter am-cf">
+				<div class="am-u-sm-3">
+					<!-- 左侧菜单 -->
+					<!-- 左侧菜单 -->
+				</div>
+				<div class="userCenter-r am-u-sm-9 am-padding-xl">
+					<!--标题-->
+					<div class="am-cf">
+						<div class="am-u-sm-6"><h2>修改密码</h2></div>
+					</div>
+					<!--标题-->
+					<div class="am-g bg-f5 am-padding-xl am-margin-bottom">
+						<div class="am-u-sm-8 am-u-sm-uncentered" id="reset">
+							<div class="loginform">
+								<form class="form-horizontal" role="form" action="__SELF__" method="post">
+									<input type="hidden" name="action" value="repass">
+									<div class="am-form-group">
+										<label for="inputPassword_new">新密码</label>
+
+										<div class="am-form-group">
+											<input type="password" id="inputPassword_new" class="am-form-field" placeholder="请输入密码"
+											       errormsg="密码为6-20位" nullmsg="请填写密码" datatype="*6-20" name="password">
+										</div>
+									</div>
+									<div class="am-form-group">
+										<label for="inputPassword_new2">确认密码</label>
+
+										<div class="am-form-group">
+											<input type="password" id="inputPassword_new2" class="am-form-field" placeholder="请再次输入密码"
+											       recheck="password" errormsg="您两次输入的密码不一致" nullmsg="请填确认密码" datatype="*"
+											       name="repassword">
+										</div>
+										<div class="controls Validform_checktip text-warning"></div>
+									</div>
+
+
+									<div class="control-group">
+										<div class="controls">
+											<button type="submit" class="am-btn am-btn-warning am-padding-left-xl am-padding-right-xl">
+												修 改
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="login-other"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+	</section>
+
+</block>
+
+<block name="side"></block>
+<block name="script">
+	<script type="text/javascript">
+		$(document)
+				.ajaxStart(function () {
+					$("button:submit").addClass("log-in").attr("disabled", true);
+				})
+				.ajaxStop(function () {
+					$("button:submit").removeClass("log-in").attr("disabled", false);
+				});
+
+
+		$("form").submit(function () {
+			var self = $(this);
+			$.post(self.attr("action"), self.serialize(), success, "json");
+			return false;
+
+			function success(data) {
+				if (data.status) {
+					alert("修改成功");
+					window.location.href = data.url;
+				} else {
+					self.find(".Validform_checktip").text(data.info);
+					//刷新验证码
+					$(".reloadverify").click();
+				}
+			}
+		});
+
+		$(function () {
+			var verifyimg = $(".verifyimg").attr("src");
+			$(".reloadverify").click(function () {
+				if (verifyimg.indexOf('?') > 0) {
+					$(".verifyimg").attr("src", verifyimg + '&random=' + Math.random());
+				} else {
+					$(".verifyimg").attr("src", verifyimg.replace(/\?.*$/, '') + '?' + Math.random());
+				}
+			});
+		});
+	</script>
+</block>

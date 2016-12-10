@@ -1,0 +1,106 @@
+[ 2016-12-08T11:13:51+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index
+ERR: Cron:cron_1 Runat 2016-12-08 11:13:51 Use 0.001000 s
+
+[ 2016-12-08T11:14:06+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-08T11:19:11+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T11:19:12+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T11:19:48+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T11:19:58+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T11:19:59+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T11:20:15+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T11:20:16+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-08T11:20:29+08:00 ] 127.0.0.1 /index.php?s=/pay/index/balance
+NOTIC: [2] array_filter() expects parameter 1 to be array, string given D:\xampp\htdocs\hangtian\Application\Pay\Controller\IndexController.class.php 第 40 行.
+NOTIC: [2] array_map(): Argument #2 should be an array D:\xampp\htdocs\hangtian\Application\Pay\Controller\IndexController.class.php 第 40 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001001s ]
+
+[ 2016-12-08T11:20:33+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T11:20:50+08:00 ] 127.0.0.1 /index.php?s=/pay/index/balance
+NOTIC: [2] array_filter() expects parameter 1 to be array, string given D:\xampp\htdocs\hangtian\Application\Pay\Controller\IndexController.class.php 第 40 行.
+NOTIC: [2] array_map(): Argument #2 should be an array D:\xampp\htdocs\hangtian\Application\Pay\Controller\IndexController.class.php 第 40 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-08T11:20:53+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T15:00:14+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index.html
+NOTIC: [8] Use of undefined constant mobile - assumed 'mobile' D:\xampp\htdocs\hangtian\Application\Pay\Controller\IndexController.class.php 第 26 行.
+NOTIC: [8] Array to string conversion D:\xampp\htdocs\hangtian\Application\Pay\Controller\IndexController.class.php 第 26 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T15:00:41+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index.html
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T15:00:43+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index.html
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-08T15:00:53+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index.html
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-08T15:03:07+08:00 ] 127.0.0.1 /index.php?s=/pay/index/index.html
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+

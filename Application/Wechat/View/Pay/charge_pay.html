@@ -1,0 +1,118 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" href="__STATIC__/amaze/css/amazeui.css"/>
+	<script src="__STATIC__/amaze/js/jquery.min.js"></script>
+	<title>正在支付...</title>
+	<script type="text/javascript">
+		var balance="{$balance}";
+		//调用微信JS api 支付
+		function jsApiCall()
+		{
+			js_pay();
+		}
+
+		function js_pay(){
+			WeixinJSBridge.invoke(
+					'getBrandWCPayRequest',
+			<?php echo $jsApiParameters; ?>,
+			function(res){
+//				WeixinJSBridge.log(res.err_msg);
+//				console.log(res.err_code+res.err_desc+res.err_msg);
+				//NaNget_brand_wcpay_request:ok
+				if(res.err_msg=='get_brand_wcpay_request:ok'){
+					location.replace("{:U('User/index')}");
+				}else{
+					location.replace("{:U('User/index')}");
+				}
+			});
+		}
+
+		function callpay()
+		{
+			if (typeof WeixinJSBridge == "undefined"){
+				if( document.addEventListener ){
+					document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+				}else if (document.attachEvent){
+					document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+					document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+				}
+			}else{
+				jsApiCall();
+			}
+		}
+	</script>
+	<script src="__STATIC__/amaze/js/amazeui.min.js"></script>
+	<script type="text/javascript">
+		//获取共享地址
+		//		function editAddress()
+		//		{
+		//			WeixinJSBridge.invoke(
+		//					'editAddress',
+		//			<?php echo $editAddress; ?>,
+		//			function(res){
+		//				var value1 = res.proviceFirstStageName;
+		//				var value2 = res.addressCitySecondStageName;
+		//				var value3 = res.addressCountiesThirdStageName;
+		//				var value4 = res.addressDetailInfo;
+		//				var tel = res.telNumber;
+		//
+		//				alert(value1 + value2 + value3 + value4 + ":" + tel);
+		//			}
+		//		);
+		//		}
+
+		window.onload = function(){
+			if (typeof WeixinJSBridge == "undefined"){
+				if( document.addEventListener ){
+					document.addEventListener('WeixinJSBridgeReady', callpay, false);
+				}else if (document.attachEvent){
+					document.attachEvent('WeixinJSBridgeReady', callpay);
+					document.attachEvent('onWeixinJSBridgeReady', callpay);
+				}
+			}else{
+				callpay();
+			}
+		};
+
+	</script>
+</head>
+<body>
+
+<div class="am-modal am-modal-prompt" tabindex="-1" id="password_modal">
+	<div class="am-modal-dialog">
+		<div class="am-modal-hd">请输入您的密码</div>
+		<div class="am-modal-bd">
+			<input type="password" class="am-modal-prompt-input" id="password">
+		</div>
+		<div class="am-modal-footer">
+			<span class="am-modal-btn" data-am-modal-cancel>取消</span>
+			<span class="am-modal-btn" data-am-modal-confirm>提交</span>
+		</div>
+	</div>
+</div>
+
+<div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="loading">
+	<div class="am-modal-dialog">
+		<div class="am-modal-hd">正在执行...</div>
+		<div class="am-modal-bd">
+			<span class="am-icon-spinner am-icon-spin"></span>
+		</div>
+	</div>
+</div>
+
+<div class="am-modal am-modal-alert" tabindex="-1" id="am-alert">
+	<div class="am-modal-dialog">
+		<div class="am-modal-hd">消息提示</div>
+		<div class="am-modal-bd">
+			<span id="alert-msg"></span>
+		</div>
+		<div class="am-modal-footer">
+			<span class="am-modal-btn" data-am-modal-confirm>确定</span>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

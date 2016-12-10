@@ -1,0 +1,126 @@
+<extend name="Public/base"/>
+<block name="style">
+	<link rel="stylesheet" href="__CSS__/admin_index.css">
+</block>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">体检管理</strong> /
+			<small>手动预约</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+	<div class="am-g">
+		<div class="am-u-sm-12 ">
+			<div class="am-btn-toolbar">
+				<div class="am-u-sm-3 ">
+					<button type="button" id="check_all" class="am-btn am-btn-default am-text-primary am-btn-xs"  >
+						<span class="am-icon-check-square-o"></span> 全选
+					</button>
+					<button type="button" id="check_reverse" class="am-btn am-btn-default am-text-primary am-btn-xs"  >
+						<span class="am-icon-check-circle-o"></span> 反选
+					</button>
+
+					<button type="button" id="send_result" class="am-btn am-btn-default am-text-primary am-btn-xs"  >
+						<span class="am-icon-check-circle-o"></span> 发送 <span id="count_selected">0</span>
+					</button>
+				</div>
+				<div class="am-u-sm-9  am-btn-group-xs am-text-sm "  >
+					<form class="am-form am-form-inline am-form-horizontal am-fr " >
+						<label>单位:</label>
+						<select name="company" id="company" class="am-text-sm am-input-sm">
+							<option value="">请选择.</option>
+							<volist name="companys" id="c">
+								<notempty name="c.company">
+									<option value="{$c.company}" <eq name="Think.post.company" value="$c['company']" >selected</eq>>{$c.company}</option>
+								</notempty>
+							</volist>
+						</select>
+						<label>一线</label>
+						<select name="is_onsite" id="is_onsite" class="am-text-sm am-input-sm">
+							<option value="">请选择</option>
+							<option value="1">是</option>
+							<option value="0">否</option>
+						</select>
+						<label>性别</label>
+						<select name="sex" id="sex" class="am-text-sm am-input-sm">
+							<option value="">请选择</option>
+							<option value="1">男</option>
+							<option value="0">女</option>
+						</select>
+						<label>等级</label>
+						<select name="rank" id="rank" class="am-text-sm am-input-sm">
+							<option value="">请选择</option>
+							<option value="0">普通</option>
+							<option value="1">内部会员</option>
+							<option value="2">VIP</option>
+						</select>
+						<label>类别</label>
+						<select name="level" id="level" class="am-text-sm am-input-sm">
+							<option value="">请选择</option>
+							<option value="Ⅰ">Ⅰ</option>
+							<option value="Ⅱ">Ⅱ</option>
+							<option value="Ⅲ">Ⅲ</option>
+							<option value="Ⅳ">Ⅳ</option>
+							<option value="Ⅴ">Ⅴ</option>
+							<option value="Ⅵ">Ⅵ</option>
+							<option value="Ⅶ">Ⅶ</option>
+						</select>
+						<label>婚史</label>
+						<select name="married" id="married" class="am-text-sm am-input-sm">
+							<option value="">请选择</option>
+							<option value="不确定">不确定</option>
+							<option value="有">有</option>
+							<option value="无">无</option>
+						</select>
+						<button type="button" id="query" class="am-btn am-btn-primary am-btn-xs" >筛选</button>
+					</form>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="am-g am-data-table-hd">
+		<div class="am-u-sm-12 ">
+			<form class="am-form">
+				<div id="scrollable-table " class="am-scrollable-horizontal">
+					<table class="am-table am-table-striped am-table-hover am-table-compact am-text-nowrap" id="data-list" style="width:100%;">
+						<thead>
+						<tr>
+							<th>ID</th>
+							<th>会员卡号</th>
+							<th>单位</th>
+							<th>部门</th>
+							<th>职位</th>
+							<th>是否一线</th>
+							<th>姓名</th>
+							<th>性别</th>
+							<th>身份证</th>
+							<th>手机</th>
+							<th>金额</th>
+							<th>等级</th>
+							<th>类型</th>
+							<th>婚否</th>
+							<th>状态</th>
+						</tr>
+						</thead>
+					</table>
+
+				</div>
+			</form>
+
+		</div>
+
+	</div>
+
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+	<script type="text/javascript" src="__STATIC__/amaze/js/fnReloadAjax.js"></script>
+	<script type="text/javascript" src="__JS__/common.js"></script>
+	<script type="text/javascript" src="__JS__/suite_order_manual.js"></script>
+</block>

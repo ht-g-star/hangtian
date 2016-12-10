@@ -1,0 +1,116 @@
+<extend name="Public/base"/>
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">数据</strong> /
+			<small>列表</small>
+		</div>
+	</div>
+</block>
+<block name="body">
+	<div class="am-g am-padding am-padding-top-0">
+	<div class="main-title">
+		<h2>{$title}(今天是{$dtime})</h2>
+	</div>
+
+
+	<div class="data-table table-striped"><div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 1,//null,
+            plotShadow: false
+        },
+        title: {
+            text: '{$title}'
+        },
+        tooltip: {
+    	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                       color: 'deeppink',
+									fontSize: '14px',
+									padding: '4px'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: '占比',
+            data: [
+                ['退货{$back|default="0"}元 ',   {$b|default="0"}],
+                ['换货{$change|default="0"}元 ',      {$c|default="0"}],
+                {
+                    name: '销售额{$total|default="0"}元 ',
+                    y: {$a|default="0"},
+                    sliced: true,
+                    selected: true
+                },
+                
+               
+            ]
+        }]
+    });
+});
+    
+
+		</script>	
+<p style="height:30px;margin:10px;color:deeppink;font-size:16px">利润：{$total|default="0"}-{$back|default="0"}-{$change|default="0"}={$profits|default="0"}元</p>
+<table id="datatable" class="am-table am-table-striped am-table-hover am-table-compact am-text-nowrap dataTable no-footer">
+	<thead>
+		<tr>
+			<th></th>
+			
+			<th>总额(元)</th>
+             <th>数量</th>
+			  <th>种类数</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>卖出</th>
+			
+			<td>{$total|default="0"}</td>
+             <td>{$salenum|default="0"}件</td>
+			 <td>{$salecount|default="0"}种</td>
+		</tr>
+		<tr>
+			<th>退货</th>
+			<td>{$back|default="0"}</td>
+			<td>{$backnum|default="0"}件</td>
+			<td>{$backcount|default="0"}种</td>
+		</tr>
+		<tr>
+			<th>换货</th>
+			<td>{$change|default="0"}</td>
+			<td>{$changenum|default="0"}件</td>
+			<td>{$changecount|default="0"}种</td>
+
+		</tr>
+
+		
+	</tbody>
+</table>
+  
+	</div>
+		</div>
+</block>
+
+<block name="script">
+	<script type="text/javascript" src="/Public/static/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="/Public/Admin/js/jquery.mousewheel.js"></script>
+	<script type="text/javascript" src="/Public/Admin/js/highcharts.js"></script>
+	<script type="text/javascript" src="/Public/Admin/js/exporting.js"></script>
+	<script type="text/javascript" src="/Public/Admin/js/data.js"></script>
+ <script type="text/javascript">
+    </script>
+</block>

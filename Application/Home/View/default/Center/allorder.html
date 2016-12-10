@@ -1,0 +1,238 @@
+<extend name="Base/common"/>
+<block name="style">
+	<link rel="stylesheet" href="__CSS__/order.css">
+	<style>
+		a.trash{
+			background-color:transparent;
+		}
+	</style>
+</block>
+<block name="body">
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">个人中心</li>
+			</ol>
+		</div>
+		<div class="userCenter am-cf">
+			<div class="am-u-sm-3">
+				<!-- 左侧菜单 -->
+				<include file="Public/leftmenu"/>
+				<!-- 左侧菜单 -->
+			</div>
+			<div class="center_right" style="display: none;">
+				<div class="center_right_loading"></div>
+			</div>
+			<div id="memberCenter" class="userCenter-r am-u-sm-9 am-padding-xl">
+				<!-- 个人中心 初始状态 start -->
+				<div class="am-g" id="MemberCenterCtrl">
+					<!--标题-->
+					<div class="am-cf">
+						<div class="am-u-sm-6"><h2 class="am-fl">普通订单</h2></div>
+					</div>
+					<!--标题-->
+					<div class="am-tabs am-margin-left">
+						<ul class="am-tabs-nav am-nav am-nav-tabs">
+							<li class="am-active"><a href='{:U("Center/allorder")}' class="red">所有订单</a></li>
+							<li><a href='{:U("Center/needpay")}' class="red">待支付订单</a></li>
+							<li><a href='{:U("Center/tobeshipped")}' class="red">待发货订单</a></li>
+							<li><a href='{:U("Center/tobeconfirmed")}' class="red">待确认订单</a></li>
+						</ul>
+					</div>
+					<p class="am-u-sm-12 am-text-xs am-text-warning">未支付的订单30分钟后会被取消.</p>
+					<br/>
+					<empty name='list'>
+						<p class="am-text-center am-padding-xl">
+							没有订单，<a href='{:U("shop/index")}' class="am-text-warning">快去下单吧</a></p>
+						<else/>
+						<form action='{:U("order/del")}' method="post" name="delform">
+							<div class="order_del am-padding-top am-padding-bottom am-hide">
+								<!--<span>-->
+									<!--<input class="checkbox check-all" type="checkbox"> 全选 <a href='javascript:void(0)' onclick="delorder()">删除选中的订单</a> </span>-->
+							</div>
+							<div class="good-canshu am-margin-top">
+								<span class="good-name am-text-left am-padding-left">商品名称</span><span class="good-price">售价</span><span class="good-num">数量</span>
+								<span class="good-action">商品操作</span><span class="good-total">总金额(元)</span>
+								<span class="good-status">交易状态</span> <span class="deal-action">交易操作</span></div>
+
+							<volist name="list" id="po">
+								<div class="single" onmouseover="this.className='singlehover'" onmouseout="this.className='single'">
+									<div class="order-detail am-text-sm">
+										<!--<input class="ids row-selected" type="checkbox" name="tag[]" value="{$po.tag}">-->
+										订单号：<span class="am-link-muted num-text">{$po.orderid}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下单时间：<span class="am-link-muted num-text">{$po.create_time|date='Y-m-d H:i:s',###}&nbsp;
+
+										<egt name="po['status']" value="3">
+											<b><a class="trash" href="{:U('order/del?tag='.$po['tag'])}"><img src="__IMG__/iconfont-lajixiang.png" width="20" height="20"></a></b>
+										</egt>
+										</span>
+									</div>
+									<!-- 列表详情区域开始 -->
+									<div id="table4">
+										<div id="table3">
+											<div id="table2">
+									<div class="goodlist-wrap am-cf">
+										<!-- 左边商品区域开始 -->
+										<div class="three-area">
+											<volist name="po['id']" id="vo">
+												<div class="cos">
+		     <span class="am-padding-left-sm"><a href="{:U('Article/detail?id='.$vo['goodid'])}">
+			     <img src="{$vo.goodid|get_cover_id|get_cover='path'}" width="70" height="70"/> </a>
+				  <span style="width:170px;" class="am-inline-block am-text-sm"><a href="{:U('Article/detail?id='.$vo['goodid'])}">{$vo.goodid|get_good_name|mb_substr=0,10,'utf-8'}</a></span>
+			     <span class="dd">{$vo.parameters}</span>
+		     </span>
+													<span class="c2 am-text-warning num-text">￥{$vo.price}</span>
+													<span class="c2 num-text">{$vo.num}</span>
+		    <span class="c2 am-padding-top-sm am-padding-right-xs am-text-xs" style="white-space: nowrap">
+			    <php>
+			    if($vo['status']==1||$vo['status']==2){echo ""
+			    ;};
+			    if($vo['status']==3){echo "<a href='index.php?s=/Home/back/index/id/".$vo['id']."'>退货</a>
+			    /"."<a href='index.php?s=/Home/Exchange/index/id/".$vo['id']."'>换货</a>"
+			    ;};
+
+			    if($vo['status']==4){echo "<a href='index.php?s=/Home/back/detail/id/".$vo['id']."'>退货审核中</a>&nbsp;";};
+			    if($vo['status']==5){echo "<a href='index.php?s=/Home/back/detail/id/".$vo['id']."'>同意退货</a>&nbsp;";};
+			    if($vo['status']==6){echo "<a href='index.php?s=/Home/back/detail/id/".$vo['id']."'>退货中</a>&nbsp;";};
+			    if($vo['status']==7){echo "<a href='index.php?s=/Home/back/detail/id/".$vo['id']."'>退货被拒绝</a>&nbsp;";};
+			    if($vo['status']==8){echo "<a href='index.php?s=/Home/back/detail/id/".$vo['id']."'>退货完成</a>&nbsp;";};
+
+			    if($vo['status']==-4){echo "<a href='index.php?s=/Home/Exchange/detail/id/".$vo['id']."'>换货审核中</a>
+			    &nbsp;";};
+			    if($vo['status']==-5){echo "<a href='index.php?s=/Home/Exchange/detail/id/".$vo['id']."'>同意换货</a>&nbsp;";};
+			    if($vo['status']==-6){echo "<a href='index.php?s=/Home/Exchange/detail/id/".$vo['id']."'>换货中</a>&nbsp;";};
+			    if($vo['status']==-7){echo "<a href='index.php?s=/Home/Exchange/detail/id/".$vo['id']."'>换货被拒绝</a>
+			    &nbsp;";};
+			    if($vo['status']==-8){echo "<a href='index.php?s=/Home/Exchange/detail/id/".$vo['id']."'>换货完成</a>&nbsp;";};
+			    if($vo['iscomment']==1){echo
+			    "<br/><a href='index.php?s=/Home/comment/index/id/".$vo['id']."'>评价</a>";};
+			    if($vo['iscomment']==2){echo
+			    "<br/><a href='index.php?s=/Home/comment/lists'>已评价</a>";};
+		    </php></span>
+												</div>
+											</volist>
+										</div>
+										<!-- 左边商品结束 -->
+
+
+										<div class="total-area">
+											<p class="am-text-warning num-text">
+											￥{$po.total_money}</p>
+
+											<p class="am-text-xs">(运费￥{$po.ship_price})</p>
+										</div>
+										<div class="deal-area">
+											<p class="red am-text-xs am-margin-0 ">
+												<php>
+													$status=$po['status'];if($status==13){ echo "待支付";};
+													if($status==1){ echo "待发货";};
+													if($status==2){ echo "已发货";};
+													if($status==3){ echo "交易成功";};
+													if($status==4){ echo "申请取消订单";};
+													if($status==5){ echo "取消被拒绝";};
+													if($status==6){ echo "订单已取消";};
+												</php>
+											</p>
+											<p class="am-text-xs am-margin-0 ">
+												<a href="{:U('order/detail?id='.$po['orderid'])}" class="am-text-xs">订单详情</a>
+											</p>
+										</div>
+										<div class="act-area">
+											<php>
+
+												$status=$po['status'];
+												if($status==2){ echo "
+												<p>
+												<a class=' am-btn am-btn-warning am-btn-xs confirm' href='index.php?s=/Home/order/complete/id/".$po['orderid']."'>确认收货</a>
+													<a href='index.php?s=/Home/cancel/index/id/".$po['orderid']."'>取消订单</a>
+											</p>";
+												};
+												$pay=$po['ispay'];
+												if($pay==1&&$po['status']==-1){ echo "
+												<p>
+													<a   href='index.php?s=/Home/cancel/index/id/".$po['orderid']."'>取消订单</a>
+													<a class='am-btn am-btn-warning am-btn-xs' href='index.php?s=/Home/Pay/index/orderid/".$po['orderid']."'>前去支付</a>
+												</p>";
+												};
+
+												if($pay==1&&$po['status']==1 ){ echo " <p>
+														<a href='index.php?s=/Home/cancel/index/id/".$po['orderid']."'>取消订单</a>
+													</p>";
+												}
+												;
+											</php>
+
+										</div>
+										<!--<A href='index.php?s=/Home/cancel/index/id/".$po['orderid']."'>取消订单</a>-->
+									</div>
+									<!-- 列表详情区域结束 -->
+								</div>
+											</div>
+									</div>
+								</div>
+							</volist>
+						</form>
+
+					</empty>
+
+					<!-- 分页 -->
+					<div class="page">
+						{$page}
+					</div>
+					<script type="text/javascript">
+
+
+						function delorder() {
+							if (confirm("确认吗?")) {
+								document.delform.submit();
+							}
+
+						}
+						//全选的实现
+						$(".check-all").click(function () {
+							$(".ids").prop("checked", this.checked);
+						});
+						$(".ids").click(function () {
+							var option = $(".ids");
+							option.each(function (i) {
+								if (!this.checked) {
+									$(".check-all").prop("checked", false);
+									return false;
+								} else {
+									$(".check-all").prop("checked", true);
+								}
+							});
+						});
+
+//						$(function(){
+//							var heightLeft= $(".three-area").height();
+//							var heightRight= $(".total-area").height();
+//							if (heightLeft > heightRight)
+//							{
+//								$(".total-area").height(heightLeft);
+//
+//							}
+//
+//							else
+//							{
+//								$(".three-area").height(heightRight);
+//							}
+//						})
+
+					</script>
+					<!-- 个人中心 初始状态 end --></div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">_init_area();</script>
+	<script type="text/javascript">
+		$(".trash").click(function(){
+			if(confirm("是否确认?")){
+			    return true;
+			}else{
+				return false;
+			}
+		});
+	</script>
+</block>

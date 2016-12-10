@@ -1,0 +1,38 @@
+<extend name="Base/common"/>
+<block name="style">
+
+</block>
+<block name="body">
+	<!--content begin-->
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">名医堂</li>
+			</ol>
+		</div>
+		<div class="doctor-content am-padding am-margin-bottom">
+			<div class="am-g am-container am-padding-xl">
+				<div class="am-u-sm-3">
+					<notempty name="data.pic">
+						<img src="{$data.pic}" class=" am-img-thumbnail" width="196px" height="206px">
+						<else/>
+						<img src="__STATIC__/amaze/i/doctor_zb.jpg">
+					</notempty>
+				</div>
+				<div class="am-u-sm-9">
+					<h2>专家医生简介</h2>
+					<h4>{$data.realname}</h4>
+					<h6>{$data.title}</h6>
+					<hr>
+					<p>业务专长：</p>
+					<p>{$data.content}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--content end-->
+
+</block>
+<block name="script">
+</block>

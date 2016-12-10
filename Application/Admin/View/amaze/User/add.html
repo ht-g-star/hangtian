@@ -1,0 +1,57 @@
+<extend name="Public/base"/>
+
+<block name="nav">
+	<div class="am-cf am-padding ">
+		<!-- 标题栏 -->
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">用户管理</strong> /
+			<small>新增管理员</small>
+		</div>
+	</div>
+</block>
+
+<block name="body">
+	<div class="am-g ">
+		<div class="am-u-sm-10 am-center">
+			<form action="{:U()}" method="post" class="am-form">
+				<div class="am-form-group">
+					<label class="item-label">用户名<span class="check-tips">（用于用户登录）</span></label>
+
+					<div class="controls">
+						<input type="text" class="text input-large" name="username" value="">
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label class="item-label">密码<span class="check-tips">（用户密码不能少于6位）</span></label>
+
+					<div class="controls">
+						<input type="password" class="text input-large" name="password" value="">
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label class="item-label">确认密码</label>
+
+					<div class="controls">
+						<input type="password" class="text input-large" name="repassword" value="">
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label class="item-label">邮箱<span class="check-tips">（用户邮箱，用于找回密码等安全操作）</span></label>
+
+					<div class="controls">
+						<input type="text" class="text input-large" name="email" value="">
+					</div>
+				</div>
+				<div class="am-form-group">
+					<button class="am-btn am-btn-primary submit-btn " id="submit" type="submit" target-form="form-horizontal">确 定
+					</button>
+					<button class="am-btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</block>
+
+<block name="script">
+	<script type="text/javascript">
+	</script>
+</block>

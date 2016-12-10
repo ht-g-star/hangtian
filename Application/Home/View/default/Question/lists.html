@@ -1,0 +1,68 @@
+<extend name="Base/common"/>
+<block name="style">
+	<style>
+
+	</style>
+</block>
+<block name="body">
+	<!--content begin-->
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">健康咨询</li>
+			</ol>
+		</div>
+		<div class="con-box am-padding-xl am-margin-top am-margin-bottom">
+			<div class="am-g bg-fff">
+				<div class="am-u-sm-3 zx-fl am-padding-sm">
+					<h3 class="am-padding-0 am-margin-left am-margin-top">咨询分类</h3>
+					<ul class="am-cf">
+						<volist name="category" id="c">
+							<li><a href="{:U('Question/lists',array('cid'=>$c['id']))}">{$c.title}</a> <span class="am-icon-angle-right"></span> </li>
+						</volist>
+					</ul>
+				</div>
+				<div class="am-u-sm-9 am-padding-left-0">
+					<div class="con-tabs-content am-padding-top">
+						<ul class="am-cf">
+
+							<volist name="data" id="q" mod="2" empty="暂无记录">
+								<li class='<eq name="mod" value="1" >even<else/>odd</eq> am-padding-xs'>
+									<a href="{:U('Question/detail',array('id'=>$q['id']))}">
+										<dd class="am-fl am-padding-xs am-padding-left">
+											<img src="__STATIC__/amaze/i/icon_new_post.png">
+											{$q.title}
+											<span class="post-time am-padding-left-xl">{$q.ctime|time_format}</span></dd>
+										<dt class="am-fr am-padding-xs am-padding-right">
+											<!--<img src="__STATIC__/amaze/i/icon_user.png">-->
+											<empty name="q.vtime">未<else/>已</empty>回复</dt>
+										<div class="am-cf"></div>
+									</a>
+								</li>
+							</volist>
+						</ul>
+					</div>
+					<hr>
+					<div class="am-margin-top-xl">
+						<ul class="am-pagination am-pagination-centered am-text-sm">
+							{$page}
+							<!--<li class="am-disabled"><a href="#">&laquo;</a></li>-->
+							<!--<li class="am-active"><a href="#">1</a></li>-->
+							<!--<li><a href="#">2</a></li>-->
+							<!--<li><a href="#">3</a></li>-->
+							<!--<li><a href="#">4</a></li>-->
+							<!--<li><a href="#">5</a></li>-->
+							<!--<li><a href="#">&raquo;</a></li>-->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--content end-->
+
+</block>
+<block name="script">
+
+</block>

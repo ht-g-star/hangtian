@@ -1,0 +1,67 @@
+<extend name="Base/common"/>
+<block name="style">
+
+</block>
+<block name="body">
+	<!--content begin-->
+	<div class="am-g am-container am-margin-top-lg">
+		<div class="breadcrumb-box">
+			<ol class="am-breadcrumb am-breadcrumb-slash">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li class="am-active">健康咨询</li>
+			</ol>
+		</div>
+		<div class="con-box am-padding-xl am-margin-bottom-xl">
+			<div class="am-g">
+				<div class="am-u-sm-2 am-text-center">
+					<img src="__STATIC__/amaze/i/img-avatar-01.png" class="am-padding-top">
+
+					<p>{$question.c_name|default='匿名用户'}</p>
+				</div>
+				<div class="am-u-sm-10">
+					<div class="check-form-box am-padding">
+						<span class="arrow-zj"><img src="__STATIC__/amaze/i/img-zj-arrow.png"></span>
+
+						<p class="am-text-primary am-margin-bottom-0">咨询标题</p>
+
+						<p class="am-text-lg am-margin-bottom-0 am-margin-top-xs">{$question.title}</p>
+						<hr>
+						<!--<p class="am-text-primary am-margin-bottom-0">科室</p>-->
+						<!--<p class="am-text-lg am-margin-bottom-0 am-margin-top-xs">神经科</p>-->
+						<!--<hr>-->
+						<p class="am-text-primary am-margin-bottom-0">详情</p>
+
+						<p class="am-text-sm am-margin-bottom-0 am-margin-top-xs">{$question.content}</p>
+						<span class="am-link-muted am-text-xs">发表 {$question.ctime|time_format}</span>
+					</div>
+				</div>
+			</div>
+
+			<volist name="answers" id="ans" empty="暂无回复">
+				<div class="am-g am-margin-top am-margin-bottom">
+					<div class="am-u-sm-2 am-text-center am-padding-top">
+						<img src="__STATIC__/amaze/i/img-avatar-02.png">
+
+						<p>{$ans.doctor} {$ans.title}</p>
+					</div>
+					<div class="am-u-sm-10">
+						<div class="check-form-box am-padding">
+							<span class="arrow-zj"><img src="__STATIC__/amaze/i/img-zj-arrow.png"></span>
+
+							<p class="am-text-warning am-margin-bottom-0 am-margin-top-xs">{$ans.content}</p>
+							<span class="am-text-primary am-text-xs">回复{$ans.ctime|time_format}</span>
+							<hr>
+							<p class="am-text-xs am-padding-0 am-margin-0">
+								大夫郑重提醒：因不能面诊患者，无法全面了解病情，以上建议仅供参考，具体诊疗请一定到医院在医生指导下进行！</p>
+						</div>
+					</div>
+				</div>
+			</volist>
+
+		</div>
+	</div>
+	<!--content end-->
+</block>
+<block name="script">
+
+</block>

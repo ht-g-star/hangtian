@@ -1,0 +1,137 @@
+<extend name="Base/mobile_base"/>
+<block name="body">
+	<!-- 会员中心banner -->
+	<div class="user-center am-cf am-text-sm">
+		<div class="am-fl am-cf">
+			<p class="am-fl am-margin-top am-margin-left-sm">
+				<span class="user-avatar">
+					<notempty name="follower.headimgurl">
+						<img src="{$follower.headimgurl}" height="100%" width="100%"/>
+						<else/>
+						<img src="__STATIC__/amaze/i/img-avatar.png" height="100%" width="100%"/>
+					</notempty>
+				</span>
+			</p>
+
+			<p class="am-fr am-margin-left-xs">
+				{$_user.realname}<br>
+				会员等级: <span class="user-text">{$_user.rank|get_rank}</span><br>
+				余额: <span class="user-text">￥{$_user.balance|round=2}</span>
+				<a class="user-text am-text-primary am-text-xs" href="/wechat.php/Pay/charge.html">去充值</a><br>
+				<!-- <button type="button" class="am-btn am-btn-danger">充值</button> -->
+			</p>
+		</div>
+		<div class="am-fr am-margin-right am-margin-top">
+			积分:<span id="score" class="user-text">{$_user.score}</span>
+			<br>
+
+			<if condition="C('SIGN_SCORE') gt 0">
+				<if condition="isSigned(is_login())">
+					<a href="#" class="sign am-disabled">已签到</a>
+					<else/>
+					<a href="#" onclick="qiandao()" class="sign">签到</a>
+				</if>
+			</if>
+		</div>
+	</div>
+	<!-- List -->
+	<div class="user-center-list">
+		<ul class="am-list am-list-border">
+			<li>
+				<a href="{:U('UserMallOrder/index')}" class="am-link-muted">
+					<i class="icon-order"></i>普通订单
+					<span class="list-arrow">></span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('UserMallOrder/hotel')}" class="am-link-muted">
+					<i class="icon-order"></i>酒店订单
+					<span class="list-arrow">></span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('UserMallOrder/line')}" class="am-link-muted">
+					<i class="icon-order"></i>旅游订单
+					<span class="list-arrow">></span>
+				</a>
+			</li>
+		
+			<li>
+				<a href="{:U('UserMallOrder/jipiao')}" class="am-link-muted">
+					<i class="icon-order"></i>机票订单
+					<span class="list-arrow">></span>
+				</a>
+			</li> 
+			<!-- __ROOT__/index.php/index/appointment.html -->
+			<li>
+				<a href="{:U('Suite/geti')}" class="am-link-muted">
+					<i class="icon-order"></i>个体化订单
+					<span class="list-arrow">></span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('UserCoupon/index')}" class="am-link-muted">
+					<i class="icon-coupon"></i>优惠券
+					<span class="list-arrow">></span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('SuiteOrder/index')}" class="am-link-muted"><i class="icon-yuyue"></i>预约信息<span class="list-arrow">></span></a>
+			</li>
+			<li>
+				<a href="{:U('Report/index')}" class="am-link-muted"><i class="icon-order"></i>报告历史<span class="list-arrow">></span></a>
+			</li>
+			<li>
+				<a href="{:U('User/balance')}" class="am-link-muted"><i class="icon-points"></i>余额查询<span class="list-arrow">></span></a>
+			</li>
+			<li>
+				<a href="{:U('User/info')}" class="am-link-muted"><i class="icon-personal"></i>个人信息<span class="list-arrow">></span></a>
+			</li>
+			<li>
+				<a href="{:U('User/address')}" class="am-link-muted"><i class="icon-order"></i>收货地址<span class="list-arrow">></span></a>
+			</li>
+		</ul>
+	</div>
+	<div class="am-u-sm-12 am-padding-bottom-lg am-margin-bottom-lg">
+		<button class="am-btn am-btn-block am-btn-danger" id="unbind">解绑微信</button>
+	</div>
+	<div class="am-u-sm-12 am-padding-top-lg">
+		&nbsp;
+	</div>
+	<include file="Base/bottom_nav"/>
+</block>
+<block name="script">
+	<script>
+		function qiandao() {
+			var b = '{:U("Home/Sign/index")}';
+			$.ajax({
+				type: "GET",
+				url: 'index.php?s=Home/Sign/index.html',
+				data: {username: b},
+				dataType: "json",
+				success: function (data) {
+					alert(data.msg || data.info);
+					$("span#score").html(data.score);
+				}
+			});
+		}
+		$("#unbind").click(function () {
+			if (confirm("您确定要解绑微信吗?")) {
+				$.get("{:U('Public/unbind')}", {}, function (data) {
+					if (data) {
+						if (data.status) {
+							topAlert(data.info, true);
+							setTimeout(function () {
+								window.location.href = "{:U('Public/login')}";
+							}, 2000)
+						} else {
+							topAlert("退出失败!".data.info, true);
+						}
+					} else {
+						topAlert("网络错误", false);
+					}
+				}, 'json');
+			}
+		});
+	</script>
+</block>

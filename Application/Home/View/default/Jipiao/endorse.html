@@ -1,0 +1,438 @@
+<extend name="Base/common"/>
+    <link rel="stylesheet" href="/Public/hangtian/css/amazeui.min.css" />
+<block name="style">
+    <title>机票检索</title>
+    <link rel="stylesheet" href="/Public/hangtian/plugin/dtp1/jquery.datetimepicker.css" />
+    <link rel="stylesheet" href="/Public/hangtian/css/style.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="/Public/hangtian/css/style1-IE.css" />
+    <script type="text/javascript" src="/Public/hangtian/js/jquery-1.11.0.js" ></script>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script type="text/javascript" src="/Public/hangtian/js/amazeui.ie8polyfill.min.js" ></script>
+    <![endif]-->
+</block>`
+<block name="body">
+<style type="text/css">
+    .am-nav-tabs.am-nav-justify>.am-active>a, 
+    .am-nav-tabs.am-nav-justify>.am-active>a:focus, 
+    .am-nav-tabs.am-nav-justify>.am-active>a:hover{background:#0084c7;color:#FFF;}
+</style>
+
+<!--header-->
+<!--面包屑导航-->
+<div class="am-g am-g-fixed am-g-collapse">
+    <div class="am-breadcrumb am-breadcrumb-slash">
+        <li><a href="/">首页</a></li>
+        <li><a href="/index.php?s=/Home/Shop/index.html">健康商城</a></li>
+        <li class="am-active"><a href="#">机票预定</a></li>
+    </div>
+</div>
+
+<!--section-->
+<form id="searchform">
+<div class="searchtk_box">
+    <div class="am-g am-g-fixed am-g-collapse search_tk_gp">
+        <div class="am-u-lg-1">
+            <div class="am-radio ">
+                <span>国内</span>
+            </div>
+            <!--<div class="am-radio ">
+                <input type="radio" name="tk_type" value="in">
+                <span>国际</span>
+            </div>-->
+        </div>
+        <div class="am-u-lg-1 am-padding-left-sm">
+            <div class="am-radio">
+                <span>{:($order['iswf']?'往返':单程)}</span>
+            </div>
+        </div>
+        <div class="am-u-lg-4 clear">
+            <div class="ticket_form_row am-u-lg-12 clear">
+                <label class="am-u-lg-3 am-text-right">出发城市:</label>
+                <input  class="am-u-lg-7 am-u-end" type="text" value="{$order['fromcitycn']}" disabled="disabled"/>
+            </div>
+            <div class="ticket_form_row am-u-lg-12 clear">
+                <label class="am-u-lg-3 am-text-right">目的城市:</label>
+               <input class="am-u-lg-7 am-u-end" type="text" value="{$order['tocitycn']}" disabled="disabled"/>
+
+            </div>
+            <div class="city_sort2">
+                <a href="javascript:ExchangeCtiy();">
+                    <img src="/Public/hangtian/img/city_sort.png" />
+                </a>
+            </div>
+        </div>
+        <div class="am-u-lg-4 cla">
+            <div class="ticket_form_row am-u-lg-12 clear">
+                <label class="am-u-lg-3 am-text-right">出发日期:</label>
+                <input id="startdate" name="sdate" class="am-u-lg-8 am-u-end" type="text" placeholder="点击选择出发日期" value="{:I('sdate')}"/>
+                <img src="/Public/hangtian/img/date_icon.jpg" />
+            </div>
+            <div class="ticket_form_row am-u-lg-12 clear">
+                <label class="am-u-lg-3 am-text-right">返程日期:</label>
+                <input id="backdate" name="edate" class="am-u-lg-8 am-u-end" type="text" placeholder="点击选择返程日期" value="{:I('edate')}"/>
+                <img src="/Public/hangtian/img/date_icon.jpg" />
+            </div>
+        </div>
+        <div class="am-u-lg-2 am-u-end am-text-center">
+            <button class="am-btn am-btn-warning tk_search_btn" type="submit">搜索</button>
+        </div>
+    </div>
+</div>
+</form>
+
+<div class="am-g am-g-fixed am-g-collapse">
+    <div class="am-u-lg-12">
+        <div class=" am-alert am-alert-danger" style="position:relative">
+            改签规则：{$rule.ticketChangeRemark}
+        </div>
+    </div>
+</div>
+
+<div class="am-g am-g-fixed am-g-collapse">
+    <div class="am-u-lg-12">
+        <div class="am-tabs" id="doc-my-tabs">
+            <if condition="count($list) eq 2">
+          <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+            <li class="am-active"><a href="">去程</a></li>
+            <li><a href="">返程</a></li>
+            <li class="am-text-right">
+                <button type="button" class="am-btn am-btn-warning" id="resetchoose" style="display:none;">重新选择</button>
+                <button type="button" class="am-btn am-btn-success" id="chooseticket">立即改签</button>
+            </li>
+          </ul>
+          </if>
+          <div class="am-tabs-bd">
+            <div class="am-tab-panel am-active">
+                <div class="ticket_list">
+                    <div class="am-g am-g-fixed am-g-collapse ">
+                        <div class="tk_table am-g">
+                            <div class="tk_table_thead am-g">
+                                <div class="am-u-lg-2">航班信息</div>
+                                <div class="am-u-lg-2">起飞时间</div>
+                                <div class="am-u-lg-2 ">时长</div>
+                                <div class="am-u-lg-2 ">降落时间</div>
+                                <div class="am-u-lg-2 ">价格</div>
+                                <div class="am-u-lg-2 am-u-end">预定</div>
+                            </div>
+                            <div id="tkts" class="tk_table_tbody">
+                                    <!--航班start-->
+                            <volist name="list.0.flightObject" id="vo" key='k'>
+                                <php>
+                                    $count1 = count($vo['cabinInfo']);
+                                    $tmpFaceprice = $vo["cabinInfo"][$count1-1]["facePrice"];
+                                    if($tmpFaceprice > $toPrice)
+                                    {
+                                </php>
+                                <div class="am-g qchb" id="{$vo.flightNo}">
+                                    <div class="am-u-lg-2 clear">
+                                        <div class="am-u-lg-2 am-text-center">
+                                            <!-- <img src="/Public/hangtian/img/hkcpm_icon.png" /> -->
+                                        </div>
+                                        <div class="am-u-lg-10 ">
+                                            <p class="hbcpm"><!--东方航空--><span class="hbbc">{$vo.flightNo}</span></p>
+                                            <if condition="$vo['shareFlightNo'] eq true">
+                                            <small>(共享航班)</small>
+                                            </if>
+                                            <p class="jxtype">{$vo.planeModel}</p>
+                                        </div>
+                                    </div>
+                                    <div class="am-u-lg-2 am-text-center">
+                                        <p class="starttime">{:date('H:i', strtotime($vo['fromDate']))}</p>
+                                        <p class="startqy">
+                                            {:setAirport($vo["fromAirport"])}
+                                        </p>
+                                    </div>
+                                    <div class="am-u-lg-2 am-text-center">
+                                        <p class="tk_sc">时长：{$vo.flightDuration}</p>
+                                        <img src="/Public/hangtian/img/tc_sc.png" style="margin-top: -10px;" />
+                                    </div>
+                                    <div class="am-u-lg-2 am-text-center">
+                                        <p class="endtime">{:date('H:i', strtotime($vo['toDate']))}</p>
+                                        <p class="startqy">
+                                          {:setAirport($vo["toAirport"])}
+                                        </p>
+                                    </div>
+                                    <div class="am-u-lg-2 am-text-center">
+                                        <php>
+                                        foreach($vo['cabinInfo'] as $tmp){
+                                            if($tmp['facePrice'] >= $toPrice){
+                                                echo "<p class='tk_price'>￥<span>".($tmp['facePrice'] + $vo['airportFee'] + $vo['fuelTax'])."</span>起</p>";
+                                                break;
+                                            }
+                                        }
+                                        </php>
+                                    </div>
+                                    <div class="am-u-lg-2 clear">
+                                        <div class="am-u-lg-4 am-text-center">
+                                            <!--<p class="jxtype">燃油费</p>
+                                            <p>￥{$vo.fuelTax}</p>-->
+                                        </div>
+                                        <button class="am-u-lg-7  ch_tk_btn">选择</button>
+                                    </div>
+                                    <!--仓位信息start-->
+                                        <div class="hbdt_group am-u-lg-12">
+                                            <volist name="vo.cabinInfo" id="vo2" key='kk'>
+                                                <if condition="$vo2['facePrice'] egt $toPrice">
+                                                <div class="am-g">
+                                                    <p class="am-u-lg-2 "><input type="radio" name="pthb" data-id='{$kk-1}' data-hbno="{$vo.flightNo}" data-hbid="{$k-1}"/>{$vo2['cabinRankDetail']} {$vo2['cabinCode']}舱</p>
+                                                    <p class="am-u-lg-2 tgq"></p>
+                                                    <p class="am-u-lg-2 tc_zk"></p>
+                                                    <p class="am-u-lg-2 jxtype"></p>
+                                                    <p class="am-u-lg-2 tk_price">￥<span>{$vo2['facePrice'] + $vo['airportFee'] + $vo['fuelTax']}</span></p>
+                                                    <p class="am-u-lg-2 clpear">
+                                                    </p>
+                                                </div>
+                                                </if>
+                                            </volist>
+                                            <if condition="count($list) eq 1">
+                                            <button class="am-u-lg-6 am-u-lg-offset-3 am-u-end yd_tk_btn">预定</button>
+                                            </if>
+                                        </div>
+                                    <!--仓位信息end-->
+                                </div>
+                                <php>}</php>
+                            </volist>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="am-tab-panel">
+                <div class="ticket_list">
+                    <div class="am-g am-g-fixed am-g-collapse ">
+                        <div class="tk_table am-g">
+                            <div class="tk_table_thead am-g">
+                                <div class="am-u-lg-2">航班信息</div>
+                                <div class="am-u-lg-2">起飞时间</div>
+                                <div class="am-u-lg-2 ">时长</div>
+                                <div class="am-u-lg-2 ">降落时间</div>
+                                <div class="am-u-lg-2 ">价格</div>
+                                <div class="am-u-lg-2 am-u-end">预定</div>
+                            </div>
+                            <div id="tkts" class="tk_table_tbody">
+                                    <!--航班start-->
+                            <if condition="count($list) eq 2">
+                                <volist name="list.1.flightObject" id="vo1" key='k'>
+                                    <div class="am-g fhhb" id="{$vo1.flightNo}">
+                                        <div class="am-u-lg-2 clear">
+                                            <div class="am-u-lg-2 am-text-center">
+                                                <!-- <img src="/Public/hangtian/img/hkcpm_icon.png" /> -->
+                                            </div>
+                                            <div class="am-u-lg-10 ">
+                                                <p class="hbcpm"><!--东方航空--><span class="hbbc">{$vo1.flightNo}</span></p>
+                                                <if condition="$vo1['shareFlightNo'] eq true">
+                                                <small>(共享航班)</small>
+                                                </if>
+                                                <p class="jxtype">{$vo1.planeModel}</p>
+                                            </div>
+                                        </div>
+                                        <div class="am-u-lg-2 am-text-center">
+                                            <p class="starttime">{:date('H:i', strtotime($vo1['fromDate']))}</p>
+                                            <p class="startqy">
+                                                {:setAirport($vo1["fromAirport"])}
+                                            </p>
+                                        </div>
+                                        <div class="am-u-lg-2 am-text-center">
+                                            <p class="tk_sc">时长：{$vo1.flightDuration}</p>
+                                            <img src="/Public/hangtian/img/tc_sc.png" style="margin-top: -10px;" />
+                                        </div>
+                                        <div class="am-u-lg-2 am-text-center">
+                                            <p class="endtime">{:date('H:i', strtotime($vo1['toDate']))}</p>
+                                            <p class="startqy">
+                                              {:setAirport($vo1["toAirport"])}
+                                            </p>
+                                        </div>
+                                        <div class="am-u-lg-2 am-text-center">
+                                            <php>
+                                            foreach($vo1['cabinInfo'] as $tmp){
+                                                if($tmp['facePrice'] > $toPrice){
+                                                    echo "<p class='tk_price'>￥<span>".($tmp['facePrice'] + $vo1['airportFee'] + $vo1['fuelTax'])."</span>起</p>";
+                                                    break;
+                                                }
+                                            }
+                                            </php>
+                                        </div>
+                                        <div class="am-u-lg-2 clear">
+                                            <div class="am-u-lg-4 am-text-center">
+                                                <!--<p class="jxtype">燃油费</p>
+                                                <p>￥{$vo.fuelTax}</p>-->
+                                            </div>
+                                            <button class="am-u-lg-7  ch_tk_btn">选择</button>
+                                        </div>
+                                        <!--仓位信息start-->
+                                            <div class="hbdt_group am-u-lg-12">
+                                                <volist name="list[1]['flightObject'][$k-1]['cabinInfo']" id="vo12" key='kk'>
+                                                    <if condition="$vo12['facePrice'] gt $toPrice">
+                                                    <div class="am-g">
+                                                        <p class="am-u-lg-2 "><input type="radio" name="fhhb" data-id='{$kk-1}' data-fhhbid="{$k-1}"/>{$vo12['cabinRankDetail']} {$vo12['cabinCode']}舱</p>
+                                                        <p class="am-u-lg-2 tgq"></p>
+                                                        <p class="am-u-lg-2 tc_zk"></p>
+                                                        <p class="am-u-lg-2 jxtype"></p>
+                                                        <p class="am-u-lg-2 tk_price">￥<span>{$vo12['facePrice'] + $vo1['airportFee'] + $vo1['fuelTax']}</span></p>
+                                                        <p class="am-u-lg-2 clpear">
+                                                        </p>
+                                                    </div>
+                                                    </if>
+                                                </volist>
+                                            </div>
+                                        <!--仓位信息end-->
+                                    </div>
+                                </volist>
+                            </if>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+<!--国内热门城市-->
+<div id="city_ch" class="ariport_box">
+    <div class="xz_ts">选择城市或输入拼音<a href="#close" class="am-fr">关闭</a></div>
+    <div class="port_tabbar clear">
+        <a class="active" href="#hot">热门城市</a>
+        <a href="#all">全部城市</a>
+    </div>
+    <div class="port_tabcnt clear" data-val="hot">
+        <div class="port_index clear">
+            <span>ABCDE</span>
+            <span>FGHIJ</span>
+            <span>KLMNO</span>
+            <span>PQRST</span>
+            <span>UVWXYZ</span>
+        </div>
+        <div class="port_list">
+            <volist name="remen" id="vo">
+                <a data-id="{$vo.id}" data-sp="{$vo.pinyin}" data-py='{$vo.py}' data-hot="true" >{$vo.name}</a>
+            </volist>
+            <volist name="chengshiAll" id="vo">
+                <a data-id="{$vo.id}" data-sp="{$vo.pinyin}" data-py='{$vo.py}' data-hot="false" >{$vo.name}</a>
+            </volist>
+        </div>
+    </div>
+</div>
+
+<!--国际热门城市-->
+<div id="city_in" class="ariport_box">
+    <div class="xz_ts">选择城市或输入拼音<a href="#close" class="am-fr">关闭</a></div>
+    <div class="port_tabbar clear">
+        <a class="active" href="#hot">热门城市</a>
+        <a href="#AS">亚洲</a>
+        <a href="#EP">欧洲</a>
+        <a href="#AF">美洲</a>
+        <a href="#DY">大洋洲</a>
+        <a href="#AF">非洲</a>
+    </div>
+    <div class="port_tabcnt clear" data-val="hot">
+        <div class="port_list">
+        </div>
+    </div>
+</div>
+<!--footer-->
+<!--<script type="text/javascript" src="/Public/hangtian/js/jquery-1.11.0.js"></script>-->
+<script type="text/javascript" src="/Public/hangtian/plugin/dtp1/jquery.datetimepicker.full.min.js"></script>
+<!-- <script type="text/javascript" src="/Public/hangtian/js/airport.js"></script> -->
+<script type="text/javascript" src="/Public/hangtian/Home/js/airport_endorse.js"></script>
+<script>
+
+$(function(){
+    var backdate = $("#backdate").val();
+    if(backdate == "1970-01-01" || backdate == ""){
+        $("#backdate").val("");
+        $("#backdate").prop("disabled", true);
+    }else{
+        $("#backdate").prop("disabled", false);
+    }
+})
+
+$.prototype.serializeObject=function(){  
+    var obj=new Object();  
+    $.each(this.serializeArray(),function(index,param){  
+        if(!(param.name in obj)){  
+            obj[param.name]=param.value;  
+        }  
+    });  
+    return obj;  
+};  
+/**
+ * 搜索表单
+ */
+$('#searchform').on('submit',function(){
+    var formdata=$(this).serializeObject();
+    var url='{:U("endorse",array("orderid"=>I("orderid")))}';
+    if(formdata.hbtype=='wf'&&!formdata.edate){
+        alert('请选择返程日期!');
+        return false;
+    }
+    if(!formdata.sdate){
+        alert('请选择出发日期!');
+        return false;
+    }
+    location.href=url+'&'+$(this).serialize();
+    return false;
+})
+$('#searchform input[name=hbtype][value={:I("hbtype")}]').attr('checked','checked');
+    $("#startcity,#endcity").on('keyup',function(){
+        var t= $(this).val().toLowerCase();
+        if(t){
+            $('.port_list a').each(function(){
+                var sp =$(this).data('sp').toLowerCase();
+                if(sp.indexOf(t) == 0){
+                    $(this).show();
+                }else{
+                    $(this).hide();
+                }
+            });
+        }
+    })
+    $.datetimepicker.setLocale('ch');
+    $("#startdate,#backdate").datetimepicker({
+        timepicker: false,
+        format: 'Y-m-d',
+        minDate: '-1970/01/01'
+    });
+    
+
+    $(function(){
+        $('#doc-my-tabs').tabs();
+
+        $(".ch_tk_btn").click(function(){
+          $(".hbdt_group").hide();
+          $(this).parents(".qchb").find(".hbdt_group").show();
+        })
+
+        $('#chooseticket, .yd_tk_btn').on('click',function(){
+            var pthb=$('input[name=pthb]:checked').data('id');
+            var fhhb=$('input[name=fhhb]:checked').data('id');
+            var hbid=$("input[name=pthb]:checked").data("hbid");
+            var fhhbid=$('input[name=fhhb]:checked').data('fhhbid');
+
+            if("{$iswf}"=="wf"){
+
+                if(pthb==undefined && fhhb==undefined){
+                    alert("请至少选择一个方向的航班进行改签。");
+                    return false;
+                }
+            }else{
+                if(pthb==undefined){
+                    alert('请选择要乘坐的航班!');
+                    return false;
+                }
+            }
+
+            var url="{:u('endorseopt', array('orderid'=>I('orderid')))}";
+            url=url+"&o="+hbid+"&o1="+fhhbid+"&v="+pthb+"&f="+fhhb;
+            // console.log(url);
+            location.href=url;
+        })
+    })
+</script>
+<!--<a href="{:u('addOrder',array('o'=>$k,'v'=>$kk))}">
+                            </a>-->
+</block> 
